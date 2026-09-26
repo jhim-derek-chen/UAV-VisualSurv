@@ -5,7 +5,7 @@ finds every vehicle and every piece of fallen debris on a motorway in UAV
 imagery, then says what each object is, how dangerous it is, and why.
 It runs on a 4 GB laptop GPU.
 
-![Pipeline on one frame: input, road region and detections, identification and risk](results/risk-assessment/path2_qwen_relations/23_chain.jpg)
+![Pipeline on one frame: input, road region and detections, identification and risk](results/risk-assessment/a_qwen_local/23_chain.jpg)
 
 *One test frame through the whole chain. The detector finds the tyre and
 the traffic. The vision-language model names the tyre and rates it high risk
@@ -38,13 +38,14 @@ a separate set of 30 frames.
 | debris found (step 2) | 90.0% |
 | detection precision | 84.1% |
 | debris named correctly (step 3): local Qwen3.5-2B / GPT-5.4 | 56% / 64% |
-| false alarms sent to risk assessment, without -> with the gate (step 4): local / GPT-5.4 | 34 -> 1 / 23 -> 0 |
-| end-to-end time | about 55 s per 4K frame on an RTX 3050 Ti (4 GB) |
+| false alarms reaching risk assessment (after step 4): local / GPT-5.4 | 1 / 0 |
+| end-to-end time per 4K frame: local on an RTX 3050 Ti (4 GB) / GPT-5.4 | about 58 s / about 28 s |
 
 ![Detection example: a truck tyre on the carriageway](results/road-object-eval/examples/13_truck-tire.jpg)
 
-Three ways of running steps 3 to 5 (local model, local model + context gate,
-commercial VLM) are compared in [results/pipeline_report.md](results/pipeline_report.md).
+Steps 3 to 5 run on a local model (architecture A) or on GPT-5.4 (B); a third
+architecture (C) adds a scene-level analysis of each frame. They are compared
+in [results/pipeline_report.md](results/pipeline_report.md).
 
 ## Repository
 
@@ -530,27 +531,28 @@ UAV frame
   -> Objective 1 (road mask + OWLv2 + re-scorer): class-agnostic boxes on the road
   -> VLM, per box: describe it, then pick a category          (Qwen3.5-2B, 4-bit, local)
   -> physics check: is that category possible at the measured size? if not, ask again
+  -> context gate: drop candidates their surroundings show are not debris on the road
   -> VLM, per debris or person: risk level + written reasoning, from measured facts
   -> vehicles and roadside structure: risk "none" by rule
 ```
 
-`scripts/assess_risk.py`. Three paths are compared in
+`scripts/assess_risk.py`. The architectures are compared in
 `results/pipeline_report.md` (accuracy, per-stage time, GPU memory, deployment
-cost), which is updated as each path lands. Each path has its own folder in
+cost), which is updated as each one lands. Each has its own folder in
 `results/risk-assessment/`, holding one `NN_chain.jpg` per test image,
 `per_image/NN.json` with every box's answer, reasoning and label check,
-`summary.json` and `timing.json`:
+and `summary.json`:
 
-| folder | path |
+| folder | architecture |
 |---|---|
-| `path1_qwen_local/` | local Qwen, answers taken as they are |
-| `path2_qwen_relations/` | local Qwen + context gate before the risk step (final, round 2) |
-| `path2_qwen_relations_round1/` | the same, round 1: the clean held-out run |
-| `path3_commercial_vlm/` | OpenAI gpt-5.4 instead of Qwen, same prompts and checks |
-| `path3_commercial_vlm_gated/` | path 3 through the same context gate |
-| `dev/` | the same runs on the training renders, where rules were chosen |
+| `a_qwen_local/` | A: local Qwen3.5-2B + context gate |
+| `b_gpt/` | B: OpenAI gpt-5.4 instead of Qwen, same prompts, checks and gate |
+| `dev/` | runs on the training renders, where rules were chosen |
 
-**Path 2's context gate** removes a candidate from risk assessment, and never
+Earlier runs without the context gate are kept under the git tag
+[`four-paths`](https://github.com/jhim-derek-chen/UAV-VisualSurv/tree/four-paths).
+
+**The context gate** removes a candidate from risk assessment, and never
 adds one, when any of these holds:
 - it is cut by the frame edge;
 - it is more than 12.5 m sideways from every lane with traffic;
@@ -559,9 +561,9 @@ adds one, when any of these holds:
   it when asked directly), or the cab or trailer of an articulated vehicle.
 
 On the test set it cut false boxes sent to risk assessment from 34 to 1
-without losing any debris; details and caveats are in the report. Green boxes
-and cards in the path-2 figures are candidates the gate removed, with the
-reason.
+with the local model and from 23 to 0 with gpt-5.4, without losing any
+debris; details and caveats are in the report. Green boxes and cards in the
+figures are candidates the gate removed, with the reason.
 
 **Reading a chain figure.** Panel 1 is the frame. Panel 2 is Objective 1's
 road region (light blue tint) and detections. A box's colour is the VLM's
@@ -572,7 +574,7 @@ VLM's name and category, a label check (CORRECT or WRONG against the
 dataset label), the measured size and the distance to the nearest vehicle,
 any physics correction, the risk level and the VLM's reasoning.
 
-### Results on the 30 test images
+### Results on the 30 test images (architecture A)
 
 | | result |
 |---|---|
@@ -644,18 +646,16 @@ measured facts: name, size in metres, distance to the nearest vehicle, and
 vehicles in view. It gets a four-level rubric with physical criteria (rigid
 or heavy in a lane is high, soft or small is medium or low). It writes the
 reasoning first and then the level, so the level follows from the
-reasoning. On the test set: 52 boxes rated high, 3 medium, 1 low, and 358
-none.
+reasoning. On the test set, after the gate, A rated 21 of its 22 assessed
+debris high and 1 medium; B rated 15 high, 5 medium and 1 low.
 
 ```powershell
-python scripts\assess_risk.py --select                          # compare VLM variants on the training renders
-python scripts\assess_risk.py --split dev                       # path 1 on the training renders
-python scripts\assess_risk.py                                   # path 1 on the test set
-python scripts\assess_risk.py --path qwen-relations --split dev # path 2 gate, developed here
-python scripts\assess_risk.py --path qwen-relations             # path 2 on the test set (+ figures)
-python scripts\assess_risk.py --path api                        # path 3: OpenAI (key in .secrets\openai_api_key.txt)
-python scripts\assess_risk.py --path api-relations              # path 3 through the context gate
-python scripts\time_pipeline.py --path qwen                     # timing; also --path qwen-relations
+python scripts\assess_risk.py --select                # compare VLM variants on the training renders
+python scripts\assess_risk.py --arch a --split dev    # A on the training renders, where the gate was developed
+python scripts\assess_risk.py --arch a                # A on the test set (+ figures)
+python scripts\assess_risk.py --arch b                # B: OpenAI (key in .secrets\openai_api_key.txt)
+python scripts\assess_risk.py --arch a --figures-only # redraw figures from saved records
+python scripts\time_pipeline.py                       # end-to-end timing of A
 ```
 
 **Limits.** 25 matched debris objects are too few for a precise number.

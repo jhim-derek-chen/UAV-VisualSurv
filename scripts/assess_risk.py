@@ -2,9 +2,11 @@
 risk level with a written reason. One figure per test image in
 results/risk-assessment/.
 
-    python scripts/assess_risk.py --select      # choose model + prompt on the training renders
-    python scripts/assess_risk.py               # run the chain on the 30 test images
-    python scripts/assess_risk.py --figures-only
+    python scripts/assess_risk.py --select            # choose model + prompt on the training renders
+    python scripts/assess_risk.py --arch a            # local Qwen, the 30 test images
+    python scripts/assess_risk.py --arch b            # gpt-5.4
+    python scripts/assess_risk.py --arch c --split scene   # gpt-5.4 + scene analysis, scene set
+    python scripts/assess_risk.py --arch a --figures-only
 
 Stage A, detection: the Objective 1 pipeline (road mask + OWLv2 + re-scorer,
 run "owlv2-fused"), its saved boxes at its operating threshold. Boxes centred
@@ -22,7 +24,13 @@ Stage C, risk: for every box identified as debris or a person, the VLM gets
 a wider view and measured facts (size in metres, distance to the nearest
 vehicle, vehicles in frame) and returns a risk level and one or two sentences
 of reasoning. Vehicles are traffic and roadside structures are not on the
-carriageway, so both get risk "none" by rule; the figures say so.
+carriageway, so both get risk "none" by rule; the figures say so. Before
+this step the context gate (see "context gate" below) removes candidates
+that their surroundings show are not debris on the carriageway.
+
+Scene step (architecture c only, scripts/scene_assess.py): one more VLM call
+per frame that sees the whole frame with every candidate numbered, and
+judges the scene as a whole.
 
 Size in metres: box pixels / the shoot location's ground resolution
 (datasets/synthetic-highway-debris/scale_calibration.json, measured from the
@@ -565,33 +573,39 @@ def select(args) -> int:
     return 0
 
 
-# ------------------------------------------------------------------ paths and splits
-# Path 1: local Qwen, every VLM answer taken as is.
-# Path 2: path 1's answers + relational context rules before the risk step
-#         (relations.py-style logic below, no extra VLM calls).
-# Path 3: a commercial VLM (Gemini, scripts/gemini_vlm.py) in place of Qwen,
-#         same prompts, crops, physics check and risk step; "api-relations"
-#         is path 3 passed through path 2's context gate.
-PATH_DIRS = {"qwen": "path1_qwen_local", "qwen-relations": "path2_qwen_relations",
-             "api": "path3_commercial_vlm", "api-relations": "path3_commercial_vlm_gated"}
-GATED = {"qwen-relations": "qwen", "api-relations": "api"}  # gated path -> its source
+# ------------------------------------------------------------------ architectures and splits
+# Architectures. The context gate is a standard part of every one of them
+# (2026-09-26); the earlier gate-free runs are archived (git tag four-paths,
+# and archive/ locally).
+#   a  local Qwen3.5-2B for identification and risk
+#   b  OpenAI gpt-5.4 for identification and risk
+#   c  b plus one scene-level analysis per frame (scripts/scene_assess.py)
+ARCH = {"a": "a_qwen_local", "b": "b_gpt", "c": "c_gpt_scene"}
+SCENE = REPO_ROOT / "datasets" / "scene-relations"
+SCENE_DEV = REPO_ROOT / "datasets" / "scene-relations-dev"
+SPLITS = {"test": TEST, "dev": TRAIN, "scene": SCENE, "scene-dev": SCENE_DEV}
+FEATURE_TAG = {"test": "test", "dev": "train", "scene": "scene", "scene-dev": "scene_dev"}
 
 
-def make_vlm(path: str, variant: dict):
-    if path.startswith("api"):
+def make_vlm(arch: str, variant: dict):
+    if arch in ("b", "c"):
         from api_vlm import ApiVLM
         return ApiVLM(API_PROVIDER, API_MODEL)
     return VLM(variant["model"], variant["bits"], variant.get("quant_vision", False))
 
 
-# Path 3 model. OpenAI by the user's choice (2026-09-26); gpt-5.4 fits one
-# run in a $5 prepay (estimate in results/pipeline_report.md).
+# Architectures b and c. OpenAI by the user's choice (2026-09-26).
 API_PROVIDER = os.environ.get("UAV_API_PROVIDER", "openai")
 API_MODEL = os.environ.get("UAV_API_MODEL", "gpt-5.4")
 
 
-def out_dir(path: str, split: str) -> Path:
-    d = OUT / PATH_DIRS[path] if split == "test" else OUT / "dev" / PATH_DIRS[path]
+def split_base(split: str) -> Path:
+    return {"test": OUT, "dev": OUT / "dev", "scene": OUT / "scene-relations",
+            "scene-dev": OUT / "scene-relations" / "dev"}[split]
+
+
+def out_dir(arch: str, split: str) -> Path:
+    d = split_base(split) / ARCH[arch]
     (d / "per_image").mkdir(parents=True, exist_ok=True)
     return d
 
@@ -601,14 +615,15 @@ def operating_threshold() -> float:
     return res["two_stage"]["best_f1"]["threshold"]
 
 
-def dev_detections(thr: float) -> dict[int, list]:
-    """Objective 1 boxes on the training renders, so the chain and the context
-    rules can be developed there instead of on the test set. The re-scorer
-    is applied leave-one-location-out exactly as on the test set: each
-    location's renders are scored by a probe fitted on the other three
-    locations' renders (plus their motion-blur copies). Then the same fusion
-    rule, road filter and threshold as the test run."""
-    cache = OUT / "dev" / "detections.json"
+def lolo_detections(split: str, thr: float) -> dict[int, list]:
+    """Objective 1 boxes for any split but the fixed test set (whose boxes
+    come from the saved evaluation run): the training renders ("dev"), where
+    the chain and the context rules are developed, and the scene sets. The
+    re-scorer is applied leave-one-location-out exactly as on the test set:
+    each location's images are scored by a probe fitted on the other three
+    locations' training renders (plus their motion-blur copies). Then the
+    same fusion rule, road filter and threshold as the test run."""
+    cache = split_base(split) / "detections.json"
     if cache.is_file():
         return {int(k): v for k, v in json.loads(cache.read_text(encoding="utf-8")).items()}
     import train_rescorer as T
@@ -618,6 +633,11 @@ def dev_detections(thr: float) -> dict[int, list]:
     blur = T.extract(T.TRAIN, images, "train_motionblur", subdir=T.BLUR_DIR)
     masks = E.stage1_masks(sorted(images), images, dataset=T.TRAIN)
     parts = [T.training_matrix(f, images, gt, masks, loc) for f in (feats, blur)]
+    root = SPLITS[split]
+    if root != T.TRAIN:
+        images, _, loc = T.load_set(root)
+        feats = T.extract(root, images, FEATURE_TAG[split])
+        masks = E.stage1_masks(sorted(images), images, dataset=root)
     X, Y, D, G = (np.concatenate([p[k] for p in parts]) for k in (0, 1, 3, 4))
     w = np.ones(len(Y))
     for m in (Y == 0, (Y == 1) & ~D, (Y == 1) & D):
@@ -667,17 +687,18 @@ def truth_any(box, gts) -> str:
     return "none"
 
 
-# ------------------------------------------------------------------ path 1 chain
-def chain(split: str, path: str = "qwen", limit: int = 0) -> int:
-    """Path 1 (local Qwen) or path 3 (Gemini): identification, physics check
-    and risk step on every Objective 1 box. Path 3 reuses the prompt variant
-    chosen for Qwen on the training renders; it is not re-tuned for Gemini."""
+# ------------------------------------------------------------------ the chain
+def chain(split: str, arch: str = "a", limit: int = 0) -> int:
+    """Identification (with the physics check) on every Objective 1 box, the
+    context gate, the risk step on the candidates that pass, and for
+    architecture c the scene analysis. b and c reuse the prompt variant
+    chosen for Qwen on the training renders; it is not re-tuned for gpt-5.4."""
     import torch
     sel = json.loads(SELECTION.read_text(encoding="utf-8"))
     best = max(sel, key=lambda r: r["score"])  # see risk_metrics()
     variant = json.loads(best["variant"])
     print(f"prompt variant chosen on the training renders: {variant}")
-    root = TEST if split == "test" else TRAIN
+    root = SPLITS[split]
     images, gt, loc = load(root)
     ppm = location_ppm()
     thr = operating_threshold()
@@ -685,11 +706,15 @@ def chain(split: str, path: str = "qwen", limit: int = 0) -> int:
         preds = {int(k): v[1] for k, v in json.loads(
             (E.OUT / f"preds_{RUN}.json").read_text(encoding="utf-8"))["predictions"].items()}
     else:
-        preds = dev_detections(thr)
-    d = out_dir(path, split)
+        preds = lolo_detections(split, thr)
+    masks = E.stage1_masks(sorted(images), images, dataset=root)
+    opinion = DetectorOpinion()
+    d = out_dir(arch, split)
     t_load = time.time()
-    vlm = make_vlm(path, variant)
+    vlm = make_vlm(arch, variant)
     t_load = time.time() - t_load
+    if arch == "c":
+        import scene_assess
     torch.cuda.reset_peak_memory_stats()
     ids = sorted(images)[: limit or None]
     for i in ids:
@@ -711,11 +736,20 @@ def chain(split: str, path: str = "qwen", limit: int = 0) -> int:
                          "vlm_raw": ident["raw"], "physics": ident.get("physics", ""),
                          "truth": truth_of(b, gt[i]), "truth_any": truth_any(b, gt[i])})
         t_id = time.time() - t0
+        rec = {"image_id": i, "file": images[i]["file_name"], "location": loc[i],
+               "width": images[i]["width"], "height": images[i]["height"],
+               "px_per_metre": round(g, 2), "threshold": thr, "objects": objs}
+        t0 = time.time()
+        n_part = gate(objs, rec, img, masks[i], split, loc[i], opinion,
+                      lambda: vlm)
+        t_ctx = time.time() - t0
         vehicles = [o for o in objs if o["vlm_category"] == "vehicle"]
         t0 = time.time()
         n_risk = 0
         for o in objs:
-            if o["vlm_category"] in ASSESSED:
+            if o.get("context"):
+                pass
+            elif o["vlm_category"] in ASSESSED:
                 cx = o["box"][0] + o["box"][2] / 2
                 cy = o["box"][1] + o["box"][3] / 2
                 dist = [np.hypot(cx - v["box"][0] - v["box"][2] / 2,
@@ -734,23 +768,26 @@ def chain(split: str, path: str = "qwen", limit: int = 0) -> int:
                                        "not an object on the carriageway."})
             o["correct"] = correct(o["truth"], o["vlm_category"]) if o["truth"] != "unclear" else None
         t_risk = time.time() - t0
-        rec = {"image_id": i, "file": images[i]["file_name"], "location": loc[i],
-               "width": images[i]["width"], "height": images[i]["height"],
-               "px_per_metre": round(g, 2), "threshold": thr, "objects": objs,
-               "debris_missed_by_detection": missed_debris(gt[i], ign, objs),
-               "timing_s": {"identify": round(t_id, 2), "risk": round(t_risk, 2),
-                            "n_identify": len(objs), "n_physics_reask": n_reask,
-                            "n_risk": n_risk}}
+        timing = {"identify": round(t_id, 2), "context": round(t_ctx, 3), "risk": round(t_risk, 2),
+                  "n_identify": len(objs), "n_physics_reask": n_reask,
+                  "n_part_questions": n_part, "n_risk": n_risk}
+        if arch == "c":
+            t0 = time.time()
+            rec["scene"] = scene_assess.assess_scene(vlm, img, rec, masks[i])
+            timing["scene"] = round(time.time() - t0, 2)
+        rec.update({"debris_missed_by_detection": missed_debris(gt[i], ign, objs),
+                    "timing_s": timing})
         (d / "per_image" / f"{i:02d}.json").write_text(json.dumps(rec, indent=2), encoding="utf-8")
-        hz = [f"{o['vlm_name']} ({o['risk']})" for o in objs if o["vlm_category"] in ASSESSED]
-        print(f"  {i:02d}: {len(objs)} boxes, {len(vehicles)} vehicles, hazards: {hz}", flush=True)
+        hz = [f"{o['vlm_name']} ({o['risk']})" for o in objs if o["risk"] != "none"]
+        print(f"  {i:02d}: {len(objs)} boxes, {len(vehicles)} vehicles, "
+              f"{sum(bool(o.get('context')) for o in objs)} gated, hazards: {hz}", flush=True)
     extra = {"vlm_load_s": round(t_load, 1),
              "peak_vram_gb": round(torch.cuda.max_memory_allocated() / 1024 ** 3, 2)}
-    if path.startswith("api"):
+    if arch in ("b", "c"):
         extra = {"api_model": vlm.name, "api_calls_made": vlm.calls,
                  "api_calls_from_cache": vlm.cached_hits, "api_tokens": vlm.usage}
-    summarise(path, split, variant, extra)
-    return figures(path) if split == "test" and not limit else 0
+    summarise(arch, split, variant, extra)
+    return figures(arch, split) if not limit else 0
 
 
 def missed_debris(gts, ign, objs) -> list:
@@ -763,8 +800,8 @@ def missed_debris(gts, ign, objs) -> list:
     return out
 
 
-def summarise(path: str, split: str, variant, extra: dict | None = None) -> dict:
-    d = out_dir(path, split)
+def summarise(arch: str, split: str, variant, extra: dict | None = None) -> dict:
+    d = out_dir(arch, split)
     recs = [json.loads(f.read_text(encoding="utf-8")) for f in sorted((d / "per_image").glob("*.json"))]
     groups: dict[str, list] = {}
     confusion: dict[str, dict] = {}
@@ -795,7 +832,7 @@ def summarise(path: str, split: str, variant, extra: dict | None = None) -> dict
     for o in objs:
         risk["counts"][o["risk"]] = risk["counts"].get(o["risk"], 0) + 1
     t = [r.get("timing_s", {}) for r in recs]
-    s = {"path": PATH_DIRS[path], "split": split, "variant": variant, **(extra or {}),
+    s = {"arch": ARCH[arch], "split": split, "variant": variant, **(extra or {}),
          "identification": risk_metrics(rows),
          "identification_accuracy": {g: {"correct": sum(v), "n": len(v),
                                          "accuracy": round(sum(v) / len(v), 3)}
@@ -805,15 +842,20 @@ def summarise(path: str, split: str, variant, extra: dict | None = None) -> dict
          "risk": risk,
          "context_suppressed": sum(bool(o.get("context")) for o in objs),
          "timing_s": {k: round(sum(x.get(k, 0) for x in t), 1)
-                      for k in ("identify", "risk", "context")},
-         "calls": {k: sum(x.get(k, 0) for x in t) for k in ("n_identify", "n_physics_reask", "n_risk")}}
+                      for k in ("identify", "context", "risk", "scene")},
+         "calls": {k: sum(x.get(k, 0) for x in t)
+                   for k in ("n_identify", "n_physics_reask", "n_part_questions", "n_risk")}}
+    if any("scene" in r for r in recs):
+        import scene_assess
+        s["scene"] = scene_assess.score(recs, SPLITS[split])
     (d / "summary.json").write_text(json.dumps(s, indent=2), encoding="utf-8")
     print(json.dumps({"identification": s["identification"], "risk": risk}, indent=1))
     return s
 
 
-# ------------------------------------------------------------------ path 2: context gate
-# Four checks between identification and the risk step. They only ever
+# ------------------------------------------------------------------ context gate
+# Four checks between identification and the risk step, in every
+# architecture. They only ever
 # remove a candidate from risk assessment, never add one. Every threshold was
 # chosen on the training renders (dev split); the test split is scored once.
 #   1 edge      box cut by the frame edge: incomplete view, defer to the next frame
@@ -944,9 +986,12 @@ class DetectorOpinion:
             clf.fit(X[m], Y3[m], logisticregression__sample_weight=w[m])
             return clf
         self.probes = {L: fit(G != L) for L in sorted(set(G))}
-        self.feats = {"dev": feats, "test": T.extract(T.TEST, T.load_set(T.TEST)[0], "test")}
+        self.feats = {"dev": feats}
 
     def __call__(self, split: str, image_id: int, location: str, box) -> np.ndarray:
+        if split not in self.feats:
+            root = SPLITS[split]
+            self.feats[split] = self.T.extract(root, self.T.load_set(root)[0], FEATURE_TAG[split])
         rows, emb = self.feats[split][image_id]
         k = int(np.argmin(np.abs(rows[:, :4] - np.array(box[:4])).sum(1)))
         x = self.T.features(rows[k][None], emb[k][None].astype(np.float32))
@@ -985,82 +1030,40 @@ def context_reason(o, objs, rec, u, p3, ask_part) -> str | None:
     return None
 
 
-def apply_context(split: str, path: str = "qwen-relations") -> dict:
-    """Path 2 = path 1's records passed through the context gate. The risk
-    answers of candidates that pass are path 1's own (same model, same input,
-    deterministic decoding), so they are not recomputed; the only new VLM
-    calls are the part-of-vehicle questions."""
-    src = out_dir(GATED[path], split)
-    dst = out_dir(path, split)
-    root = TEST if split == "test" else TRAIN
-    images, gt, loc = load(root)
-    masks = E.stage1_masks(sorted(images), images, dataset=root)
-    opinion = DetectorOpinion()
-    sel = json.loads(SELECTION.read_text(encoding="utf-8"))
-    variant = json.loads(max(sel, key=lambda r: r["score"])["variant"])
-    vlm = None
-    for f in sorted((src / "per_image").glob("*.json")):
-        rec = json.loads(f.read_text(encoding="utf-8"))
-        i = rec["image_id"]
-        img = Image.open(root / "images" / rec["file"]).convert("RGB")
-        t0 = time.time()
-        u = road_direction(masks[i])
-        n_part = 0
+def gate(objs: list, rec: dict, img: Image.Image, mask: np.ndarray, split: str,
+         location: str, opinion: DetectorOpinion, get_vlm) -> int:
+    """The context gate on one frame's identified boxes. A removed candidate
+    gets "context" (the reason) and risk "none", so the risk step skips it.
+    Returns the number of part-of-vehicle questions put to the VLM."""
+    u = road_direction(mask)
+    n_part = 0
 
-        def ask_part(o):
-            nonlocal vlm, n_part
-            if vlm is None:
-                vlm = make_vlm(path, variant)
-            n_part += 1
-            raw = vlm.ask([context_view(img, o["box"], 6.0, 200), tight_view(img, o["box"])],
-                          PART_PROMPT, 40, prefix='{"part_of_vehicle": ')
-            head = raw.split(",")[0].split(":")[-1].strip().lower()
-            o["part_answer"] = raw
-            return head.startswith("true") or head.startswith("1")
+    def ask_part(o):
+        nonlocal n_part
+        n_part += 1
+        raw = get_vlm().ask([context_view(img, o["box"], 6.0, 200), tight_view(img, o["box"])],
+                            PART_PROMPT, 40, prefix='{"part_of_vehicle": ')
+        head = raw.split(",")[0].split(":")[-1].strip().lower()
+        o["part_answer"] = raw
+        return head.startswith("true") or head.startswith("1")
 
-        for o in rec["objects"]:
-            o["truth_any"] = truth_any(o["box"], gt[i])
-            if o["vlm_category"] not in ASSESSED:
-                continue
-            p3 = opinion(split, i, loc[i], o["box"])
-            o["detector_p"] = {"background": round(float(p3[0]), 3),
-                               "vehicle": round(float(p3[1]), 3), "debris": round(float(p3[2]), 3)}
-            why = context_reason(o, rec["objects"], rec, u, p3, ask_part)
-            if why:
-                o.update({"context": why, "risk_without_context": o["risk"], "risk": "none",
-                          "risk_source": "context rule",
-                          "reasoning": f"Context gate: {why}. Not assessed as a hazard."})
-        rec["timing_s"]["context"] = round(time.time() - t0, 3)
-        rec["timing_s"]["n_part_questions"] = n_part
-        rec["timing_s"]["n_risk"] = sum(o.get("risk_source") == "vlm" for o in rec["objects"])
-        (dst / "per_image" / f.name).write_text(json.dumps(rec, indent=2), encoding="utf-8")
-        print(f"  {i:02d}: removed {sum(bool(o.get('context')) for o in rec['objects'])}, "
-              f"part questions {n_part}", flush=True)
-    return summarise(path, split, variant,
-                     {"context_params": {"edge_px": EDGE_PX, "lane_reach_m": LANE_REACH_M,
-                                         "veto_t": VETO_T, "part_inside": PART_INSIDE,
-                                         "part_area": PART_AREA, "part_small_m": PART_SMALL_M,
-                                         "round": GATE_ROUND, "abut_gap_m": ABUT_GAP_M,
-                                         "abut_side_m": ABUT_SIDE_M, "abut_width": ABUT_WIDTH,
-                                         "abut_max_pdebris": ABUT_MAX_PDEBRIS}})
+    for o in objs:
+        if o["vlm_category"] not in ASSESSED:
+            continue
+        p3 = opinion(split, rec["image_id"], location, o["box"])
+        o["detector_p"] = {"background": round(float(p3[0]), 3),
+                           "vehicle": round(float(p3[1]), 3), "debris": round(float(p3[2]), 3)}
+        why = context_reason(o, objs, rec, u, p3, ask_part)
+        if why:
+            o.update({"context": why, "risk": "none", "risk_source": "context rule",
+                      "reasoning": f"Context gate: {why}. Not assessed as a hazard."})
+    return n_part
 
 
-def refresh_path1(split: str) -> dict:
-    """Recompute truth_any (see truth_any) in path 1's records and re-summarise,
-    so paths 1 and 2 are scored by the same rule."""
-    d = out_dir("qwen", split)
-    root = TEST if split == "test" else TRAIN
-    _, gt, _ = load(root)
-    for f in sorted((d / "per_image").glob("*.json")):
-        rec = json.loads(f.read_text(encoding="utf-8"))
-        for o in rec["objects"]:
-            o["truth_any"] = truth_any(o["box"], gt[rec["image_id"]])
-        f.write_text(json.dumps(rec, indent=2), encoding="utf-8")
-    old = json.loads((d / "summary.json").read_text(encoding="utf-8")) if (d / "summary.json").is_file() else {}
-    keep = {k: old[k] for k in ("vlm_load_s", "peak_vram_gb") if k in old}
-    sel = json.loads(SELECTION.read_text(encoding="utf-8"))
-    variant = json.loads(max(sel, key=lambda r: r["score"])["variant"])
-    return summarise("qwen", split, variant, keep)
+GATE_PARAMS = {"edge_px": EDGE_PX, "lane_reach_m": LANE_REACH_M, "veto_t": VETO_T,
+               "part_inside": PART_INSIDE, "part_area": PART_AREA, "part_small_m": PART_SMALL_M,
+               "round": GATE_ROUND, "abut_gap_m": ABUT_GAP_M, "abut_side_m": ABUT_SIDE_M,
+               "abut_width": ABUT_WIDTH, "abut_max_pdebris": ABUT_MAX_PDEBRIS}
 
 
 # ------------------------------------------------------------------ figures
@@ -1075,15 +1078,20 @@ def font(n):
     return ImageFont.load_default(n)
 
 
-def figures(path: str) -> int:
-    images, gt, loc = load(TEST)
-    masks = E.stage1_masks(sorted(images), images)
-    d = out_dir(path, "test")
+def figures(arch: str, split: str = "test") -> int:
+    root = SPLITS[split]
+    images, gt, loc = load(root)
+    masks = E.stage1_masks(sorted(images), images, dataset=root)
+    d = out_dir(arch, split)
     for f in (d / "per_image").glob("*.json"):
         rec = json.loads(f.read_text(encoding="utf-8"))
         i = rec["image_id"]
-        img = Image.open(TEST / "images" / rec["file"]).convert("RGB")
-        chain_figure(img, rec, masks[i]).save(d / f"{i:02d}_chain.jpg", quality=88)
+        img = Image.open(root / "images" / rec["file"]).convert("RGB")
+        fig = chain_figure(img, rec, masks[i])
+        if "scene" in rec:
+            import scene_assess
+            fig = scene_assess.add_scene_panel(fig, img, rec)
+        fig.save(d / f"{i:02d}_chain.jpg", quality=88)
     print(f"saved: {d.relative_to(REPO_ROOT)}/")
     return 0
 
@@ -1174,8 +1182,9 @@ def chain_figure(img: Image.Image, rec: dict, mask: np.ndarray) -> Image.Image:
             d3.text((tx, y + 58), "MISSED HAZARD: identified as a vehicle,", fill=col, font=font(18))
             d3.text((tx, y + 80), "so no risk assessment was made.", fill=col, font=font(18))
         elif in_ctx:
-            d3.text((tx, y + 58), f"CONTEXT RULE (VLM said {o['risk_without_context'].upper()}):",
-                    fill=col, font=font(17))
+            said = o.get("risk_without_context")
+            d3.text((tx, y + 58), f"CONTEXT RULE (VLM said {said.upper()}):" if said
+                    else "CONTEXT RULE, not sent to the risk step:", fill=col, font=font(17))
             for k, line in enumerate(textwrap.wrap(o["context"], 58)[:3]):
                 d3.text((tx, y + 80 + k * 19), line, fill=col, font=font(15))
         elif big:
@@ -1226,36 +1235,26 @@ def main() -> int:
     ap.add_argument("--select", action="store_true",
                     help="compare VLM variants on the training renders")
     ap.add_argument("--variants", nargs="*", help="JSON variants for --select")
-    ap.add_argument("--split", default="test", choices=["test", "dev"],
-                    help="dev = the training renders, where rules are developed")
-    ap.add_argument("--path", default="qwen", choices=list(PATH_DIRS),
-                    help="qwen / api: run path 1 / path 3 (VLM on every box). "
-                         "qwen-relations / api-relations: apply the context gate "
-                         "to that path's records")
+    ap.add_argument("--split", default="test", choices=list(SPLITS),
+                    help="test: the 30 fixed images; dev: the training renders, where "
+                         "rules are developed; scene / scene-dev: the scene-relation sets")
+    ap.add_argument("--arch", default="a", choices=list(ARCH),
+                    help="a: local Qwen; b: gpt-5.4; c: gpt-5.4 + scene analysis")
     ap.add_argument("--limit", type=int, default=0, help="first N images only (smoke test)")
-    ap.add_argument("--refresh-path1", action="store_true",
-                    help="re-score path 1 records with the current truth rule")
-    ap.add_argument("--figures-only", choices=list(PATH_DIRS))
+    ap.add_argument("--figures-only", action="store_true")
     args = ap.parse_args()
     if args.select:
         return select(args)
     if args.figures_only:
-        return figures(args.figures_only)
-    if args.refresh_path1:
-        refresh_path1(args.split)
-        return 0
-    if args.path in GATED:
-        apply_context(args.split, args.path)
-        return figures(args.path) if args.split == "test" else 0
+        return figures(args.arch, args.split)
     try:
-        return chain(args.split, args.path, args.limit)
+        return chain(args.split, args.arch, args.limit)
     except Exception as exc:  # noqa: BLE001
         if type(exc).__name__ == "QuotaExhausted":
-            print("API daily quota used up; every answer so far is cached. Re-run the same "
-                  "command tomorrow to resume.")
+            print("API quota used up; every answer so far is cached. Re-run the same "
+                  "command to resume.")
             return 3
         raise
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

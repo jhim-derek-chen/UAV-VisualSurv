@@ -1,8 +1,10 @@
 """End-to-end timing of the full chain, from the raw frame to risk levels.
 
-    python scripts/time_pipeline.py --path qwen
-    python scripts/time_pipeline.py --path qwen-relations
-    python scripts/time_pipeline.py --path qwen --co-resident
+    python scripts/time_pipeline.py
+    python scripts/time_pipeline.py --co-resident
+
+Architecture a (local Qwen, context gate). b and c run their VLM steps on the
+API; their Objective 1 and gate times are the same as a's.
 
 Two ways to fit the 4 GB card:
   staged (default)  pass 1 runs Objective 1 on every frame with only its
@@ -15,12 +17,12 @@ Two ways to fit the 4 GB card:
 
 Stages timed per frame: road (segmenter + mask), detect (OWLv2 tiles + box
 features), rescore (probe + fusion + road filter), identify (VLM, incl.
-physics re-asks), context (path 2 gate incl. part questions), risk (VLM).
+physics re-asks), context (the gate incl. part questions), risk (VLM).
 
 Uses the deployable re-scorer (models/owlv2-rescorer, trained on all four
 locations), so boxes can differ slightly from the evaluation runs, which use
 leave-one-location-out probes. Accuracy comes from those runs; this script is
-for time and memory. Output: results/risk-assessment/<path dir>/timing.json
+for time and memory. Output: results/risk-assessment/a_qwen_local/timing.json
 """
 
 from __future__ import annotations
@@ -46,7 +48,6 @@ STAGES = ["road", "detect", "rescore", "identify", "context", "risk"]
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--path", default="qwen", choices=["qwen", "qwen-relations"])
     ap.add_argument("--co-resident", action="store_true")
     ap.add_argument("--limit", type=int, default=0)
     args = ap.parse_args()
@@ -60,7 +61,7 @@ def main() -> int:
     thr = A.operating_threshold()
     sel = json.loads(A.SELECTION.read_text(encoding="utf-8"))
     variant = json.loads(max(sel, key=lambda r: r["score"])["variant"])
-    opinion = A.DetectorOpinion() if args.path == "qwen-relations" else None
+    opinion = A.DetectorOpinion()
     z = np.load(T.PROBE_DIR / "probe.npz")
     load, peaks, per = {}, {}, {i: {} for i in ids}
 
@@ -127,22 +128,21 @@ def main() -> int:
         rec = {"width": images[i]["width"], "height": images[i]["height"], "px_per_metre": g}
         cands = [c for c in objs if c["vlm_category"] in A.ASSESSED]
         n_part = 0
-        if args.path == "qwen-relations":
-            u = A.road_direction(mask)
+        u = A.road_direction(mask)
 
-            def ask_part(o):
-                nonlocal n_part
-                n_part += 1
-                raw = vlm.ask([A.context_view(img, o["box"], 6.0, 200), A.tight_view(img, o["box"])],
-                              A.PART_PROMPT, 40, prefix='{"part_of_vehicle": ')
-                head = raw.split(",")[0].split(":")[-1].strip().lower()
-                return head.startswith("true") or head.startswith("1")
-            kept = []
-            for c in cands:
-                p3 = opinion.probes[loc[i]].predict_proba(boxes[c["k"]][1][None])[0]
-                if not A.context_reason(c, objs, rec, u, p3, ask_part):
-                    kept.append(c)
-            cands = kept
+        def ask_part(o):
+            nonlocal n_part
+            n_part += 1
+            raw = vlm.ask([A.context_view(img, o["box"], 6.0, 200), A.tight_view(img, o["box"])],
+                          A.PART_PROMPT, 40, prefix='{"part_of_vehicle": ')
+            head = raw.split(",")[0].split(":")[-1].strip().lower()
+            return head.startswith("true") or head.startswith("1")
+        kept = []
+        for c in cands:
+            p3 = opinion.probes[loc[i]].predict_proba(boxes[c["k"]][1][None])[0]
+            if not A.context_reason(c, objs, rec, u, p3, ask_part):
+                kept.append(c)
+        cands = kept
         tt["context"] = time.time() - t0
         t0 = time.time()
         vehicles = [v for v in objs if v["vlm_category"] == "vehicle"]
@@ -177,7 +177,7 @@ def main() -> int:
 
     rows = list(per.values())
     out = {
-        "path": A.PATH_DIRS[args.path], "mode": "co-resident" if args.co_resident else "staged",
+        "arch": A.ARCH["a"], "mode": "co-resident" if args.co_resident else "staged",
         "frames": len(rows), "model_load_s": load, "vram_gb": peaks,
         "mean_s_per_frame": {s: round(float(np.mean([x[s] for x in rows])), 2) for s in STAGES},
         "mean_total_s_per_frame": round(float(np.mean([sum(x[s] for s in STAGES) for x in rows])), 2),
@@ -188,7 +188,7 @@ def main() -> int:
         "mean_part_questions_per_frame": round(float(np.mean([x["part_questions"] for x in rows])), 2),
         "per_frame": {str(i): {k: round(v, 2) for k, v in x.items()} for i, x in per.items()},
     }
-    d = A.out_dir(args.path, "test")
+    d = A.out_dir("a", "test")
     name = "timing_co_resident.json" if args.co_resident else "timing.json"
     (d / name).write_text(json.dumps(out, indent=2), encoding="utf-8")
     print(json.dumps({k: v for k, v in out.items() if k != "per_frame"}, indent=1))

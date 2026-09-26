@@ -1,8 +1,9 @@
-"""Path 3: a commercial VLM as a drop-in for the local Qwen in assess_risk.py.
+"""Architectures b and c: a commercial VLM as a drop-in for the local Qwen in
+assess_risk.py.
 
 Same interface as assess_risk.VLM.ask(), so the identification prompt, crops,
-physics check, risk step and context gate are exactly the ones paths 1 and 2
-use; only the model changes. Two providers:
+physics check, risk step and context gate are exactly the ones architecture
+a uses; only the model changes. Two providers:
 
   openai   OpenAI Chat Completions (default), key in .secrets/openai_api_key.txt
            or OPENAI_API_KEY
@@ -30,7 +31,7 @@ from PIL import Image
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SECRETS = REPO_ROOT / ".secrets"
-CACHE = REPO_ROOT / "results" / "risk-assessment" / "path3_commercial_vlm" / "api_cache"
+CACHE = REPO_ROOT / ".cache" / "api_vlm"
 
 
 class QuotaExhausted(RuntimeError):
