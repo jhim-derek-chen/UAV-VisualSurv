@@ -1,0 +1,167 @@
+{
+  "image_id": 6,
+  "file": "00006.jpg",
+  "location": "pexels/12571926",
+  "width": 1080,
+  "height": 1920,
+  "px_per_metre": 28.47,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        481,
+        939,
+        54,
+        65
+      ],
+      "detection_score": 0.989,
+      "size_m": [
+        1.9,
+        2.28
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark, rectangular object with a textured surface and a visible shadow cast on the road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "tire",
+      "truth_any": "tire",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false
+    },
+    {
+      "id": 2,
+      "box": [
+        186,
+        952,
+        96,
+        38
+      ],
+      "detection_score": 0.991,
+      "size_m": [
+        3.37,
+        1.33
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored car with a visible roofline and side profile, positioned on a multi-lane road.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 3,
+      "box": [
+        357,
+        961,
+        10,
+        25
+      ],
+      "detection_score": 0.685,
+      "size_m": [
+        0.35,
+        0.88
+      ],
+      "vlm_name": "tire",
+      "vlm_category": "tire",
+      "vlm_raw": "{\"description\": \"A small, elongated, light-colored object with a rounded top and a narrow base, situated on a road surface.\", \"name\": \"tire\", \"category\": \"tire\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "high",
+      "reasoning": "The object is identified as a tire, which is a rigid, heavy object. It is located in the middle lane of the motorway, directly in the path of a vehicle, and is approximately 4 meters away, posing a significant risk of collision if the vehicle swerves or loses control.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 4.5,
+      "correct": false
+    },
+    {
+      "id": 4,
+      "box": [
+        192,
+        1177,
+        60,
+        44
+      ],
+      "detection_score": 0.997,
+      "size_m": [
+        2.11,
+        1.55
+      ],
+      "vlm_name": "barrel or drum",
+      "vlm_category": "other debris",
+      "vlm_raw": "{\"description\": \"A dark, cylindrical object with a hollow center and a visible shadow cast on the road surface.\", \"name\": \"barrel or drum\", \"category\": \"barrel or drum\"} | re-asked: {\"name\": \"barrel or drum\", \"category\": \"other debris\"}",
+      "physics": "corrected: barrel or drum is implausible at 2.1 m",
+      "truth": "tire",
+      "truth_any": "tire",
+      "risk": "high",
+      "reasoning": "A large, rigid barrel or drum is located in the middle lane of the motorway, approximately 3 meters from the nearest vehicle. This object is large enough to potentially cause a loss of control if a driver swerves to avoid it, which aligns with the criteria for a high risk.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 3.1,
+      "correct": false
+    },
+    {
+      "id": 5,
+      "box": [
+        223,
+        1254,
+        94,
+        40
+      ],
+      "detection_score": 0.97,
+      "size_m": [
+        3.3,
+        1.41
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark blue rectangular shape with a lighter blue interior, situated on a grey road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 6,
+      "box": [
+        341,
+        1780,
+        70,
+        92
+      ],
+      "detection_score": 0.996,
+      "size_m": [
+        2.46,
+        3.23
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored car with a visible red taillight and rear window, positioned on the road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    }
+  ],
+  "debris_missed_by_detection": [
+    "refrigerator or appliance"
+  ],
+  "timing_s": {
+    "identify": 17.45,
+    "risk": 8.81,
+    "n_identify": 6,
+    "n_physics_reask": 1,
+    "n_risk": 2
+  }
+}

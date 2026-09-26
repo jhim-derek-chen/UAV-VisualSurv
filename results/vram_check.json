@@ -1,0 +1,83 @@
+{
+  "gpu": "NVIDIA GeForce RTX 3050 Ti Laptop GPU",
+  "total_gb": 4.0,
+  "results": [
+    {
+      "key": "segformer-b0-cityscapes",
+      "class": "SegformerForSemanticSegmentation",
+      "sizes": {
+        "1024x1024": 0.31,
+        "2048x1080": 0.64,
+        "4096x2160": 2.5
+      },
+      "load": "OK",
+      "dtype": "float16"
+    },
+    {
+      "key": "segformer-b2-cityscapes",
+      "class": "SegformerForSemanticSegmentation",
+      "sizes": {
+        "1024x1024": 0.92,
+        "2048x1080": 1.88,
+        "4096x2160": 7.36
+      },
+      "load": "OK",
+      "dtype": "float16"
+    },
+    {
+      "key": "mask2former-swin-tiny-cityscapes",
+      "class": "Mask2FormerForUniversalSegmentation",
+      "sizes": {
+        "1024x1024": 0.64,
+        "2048x1080": 1.24,
+        "4096x2160": 4.67
+      },
+      "load": "OK",
+      "dtype": "float16"
+    },
+    {
+      "key": "dinov2-large",
+      "class": "AutoModel",
+      "sizes": {
+        "1024x1024": 0.79,
+        "2048x1080": 0.95,
+        "4096x2160": 1.89
+      },
+      "load": "OK",
+      "dtype": "float16"
+    },
+    {
+      "key": "dinov3-vitl16",
+      "class": "AutoModel",
+      "sizes": {
+        "1024x1024": 0.74,
+        "2048x1080": 0.85,
+        "4096x2160": 1.49
+      },
+      "load": "OK",
+      "dtype": "float16"
+    },
+    {
+      "key": "grounding-dino-tiny",
+      "class": "AutoModelForZeroShotObjectDetection",
+      "sizes": {
+        "1024x1024": 2.02,
+        "2048x1080": 3.47,
+        "4096x2160": "OOM"
+      },
+      "load": "OK",
+      "dtype": "float32"
+    },
+    {
+      "key": "sam2.1-hiera-base-plus",
+      "class": "Sam2Model",
+      "sizes": {
+        "1024x1024": 0.4,
+        "2048x1080": "RuntimeError: The size of tensor a (270) must match the size of tensor b (264) at no",
+        "4096x2160": "RuntimeError: The size of tensor a (540) must match the size of tensor b (536) at no"
+      },
+      "load": "OK",
+      "dtype": "float16"
+    }
+  ]
+}

@@ -1,0 +1,722 @@
+{
+  "image_id": 10,
+  "file": "00010.jpg",
+  "location": "pexels/8742752",
+  "px_per_metre": 76.78,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        397,
+        484,
+        211,
+        99
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        2.75,
+        1.29
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A red hatchback car with a visible license plate and side mirrors, positioned on a multi-lane road.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 2,
+      "box": [
+        337,
+        611,
+        251,
+        108
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        3.27,
+        1.41
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A red sedan is captured in motion on a multi-lane motorway, positioned between two other vehicles.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 3,
+      "box": [
+        1778,
+        623,
+        112,
+        152
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        1.46,
+        1.98
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored sedan is captured in motion on a motorway, viewed from an elevated angle.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "unclear",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": null,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 4,
+      "box": [
+        1781,
+        629,
+        228,
+        82
+      ],
+      "detection_score": 0.996,
+      "size_m": [
+        2.97,
+        1.07
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored sedan is captured in motion on a multi-lane motorway, with its side profile visible.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 5,
+      "box": [
+        35,
+        635,
+        263,
+        130
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        3.43,
+        1.69
+      ],
+      "vlm_name": "SUV",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A grey SUV is driving on a motorway, positioned in the left lane next to a red car.\", \"name\": \"SUV\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 6,
+      "box": [
+        1845,
+        691,
+        44,
+        84
+      ],
+      "detection_score": 0.768,
+      "size_m": [
+        0.57,
+        1.09
+      ],
+      "vlm_name": "person",
+      "vlm_category": "person",
+      "vlm_raw": "{\"description\": \"A dark, indistinct shape with a red light visible, appearing to be a person standing near a vehicle.\", \"name\": \"person\", \"category\": \"person\"}",
+      "physics": "passed",
+      "truth": "unclear",
+      "risk": "none",
+      "reasoning": "Context gate: the detector's features say a vehicle, not debris (P(debris) 0.05, P(vehicle) 0.53, P(background) 0.42). Not assessed as a hazard.",
+      "risk_source": "context rule",
+      "nearest_vehicle_m": 0.6,
+      "correct": null,
+      "truth_any": "vehicle",
+      "detector_p": {
+        "background": 0.42,
+        "vehicle": 0.534,
+        "debris": 0.046
+      },
+      "context": "the detector's features say a vehicle, not debris (P(debris) 0.05, P(vehicle) 0.53, P(background) 0.42)",
+      "risk_without_context": "high"
+    },
+    {
+      "id": 7,
+      "box": [
+        1850,
+        696,
+        250,
+        98
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        3.26,
+        1.28
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored sedan is captured in motion on a multi-lane motorway, viewed from an elevated angle.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 8,
+      "box": [
+        3139,
+        737,
+        293,
+        119
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        3.82,
+        1.55
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A silver car is positioned on the side of the road, appearing to be stopped or moving very slowly near the curb.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 9,
+      "box": [
+        3195,
+        737,
+        138,
+        39
+      ],
+      "detection_score": 0.969,
+      "size_m": [
+        1.8,
+        0.51
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A grey car with a white object on its roof, viewed from a high angle.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false,
+      "truth_any": "none"
+    },
+    {
+      "id": 10,
+      "box": [
+        2597,
+        810,
+        133,
+        226
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        1.73,
+        2.94
+      ],
+      "vlm_name": "refrigerator or appliance",
+      "vlm_category": "refrigerator or appliance",
+      "vlm_raw": "{\"description\": \"A dark grey, rectangular object with a handle and ventilation grilles on top, positioned on a road surface.\", \"name\": \"refrigerator or appliance\", \"category\": \"refrigerator or appliance\"}",
+      "physics": "passed",
+      "truth": "refrigerator or appliance",
+      "risk": "high",
+      "reasoning": "A large, rigid refrigerator or appliance is located in the middle lane of the motorway, approximately 5 meters from the nearest vehicle. This object is large enough to potentially cause a loss of control if a driver swerves to avoid it, which aligns with the criteria for a high risk level.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 4.5,
+      "correct": true,
+      "truth_any": "refrigerator or appliance",
+      "detector_p": {
+        "background": 0.0,
+        "vehicle": 0.001,
+        "debris": 0.999
+      }
+    },
+    {
+      "id": 11,
+      "box": [
+        3357,
+        818,
+        46,
+        37
+      ],
+      "detection_score": 0.995,
+      "size_m": [
+        0.6,
+        0.48
+      ],
+      "vlm_name": "tire",
+      "vlm_category": "tire",
+      "vlm_raw": "{\"description\": \"A dark, blurry object with a reddish-brown hue, appearing to be a wheel or part of a vehicle.\", \"name\": \"tire\", \"category\": \"tire\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "risk": "none",
+      "reasoning": "Context gate: the detector's features say a vehicle, not debris (P(debris) 0.26, P(vehicle) 0.64, P(background) 0.10). Not assessed as a hazard.",
+      "risk_source": "context rule",
+      "nearest_vehicle_m": 1.3,
+      "correct": false,
+      "truth_any": "none",
+      "detector_p": {
+        "background": 0.096,
+        "vehicle": 0.642,
+        "debris": 0.262
+      },
+      "context": "the detector's features say a vehicle, not debris (P(debris) 0.26, P(vehicle) 0.64, P(background) 0.10)",
+      "risk_without_context": "high"
+    },
+    {
+      "id": 12,
+      "box": [
+        2045,
+        837,
+        303,
+        160
+      ],
+      "detection_score": 0.978,
+      "size_m": [
+        3.95,
+        2.08
+      ],
+      "vlm_name": "minivan",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A silver minivan with a visible driver inside, positioned on a multi-lane road.\", \"name\": \"minivan\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 13,
+      "box": [
+        2,
+        840,
+        162,
+        117
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        2.11,
+        1.52
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored car with a yellow license plate is driving on a multi-lane road.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 14,
+      "box": [
+        561,
+        1001,
+        320,
+        79
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        4.17,
+        1.03
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored car with a visible license plate and side profile, positioned on a multi-lane road.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 15,
+      "box": [
+        810,
+        1007,
+        75,
+        145
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        0.98,
+        1.89
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored car with a visible rear end, positioned on a paved road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false,
+      "truth_any": "none"
+    },
+    {
+      "id": 16,
+      "box": [
+        557,
+        1080,
+        324,
+        82
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        4.22,
+        1.07
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored car with a visible red rectangular outline around its side panel.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 17,
+      "box": [
+        2269,
+        1111,
+        326,
+        144
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        4.25,
+        1.88
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored sedan is captured in motion on a multi-lane motorway, positioned between a grey van and another vehicle.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 18,
+      "box": [
+        551,
+        1172,
+        362,
+        163
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        4.71,
+        2.12
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A silver sedan is captured in motion on a multi-lane motorway, viewed from an elevated angle.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 19,
+      "box": [
+        2676,
+        1210,
+        396,
+        265
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        5.16,
+        3.45
+      ],
+      "vlm_name": "van",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A grey van with yellow and red markings is driving on a multi-lane road.\", \"name\": \"van\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 20,
+      "box": [
+        2527,
+        1214,
+        169,
+        233
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        2.2,
+        3.03
+      ],
+      "vlm_name": "van",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A grey van with yellow and red markings on its side, viewed from a high angle.\", \"name\": \"van\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "unclear",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": null,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 21,
+      "box": [
+        3192,
+        1235,
+        640,
+        367
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        8.34,
+        4.78
+      ],
+      "vlm_name": "vegetation or shadow",
+      "vlm_category": "vegetation or shadow",
+      "vlm_raw": "{\"description\": \"A red, cone-shaped object with a white top, partially obscured by green foliage.\", \"name\": \"traffic cone\", \"category\": \"traffic cone\"} | re-asked: {\"name\": \"vegetation or shadow\", \"category\": \"vegetation or shadow\"}",
+      "physics": "corrected: traffic cone is implausible at 8.3 m",
+      "truth": "unclear",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as roadside structure, vegetation or shadow: not an object on the carriageway.",
+      "correct": null,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 22,
+      "box": [
+        568,
+        1264,
+        43,
+        41
+      ],
+      "detection_score": 0.997,
+      "size_m": [
+        0.56,
+        0.53
+      ],
+      "vlm_name": "unknown object",
+      "vlm_category": "other debris",
+      "vlm_raw": "{\"description\": \"A dark, indistinct, and blurry object with a small white speck, situated on a paved surface.\", \"name\": \"unknown object\", \"category\": \"other debris\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "risk": "none",
+      "reasoning": "Context gate: the detector's features say a vehicle, not debris (P(debris) 0.03, P(vehicle) 0.94, P(background) 0.03). Not assessed as a hazard.",
+      "risk_source": "context rule",
+      "nearest_vehicle_m": 1.9,
+      "correct": false,
+      "truth_any": "none",
+      "detector_p": {
+        "background": 0.032,
+        "vehicle": 0.939,
+        "debris": 0.029
+      },
+      "context": "the detector's features say a vehicle, not debris (P(debris) 0.03, P(vehicle) 0.94, P(background) 0.03)",
+      "risk_without_context": "high"
+    },
+    {
+      "id": 23,
+      "box": [
+        821,
+        1270,
+        38,
+        24
+      ],
+      "detection_score": 0.543,
+      "size_m": [
+        0.49,
+        0.31
+      ],
+      "vlm_name": "red object",
+      "vlm_category": "other debris",
+      "vlm_raw": "{\"description\": \"A red, somewhat triangular or rounded object with a glossy surface, located on the rear side of a white car.\", \"name\": \"red object\", \"category\": \"other debris\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "risk": "none",
+      "reasoning": "Context gate: the detector's features say a vehicle, not debris (P(debris) 0.00, P(vehicle) 0.95, P(background) 0.05). Not assessed as a hazard.",
+      "risk_source": "context rule",
+      "nearest_vehicle_m": 1.5,
+      "correct": false,
+      "truth_any": "none",
+      "detector_p": {
+        "background": 0.048,
+        "vehicle": 0.951,
+        "debris": 0.002
+      },
+      "context": "the detector's features say a vehicle, not debris (P(debris) 0.00, P(vehicle) 0.95, P(background) 0.05)",
+      "risk_without_context": "high"
+    },
+    {
+      "id": 24,
+      "box": [
+        3204,
+        1300,
+        299,
+        292
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        3.89,
+        3.8
+      ],
+      "vlm_name": "red car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A red, boxy object with a white label is partially obscured by green foliage.\", \"name\": \"cardboard box\", \"category\": \"cardboard box\"} | re-asked: {\"name\": \"red car\", \"category\": \"vehicle\"}",
+      "physics": "corrected: cardboard box is implausible at 3.9 m",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 25,
+      "box": [
+        2972,
+        1333,
+        97,
+        62
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        1.26,
+        0.81
+      ],
+      "vlm_name": "barrel or drum",
+      "vlm_category": "barrel or drum",
+      "vlm_raw": "{\"description\": \"A dark, indistinct shape with a yellowish-brown textured area and a black section below, viewed from a high angle.\", \"name\": \"person\", \"category\": \"person\"} | re-asked: {\"name\": \"barrel or drum\", \"category\": \"barrel or drum\"}",
+      "physics": "corrected: person is implausible at 1.3 m",
+      "truth": "non-target",
+      "risk": "none",
+      "reasoning": "Context gate: part of vehicle #19 (VLM, asked directly). Not assessed as a hazard.",
+      "risk_source": "context rule",
+      "nearest_vehicle_m": 1.9,
+      "correct": false,
+      "truth_any": "none",
+      "detector_p": {
+        "background": 0.08,
+        "vehicle": 0.129,
+        "debris": 0.791
+      },
+      "part_answer": "{\"part_of_vehicle\": 1, \"why\": \"The item is located directly on the side of the vehicle's body, consistent with a sticker, decal, or other attached marking.\"}",
+      "context": "part of vehicle #19 (VLM, asked directly)",
+      "risk_without_context": "high"
+    },
+    {
+      "id": 26,
+      "box": [
+        2747,
+        1338,
+        225,
+        55
+      ],
+      "detection_score": 0.994,
+      "size_m": [
+        2.93,
+        0.72
+      ],
+      "vlm_name": "van",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark grey van with a yellow side panel and red lettering, viewed from a high angle.\", \"name\": \"van\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false,
+      "truth_any": "none"
+    },
+    {
+      "id": 27,
+      "box": [
+        2981,
+        1378,
+        84,
+        100
+      ],
+      "detection_score": 0.978,
+      "size_m": [
+        1.09,
+        1.3
+      ],
+      "vlm_name": "suitcase or bag",
+      "vlm_category": "suitcase or bag",
+      "vlm_raw": "{\"description\": \"A dark, indistinct shape with a reddish hue, appearing somewhat bulky and possibly containing a person or object.\", \"name\": \"person\", \"category\": \"person\"} | re-asked: {\"name\": \"suitcase or bag\", \"category\": \"suitcase or bag\"}",
+      "physics": "corrected: person is implausible at 1.3 m",
+      "truth": "non-target",
+      "risk": "none",
+      "reasoning": "Context gate: the detector's features say a vehicle, not debris (P(debris) 0.12, P(vehicle) 0.79, P(background) 0.09). Not assessed as a hazard.",
+      "risk_source": "context rule",
+      "nearest_vehicle_m": 2.2,
+      "correct": false,
+      "truth_any": "none",
+      "detector_p": {
+        "background": 0.089,
+        "vehicle": 0.793,
+        "debris": 0.118
+      },
+      "context": "the detector's features say a vehicle, not debris (P(debris) 0.12, P(vehicle) 0.79, P(background) 0.09)",
+      "risk_without_context": "high"
+    }
+  ],
+  "debris_missed_by_detection": [],
+  "width": 3840,
+  "height": 2160,
+  "timing_s": {
+    "n_identify": 27,
+    "n_physics_reask": 4,
+    "n_risk": 1,
+    "context": 2.22,
+    "n_part_questions": 1
+  }
+}

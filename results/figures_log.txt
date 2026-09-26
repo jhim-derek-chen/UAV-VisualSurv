@@ -1,0 +1,13 @@
+--- gdino
+Loading weights:   0%|          | 0/978 [00:00<?, ?it/s]Loading weights:  25%|¨€¨€¨…       | 242/978 [00:00<00:00, 2398.69it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 978/978 [00:00<00:00, 5701.24it/s]
+--- prowl-v2
+Loading weights:   0%|          | 0/439 [00:00<?, ?it/s]Loading weights:  24%|¨€¨€¨…       | 107/439 [00:00<00:00, 945.15it/s]Loading weights:  49%|¨€¨€¨€¨€¨     | 215/439 [00:00<00:00, 992.98it/s]Loading weights:  74%|¨€¨€¨€¨€¨€¨€¨€¨†  | 323/439 [00:00<00:00, 1013.78it/s]Loading weights:  98%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨‚| 431/439 [00:00<00:00, 1033.93it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 439/439 [00:00<00:00, 1032.14it/s]
+--- prowl-v3
+Loading weights:   0%|          | 0/415 [00:00<?, ?it/s]Loading weights:  24%|¨€¨€¨…       | 101/415 [00:00<00:00, 879.24it/s]Loading weights:  49%|¨€¨€¨€¨€¨     | 203/415 [00:00<00:00, 930.67it/s]Loading weights:  73%|¨€¨€¨€¨€¨€¨€¨€¨†  | 305/415 [00:00<00:00, 958.05it/s]Loading weights:  99%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨‚| 409/415 [00:00<00:00, 987.47it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 415/415 [00:00<00:00, 980.51it/s]
+--- rba
+Loading weights:   0%|          | 0/380 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 380/380 [00:00<00:00, 7344.12it/s]
+saved results\figures\B1.jpg  (2 samples)
+saved results\figures\B2.jpg  (2 samples)
+saved results\figures\B3.jpg  (2 samples)
+saved results\figures\B4.jpg  (2 samples)
+saved results\figures\B6.jpg  (2 samples)

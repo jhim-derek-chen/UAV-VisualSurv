@@ -1,0 +1,118 @@
+{
+  "image_id": 22,
+  "file": "00022.jpg",
+  "location": "pexels/19851623",
+  "width": 3840,
+  "height": 2160,
+  "px_per_metre": 18.59,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        344,
+        1042,
+        67,
+        24
+      ],
+      "detection_score": 0.974,
+      "size_m": [
+        3.6,
+        1.29
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A blurry, light-colored, elongated object with a smooth, metallic surface, positioned on a paved surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false
+    },
+    {
+      "id": 2,
+      "box": [
+        1584,
+        1187,
+        64,
+        24
+      ],
+      "detection_score": 0.919,
+      "size_m": [
+        3.44,
+        1.29
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark, rectangular object with a smooth, solid surface and no visible texture or details.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false
+    },
+    {
+      "id": 3,
+      "box": [
+        899,
+        1224,
+        15,
+        21
+      ],
+      "detection_score": 0.997,
+      "size_m": [
+        0.81,
+        1.13
+      ],
+      "vlm_name": "roadside structure",
+      "vlm_category": "roadside structure (sign, lamp post, barrier, gantry, road marking)",
+      "vlm_raw": "{\"description\": \"A dark, cone-shaped object with a white band and orange top, positioned on a gray road surface.\", \"name\": \"traffic cone\", \"category\": \"traffic cone\"} | re-asked: {\"name\": \"roadside structure\", \"category\": \"roadside structure (sign, lamp post, barrier, gantry, road marking)\"}",
+      "physics": "corrected: traffic cone is implausible at 1.1 m",
+      "truth": "traffic cone",
+      "truth_any": "traffic cone",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as roadside structure, vegetation or shadow: not an object on the carriageway.",
+      "correct": false
+    },
+    {
+      "id": 4,
+      "box": [
+        782,
+        1278,
+        18,
+        19
+      ],
+      "detection_score": 0.998,
+      "size_m": [
+        0.97,
+        1.02
+      ],
+      "vlm_name": "wooden plank",
+      "vlm_category": "wooden plank or lumber",
+      "vlm_raw": "{\"description\": \"A light brown, rectangular object with a visible grain pattern, casting a distinct shadow on the road surface.\", \"name\": \"wooden plank\", \"category\": \"wooden plank or lumber\"}",
+      "physics": "passed",
+      "truth": "wooden plank or lumber",
+      "truth_any": "wooden plank or lumber",
+      "risk": "high",
+      "reasoning": "A large, rigid wooden plank is located in the middle lane of the motorway, directly in the path of traffic. The object is approximately 1 meter wide and 1 meter long, which is substantial enough to potentially cause a vehicle to lose control or be struck if a driver swerves or fails to react in time.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 25.5,
+      "correct": true
+    }
+  ],
+  "debris_missed_by_detection": [
+    "wooden plank or lumber"
+  ],
+  "timing_s": {
+    "identify": 13.39,
+    "risk": 4.77,
+    "n_identify": 4,
+    "n_physics_reask": 1,
+    "n_risk": 1
+  }
+}

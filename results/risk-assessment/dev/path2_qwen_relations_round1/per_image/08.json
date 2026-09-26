@@ -1,0 +1,137 @@
+{
+  "image_id": 8,
+  "file": "00008.jpg",
+  "location": "pexels/12571926",
+  "width": 1080,
+  "height": 1920,
+  "px_per_metre": 28.47,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        682,
+        811,
+        64,
+        86
+      ],
+      "detection_score": 0.991,
+      "size_m": [
+        2.25,
+        3.02
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored car with a light-colored roof and red taillights visible, positioned on a paved road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 2,
+      "box": [
+        697,
+        1007,
+        64,
+        62
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        2.25,
+        2.18
+      ],
+      "vlm_name": "metallic debris",
+      "vlm_category": "other debris",
+      "vlm_raw": "{\"description\": \"A dark, crumpled, and weathered object with a jagged, irregular shape, appearing to be made of metal or heavy plastic, situated on a paved surface.\", \"name\": \"metallic debris\", \"category\": \"other debris\"}",
+      "physics": "passed",
+      "truth": "mattress",
+      "truth_any": "mattress",
+      "risk": "high",
+      "reasoning": "A large, rigid metallic debris object is located in the middle lane of the motorway, approximately 6 meters from the nearest vehicle. This size and rigidity pose a significant risk of collision if a driver swerves or loses control.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 6.5,
+      "correct": false,
+      "detector_p": {
+        "background": 0.002,
+        "vehicle": 0.002,
+        "debris": 0.996
+      }
+    },
+    {
+      "id": 3,
+      "box": [
+        561,
+        1173,
+        67,
+        105
+      ],
+      "detection_score": 0.942,
+      "size_m": [
+        2.35,
+        3.69
+      ],
+      "vlm_name": "ladder",
+      "vlm_category": "ladder",
+      "vlm_raw": "{\"description\": \"A dark-colored vehicle with a black ladder attached to its side, positioned on a multi-lane highway.\", \"name\": \"ladder\", \"category\": \"ladder\"}",
+      "physics": "passed",
+      "truth": "ladder",
+      "truth_any": "ladder",
+      "risk": "none",
+      "reasoning": "Context gate: the detector's features say a vehicle, not debris (P(debris) 0.04). Not assessed as a hazard.",
+      "risk_source": "context rule",
+      "nearest_vehicle_m": 13.7,
+      "correct": true,
+      "detector_p": {
+        "background": 0.112,
+        "vehicle": 0.847,
+        "debris": 0.04
+      },
+      "context": "the detector's features say a vehicle, not debris (P(debris) 0.04)",
+      "risk_without_context": "high"
+    },
+    {
+      "id": 4,
+      "box": [
+        661,
+        1237,
+        59,
+        58
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        2.07,
+        2.04
+      ],
+      "vlm_name": "tire",
+      "vlm_category": "tire",
+      "vlm_raw": "{\"description\": \"A black circular object with a treaded rim and a central hubcap, situated on a paved surface.\", \"name\": \"tire\", \"category\": \"tire\"}",
+      "physics": "passed",
+      "truth": "tire",
+      "truth_any": "tire",
+      "risk": "high",
+      "reasoning": "A large, rigid tire is located in the middle lane of the motorway, directly adjacent to a vehicle. This object is large enough to potentially cause a loss of control if a driver swerves to avoid it, fitting the criteria for a high risk.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 14.5,
+      "correct": true,
+      "detector_p": {
+        "background": 0.002,
+        "vehicle": 0.004,
+        "debris": 0.994
+      }
+    }
+  ],
+  "debris_missed_by_detection": [],
+  "timing_s": {
+    "identify": 11.64,
+    "risk": 11.01,
+    "n_identify": 4,
+    "n_physics_reask": 0,
+    "n_risk": 2,
+    "context": 0.002,
+    "n_part_questions": 0
+  }
+}

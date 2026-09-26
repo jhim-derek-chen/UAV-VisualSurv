@@ -1,0 +1,106 @@
+{
+  "path": "path1_qwen_local",
+  "split": "test",
+  "variant": {
+    "bits": 4,
+    "model": "qwen3.5-2b",
+    "physics": true,
+    "prompt": "describe",
+    "size": true,
+    "tight": true
+  },
+  "peak_vram_gb": 1.97,
+  "identification": {
+    "debris_type": 0.56,
+    "hazard_recall": 0.84,
+    "vehicle": 0.96,
+    "false_hazard": 0.076,
+    "n_debris": 25,
+    "n_vehicle": 329,
+    "n_other": 38,
+    "score": 0.821
+  },
+  "identification_accuracy": {
+    "vehicle": {
+      "correct": 316,
+      "n": 329,
+      "accuracy": 0.96
+    },
+    "debris": {
+      "correct": 14,
+      "n": 25,
+      "accuracy": 0.56
+    },
+    "non-target": {
+      "correct": 9,
+      "n": 38,
+      "accuracy": 0.237
+    }
+  },
+  "debris_confusion": {
+    "refrigerator or appliance": {
+      "other debris": 2,
+      "roadside structure (sign, lamp post, barrier, gantry, road marking)": 1,
+      "refrigerator or appliance": 1
+    },
+    "tire": {
+      "tire": 7,
+      "roadside structure (sign, lamp post, barrier, gantry, road marking)": 1,
+      "vehicle": 1
+    },
+    "mattress": {
+      "other debris": 1,
+      "roadside structure (sign, lamp post, barrier, gantry, road marking)": 1
+    },
+    "ladder": {
+      "ladder": 2
+    },
+    "suitcase or bag": {
+      "barrel or drum": 1
+    },
+    "cardboard box": {
+      "cardboard box": 1
+    },
+    "traffic cone": {
+      "traffic cone": 1
+    },
+    "wooden plank or lumber": {
+      "wooden plank or lumber": 1,
+      "other debris": 1
+    },
+    "wooden pallet": {
+      "cardboard box": 1
+    },
+    "trash can": {
+      "person": 1
+    },
+    "barrel or drum": {
+      "barrel or drum": 1
+    }
+  },
+  "physics_corrections": 48,
+  "risk": {
+    "false_high_risk": 31,
+    "false_any_risk": 34,
+    "debris_boxes": 27,
+    "debris_rated_high": 21,
+    "debris_rated_any": 22,
+    "counts": {
+      "none": 358,
+      "high": 52,
+      "low": 1,
+      "medium": 3
+    }
+  },
+  "context_suppressed": 0,
+  "timing_s": {
+    "identify": 0,
+    "risk": 0,
+    "context": 0
+  },
+  "calls": {
+    "n_identify": 414,
+    "n_physics_reask": 48,
+    "n_risk": 56
+  }
+}

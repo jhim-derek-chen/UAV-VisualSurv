@@ -1,0 +1,281 @@
+{
+  "image_id": 20,
+  "file": "00020.jpg",
+  "location": "pexels/19851623",
+  "width": 3840,
+  "height": 2160,
+  "px_per_metre": 18.59,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        3036,
+        912,
+        57,
+        58
+      ],
+      "detection_score": 0.99,
+      "size_m": [
+        3.07,
+        3.12
+      ],
+      "vlm_name": "cardboard box",
+      "vlm_category": "other debris",
+      "vlm_raw": "{\"description\": \"A dark, rectangular object with a visible white logo or text on its side, casting a shadow on the road surface.\", \"name\": \"box\", \"category\": \"cardboard box\"} | re-asked: {\"name\": \"cardboard box\", \"category\": \"other debris\"}",
+      "physics": "corrected: cardboard box is implausible at 3.1 m",
+      "truth": "refrigerator or appliance",
+      "truth_any": "refrigerator or appliance",
+      "risk": "low",
+      "reasoning": "A cardboard box, classified as 'other debris' and approximately 3.1m by 3.1m, is located in the middle lane of the motorway. It is positioned near a vehicle that is approximately 7 meters away, which is a significant distance for a potential collision. However, the object is relatively soft and light, posing a low risk of causing loss of control if hit.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 7.1,
+      "correct": false,
+      "detector_p": {
+        "background": 0.0,
+        "vehicle": 0.0,
+        "debris": 1.0
+      }
+    },
+    {
+      "id": 2,
+      "box": [
+        3160,
+        929,
+        74,
+        25
+      ],
+      "detection_score": 0.965,
+      "size_m": [
+        3.98,
+        1.35
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white, elongated, rectangular object with a smooth surface and visible wheels, positioned on a paved road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 3,
+      "box": [
+        2190,
+        958,
+        63,
+        24
+      ],
+      "detection_score": 0.987,
+      "size_m": [
+        3.39,
+        1.29
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white, elongated, and blurry object with a smooth surface, positioned on a gray road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false
+    },
+    {
+      "id": 4,
+      "box": [
+        1205,
+        1021,
+        70,
+        26
+      ],
+      "detection_score": 0.997,
+      "size_m": [
+        3.77,
+        1.4
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white car with a dark window, captured in motion blur on a motorway.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false
+    },
+    {
+      "id": 5,
+      "box": [
+        2973,
+        1123,
+        62,
+        23
+      ],
+      "detection_score": 0.907,
+      "size_m": [
+        3.34,
+        1.24
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A light-colored, elongated rectangular object with a smooth, reflective surface, positioned on a dark asphalt road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false
+    },
+    {
+      "id": 6,
+      "box": [
+        3748,
+        1152,
+        90,
+        38
+      ],
+      "detection_score": 0.963,
+      "size_m": [
+        4.84,
+        2.04
+      ],
+      "vlm_name": "vehicle",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A brown, rectangular object with visible wood grain texture and some lighter, possibly painted, sections.\", \"name\": \"wooden pallet\", \"category\": \"wooden pallet\"} | re-asked: {\"name\": \"vehicle\", \"category\": \"vehicle\"}",
+      "physics": "corrected: wooden pallet is implausible at 4.8 m",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false
+    },
+    {
+      "id": 7,
+      "box": [
+        2477,
+        1160,
+        215,
+        101
+      ],
+      "detection_score": 0.535,
+      "size_m": [
+        11.57,
+        5.43
+      ],
+      "vlm_name": "truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white boxy object with a grey undercarriage, positioned on a paved road surface.\", \"name\": \"truck\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 8,
+      "box": [
+        2479,
+        1164,
+        213,
+        41
+      ],
+      "detection_score": 0.861,
+      "size_m": [
+        11.46,
+        2.21
+      ],
+      "vlm_name": "truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white rectangular object with a dark side panel, appearing to be a truck or trailer, positioned on a highway.\", \"name\": \"truck\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 9,
+      "box": [
+        2195,
+        1182,
+        53,
+        84
+      ],
+      "detection_score": 0.987,
+      "size_m": [
+        2.85,
+        4.52
+      ],
+      "vlm_name": "barrel or drum",
+      "vlm_category": "other debris",
+      "vlm_raw": "{\"description\": \"A dark, rectangular object with a metallic sheen and a lighter, possibly reflective, top surface, positioned diagonally on a gray road surface.\", \"name\": \"barrel or drum\", \"category\": \"barrel or drum\"} | re-asked: {\"name\": \"barrel or drum\", \"category\": \"other debris\"}",
+      "physics": "corrected: barrel or drum is implausible at 4.5 m",
+      "truth": "unclear",
+      "truth_any": "refrigerator or appliance",
+      "risk": "high",
+      "reasoning": "A large, rigid barrel or drum is located in the middle lane of the motorway, approximately 14 meters from the nearest vehicle. Given the object's size and the traffic speed implied by the motion blur, it poses a significant risk of collision if a driver swerves or fails to react in time.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 13.7,
+      "correct": null,
+      "detector_p": {
+        "background": 0.001,
+        "vehicle": 0.0,
+        "debris": 0.999
+      }
+    },
+    {
+      "id": 10,
+      "box": [
+        2021,
+        1189,
+        46,
+        34
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        2.47,
+        1.83
+      ],
+      "vlm_name": "ladder",
+      "vlm_category": "ladder",
+      "vlm_raw": "{\"description\": \"A red and black metal structure with a ladder-like frame and horizontal bars, positioned on the road surface.\", \"name\": \"ladder\", \"category\": \"ladder\"}",
+      "physics": "passed",
+      "truth": "ladder",
+      "truth_any": "ladder",
+      "risk": "high",
+      "reasoning": "A ladder, a rigid and heavy object, is located in the middle of the motorway carriageway, posing a significant collision risk to vehicles traveling at speed.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 15.9,
+      "correct": true,
+      "detector_p": {
+        "background": 0.0,
+        "vehicle": 0.0,
+        "debris": 1.0
+      }
+    }
+  ],
+  "debris_missed_by_detection": [
+    "refrigerator or appliance"
+  ],
+  "timing_s": {
+    "identify": 31.61,
+    "risk": 12.98,
+    "n_identify": 10,
+    "n_physics_reask": 3,
+    "n_risk": 3,
+    "context": 0.007,
+    "n_part_questions": 0
+  }
+}

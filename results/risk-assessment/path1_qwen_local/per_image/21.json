@@ -1,0 +1,235 @@
+{
+  "image_id": 21,
+  "file": "00021.jpg",
+  "location": "pexels/12571926",
+  "px_per_metre": 28.47,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        886,
+        782,
+        94,
+        42
+      ],
+      "detection_score": 0.989,
+      "size_m": [
+        3.3,
+        1.48
+      ],
+      "vlm_name": "white van",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white rectangular object with a green stripe on the side, positioned on the road surface.\", \"name\": \"cardboard box\", \"category\": \"cardboard box\"} | re-asked: {\"name\": \"white van\", \"category\": \"vehicle\"}",
+      "physics": "corrected: cardboard box is implausible at 3.3 m",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 2,
+      "box": [
+        713,
+        884,
+        79,
+        35
+      ],
+      "detection_score": 0.974,
+      "size_m": [
+        2.78,
+        1.23
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored car with a visible roof and side profile, positioned on a paved road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 3,
+      "box": [
+        248,
+        1161,
+        231,
+        65
+      ],
+      "detection_score": 0.931,
+      "size_m": [
+        8.11,
+        2.28
+      ],
+      "vlm_name": "truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored truck cab with a long, light-colored trailer, viewed from a top-down aerial perspective.\", \"name\": \"truck\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 4,
+      "box": [
+        249,
+        1165,
+        43,
+        53
+      ],
+      "detection_score": 0.911,
+      "size_m": [
+        1.51,
+        1.86
+      ],
+      "vlm_name": "vehicle",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark, rounded, solid object with a smooth surface, positioned on a road surface.\", \"name\": \"vehicle\", \"category\": \"barrel or drum\"} | re-asked: {\"name\": \"vehicle\", \"category\": \"vehicle\"}",
+      "physics": "corrected: barrel or drum is implausible at 1.9 m",
+      "truth": "unclear",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": null,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 5,
+      "box": [
+        0,
+        1716,
+        53,
+        125
+      ],
+      "detection_score": 0.992,
+      "size_m": [
+        1.86,
+        4.39
+      ],
+      "vlm_name": "vehicle",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white rectangular object with a dark side panel, positioned on a paved surface near green vegetation.\", \"name\": \"vehicle\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false,
+      "truth_any": "none"
+    },
+    {
+      "id": 6,
+      "box": [
+        0,
+        1717,
+        299,
+        170
+      ],
+      "detection_score": 0.979,
+      "size_m": [
+        10.5,
+        5.97
+      ],
+      "vlm_name": "van",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white van with a dark-colored bed or cargo area, parked diagonally on asphalt near green vegetation.\", \"name\": \"van\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false,
+      "truth_any": "none"
+    },
+    {
+      "id": 7,
+      "box": [
+        38,
+        1730,
+        61,
+        88
+      ],
+      "detection_score": 0.995,
+      "size_m": [
+        2.14,
+        3.09
+      ],
+      "vlm_name": "van",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white van with a dark-colored roof section, positioned parallel to other parked vehicles.\", \"name\": \"van\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false,
+      "truth_any": "none"
+    },
+    {
+      "id": 8,
+      "box": [
+        81,
+        1744,
+        83,
+        90
+      ],
+      "detection_score": 0.996,
+      "size_m": [
+        2.92,
+        3.16
+      ],
+      "vlm_name": "van",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white van with a light-colored roof and side panel, positioned diagonally on a paved surface.\", \"name\": \"van\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false,
+      "truth_any": "none"
+    },
+    {
+      "id": 9,
+      "box": [
+        142,
+        1750,
+        91,
+        107
+      ],
+      "detection_score": 0.994,
+      "size_m": [
+        3.2,
+        3.76
+      ],
+      "vlm_name": "van",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white rectangular vehicle with a visible front windshield and side profile, positioned on a paved surface.\", \"name\": \"van\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false,
+      "truth_any": "none"
+    }
+  ],
+  "debris_missed_by_detection": [
+    "suitcase or bag"
+  ],
+  "width": 1080,
+  "height": 1920,
+  "timing_s": {
+    "n_identify": 9,
+    "n_physics_reask": 2,
+    "n_risk": 0
+  }
+}

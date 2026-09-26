@@ -1,0 +1,41 @@
+[
+  {
+    "variant": "{\"bits\": 4, \"model\": \"qwen3.5-2b\", \"size\": true, \"tight\": true}",
+    "sec_per_box": 1.3,
+    "peak_vram_gb": 1.97,
+    "debris_type": 0.422,
+    "hazard_recall": 0.756,
+    "vehicle": 0.95,
+    "false_hazard": 0.175,
+    "n_debris": 90,
+    "n_vehicle": 60,
+    "n_other": 60,
+    "score": 0.738
+  },
+  {
+    "variant": "{\"bits\": 4, \"model\": \"qwen3.5-2b\", \"prompt\": \"describe\", \"size\": true, \"tight\": true}",
+    "sec_per_box": 2.59,
+    "peak_vram_gb": 1.97,
+    "debris_type": 0.4,
+    "hazard_recall": 0.844,
+    "vehicle": 0.95,
+    "false_hazard": 0.2,
+    "n_debris": 90,
+    "n_vehicle": 60,
+    "n_other": 60,
+    "score": 0.749
+  },
+  {
+    "variant": "{\"bits\": 4, \"model\": \"qwen3.5-2b\", \"physics\": true, \"prompt\": \"describe\", \"size\": true, \"tight\": true}",
+    "sec_per_box": 2.75,
+    "peak_vram_gb": 1.97,
+    "debris_type": 0.456,
+    "hazard_recall": 0.822,
+    "vehicle": 0.933,
+    "false_hazard": 0.183,
+    "n_debris": 90,
+    "n_vehicle": 60,
+    "n_other": 60,
+    "score": 0.757
+  }
+]

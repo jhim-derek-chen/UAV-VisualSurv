@@ -1,0 +1,330 @@
+{
+  "image_id": 27,
+  "file": "00027.jpg",
+  "location": "pexels/8742752",
+  "px_per_metre": 76.78,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        1620,
+        0,
+        1933,
+        1229
+      ],
+      "detection_score": 0.545,
+      "size_m": [
+        25.18,
+        16.01
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A silver car is driving on the road within the red rectangle.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false,
+      "truth_any": "none"
+    },
+    {
+      "id": 2,
+      "box": [
+        2479,
+        1,
+        191,
+        95
+      ],
+      "detection_score": 0.977,
+      "size_m": [
+        2.49,
+        1.24
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A red car is visible inside the red rectangle, positioned on a multi-lane road with a green van nearby.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 3,
+      "box": [
+        1434,
+        31,
+        45,
+        210
+      ],
+      "detection_score": 0.996,
+      "size_m": [
+        0.59,
+        2.74
+      ],
+      "vlm_name": "ladder",
+      "vlm_category": "ladder",
+      "vlm_raw": "{\"description\": \"A red rectangle highlights a dark, rectangular object with a grid-like pattern on its surface, situated on the road surface.\", \"name\": \"ladder\", \"category\": \"ladder\"}",
+      "physics": "passed",
+      "truth": "ladder",
+      "risk": "high",
+      "reasoning": "A ladder, a rigid and heavy object, is located in the middle lane of the motorway, directly in the path of a moving vehicle. This placement creates a significant collision risk if the vehicle swerves or loses control.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 4.6,
+      "correct": true,
+      "truth_any": "ladder",
+      "detector_p": {
+        "background": 0.003,
+        "vehicle": 0.0,
+        "debris": 0.997
+      },
+      "part_answer": "{\"part_of_vehicle\": 0, \"why\": \"The item is a ladder lying on the road surface, not attached to the white vehicle.\"}"
+    },
+    {
+      "id": 4,
+      "box": [
+        1001,
+        44,
+        208,
+        152
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        2.71,
+        1.98
+      ],
+      "vlm_name": "van",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white van with a dark shadow cast on the road surface.\", \"name\": \"van\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 5,
+      "box": [
+        2454,
+        49,
+        207,
+        168
+      ],
+      "detection_score": 0.998,
+      "size_m": [
+        2.7,
+        2.19
+      ],
+      "vlm_name": "van",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A bright green van with white lettering on its side, positioned on a multi-lane road.\", \"name\": \"van\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 6,
+      "box": [
+        2782,
+        74,
+        46,
+        51
+      ],
+      "detection_score": 0.938,
+      "size_m": [
+        0.6,
+        0.66
+      ],
+      "vlm_name": "roadside structure",
+      "vlm_category": "roadside structure (sign, lamp post, barrier, gantry, road marking)",
+      "vlm_raw": "{\"description\": \"A white, elongated object with a dark grey panel on its side, viewed from a high angle.\", \"name\": \"boat\", \"category\": \"vehicle\"} | re-asked: {\"name\": \"roadside structure\", \"category\": \"roadside structure (sign, lamp post, barrier, gantry, road marking)\"}",
+      "physics": "corrected: vehicle is implausible at 0.7 m",
+      "truth": "non-target",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as roadside structure, vegetation or shadow: not an object on the carriageway.",
+      "correct": true,
+      "truth_any": "none"
+    },
+    {
+      "id": 7,
+      "box": [
+        3705,
+        523,
+        134,
+        154
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        1.75,
+        2.01
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A silver hatchback car with a white roof is positioned on the right side of the road, casting a shadow on the asphalt.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 8,
+      "box": [
+        2144,
+        536,
+        245,
+        184
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        3.19,
+        2.4
+      ],
+      "vlm_name": "van",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A silver van with a white cargo box on top, positioned on a multi-lane road with white lane markings.\", \"name\": \"van\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 9,
+      "box": [
+        3740,
+        727,
+        100,
+        139
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        1.3,
+        1.81
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored car with a visible wheel and side profile, positioned on a road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 10,
+      "box": [
+        3488,
+        940,
+        31,
+        22
+      ],
+      "detection_score": 0.995,
+      "size_m": [
+        0.4,
+        0.29
+      ],
+      "vlm_name": "dark object",
+      "vlm_category": "other debris",
+      "vlm_raw": "{\"description\": \"A dark, elongated, curved object with a smooth surface, positioned on a light-colored textured surface.\", \"name\": \"dark object\", \"category\": \"other debris\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "risk": "none",
+      "reasoning": "Context gate: part of vehicle #1: under 0.6 m and wholly inside its outline (plate, light or mirror). Not assessed as a hazard.",
+      "risk_source": "context rule",
+      "nearest_vehicle_m": 4.2,
+      "correct": false,
+      "truth_any": "none",
+      "detector_p": {
+        "background": 0.006,
+        "vehicle": 0.003,
+        "debris": 0.99
+      },
+      "context": "part of vehicle #1: under 0.6 m and wholly inside its outline (plate, light or mirror)",
+      "risk_without_context": "medium"
+    },
+    {
+      "id": 11,
+      "box": [
+        1250,
+        1518,
+        131,
+        119
+      ],
+      "detection_score": 0.932,
+      "size_m": [
+        1.71,
+        1.55
+      ],
+      "vlm_name": "wooden pallet",
+      "vlm_category": "wooden pallet",
+      "vlm_raw": "{\"description\": \"A light-colored, rectangular object with a dark, indistinct shape on its surface, resting on the ground near a large yellow container and wooden pallets.\", \"name\": \"suitcase or bag\", \"category\": \"suitcase or bag\"} | re-asked: {\"name\": \"wooden pallet\", \"category\": \"wooden pallet\"}",
+      "physics": "corrected: suitcase or bag is implausible at 1.7 m",
+      "truth": "non-target",
+      "risk": "none",
+      "reasoning": "Context gate: the detector's features say background, not debris (P(debris) 0.07, P(vehicle) 0.34, P(background) 0.59). Not assessed as a hazard.",
+      "risk_source": "context rule",
+      "nearest_vehicle_m": 17.5,
+      "correct": false,
+      "truth_any": "none",
+      "detector_p": {
+        "background": 0.595,
+        "vehicle": 0.335,
+        "debris": 0.07
+      },
+      "context": "the detector's features say background, not debris (P(debris) 0.07, P(vehicle) 0.34, P(background) 0.59)",
+      "risk_without_context": "high"
+    },
+    {
+      "id": 12,
+      "box": [
+        1556,
+        1957,
+        330,
+        202
+      ],
+      "detection_score": 0.726,
+      "size_m": [
+        4.3,
+        2.63
+      ],
+      "vlm_name": "barrier",
+      "vlm_category": "roadside structure (sign, lamp post, barrier, gantry, road marking)",
+      "vlm_raw": "{\"description\": \"A curved metal fence with a dark grey finish, situated on a paved surface near a curb and surrounded by green vegetation.\", \"name\": \"barrier\", \"category\": \"roadside structure\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as roadside structure, vegetation or shadow: not an object on the carriageway.",
+      "correct": true,
+      "truth_any": "none"
+    }
+  ],
+  "debris_missed_by_detection": [],
+  "width": 3840,
+  "height": 2160,
+  "timing_s": {
+    "n_identify": 12,
+    "n_physics_reask": 2,
+    "n_risk": 1,
+    "context": 1.847,
+    "n_part_questions": 1
+  }
+}

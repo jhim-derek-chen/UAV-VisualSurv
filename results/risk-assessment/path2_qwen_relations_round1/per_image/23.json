@@ -1,0 +1,153 @@
+{
+  "image_id": 23,
+  "file": "00023.jpg",
+  "location": "pexels/8742752",
+  "px_per_metre": 76.78,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        3493,
+        122,
+        247,
+        173
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        3.22,
+        2.25
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white car with a dark roof, positioned on the right side of the road.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 2,
+      "box": [
+        3057,
+        381,
+        276,
+        184
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        3.59,
+        2.4
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored sedan with a bright white light source on its front, positioned on a multi-lane road.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 3,
+      "box": [
+        3725,
+        462,
+        115,
+        128
+      ],
+      "detection_score": 0.988,
+      "size_m": [
+        1.5,
+        1.67
+      ],
+      "vlm_name": "barrel or drum",
+      "vlm_category": "barrel or drum",
+      "vlm_raw": "{\"description\": \"A dark, rectangular object with a white stripe along its side, positioned on the road surface.\", \"name\": \"barrel or drum\", \"category\": \"barrel or drum\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "reasoning": "Context gate: cut by the frame edge: incomplete view, assess in the next frame. Not assessed as a hazard.",
+      "risk_source": "context rule",
+      "nearest_vehicle_m": 4.7,
+      "correct": false,
+      "truth_any": "vehicle",
+      "detector_p": {
+        "background": 0.193,
+        "vehicle": 0.519,
+        "debris": 0.287
+      },
+      "context": "cut by the frame edge: incomplete view, assess in the next frame",
+      "risk_without_context": "high"
+    },
+    {
+      "id": 4,
+      "box": [
+        2450,
+        816,
+        190,
+        170
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        2.47,
+        2.21
+      ],
+      "vlm_name": "tire",
+      "vlm_category": "tire",
+      "vlm_raw": "{\"description\": \"A black, circular object with a treaded rim and a central hubcap is visible on the road surface.\", \"name\": \"tire\", \"category\": \"tire\"}",
+      "physics": "passed",
+      "truth": "tire",
+      "risk": "high",
+      "reasoning": "A large, heavy tire is located in the middle of the motorway carriageway, which is a high-risk hazard as it is a rigid object that could cause a loss of control if a vehicle swerves or hits it.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 10.1,
+      "correct": true,
+      "truth_any": "tire",
+      "detector_p": {
+        "background": 0.0,
+        "vehicle": 0.002,
+        "debris": 0.998
+      }
+    },
+    {
+      "id": 5,
+      "box": [
+        3380,
+        1341,
+        388,
+        221
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        5.05,
+        2.88
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored vehicle with a visible roofline and wheels, positioned on the road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    }
+  ],
+  "debris_missed_by_detection": [],
+  "width": 3840,
+  "height": 2160,
+  "timing_s": {
+    "n_identify": 5,
+    "n_physics_reask": 0,
+    "n_risk": 1,
+    "context": 0.008,
+    "n_part_questions": 0
+  }
+}

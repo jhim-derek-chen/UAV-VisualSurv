@@ -1,0 +1,265 @@
+{
+  "image_id": 11,
+  "file": "00011.jpg",
+  "location": "pexels/12571926",
+  "width": 1080,
+  "height": 1920,
+  "px_per_metre": 28.47,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        295,
+        875,
+        60,
+        43
+      ],
+      "detection_score": 0.987,
+      "size_m": [
+        2.11,
+        1.51
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white car with a dark roof, positioned on a road surface next to a concrete barrier.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 2,
+      "box": [
+        696,
+        1033,
+        176,
+        64
+      ],
+      "detection_score": 0.642,
+      "size_m": [
+        6.18,
+        2.25
+      ],
+      "vlm_name": "white box",
+      "vlm_category": "other debris",
+      "vlm_raw": "{\"description\": \"A white rectangular object with a slightly weathered, textured surface, positioned on the road surface.\", \"name\": \"white box\", \"category\": \"other debris\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "high",
+      "reasoning": "A large rigid white box, identified as 'other debris', is located in the middle lane of the motorway, approximately 11 meters from the nearest vehicle. This size and location pose a significant risk of collision if a driver swerves or loses control.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 11.2,
+      "correct": false
+    },
+    {
+      "id": 3,
+      "box": [
+        500,
+        1251,
+        76,
+        33
+      ],
+      "detection_score": 0.998,
+      "size_m": [
+        2.67,
+        1.16
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A blue car with a dark roof and visible side windows, positioned on a road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 4,
+      "box": [
+        206,
+        1286,
+        82,
+        41
+      ],
+      "detection_score": 0.987,
+      "size_m": [
+        2.88,
+        1.44
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A light-colored car with a dark roof, viewed from a high aerial perspective.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 5,
+      "box": [
+        938,
+        1307,
+        38,
+        15
+      ],
+      "detection_score": 0.598,
+      "size_m": [
+        1.33,
+        0.53
+      ],
+      "vlm_name": "barrel or drum",
+      "vlm_category": "barrel or drum",
+      "vlm_raw": "{\"description\": \"A dark, elongated object with a visible wheel and handle, positioned on a road surface.\", \"name\": \"motorcycle\", \"category\": \"vehicle\"} | re-asked: {\"name\": \"barrel or drum\", \"category\": \"barrel or drum\"}",
+      "physics": "corrected: vehicle is implausible at 1.3 m",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "high",
+      "reasoning": "A large, rigid barrel or drum is located in the middle of the motorway carriageway, directly in the path of a vehicle. This object is large enough to potentially cause a loss of control if a driver swerves to avoid it, which aligns with the criteria for a high risk.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 4.0,
+      "correct": false
+    },
+    {
+      "id": 6,
+      "box": [
+        338,
+        1343,
+        81,
+        41
+      ],
+      "detection_score": 0.992,
+      "size_m": [
+        2.85,
+        1.44
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A light-colored car with a visible roof and side profile, positioned on a road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 7,
+      "box": [
+        157,
+        1356,
+        84,
+        41
+      ],
+      "detection_score": 0.975,
+      "size_m": [
+        2.95,
+        1.44
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white car viewed from a high aerial perspective, showing its roof and side profile.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 8,
+      "box": [
+        1001,
+        1370,
+        79,
+        40
+      ],
+      "detection_score": 0.965,
+      "size_m": [
+        2.78,
+        1.41
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored vehicle with a visible roof and side profile, positioned on a road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 9,
+      "box": [
+        123,
+        1437,
+        104,
+        62
+      ],
+      "detection_score": 0.998,
+      "size_m": [
+        3.65,
+        2.18
+      ],
+      "vlm_name": "tire",
+      "vlm_category": "tire",
+      "vlm_raw": "{\"description\": \"A dark, elongated object with a circular top surface and a visible tread pattern on its side, situated on the side of a motorway.\", \"name\": \"tire\", \"category\": \"tire\"}",
+      "physics": "passed",
+      "truth": "tire",
+      "truth_any": "tire",
+      "risk": "high",
+      "reasoning": "The red box highlights a large, dark, circular object (tire) located on the hard shoulder of the motorway, adjacent to the main carriageway. This object is relatively large (3.7m x 2.2m) and situated in a position where a vehicle could potentially collide with it if swerving or if it rolls into the traffic lane.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 3.3,
+      "correct": true
+    },
+    {
+      "id": 10,
+      "box": [
+        750,
+        1634,
+        70,
+        64
+      ],
+      "detection_score": 0.947,
+      "size_m": [
+        2.46,
+        2.25
+      ],
+      "vlm_name": "roadside structure",
+      "vlm_category": "roadside structure (sign, lamp post, barrier, gantry, road marking)",
+      "vlm_raw": "{\"description\": \"A dark rectangular roof section of a building with a light-colored wall below it, situated on a paved surface.\", \"name\": \"roadside structure\", \"category\": \"roadside structure\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as roadside structure, vegetation or shadow: not an object on the carriageway.",
+      "correct": true
+    }
+  ],
+  "debris_missed_by_detection": [
+    "mattress",
+    "wooden plank or lumber"
+  ],
+  "timing_s": {
+    "identify": 28.4,
+    "risk": 13.77,
+    "n_identify": 10,
+    "n_physics_reask": 1,
+    "n_risk": 3
+  }
+}

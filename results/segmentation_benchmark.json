@@ -1,0 +1,70 @@
+{
+  "road_index": 10,
+  "source": "aeroscapes val split",
+  "methods": {
+    "segformer-b0": {
+      "images": 150,
+      "iou": 0.23156862144612247,
+      "precision": 0.45504440277726077,
+      "recall": 0.352340346543142,
+      "sec_per_image": 0.03155900955200195,
+      "kind": "closed-set segmenter (Cityscapes), argmax == road"
+    },
+    "segformer-b2": {
+      "images": 150,
+      "iou": 0.31209364659383054,
+      "precision": 0.5191648211625276,
+      "recall": 0.5255775112228701,
+      "sec_per_image": 0.048161133130391436,
+      "kind": "closed-set segmenter (Cityscapes), argmax == road"
+    },
+    "mask2former": {
+      "images": 150,
+      "iou": 0.1313634878417682,
+      "precision": 0.3712484784424807,
+      "recall": 0.1798593468433971,
+      "sec_per_image": 0.09985767364501953,
+      "kind": "closed-set segmenter (Cityscapes), argmax == road"
+    },
+    "gdino-road": {
+      "images": 150,
+      "iou": 0.3172727333075742,
+      "precision": 0.37220450368360547,
+      "recall": 0.7852464061455031,
+      "sec_per_image": 0.8298153289159139,
+      "kind": "open-vocabulary detector, prompted for road words"
+    }
+  },
+  "diagnostics": {
+    "segformer-b2_road_confusion": {
+      "total_road_px": 27432669,
+      "top": [
+        {
+          "class": "road",
+          "frac": 0.545409963572994
+        },
+        {
+          "class": "building",
+          "frac": 0.2898487930576496
+        },
+        {
+          "class": "pole",
+          "frac": 0.05313828559663662
+        },
+        {
+          "class": "wall",
+          "frac": 0.03626679562240189
+        },
+        {
+          "class": "traffic sign",
+          "frac": 0.028677596044336773
+        }
+      ]
+    },
+    "gdino-road_uavdt_hit_rate": {
+      "frames": 40,
+      "zero_detection_frames": 10,
+      "zero_detection_rate": 0.25
+    }
+  }
+}

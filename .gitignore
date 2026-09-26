@@ -1,0 +1,33 @@
+# Tooling and caches
+.venv/
+.cache/
+__pycache__/
+*.pyc
+
+# Weights: re-downloadable. manifest.json is not -- it pins the commit SHAs.
+models/*
+!models/manifest.json
+
+# Raw data: re-downloadable, tens of GB
+datasets/*
+
+# Large outputs; keep metrics and comparisons
+results/predictions/
+results/visualizations/
+
+*.log
+Thumbs.db
+
+# Credentials (API keys, tokens): never commit
+.secrets/
+
+# Third-party tools (Blender install, ~0.9 GB): re-downloadable
+tools/
+# Regenerable caches of model outputs (OWLv2 box features, road masks)
+results/road-object-eval/features/
+results/road-object-eval/stage1_masks*/
+# Internal working notes and local tool settings
+SKILL.md
+.claude/
+# Raw API responses (re-created by re-running; may hold account metadata)
+results/risk-assessment/**/api_cache/

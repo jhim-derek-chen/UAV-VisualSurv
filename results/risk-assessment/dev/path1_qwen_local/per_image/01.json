@@ -1,0 +1,627 @@
+{
+  "image_id": 1,
+  "file": "00001.jpg",
+  "location": "pexels/12306893",
+  "width": 1080,
+  "height": 1920,
+  "px_per_metre": 16.02,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        549,
+        0,
+        21,
+        21
+      ],
+      "detection_score": 0.997,
+      "size_m": [
+        1.31,
+        1.31
+      ],
+      "vlm_name": "box",
+      "vlm_category": "suitcase or bag",
+      "vlm_raw": "{\"description\": \"A white boxy shape with a dark front section, positioned on a road surface.\", \"name\": \"box\", \"category\": \"suitcase or bag\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "medium",
+      "reasoning": "The object is identified as a suitcase or bag, which is a smaller or softer item. It is located in the middle lane of the motorway, approximately 13 meters from the nearest vehicle, and is not a rigid or heavy object like a tire or ladder, nor is it a person. This places it in the 'medium' risk category as it is a smaller object in a traffic lane.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 13.3,
+      "correct": false
+    },
+    {
+      "id": 2,
+      "box": [
+        504,
+        33,
+        19,
+        26
+      ],
+      "detection_score": 0.998,
+      "size_m": [
+        1.19,
+        1.62
+      ],
+      "vlm_name": "cardboard box",
+      "vlm_category": "cardboard box",
+      "vlm_raw": "{\"description\": \"A dark-colored box with a lighter top section, positioned on a paved surface.\", \"name\": \"cardboard box\", \"category\": \"cardboard box\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "medium",
+      "reasoning": "A cardboard box, classified as a soft object, is located in the middle lane of the motorway, approximately 10 meters from the nearest vehicle. This proximity and the object's soft nature create a potential risk of collision if the vehicle swerves or loses control.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 10.4,
+      "correct": false
+    },
+    {
+      "id": 3,
+      "box": [
+        683,
+        104,
+        44,
+        40
+      ],
+      "detection_score": 0.998,
+      "size_m": [
+        2.75,
+        2.5
+      ],
+      "vlm_name": "tire",
+      "vlm_category": "tire",
+      "vlm_raw": "{\"description\": \"A dark, circular object with a textured tread pattern, resembling a tire, positioned on a paved surface.\", \"name\": \"tire\", \"category\": \"tire\"}",
+      "physics": "passed",
+      "truth": "tire",
+      "truth_any": "tire",
+      "risk": "high",
+      "reasoning": "A large, rigid tire is detected in the center lane of the motorway, approximately 10 meters from the nearest vehicle. This object is significantly larger than a standard tire and is positioned in a travel lane, posing a high risk of collision if a driver swerves or fails to react.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 10.3,
+      "correct": true
+    },
+    {
+      "id": 4,
+      "box": [
+        474,
+        193,
+        24,
+        34
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        1.5,
+        2.12
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white car with a visible roof and rear window, positioned on a paved road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 5,
+      "box": [
+        690,
+        249,
+        31,
+        80
+      ],
+      "detection_score": 0.997,
+      "size_m": [
+        1.93,
+        4.99
+      ],
+      "vlm_name": "van",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white boxy shape with a dark front grille and headlights, positioned on a paved road surface.\", \"name\": \"van\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 6,
+      "box": [
+        497,
+        297,
+        22,
+        31
+      ],
+      "detection_score": 0.998,
+      "size_m": [
+        1.37,
+        1.93
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored car with visible headlights and grille, positioned on a paved road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 7,
+      "box": [
+        731,
+        342,
+        21,
+        40
+      ],
+      "detection_score": 0.998,
+      "size_m": [
+        1.31,
+        2.5
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored car with visible headlights and a roofline, positioned on a paved road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 8,
+      "box": [
+        515,
+        406,
+        27,
+        34
+      ],
+      "detection_score": 0.998,
+      "size_m": [
+        1.69,
+        2.12
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark, boxy object with a light-colored top surface, situated on a paved road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 9,
+      "box": [
+        730,
+        501,
+        34,
+        46
+      ],
+      "detection_score": 0.998,
+      "size_m": [
+        2.12,
+        2.87
+      ],
+      "vlm_name": "tire",
+      "vlm_category": "tire",
+      "vlm_raw": "{\"description\": \"A dark, elongated object with a rounded top and a flat base, resembling a tire or a rolled-up mat, positioned on the side of a motorway.\", \"name\": \"tire\", \"category\": \"tire\"}",
+      "physics": "passed",
+      "truth": "tire",
+      "truth_any": "tire",
+      "risk": "high",
+      "reasoning": "A large, heavy tire is detected on the motorway carriageway, approximately 6 meters from the nearest vehicle. This object is large enough to potentially cause loss of control if a driver swerves or fails to react, classifying it as a high risk.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 6.3,
+      "correct": true
+    },
+    {
+      "id": 10,
+      "box": [
+        633,
+        509,
+        27,
+        50
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        1.69,
+        3.12
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A silver car with a visible roofline and windows, positioned on a paved road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 11,
+      "box": [
+        676,
+        588,
+        26,
+        48
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        1.62,
+        3.0
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white car with a red rectangular outline highlighting its entire body.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 12,
+      "box": [
+        488,
+        599,
+        29,
+        47
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        1.81,
+        2.93
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored car viewed from above on a paved road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 13,
+      "box": [
+        434,
+        697,
+        31,
+        48
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        1.93,
+        3.0
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored car with a visible roofline and rear window, positioned on a paved road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 14,
+      "box": [
+        380,
+        727,
+        34,
+        55
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        2.12,
+        3.43
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white car with a dark roof is driving on a motorway.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 15,
+      "box": [
+        568,
+        809,
+        29,
+        51
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        1.81,
+        3.18
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored vehicle with visible headlights and a license plate, positioned on a paved road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 16,
+      "box": [
+        279,
+        997,
+        38,
+        58
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        2.37,
+        3.62
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white car with a dark roof is positioned on the left side of the road, adjacent to a large truck.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 17,
+      "box": [
+        287,
+        1035,
+        72,
+        225
+      ],
+      "detection_score": 0.967,
+      "size_m": [
+        4.49,
+        14.04
+      ],
+      "vlm_name": "construction equipment",
+      "vlm_category": "other debris",
+      "vlm_raw": "{\"description\": \"A long, narrow, red and white striped object with a metallic frame structure, resembling a large piece of construction equipment or a specialized trailer.\", \"name\": \"construction equipment\", \"category\": \"other debris\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "high",
+      "reasoning": "A large, rigid construction equipment container is positioned directly in the middle lane of the motorway, creating a significant collision risk for any vehicle traveling at speed or attempting to swerve.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 7.7,
+      "correct": false
+    },
+    {
+      "id": 18,
+      "box": [
+        289,
+        1216,
+        51,
+        43
+      ],
+      "detection_score": 0.994,
+      "size_m": [
+        3.18,
+        2.68
+      ],
+      "vlm_name": "vehicle",
+      "vlm_category": "ladder",
+      "vlm_raw": "{\"description\": \"A white rectangular object with red structural supports and a checkered pattern on the bottom edge, situated on a truck bed.\", \"name\": \"white box\", \"category\": \"suitcase or bag\"} | re-asked: {\"name\": \"vehicle\", \"category\": \"ladder\"}",
+      "physics": "corrected: suitcase or bag is implausible at 3.2 m",
+      "truth": "unclear",
+      "truth_any": "vehicle",
+      "risk": "high",
+      "reasoning": "A long, rigid ladder-like object is positioned directly in the middle lane of the motorway, creating a significant collision risk for any vehicle traveling in that lane. The object's dimensions and location make it a potential hazard for traffic flow.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 4.4,
+      "correct": null
+    },
+    {
+      "id": 19,
+      "box": [
+        234,
+        1240,
+        40,
+        68
+      ],
+      "detection_score": 0.998,
+      "size_m": [
+        2.5,
+        4.24
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A silver car with a dark roof is positioned on the left lane of a multi-lane road, appearing to be in motion.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 20,
+      "box": [
+        343,
+        1263,
+        39,
+        68
+      ],
+      "detection_score": 0.998,
+      "size_m": [
+        2.43,
+        4.24
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored car viewed from above, showing its roof and rear section.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 21,
+      "box": [
+        383,
+        1426,
+        38,
+        73
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        2.37,
+        4.56
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored car viewed from above on a multi-lane road.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 22,
+      "box": [
+        305,
+        1560,
+        40,
+        73
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        2.5,
+        4.56
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white car with a visible roof and side windows, positioned on a paved road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 23,
+      "box": [
+        514,
+        1567,
+        34,
+        87
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        2.12,
+        5.43
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored car with a visible roofline and side profile, positioned on a multi-lane road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 24,
+      "box": [
+        146,
+        1733,
+        46,
+        93
+      ],
+      "detection_score": 0.997,
+      "size_m": [
+        2.87,
+        5.8
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored car with a visible roof rack, positioned on the leftmost lane of a multi-lane motorway.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 25,
+      "box": [
+        279,
+        1804,
+        42,
+        88
+      ],
+      "detection_score": 0.993,
+      "size_m": [
+        2.62,
+        5.49
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored car viewed from above, showing its roof and rear window.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    }
+  ],
+  "debris_missed_by_detection": [
+    "wooden plank or lumber"
+  ],
+  "timing_s": {
+    "identify": 59.49,
+    "risk": 21.89,
+    "n_identify": 25,
+    "n_physics_reask": 1,
+    "n_risk": 6
+  }
+}

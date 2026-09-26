@@ -1,0 +1,237 @@
+{
+  "image_id": 15,
+  "file": "00015.jpg",
+  "location": "pexels/19851623",
+  "width": 3840,
+  "height": 2160,
+  "px_per_metre": 18.59,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        2755,
+        899,
+        144,
+        41
+      ],
+      "detection_score": 0.912,
+      "size_m": [
+        7.75,
+        2.21
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white boxy shape with a dark front section and a lighter rear section, positioned on a road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 2,
+      "box": [
+        2181,
+        952,
+        69,
+        23
+      ],
+      "detection_score": 0.992,
+      "size_m": [
+        3.71,
+        1.24
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A light-colored, elongated vehicle with a rounded roofline and visible wheels, positioned on a paved road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false
+    },
+    {
+      "id": 3,
+      "box": [
+        2253,
+        1162,
+        52,
+        44
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        2.8,
+        2.37
+      ],
+      "vlm_name": "tire",
+      "vlm_category": "tire",
+      "vlm_raw": "{\"description\": \"A dark, cylindrical object with a visible tread pattern and a central hub-like structure, resting on a gray road surface.\", \"name\": \"tire\", \"category\": \"tire\"}",
+      "physics": "passed",
+      "truth": "tire",
+      "truth_any": "tire",
+      "risk": "high",
+      "reasoning": "The object is a large tire (2.8m x 2.4m) located in the center lane of the motorway, which is a high-risk hazard due to its size and potential to cause loss of control or collision if a vehicle swerves or hits it.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 12.3,
+      "correct": true,
+      "detector_p": {
+        "background": 0.0,
+        "vehicle": 0.0,
+        "debris": 1.0
+      }
+    },
+    {
+      "id": 4,
+      "box": [
+        2682,
+        1171,
+        218,
+        37
+      ],
+      "detection_score": 0.672,
+      "size_m": [
+        11.73,
+        1.99
+      ],
+      "vlm_name": "truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white rectangular object with red lettering on its side, positioned on the road surface.\", \"name\": \"truck\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 5,
+      "box": [
+        2406,
+        1174,
+        35,
+        43
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        1.88,
+        2.31
+      ],
+      "vlm_name": "wooden pallet",
+      "vlm_category": "wooden plank or lumber",
+      "vlm_raw": "{\"description\": \"Four dark, elongated, rectangular objects with a rough, weathered texture, arranged in a row on a gray asphalt surface.\", \"name\": \"wooden pallet\", \"category\": \"wooden pallet\"} | re-asked: {\"name\": \"wooden pallet\", \"category\": \"wooden plank or lumber\"}",
+      "physics": "corrected: wooden pallet is implausible at 2.3 m",
+      "truth": "wooden plank or lumber",
+      "truth_any": "wooden plank or lumber",
+      "risk": "high",
+      "reasoning": "The red rectangle highlights a wooden pallet, a rigid and heavy object, located in the middle lane of the motorway. The pallet is approximately 17 meters from the nearest vehicle, which is a significant distance that may not allow for immediate avoidance if the object were to fall or move, posing a potential collision risk.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 16.8,
+      "correct": true,
+      "detector_p": {
+        "background": 0.0,
+        "vehicle": 0.0,
+        "debris": 1.0
+      }
+    },
+    {
+      "id": 6,
+      "box": [
+        2467,
+        1192,
+        18,
+        15
+      ],
+      "detection_score": 0.996,
+      "size_m": [
+        0.97,
+        0.81
+      ],
+      "vlm_name": "cardboard box",
+      "vlm_category": "cardboard box",
+      "vlm_raw": "{\"description\": \"A small, light-brown rectangular object with a dark, hollow square indentation on its top surface, appearing to be made of wood or composite material.\", \"name\": \"cardboard box\", \"category\": \"cardboard box\"}",
+      "physics": "passed",
+      "truth": "wooden pallet",
+      "truth_any": "wooden pallet",
+      "risk": "low",
+      "reasoning": "A cardboard box, classified as a soft object, is located in the middle of the motorway carriageway, which is a hazardous location for vehicles. The object is relatively small (1.0m x 0.8m) and appears to be a loose item rather than a rigid container, posing a risk of being struck by a vehicle.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 17.0,
+      "correct": false,
+      "detector_p": {
+        "background": 0.004,
+        "vehicle": 0.0,
+        "debris": 0.996
+      }
+    },
+    {
+      "id": 7,
+      "box": [
+        2472,
+        1204,
+        19,
+        15
+      ],
+      "detection_score": 0.997,
+      "size_m": [
+        1.02,
+        0.81
+      ],
+      "vlm_name": "cardboard box",
+      "vlm_category": "cardboard box",
+      "vlm_raw": "{\"description\": \"A small, light-brown, rectangular object with a hollow center and a dark side, resting on a grey paved surface.\", \"name\": \"cardboard box\", \"category\": \"cardboard box\"}",
+      "physics": "passed",
+      "truth": "wooden pallet",
+      "truth_any": "wooden pallet",
+      "risk": "high",
+      "reasoning": "A cardboard box, classified as a soft object, is located in the middle of the motorway carriageway, which is a high-risk location for vehicles. The object is relatively large (1.0m x 0.8m) and positioned directly in the travel lane, posing a significant risk of collision if a vehicle swerves or loses control.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 16.7,
+      "correct": false,
+      "detector_p": {
+        "background": 0.002,
+        "vehicle": 0.0,
+        "debris": 0.998
+      }
+    },
+    {
+      "id": 8,
+      "box": [
+        246,
+        1235,
+        221,
+        37
+      ],
+      "detection_score": 0.891,
+      "size_m": [
+        11.89,
+        1.99
+      ],
+      "vlm_name": "truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A long, white trailer with a red cab section, showing significant motion blur as it moves along the highway.\", \"name\": \"truck\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    }
+  ],
+  "debris_missed_by_detection": [],
+  "timing_s": {
+    "identify": 24.34,
+    "risk": 19.08,
+    "n_identify": 8,
+    "n_physics_reask": 1,
+    "n_risk": 4,
+    "context": 0.006,
+    "n_part_questions": 0
+  }
+}

@@ -1,0 +1,284 @@
+{
+  "method": "owlv2-fused",
+  "which": "two_stage",
+  "threshold": 0.9934,
+  "images": {
+    "00": {
+      "location": "12306893",
+      "vehicles": 29,
+      "vehicles_found": 29,
+      "debris_category": "refrigerator",
+      "debris_found": true,
+      "debris_iou": 0.703,
+      "false_alarms": 1
+    },
+    "01": {
+      "location": "19851623",
+      "vehicles": 8,
+      "vehicles_found": 6,
+      "debris_category": "tire",
+      "debris_found": true,
+      "debris_iou": 0.867,
+      "false_alarms": 1
+    },
+    "02": {
+      "location": "12571926",
+      "vehicles": 2,
+      "vehicles_found": 2,
+      "debris_category": "refrigerator",
+      "debris_found": true,
+      "debris_iou": 0.801,
+      "false_alarms": 0
+    },
+    "03": {
+      "location": "19851623",
+      "vehicles": 10,
+      "vehicles_found": 10,
+      "debris_category": "refrigerator",
+      "debris_found": true,
+      "debris_iou": 0.721,
+      "false_alarms": 1
+    },
+    "04": {
+      "location": "19851623",
+      "vehicles": 5,
+      "vehicles_found": 5,
+      "debris_category": "mattress",
+      "debris_found": true,
+      "debris_iou": 0.943,
+      "false_alarms": 0
+    },
+    "05": {
+      "location": "19851623",
+      "vehicles": 8,
+      "vehicles_found": 8,
+      "debris_category": "truck-tire",
+      "debris_found": true,
+      "debris_iou": 0.456,
+      "false_alarms": 2
+    },
+    "06": {
+      "location": "8742752",
+      "vehicles": 6,
+      "vehicles_found": 6,
+      "debris_category": "ladder",
+      "debris_found": true,
+      "debris_iou": 0.939,
+      "false_alarms": 1
+    },
+    "07": {
+      "location": "12306893",
+      "vehicles": 23,
+      "vehicles_found": 23,
+      "debris_category": "tire",
+      "debris_found": true,
+      "debris_iou": 0.565,
+      "false_alarms": 5
+    },
+    "08": {
+      "location": "12306893",
+      "vehicles": 23,
+      "vehicles_found": 23,
+      "debris_category": "mattress",
+      "debris_found": false,
+      "debris_iou": null,
+      "false_alarms": 4
+    },
+    "09": {
+      "location": "8742752",
+      "vehicles": 5,
+      "vehicles_found": 5,
+      "debris_category": "suitcase",
+      "debris_found": true,
+      "debris_iou": 0.462,
+      "false_alarms": 0
+    },
+    "10": {
+      "location": "8742752",
+      "vehicles": 13,
+      "vehicles_found": 13,
+      "debris_category": "refrigerator",
+      "debris_found": true,
+      "debris_iou": 0.629,
+      "false_alarms": 13
+    },
+    "11": {
+      "location": "8742752",
+      "vehicles": 6,
+      "vehicles_found": 5,
+      "debris_category": "tire",
+      "debris_found": true,
+      "debris_iou": 0.807,
+      "false_alarms": 2
+    },
+    "12": {
+      "location": "12571926",
+      "vehicles": 8,
+      "vehicles_found": 7,
+      "debris_category": "truck-tire",
+      "debris_found": true,
+      "debris_iou": 0.895,
+      "false_alarms": 0
+    },
+    "13": {
+      "location": "12571926",
+      "vehicles": 7,
+      "vehicles_found": 6,
+      "debris_category": "truck-tire",
+      "debris_found": true,
+      "debris_iou": 0.939,
+      "false_alarms": 0
+    },
+    "14": {
+      "location": "12571926",
+      "vehicles": 5,
+      "vehicles_found": 4,
+      "debris_category": "cardboard-box",
+      "debris_found": true,
+      "debris_iou": 0.571,
+      "false_alarms": 1
+    },
+    "15": {
+      "location": "8742752",
+      "vehicles": 4,
+      "vehicles_found": 2,
+      "debris_category": "traffic-cone",
+      "debris_found": true,
+      "debris_iou": 0.758,
+      "false_alarms": 1
+    },
+    "16": {
+      "location": "12306893",
+      "vehicles": 15,
+      "vehicles_found": 15,
+      "debris_category": "wooden-plank",
+      "debris_found": true,
+      "debris_iou": 0.879,
+      "false_alarms": 1
+    },
+    "17": {
+      "location": "12306893",
+      "vehicles": 15,
+      "vehicles_found": 15,
+      "debris_category": "wooden-pallet",
+      "debris_found": true,
+      "debris_iou": 0.695,
+      "false_alarms": 3
+    },
+    "18": {
+      "location": "19851623",
+      "vehicles": 8,
+      "vehicles_found": 7,
+      "debris_category": "mattress",
+      "debris_found": true,
+      "debris_iou": 0.722,
+      "false_alarms": 1
+    },
+    "19": {
+      "location": "19851623",
+      "vehicles": 9,
+      "vehicles_found": 8,
+      "debris_category": "wooden-plank",
+      "debris_found": true,
+      "debris_iou": 0.515,
+      "false_alarms": 1
+    },
+    "20": {
+      "location": "12306893",
+      "vehicles": 27,
+      "vehicles_found": 26,
+      "debris_category": "truck-tire",
+      "debris_found": true,
+      "debris_iou": 0.723,
+      "false_alarms": 2
+    },
+    "21": {
+      "location": "12571926",
+      "vehicles": 3,
+      "vehicles_found": 3,
+      "debris_category": "suitcase",
+      "debris_found": false,
+      "debris_iou": null,
+      "false_alarms": 6
+    },
+    "22": {
+      "location": "8742752",
+      "vehicles": 6,
+      "vehicles_found": 6,
+      "debris_category": "tire",
+      "debris_found": true,
+      "debris_iou": 0.246,
+      "false_alarms": 1
+    },
+    "23": {
+      "location": "8742752",
+      "vehicles": 4,
+      "vehicles_found": 4,
+      "debris_category": "truck-tire",
+      "debris_found": true,
+      "debris_iou": 0.848,
+      "false_alarms": 0
+    },
+    "24": {
+      "location": "12571926",
+      "vehicles": 8,
+      "vehicles_found": 4,
+      "debris_category": "trash-can",
+      "debris_found": true,
+      "debris_iou": 0.677,
+      "false_alarms": 1
+    },
+    "25": {
+      "location": "19851623",
+      "vehicles": 8,
+      "vehicles_found": 8,
+      "debris_category": "suitcase",
+      "debris_found": false,
+      "debris_iou": null,
+      "false_alarms": 2
+    },
+    "26": {
+      "location": "12306893",
+      "vehicles": 26,
+      "vehicles_found": 25,
+      "debris_category": "truck-tire",
+      "debris_found": true,
+      "debris_iou": 0.919,
+      "false_alarms": 4
+    },
+    "27": {
+      "location": "8742752",
+      "vehicles": 6,
+      "vehicles_found": 6,
+      "debris_category": "ladder",
+      "debris_found": true,
+      "debris_iou": 0.986,
+      "false_alarms": 5
+    },
+    "28": {
+      "location": "12306893",
+      "vehicles": 27,
+      "vehicles_found": 27,
+      "debris_category": "mattress",
+      "debris_found": false,
+      "debris_iou": null,
+      "false_alarms": 2
+    },
+    "29": {
+      "location": "12306893",
+      "vehicles": 18,
+      "vehicles_found": 18,
+      "debris_category": "barrel",
+      "debris_found": true,
+      "debris_iou": 0.627,
+      "false_alarms": 1
+    }
+  },
+  "totals": {
+    "vehicles": 342,
+    "vehicles_found": 326,
+    "debris": 30,
+    "debris_found": 26,
+    "false_alarms": 62
+  }
+}

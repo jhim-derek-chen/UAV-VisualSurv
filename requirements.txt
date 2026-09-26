@@ -1,0 +1,35 @@
+# Core environment for UAV highway suspicious-object benchmark.
+# Python 3.12 (3.14 has no PyTorch wheels -- do not use the system default).
+# Install torch separately from the CUDA index; see requirements/README.md.
+
+# --- HF / model loading ---
+transformers>=4.51
+huggingface_hub>=0.34   # 1.x ships the `hf` CLI in the base package; the [cli] extra no longer exists
+safetensors>=0.4.5
+timm>=1.0.9
+accelerate>=1.0
+bitsandbytes>=0.45  # 4/8-bit VLM loading (Objective 2)
+
+# --- imaging / IO ---
+numpy>=1.26          # torch 2.6.0+cu124 pulls 2.5.x; do not pin below it
+opencv-python>=4.10
+Pillow>=10.4
+imageio>=2.35
+tifffile>=2024.8
+
+# --- geometry / metrics ---
+scipy>=1.14
+scikit-learn>=1.5
+scikit-image>=0.24
+pycocotools>=2.0.8
+
+# --- experiment plumbing ---
+pyyaml>=6.0
+tqdm>=4.66
+pandas>=2.2
+matplotlib>=3.9
+rich>=13.8
+
+# --- download helpers ---
+requests>=2.32
+gdown>=5.2

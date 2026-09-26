@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "models": {
+    "segformer-b0-cityscapes": {
+      "repo_id": "nvidia/segformer-b0-finetuned-cityscapes-1024-1024",
+      "revision": "21b3847fae21ddee674abd31129307b6a1235bd9",
+      "group": "segmentation",
+      "task": "semantic-segmentation",
+      "licence": "NVIDIA Source Code License (non-commercial research)",
+      "paper": "https://arxiv.org/abs/2105.15203",
+      "local_dir": "models/segformer-b0-cityscapes",
+      "size_bytes": 14965674,
+      "downloaded_utc": "2026-09-05T08:26:03+00:00"
+    },
+    "segformer-b2-cityscapes": {
+      "repo_id": "nvidia/segformer-b2-finetuned-cityscapes-1024-1024",
+      "revision": "d633b2072669ca68d8f8e309de9b52bfdbf6bf72",
+      "group": "segmentation",
+      "task": "semantic-segmentation",
+      "licence": "NVIDIA Source Code License (non-commercial research)",
+      "paper": "https://arxiv.org/abs/2105.15203",
+      "local_dir": "models/segformer-b2-cityscapes",
+      "size_bytes": 109606043,
+      "downloaded_utc": "2026-09-05T08:28:06+00:00"
+    },
+    "mask2former-swin-tiny-cityscapes": {
+      "repo_id": "facebook/mask2former-swin-tiny-cityscapes-semantic",
+      "revision": "01a04783d1e2981b13cf5aace8cd87774012de27",
+      "group": "segmentation",
+      "task": "semantic-segmentation",
+      "licence": "CC-BY-NC-4.0",
+      "paper": "https://arxiv.org/abs/2112.01527",
+      "local_dir": "models/mask2former-swin-tiny-cityscapes",
+      "size_bytes": 380074128,
+      "downloaded_utc": "2026-09-05T08:30:09+00:00"
+    },
+    "dinov2-large": {
+      "repo_id": "facebook/dinov2-large",
+      "revision": "47b73eefe95e8d44ec3623f8890bd894b6ea2d6c",
+      "group": "foundation",
+      "task": "dense-features",
+      "licence": "Apache-2.0",
+      "paper": "https://arxiv.org/abs/2304.07193",
+      "local_dir": "models/dinov2-large",
+      "size_bytes": 2435144949,
+      "downloaded_utc": "2026-09-05T08:41:50+00:00"
+    },
+    "dinov3-vitl16": {
+      "repo_id": "facebook/dinov3-vitl16-pretrain-lvd1689m",
+      "revision": "ea8dc2863c51be0a264bab82070e3e8836b02d51",
+      "group": "foundation",
+      "task": "dense-features",
+      "licence": "DINOv3 License (gated, manual approval)",
+      "paper": "https://arxiv.org/abs/2508.10104",
+      "local_dir": "models/dinov3-vitl16",
+      "size_bytes": 1212586401,
+      "downloaded_utc": "2026-09-05T08:47:11+00:00"
+    },
+    "grounding-dino-tiny": {
+      "repo_id": "IDEA-Research/grounding-dino-tiny",
+      "revision": "a2bb814dd30d776dcf7e30523b00659f4f141c71",
+      "group": "foundation",
+      "task": "open-vocabulary-detection",
+      "licence": "Apache-2.0",
+      "paper": "https://arxiv.org/abs/2303.05499",
+      "local_dir": "models/grounding-dino-tiny",
+      "size_bytes": 1382227254,
+      "downloaded_utc": "2026-09-05T08:52:32+00:00"
+    },
+    "sam2.1-hiera-base-plus": {
+      "repo_id": "facebook/sam2.1-hiera-base-plus",
+      "revision": "b7320756a13354e7530a63935656d35b2f91a290",
+      "group": "foundation",
+      "task": "promptable-segmentation",
+      "licence": "Apache-2.0",
+      "paper": "https://arxiv.org/abs/2408.00714",
+      "local_dir": "models/sam2.1-hiera-base-plus",
+      "size_bytes": 647118076,
+      "downloaded_utc": "2026-09-05T08:58:09+00:00"
+    },
+    "owlv2-base-ensemble": {
+      "repo_id": "google/owlv2-base-patch16-ensemble",
+      "revision": "cfd3195ba4ea9592eec887ded089f4c08eff231d",
+      "group": "foundation",
+      "licence": "Apache-2.0",
+      "size_bytes": 1241521636,
+      "downloaded_utc": "2026-09-24T12:23:26+00:00"
+    },
+    "segformer-b2-aeroscapes-road": {
+      "repo_id": "local: fine-tuned from segformer-b2-cityscapes on AeroScapes (road + car)",
+      "revision": "n/a -- rebuild with scripts/train_road_segmenter.py",
+      "group": "segmentation",
+      "licence": "NVIDIA Source Code License (non-commercial), inherited from the base weights; AeroScapes is research-only",
+      "size_bytes": 109445399,
+      "trained_utc": "2026-09-24T14:36:17+00:00"
+    },
+    "owlv2-rescorer": {
+      "repo_id": "local: linear probe on owlv2-base-ensemble box features",
+      "revision": "n/a -- rebuild with scripts/build_training_renders.py then scripts/train_rescorer.py",
+      "group": "detection",
+      "licence": "trained here; depends on owlv2-base-ensemble (Apache-2.0)",
+      "size_bytes": 11728,
+      "trained_utc": "2026-09-25T04:43:07+00:00"
+    },
+    "qwen3.5-2b": {
+      "repo_id": "Qwen/Qwen3.5-2B",
+      "revision": "15852e8c16360a2fea060d615a32b45270f8a8fc",
+      "group": "vlm",
+      "licence": "Apache-2.0",
+      "size_bytes": 4571277496,
+      "downloaded_utc": "2026-09-25T14:05:19+00:00"
+    },
+    "qwen3.5-4b": {
+      "repo_id": "Qwen/Qwen3.5-4B",
+      "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+      "group": "vlm",
+      "licence": "Apache-2.0",
+      "size_bytes": 9342911408,
+      "downloaded_utc": "2026-09-25T14:21:43+00:00"
+    }
+  }
+}

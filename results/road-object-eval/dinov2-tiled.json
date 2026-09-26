@@ -1,0 +1,134 @@
+{
+  "method": "dinov2-tiled",
+  "stage1": "aeroscapes-mask",
+  "images": 30,
+  "hit_iou": 0.1,
+  "sec_per_image": 5.882205955187479,
+  "stage1_alone": {
+    "coverage_vehicle": 0.9590643274853801,
+    "coverage_debris": 1.0,
+    "area_fraction": 0.42357953960905353
+  },
+  "unrestricted": {
+    "best_f1": {
+      "threshold": 0.0,
+      "recall_all": 0.3951612903225806,
+      "recall_vehicle": 0.38596491228070173,
+      "recall_debris": 0.5,
+      "n_all": 372,
+      "n_vehicle": 342,
+      "n_debris": 30,
+      "precision": 0.01784197111299915,
+      "predictions_per_image": 274.6333333333333
+    },
+    "held_out": [
+      {
+        "threshold": 0.0,
+        "recall_all": 0.44966442953020136,
+        "recall_vehicle": 0.4552238805970149,
+        "recall_debris": 0.4,
+        "n_all": 149,
+        "n_vehicle": 134,
+        "n_debris": 15,
+        "precision": 0.014546244029526704,
+        "predictions_per_image": 307.06666666666666
+      },
+      {
+        "threshold": 0.0,
+        "recall_all": 0.35874439461883406,
+        "recall_vehicle": 0.34134615384615385,
+        "recall_debris": 0.6,
+        "n_all": 223,
+        "n_vehicle": 208,
+        "n_debris": 15,
+        "precision": 0.02202036884117809,
+        "predictions_per_image": 242.2
+      }
+    ],
+    "curve": [
+      {
+        "threshold": 0.0,
+        "recall_all": 0.3951612903225806,
+        "recall_vehicle": 0.38596491228070173,
+        "recall_debris": 0.5,
+        "n_all": 372,
+        "n_vehicle": 342,
+        "n_debris": 30,
+        "precision": 0.01784197111299915,
+        "predictions_per_image": 274.6333333333333
+      }
+    ],
+    "max_recall": {
+      "threshold": 0.0,
+      "recall_all": 0.3951612903225806,
+      "recall_vehicle": 0.38596491228070173,
+      "recall_debris": 0.5,
+      "n_all": 372,
+      "n_vehicle": 342,
+      "n_debris": 30,
+      "precision": 0.01784197111299915,
+      "predictions_per_image": 274.6333333333333
+    }
+  },
+  "two_stage": {
+    "best_f1": {
+      "threshold": 0.0,
+      "recall_all": 0.3951612903225806,
+      "recall_vehicle": 0.38596491228070173,
+      "recall_debris": 0.5,
+      "n_all": 372,
+      "n_vehicle": 342,
+      "n_debris": 30,
+      "precision": 0.03663094941440319,
+      "predictions_per_image": 133.76666666666668
+    },
+    "held_out": [
+      {
+        "threshold": 0.0,
+        "recall_all": 0.44966442953020136,
+        "recall_vehicle": 0.4552238805970149,
+        "recall_debris": 0.4,
+        "n_all": 149,
+        "n_vehicle": 134,
+        "n_debris": 15,
+        "precision": 0.02993744414655943,
+        "predictions_per_image": 149.2
+      },
+      {
+        "threshold": 0.0,
+        "recall_all": 0.35874439461883406,
+        "recall_vehicle": 0.34134615384615385,
+        "recall_debris": 0.6,
+        "n_all": 223,
+        "n_vehicle": 208,
+        "n_debris": 15,
+        "precision": 0.04507042253521127,
+        "predictions_per_image": 118.33333333333333
+      }
+    ],
+    "curve": [
+      {
+        "threshold": 0.0,
+        "recall_all": 0.3951612903225806,
+        "recall_vehicle": 0.38596491228070173,
+        "recall_debris": 0.5,
+        "n_all": 372,
+        "n_vehicle": 342,
+        "n_debris": 30,
+        "precision": 0.03663094941440319,
+        "predictions_per_image": 133.76666666666668
+      }
+    ],
+    "max_recall": {
+      "threshold": 0.0,
+      "recall_all": 0.3951612903225806,
+      "recall_vehicle": 0.38596491228070173,
+      "recall_debris": 0.5,
+      "n_all": 372,
+      "n_vehicle": 342,
+      "n_debris": 30,
+      "precision": 0.03663094941440319,
+      "predictions_per_image": 133.76666666666668
+    }
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "image_id": 14,
+  "file": "00014.jpg",
+  "location": "pexels/12571926",
+  "px_per_metre": 28.47,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        601,
+        1085,
+        86,
+        47
+      ],
+      "detection_score": 0.979,
+      "size_m": [
+        3.02,
+        1.65
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white car with a dark roof, positioned on a multi-lane road with visible lane markings.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 2,
+      "box": [
+        344,
+        1148,
+        31,
+        131
+      ],
+      "detection_score": 0.71,
+      "size_m": [
+        1.09,
+        4.6
+      ],
+      "vlm_name": "ladder",
+      "vlm_category": "ladder",
+      "vlm_raw": "{\"description\": \"A white, elongated object with a distinct vertical rectangular shape and a central vertical line, situated on the road surface.\", \"name\": \"ladder\", \"category\": \"ladder\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "risk": "high",
+      "reasoning": "A ladder, a rigid and heavy object, is located in the middle lane of the motorway, directly in the path of a moving vehicle. This placement creates a significant collision risk if the vehicle swerves or loses control.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 7.1,
+      "correct": false,
+      "truth_any": "none",
+      "detector_p": {
+        "background": 0.664,
+        "vehicle": 0.019,
+        "debris": 0.317
+      }
+    },
+    {
+      "id": 3,
+      "box": [
+        633,
+        1164,
+        79,
+        42
+      ],
+      "detection_score": 0.994,
+      "size_m": [
+        2.78,
+        1.48
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored vehicle with a visible roofline and side profile, positioned on a paved road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 4,
+      "box": [
+        530,
+        1353,
+        84,
+        43
+      ],
+      "detection_score": 0.929,
+      "size_m": [
+        2.95,
+        1.51
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored car with a visible roof and side profile, positioned on a paved road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 5,
+      "box": [
+        836,
+        1385,
+        18,
+        21
+      ],
+      "detection_score": 0.997,
+      "size_m": [
+        0.63,
+        0.74
+      ],
+      "vlm_name": "cardboard box",
+      "vlm_category": "cardboard box",
+      "vlm_raw": "{\"description\": \"A dark rectangular object with a light brown face, positioned on a road surface.\", \"name\": \"cardboard box\", \"category\": \"cardboard box\"}",
+      "physics": "passed",
+      "truth": "cardboard box",
+      "risk": "high",
+      "reasoning": "A cardboard box, classified as a soft object, is located in the middle of a traffic lane. The presence of four vehicles nearby indicates active traffic flow, meaning the object is in a dynamic environment where it could be struck or cause a collision if a vehicle swerves.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 9.6,
+      "correct": true,
+      "truth_any": "cardboard box",
+      "detector_p": {
+        "background": 0.002,
+        "vehicle": 0.0,
+        "debris": 0.998
+      }
+    },
+    {
+      "id": 6,
+      "box": [
+        274,
+        1390,
+        76,
+        38
+      ],
+      "detection_score": 0.873,
+      "size_m": [
+        2.67,
+        1.33
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A light-colored rectangular object with a dark roof, positioned on a paved surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    }
+  ],
+  "debris_missed_by_detection": [],
+  "width": 1080,
+  "height": 1920,
+  "timing_s": {
+    "n_identify": 6,
+    "n_physics_reask": 0,
+    "n_risk": 2,
+    "context": 0.002,
+    "n_part_questions": 0
+  }
+}

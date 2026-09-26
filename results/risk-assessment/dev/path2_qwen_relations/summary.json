@@ -1,0 +1,118 @@
+{
+  "path": "path2_qwen_relations",
+  "split": "dev",
+  "variant": {
+    "bits": 4,
+    "model": "qwen3.5-2b",
+    "physics": true,
+    "prompt": "describe",
+    "size": true,
+    "tight": true
+  },
+  "context_params": {
+    "edge_px": 2,
+    "lane_reach_m": 12.5,
+    "veto_t": 0.3,
+    "part_inside": 0.5,
+    "part_area": 0.2,
+    "part_small_m": 0.6,
+    "round": 2,
+    "abut_gap_m": 0.5,
+    "abut_side_m": 1.0,
+    "abut_width": 0.7,
+    "abut_max_pdebris": 0.5
+  },
+  "identification": {
+    "debris_type": 0.571,
+    "hazard_recall": 0.844,
+    "vehicle": 0.944,
+    "false_hazard": 0.106,
+    "n_debris": 77,
+    "n_vehicle": 234,
+    "n_other": 58,
+    "score": 0.813
+  },
+  "identification_accuracy": {
+    "vehicle": {
+      "correct": 221,
+      "n": 234,
+      "accuracy": 0.944
+    },
+    "non-target": {
+      "correct": 11,
+      "n": 58,
+      "accuracy": 0.19
+    },
+    "debris": {
+      "correct": 44,
+      "n": 77,
+      "accuracy": 0.571
+    }
+  },
+  "debris_confusion": {
+    "ladder": {
+      "ladder": 6,
+      "roadside structure (sign, lamp post, barrier, gantry, road marking)": 3
+    },
+    "tire": {
+      "vehicle": 3,
+      "tire": 20,
+      "wooden plank or lumber": 1,
+      "other debris": 2
+    },
+    "cardboard box": {
+      "person": 1
+    },
+    "wooden pallet": {
+      "cardboard box": 5,
+      "wooden pallet": 5,
+      "other debris": 1,
+      "roadside structure (sign, lamp post, barrier, gantry, road marking)": 1
+    },
+    "wooden plank or lumber": {
+      "wooden plank or lumber": 10,
+      "wooden pallet": 1
+    },
+    "refrigerator or appliance": {
+      "refrigerator or appliance": 2,
+      "vehicle": 1,
+      "other debris": 6,
+      "roadside structure (sign, lamp post, barrier, gantry, road marking)": 1
+    },
+    "mattress": {
+      "other debris": 4,
+      "roadside structure (sign, lamp post, barrier, gantry, road marking)": 2
+    },
+    "traffic cone": {
+      "roadside structure (sign, lamp post, barrier, gantry, road marking)": 1
+    },
+    "barrel or drum": {
+      "barrel or drum": 1
+    }
+  },
+  "physics_corrections": 43,
+  "risk": {
+    "false_high_risk": 2,
+    "false_any_risk": 2,
+    "debris_boxes": 87,
+    "debris_rated_high": 65,
+    "debris_rated_any": 68,
+    "counts": {
+      "none": 323,
+      "high": 67,
+      "low": 2,
+      "medium": 1
+    }
+  },
+  "context_suppressed": 33,
+  "timing_s": {
+    "identify": 1089.1,
+    "risk": 444.0,
+    "context": 16.1
+  },
+  "calls": {
+    "n_identify": 393,
+    "n_physics_reask": 43,
+    "n_risk": 70
+  }
+}

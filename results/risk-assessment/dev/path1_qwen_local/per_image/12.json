@@ -1,0 +1,143 @@
+{
+  "image_id": 12,
+  "file": "00012.jpg",
+  "location": "pexels/12571926",
+  "width": 1080,
+  "height": 1920,
+  "px_per_metre": 28.47,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        332,
+        992,
+        155,
+        64
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        5.44,
+        2.25
+      ],
+      "vlm_name": "truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A red truck with white markings on its side, positioned on a multi-lane road.\", \"name\": \"truck\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 2,
+      "box": [
+        524,
+        1389,
+        60,
+        76
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        2.11,
+        2.67
+      ],
+      "vlm_name": "tire",
+      "vlm_category": "tire",
+      "vlm_raw": "{\"description\": \"A black tire with a circular tread pattern and a central hubcap, viewed from directly above.\", \"name\": \"tire\", \"category\": \"tire\"}",
+      "physics": "passed",
+      "truth": "tire",
+      "truth_any": "tire",
+      "risk": "high",
+      "reasoning": "The red rectangle highlights a large, heavy tire on the motorway carriageway. The tire is located in a traffic lane, and the nearest vehicle is approximately 4 meters away, which is a significant distance for a motorway. Given the tire's size and the proximity of a vehicle, it poses a potential risk of collision if the vehicle swerves or loses control.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 3.8,
+      "correct": true
+    },
+    {
+      "id": 3,
+      "box": [
+        673,
+        1401,
+        45,
+        81
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        1.58,
+        2.85
+      ],
+      "vlm_name": "ladder",
+      "vlm_category": "ladder",
+      "vlm_raw": "{\"description\": \"A red rectangle highlights a black metal ladder with orange rungs resting on a road surface.\", \"name\": \"ladder\", \"category\": \"ladder\"}",
+      "physics": "passed",
+      "truth": "ladder",
+      "truth_any": "ladder",
+      "risk": "high",
+      "reasoning": "A ladder, a rigid and heavy object, is located in the middle lane of the motorway, approximately 5 meters from the nearest vehicle. This placement directly obstructs the lane, creating a significant risk of collision if a driver swerves or loses control.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 4.9,
+      "correct": true
+    },
+    {
+      "id": 4,
+      "box": [
+        540,
+        1505,
+        96,
+        50
+      ],
+      "detection_score": 0.945,
+      "size_m": [
+        3.37,
+        1.76
+      ],
+      "vlm_name": "truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark blue rectangular object with a lighter blue top surface, positioned on a paved road surface.\", \"name\": \"truck\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 5,
+      "box": [
+        405,
+        1651,
+        43,
+        59
+      ],
+      "detection_score": 0.623,
+      "size_m": [
+        1.51,
+        2.07
+      ],
+      "vlm_name": "roadside structure",
+      "vlm_category": "roadside structure (sign, lamp post, barrier, gantry, road marking)",
+      "vlm_raw": "{\"description\": \"A dark, rectangular object with a light-colored base, situated on a paved surface next to a grassy area with a patterned ground cover.\", \"name\": \"roadside structure\", \"category\": \"roadside structure\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as roadside structure, vegetation or shadow: not an object on the carriageway.",
+      "correct": true
+    }
+  ],
+  "debris_missed_by_detection": [
+    "wooden plank or lumber"
+  ],
+  "timing_s": {
+    "identify": 13.7,
+    "risk": 9.52,
+    "n_identify": 5,
+    "n_physics_reask": 0,
+    "n_risk": 2
+  }
+}

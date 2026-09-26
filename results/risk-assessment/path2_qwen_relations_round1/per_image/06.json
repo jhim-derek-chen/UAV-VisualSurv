@@ -1,0 +1,217 @@
+{
+  "image_id": 6,
+  "file": "00006.jpg",
+  "location": "pexels/8742752",
+  "px_per_metre": 76.78,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        706,
+        0,
+        1436,
+        996
+      ],
+      "detection_score": 0.611,
+      "size_m": [
+        18.7,
+        12.97
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored car is driving on a multi-lane motorway, positioned in the right-hand lane.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false,
+      "truth_any": "none"
+    },
+    {
+      "id": 2,
+      "box": [
+        2431,
+        0,
+        217,
+        141
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        2.83,
+        1.84
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored car is visible inside the red rectangle, positioned on the road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 3,
+      "box": [
+        2707,
+        0,
+        219,
+        61
+      ],
+      "detection_score": 0.997,
+      "size_m": [
+        2.85,
+        0.79
+      ],
+      "vlm_name": "vehicle",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white vehicle with a red rectangular outline highlighting its side and front section.\", \"name\": \"vehicle\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 4,
+      "box": [
+        3726,
+        115,
+        112,
+        148
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        1.46,
+        1.93
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A red car is visible on the road surface, with its side profile and wheels partially visible.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 5,
+      "box": [
+        1733,
+        370,
+        269,
+        171
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        3.5,
+        2.23
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored car with a visible driver inside, positioned on a multi-lane road.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 6,
+      "box": [
+        3633,
+        464,
+        204,
+        186
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        2.66,
+        2.42
+      ],
+      "vlm_name": "van",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white van with a red outline on a motorway, casting a shadow on the road surface.\", \"name\": \"van\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 7,
+      "box": [
+        2363,
+        640,
+        71,
+        123
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        0.92,
+        1.6
+      ],
+      "vlm_name": "ladder",
+      "vlm_category": "ladder",
+      "vlm_raw": "{\"description\": \"A brown wooden ladder with rungs and side rails, positioned diagonally on the road surface.\", \"name\": \"ladder\", \"category\": \"ladder\"}",
+      "physics": "passed",
+      "truth": "ladder",
+      "risk": "high",
+      "reasoning": "A ladder, a rigid and heavy object, is located in the middle of the motorway carriageway, directly in the path of traffic. This poses a significant risk of collision if a vehicle swerves or loses control.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 7.6,
+      "correct": true,
+      "truth_any": "ladder",
+      "detector_p": {
+        "background": 0.001,
+        "vehicle": 0.0,
+        "debris": 0.999
+      }
+    },
+    {
+      "id": 8,
+      "box": [
+        3717,
+        997,
+        118,
+        225
+      ],
+      "detection_score": 0.998,
+      "size_m": [
+        1.54,
+        2.93
+      ],
+      "vlm_name": "shadow",
+      "vlm_category": "vegetation or shadow",
+      "vlm_raw": "{\"description\": \"A dark, elongated shadow cast by a vehicle onto the road surface.\", \"name\": \"shadow\", \"category\": \"vegetation or shadow\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as roadside structure, vegetation or shadow: not an object on the carriageway.",
+      "correct": false,
+      "truth_any": "vehicle"
+    }
+  ],
+  "debris_missed_by_detection": [],
+  "width": 3840,
+  "height": 2160,
+  "timing_s": {
+    "n_identify": 8,
+    "n_physics_reask": 0,
+    "n_risk": 1,
+    "context": 0.006,
+    "n_part_questions": 0
+  }
+}

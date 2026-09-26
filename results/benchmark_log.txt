@@ -1,0 +1,109 @@
+﻿B1  Ground road, salient anomalies           70 images   [RoadAnomaly-EPFL + SMIYC Anomaly21]
+B2  Ground road, rare small obstacles        30 images   [SMIYC RoadObstacle21]
+B3  Runway foreign objects                  120 images   [FOD-A]
+B4  UAV rail corridor obstacles             120 images   [UAV-RSOD]
+B5  UAV streets, scene-scale damage          23 images   [RescueNet]
+
+--- gdino ---
+python : 
+At line:2 char:1
++ python scripts\benchmark.py 2>&1 | Tee-Object -FilePath results\bench ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Loading weights:   0%|          | 0/978 [00:00<?, ?it/s]
+Loading weights:  25%|██▌       | 247/978 [00:00<00:00, 2450.96it/s]
+Loading weights: 100%|██████████| 978/978 [00:00<00:00, 5867.97it/s]
+      B1 25/70
+      B1 50/70
+      B2 25/30
+      B3 25/120
+      B3 50/120
+      B3 75/120
+      B3 100/120
+      B4 25/120
+      B4 50/120
+      B4 75/120
+      B4 100/120
+    B1  noticed  48.2%  auroc 0.854  0.57s/img
+    B2  noticed  80.0%  auroc 0.932  0.65s/img
+    B3  noticed  56.7%  auroc 0.781  0.36s/img
+    B4  noticed   3.3%  auroc 0.700  0.92s/img
+    B5  noticed  50.0%  auroc 0.625  1.09s/img
+
+--- prowl-v2 ---
+
+Loading weights:   0%|          | 0/439 [00:00<?, ?it/s]
+Loading weights:  16%|█▌        | 71/439 [00:00<00:00, 596.48it/s]
+Loading weights:  33%|███▎      | 143/439 [00:00<00:00, 631.80it/s]
+Loading weights:  49%|████▉     | 215/439 [00:00<00:00, 647.21it/s]
+Loading weights:  69%|██████▉   | 305/439 [00:00<00:00, 695.95it/s]
+Loading weights:  86%|████████▌ | 377/439 [00:00<00:00, 703.06it/s]
+Loading weights: 100%|██████████| 439/439 [00:00<00:00, 696.14it/s]
+      B1 25/70
+      B1 50/70
+      B2 25/30
+      B3 25/120
+      B3 50/120
+      B3 75/120
+      B3 100/120
+      B4 25/120
+      B4 50/120
+      B4 75/120
+      B4 100/120
+    B1  noticed  70.4%  auroc 0.922  0.55s/img
+    B2  noticed 100.0%  auroc 0.992  0.62s/img
+    B3  noticed 100.0%  auroc 0.938  0.52s/img
+    B4  noticed 100.0%  auroc 0.892  0.58s/img
+    B5  noticed  64.7%  auroc 0.366  0.83s/img
+
+--- prowl-v3 ---
+
+Loading weights:   0%|          | 0/415 [00:00<?, ?it/s]
+Loading weights:  16%|█▌        | 67/415 [00:00<00:00, 589.91it/s]
+Loading weights:  33%|███▎      | 137/415 [00:00<00:00, 611.93it/s]
+Loading weights:  53%|█████▎    | 220/415 [00:00<00:00, 645.42it/s]
+Loading weights:  69%|██████▉   | 288/415 [00:00<00:00, 640.42it/s]
+Loading weights:  85%|████████▍ | 352/415 [00:00<00:00, 628.18it/s]
+Loading weights: 100%|██████████| 415/415 [00:00<00:00, 625.68it/s]
+Loading weights: 100%|██████████| 415/415 [00:00<00:00, 627.19it/s]
+      B1 25/70
+      B1 50/70
+      B2 25/30
+      B3 25/120
+      B3 50/120
+      B3 75/120
+      B3 100/120
+      B4 25/120
+      B4 50/120
+      B4 75/120
+      B4 100/120
+    B1  noticed  56.5%  auroc 0.889  0.41s/img
+    B2  noticed  66.7%  auroc 0.829  0.49s/img
+    B3  noticed 100.0%  auroc 0.908  0.38s/img
+    B4  noticed  95.8%  auroc 0.799  0.43s/img
+    B5  noticed  29.4%  auroc 0.259  0.73s/img
+
+--- rba ---
+
+Loading weights:   0%|          | 0/380 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 380/380 [00:00<00:00, 5586.66it/s]
+      B1 25/70
+      B1 50/70
+      B2 25/30
+      B3 25/120
+      B3 50/120
+      B3 75/120
+      B3 100/120
+      B4 25/120
+      B4 50/120
+      B4 75/120
+      B4 100/120
+    B1  noticed  73.5%  auroc 0.804  0.07s/img
+    B2  noticed 100.0%  auroc 0.974  0.17s/img
+    B3  noticed  99.2%  auroc 0.752  0.04s/img
+    B4  noticed  89.2%  auroc 0.606  0.09s/img
+    B5  noticed  82.4%  auroc 0.596  0.41s/img
+
+saved: results\benchmark.json

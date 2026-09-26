@@ -1,0 +1,237 @@
+{
+  "image_id": 9,
+  "file": "00009.jpg",
+  "location": "pexels/12571926",
+  "width": 1080,
+  "height": 1920,
+  "px_per_metre": 28.47,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        1037,
+        93,
+        43,
+        98
+      ],
+      "detection_score": 0.972,
+      "size_m": [
+        1.51,
+        3.44
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white car with a red rectangular outline highlighting its side profile on a road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 2,
+      "box": [
+        807,
+        347,
+        60,
+        80
+      ],
+      "detection_score": 0.986,
+      "size_m": [
+        2.11,
+        2.81
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored car with a visible rear window and taillights, positioned on a paved road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 3,
+      "box": [
+        0,
+        836,
+        85,
+        63
+      ],
+      "detection_score": 0.877,
+      "size_m": [
+        2.99,
+        2.21
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored vehicle with a light-colored front section, positioned on a paved road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false
+    },
+    {
+      "id": 4,
+      "box": [
+        551,
+        1329,
+        68,
+        72
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        2.39,
+        2.53
+      ],
+      "vlm_name": "wooden plank or lumber",
+      "vlm_category": "wooden plank or lumber",
+      "vlm_raw": "{\"description\": \"A red rectangle highlights a set of four parallel wooden planks with a dark brown color and visible grain texture on a road surface.\", \"name\": \"wooden pallet\", \"category\": \"wooden pallet\"} | re-asked: {\"name\": \"wooden plank or lumber\", \"category\": \"wooden plank or lumber\"}",
+      "physics": "corrected: wooden pallet is implausible at 2.5 m",
+      "truth": "wooden plank or lumber",
+      "truth_any": "wooden plank or lumber",
+      "risk": "high",
+      "reasoning": "A large, rigid wooden plank is positioned directly in the path of a moving vehicle, creating an immediate collision risk if the driver swerves or fails to react.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 5.6,
+      "correct": true,
+      "detector_p": {
+        "background": 0.0,
+        "vehicle": 0.0,
+        "debris": 1.0
+      }
+    },
+    {
+      "id": 5,
+      "box": [
+        934,
+        1345,
+        42,
+        63
+      ],
+      "detection_score": 0.996,
+      "size_m": [
+        1.48,
+        2.21
+      ],
+      "vlm_name": "tire",
+      "vlm_category": "tire",
+      "vlm_raw": "{\"description\": \"A close-up view of a dark, textured object with a distinct tread pattern, casting a shadow on a dark surface.\", \"name\": \"tire\", \"category\": \"tire\"}",
+      "physics": "passed",
+      "truth": "tire",
+      "truth_any": "tire",
+      "risk": "high",
+      "reasoning": "The red rectangle highlights a large, rigid object (identified as a tire) located in the middle lane of the motorway. This object is positioned directly in the path of a moving vehicle, creating a significant collision risk if the vehicle swerves or loses control.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 7.4,
+      "correct": true,
+      "detector_p": {
+        "background": 0.002,
+        "vehicle": 0.001,
+        "debris": 0.998
+      }
+    },
+    {
+      "id": 6,
+      "box": [
+        935,
+        1346,
+        23,
+        44
+      ],
+      "detection_score": 0.994,
+      "size_m": [
+        0.81,
+        1.55
+      ],
+      "vlm_name": "tire",
+      "vlm_category": "tire",
+      "vlm_raw": "{\"description\": \"A dark, textured cylindrical object with a visible tread pattern, positioned on a dark road surface.\", \"name\": \"tire\", \"category\": \"tire\"}",
+      "physics": "passed",
+      "truth": "tire",
+      "truth_any": "tire",
+      "risk": "high",
+      "reasoning": "The object is a tire located in the middle lane of a multi-lane motorway, positioned near a vehicle. Given the traffic volume and the object's size relative to the lane width, it poses a potential risk of collision if a vehicle swerves or loses control.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 7.1,
+      "correct": true,
+      "detector_p": {
+        "background": 0.008,
+        "vehicle": 0.002,
+        "debris": 0.99
+      }
+    },
+    {
+      "id": 7,
+      "box": [
+        700,
+        1353,
+        87,
+        41
+      ],
+      "detection_score": 0.953,
+      "size_m": [
+        3.06,
+        1.44
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark blue rectangular object with lighter blue stripes, positioned on a dark road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 8,
+      "box": [
+        86,
+        1596,
+        18,
+        44
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        0.63,
+        1.55
+      ],
+      "vlm_name": "tire",
+      "vlm_category": "tire",
+      "vlm_raw": "{\"description\": \"A dark, elongated object with a textured surface, appearing to be a tire resting on the road surface.\", \"name\": \"tire\", \"category\": \"tire\"}",
+      "physics": "passed",
+      "truth": "tire",
+      "truth_any": "tire",
+      "risk": "high",
+      "reasoning": "The red rectangle highlights a tire on the motorway surface, which is a rigid object located in a traffic lane. Given the measured distance of approximately 24 meters to the nearest vehicle, it is within the reach of a car traveling at typical motorway speeds, posing a potential collision risk if the driver swerves.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 24.3,
+      "correct": true,
+      "detector_p": {
+        "background": 0.011,
+        "vehicle": 0.03,
+        "debris": 0.959
+      }
+    }
+  ],
+  "debris_missed_by_detection": [],
+  "timing_s": {
+    "identify": 22.94,
+    "risk": 16.14,
+    "n_identify": 8,
+    "n_physics_reask": 1,
+    "n_risk": 4,
+    "context": 0.003,
+    "n_part_questions": 0
+  }
+}

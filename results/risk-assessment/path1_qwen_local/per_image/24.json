@@ -1,0 +1,163 @@
+{
+  "image_id": 24,
+  "file": "00024.jpg",
+  "location": "pexels/12571926",
+  "px_per_metre": 28.47,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        0,
+        899,
+        58,
+        60
+      ],
+      "detection_score": 0.997,
+      "size_m": [
+        2.04,
+        2.11
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white vehicle with a visible roof and rear window, positioned on a road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 2,
+      "box": [
+        518,
+        1202,
+        22,
+        15
+      ],
+      "detection_score": 0.996,
+      "size_m": [
+        0.77,
+        0.53
+      ],
+      "vlm_name": "person",
+      "vlm_category": "person",
+      "vlm_raw": "{\"description\": \"A dark, elongated object with a greenish tint, appearing to be a person or small figure.\", \"name\": \"person\", \"category\": \"person\"}",
+      "physics": "passed",
+      "truth": "trash can",
+      "risk": "high",
+      "reasoning": "A person is identified in the traffic lane, which constitutes a hazard due to the potential for a vehicle to swerve or collide with them at speed.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 4.9,
+      "correct": false,
+      "truth_any": "trash can"
+    },
+    {
+      "id": 3,
+      "box": [
+        684,
+        1209,
+        116,
+        50
+      ],
+      "detection_score": 0.988,
+      "size_m": [
+        4.07,
+        1.76
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white rectangular object with a dark top surface and visible wheels, positioned on a road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 4,
+      "box": [
+        607,
+        1263,
+        80,
+        39
+      ],
+      "detection_score": 0.976,
+      "size_m": [
+        2.81,
+        1.37
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored car with a visible roof and side profile, positioned on a road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 5,
+      "box": [
+        477,
+        1329,
+        403,
+        77
+      ],
+      "detection_score": 0.963,
+      "size_m": [
+        14.16,
+        2.7
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A long, rectangular white vehicle with a dark roof, positioned horizontally on the road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "unclear",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": null,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 6,
+      "box": [
+        481,
+        1337,
+        100,
+        13
+      ],
+      "detection_score": 0.516,
+      "size_m": [
+        3.51,
+        0.46
+      ],
+      "vlm_name": "vehicle",
+      "vlm_category": "other debris",
+      "vlm_raw": "{\"description\": \"A white rectangular object with a dark horizontal line across its surface, situated on a road surface.\", \"name\": \"vehicle\", \"category\": \"other debris\"}",
+      "physics": "passed",
+      "truth": "unclear",
+      "risk": "high",
+      "reasoning": "The red rectangle highlights a long, rigid object (identified as debris) positioned in the middle lane of the motorway. This object is located approximately 5 meters from the nearest vehicle, which is a significant distance for a moving car to avoid, but its rigid nature and position in a traffic lane constitute a potential hazard.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 4.6,
+      "correct": null,
+      "truth_any": "vehicle"
+    }
+  ],
+  "debris_missed_by_detection": [],
+  "width": 1080,
+  "height": 1920,
+  "timing_s": {
+    "n_identify": 6,
+    "n_physics_reask": 0,
+    "n_risk": 2
+  }
+}

@@ -1,0 +1,361 @@
+{
+  "path": "path2_qwen_relations",
+  "mode": "staged",
+  "frames": 30,
+  "model_load_s": {
+    "road_segmenter": 2.6,
+    "owlv2": 1.2,
+    "vlm": 8.2
+  },
+  "vram_gb": {
+    "resident_after_load": 0.41,
+    "objective1_pass": 2.19,
+    "vlm_pass": 1.97
+  },
+  "mean_s_per_frame": {
+    "road": 0.32,
+    "detect": 4.33,
+    "rescore": 0.0,
+    "identify": 49.19,
+    "context": 0.09,
+    "risk": 4.45
+  },
+  "mean_total_s_per_frame": 58.38,
+  "max_total_s_per_frame": 139.44,
+  "total_s_all_frames": 1751.3,
+  "mean_boxes_per_frame": 13.3,
+  "mean_risk_calls_per_frame": 0.8,
+  "mean_part_questions_per_frame": 0.03,
+  "per_frame": {
+    "0": {
+      "road": 0.49,
+      "detect": 4.12,
+      "rescore": 0.01,
+      "identify": 85.88,
+      "context": 0.02,
+      "risk": 5.16,
+      "boxes": 31,
+      "risk_calls": 1,
+      "part_questions": 0
+    },
+    "1": {
+      "road": 0.4,
+      "detect": 4.28,
+      "rescore": 0.01,
+      "identify": 28.84,
+      "context": 0.01,
+      "risk": 3.91,
+      "boxes": 10,
+      "risk_calls": 1,
+      "part_questions": 0
+    },
+    "2": {
+      "road": 0.22,
+      "detect": 4.31,
+      "rescore": 0.0,
+      "identify": 11.51,
+      "context": 0.0,
+      "risk": 0.0,
+      "boxes": 4,
+      "risk_calls": 0,
+      "part_questions": 0
+    },
+    "3": {
+      "road": 0.39,
+      "detect": 4.37,
+      "rescore": 0.01,
+      "identify": 36.95,
+      "context": 0.02,
+      "risk": 5.01,
+      "boxes": 12,
+      "risk_calls": 1,
+      "part_questions": 0
+    },
+    "4": {
+      "road": 0.39,
+      "detect": 4.39,
+      "rescore": 0.01,
+      "identify": 20.58,
+      "context": 0.01,
+      "risk": 3.83,
+      "boxes": 7,
+      "risk_calls": 1,
+      "part_questions": 0
+    },
+    "5": {
+      "road": 0.39,
+      "detect": 4.45,
+      "rescore": 0.01,
+      "identify": 33.55,
+      "context": 2.54,
+      "risk": 10.51,
+      "boxes": 11,
+      "risk_calls": 2,
+      "part_questions": 1
+    },
+    "6": {
+      "road": 0.36,
+      "detect": 4.4,
+      "rescore": 0.0,
+      "identify": 12.83,
+      "context": 0.01,
+      "risk": 0.0,
+      "boxes": 5,
+      "risk_calls": 0,
+      "part_questions": 0
+    },
+    "7": {
+      "road": 0.21,
+      "detect": 4.26,
+      "rescore": 0.0,
+      "identify": 71.61,
+      "context": 0.0,
+      "risk": 0.0,
+      "boxes": 25,
+      "risk_calls": 0,
+      "part_questions": 0
+    },
+    "8": {
+      "road": 0.21,
+      "detect": 4.22,
+      "rescore": 0.0,
+      "identify": 75.96,
+      "context": 0.0,
+      "risk": 3.85,
+      "boxes": 27,
+      "risk_calls": 1,
+      "part_questions": 0
+    },
+    "9": {
+      "road": 0.36,
+      "detect": 4.56,
+      "rescore": 0.0,
+      "identify": 16.31,
+      "context": 0.01,
+      "risk": 4.09,
+      "boxes": 6,
+      "risk_calls": 1,
+      "part_questions": 0
+    },
+    "10": {
+      "road": 0.44,
+      "detect": 4.23,
+      "rescore": 0.0,
+      "identify": 65.58,
+      "context": 0.01,
+      "risk": 4.16,
+      "boxes": 22,
+      "risk_calls": 1,
+      "part_questions": 0
+    },
+    "11": {
+      "road": 0.39,
+      "detect": 4.32,
+      "rescore": 0.0,
+      "identify": 18.23,
+      "context": 0.01,
+      "risk": 6.68,
+      "boxes": 6,
+      "risk_calls": 1,
+      "part_questions": 0
+    },
+    "12": {
+      "road": 0.21,
+      "detect": 4.31,
+      "rescore": 0.0,
+      "identify": 40.66,
+      "context": 0.0,
+      "risk": 8.37,
+      "boxes": 8,
+      "risk_calls": 1,
+      "part_questions": 0
+    },
+    "13": {
+      "road": 0.21,
+      "detect": 4.17,
+      "rescore": 0.0,
+      "identify": 33.5,
+      "context": 0.01,
+      "risk": 0.0,
+      "boxes": 7,
+      "risk_calls": 0,
+      "part_questions": 0
+    },
+    "14": {
+      "road": 0.22,
+      "detect": 4.65,
+      "rescore": 0.0,
+      "identify": 24.27,
+      "context": 0.01,
+      "risk": 6.83,
+      "boxes": 6,
+      "risk_calls": 1,
+      "part_questions": 0
+    },
+    "15": {
+      "road": 0.45,
+      "detect": 4.34,
+      "rescore": 0.0,
+      "identify": 20.03,
+      "context": 0.0,
+      "risk": 4.51,
+      "boxes": 4,
+      "risk_calls": 1,
+      "part_questions": 0
+    },
+    "16": {
+      "road": 0.22,
+      "detect": 4.36,
+      "rescore": 0.0,
+      "identify": 66.24,
+      "context": 0.0,
+      "risk": 4.82,
+      "boxes": 16,
+      "risk_calls": 1,
+      "part_questions": 0
+    },
+    "17": {
+      "road": 0.22,
+      "detect": 4.4,
+      "rescore": 0.0,
+      "identify": 73.69,
+      "context": 0.01,
+      "risk": 6.41,
+      "boxes": 18,
+      "risk_calls": 1,
+      "part_questions": 0
+    },
+    "18": {
+      "road": 0.46,
+      "detect": 4.57,
+      "rescore": 0.01,
+      "identify": 39.49,
+      "context": 0.01,
+      "risk": 0.0,
+      "boxes": 9,
+      "risk_calls": 0,
+      "part_questions": 0
+    },
+    "19": {
+      "road": 0.39,
+      "detect": 4.53,
+      "rescore": 0.01,
+      "identify": 40.84,
+      "context": 0.01,
+      "risk": 4.27,
+      "boxes": 9,
+      "risk_calls": 1,
+      "part_questions": 0
+    },
+    "20": {
+      "road": 0.21,
+      "detect": 4.27,
+      "rescore": 0.0,
+      "identify": 121.77,
+      "context": 0.0,
+      "risk": 7.24,
+      "boxes": 29,
+      "risk_calls": 1,
+      "part_questions": 0
+    },
+    "21": {
+      "road": 0.21,
+      "detect": 4.16,
+      "rescore": 0.0,
+      "identify": 40.49,
+      "context": 0.0,
+      "risk": 0.0,
+      "boxes": 9,
+      "risk_calls": 0,
+      "part_questions": 0
+    },
+    "22": {
+      "road": 0.37,
+      "detect": 4.42,
+      "rescore": 0.0,
+      "identify": 28.82,
+      "context": 0.01,
+      "risk": 5.56,
+      "boxes": 7,
+      "risk_calls": 1,
+      "part_questions": 0
+    },
+    "23": {
+      "road": 0.36,
+      "detect": 4.26,
+      "rescore": 0.0,
+      "identify": 22.79,
+      "context": 0.01,
+      "risk": 5.64,
+      "boxes": 5,
+      "risk_calls": 1,
+      "part_questions": 0
+    },
+    "24": {
+      "road": 0.21,
+      "detect": 4.23,
+      "rescore": 0.0,
+      "identify": 25.65,
+      "context": 0.0,
+      "risk": 4.88,
+      "boxes": 7,
+      "risk_calls": 1,
+      "part_questions": 0
+    },
+    "25": {
+      "road": 0.41,
+      "detect": 4.47,
+      "rescore": 0.01,
+      "identify": 42.61,
+      "context": 0.01,
+      "risk": 0.0,
+      "boxes": 10,
+      "risk_calls": 0,
+      "part_questions": 0
+    },
+    "26": {
+      "road": 0.22,
+      "detect": 4.23,
+      "rescore": 0.0,
+      "identify": 116.15,
+      "context": 0.0,
+      "risk": 6.08,
+      "boxes": 29,
+      "risk_calls": 1,
+      "part_questions": 0
+    },
+    "27": {
+      "road": 0.42,
+      "detect": 4.34,
+      "rescore": 0.0,
+      "identify": 43.42,
+      "context": 0.01,
+      "risk": 5.76,
+      "boxes": 9,
+      "risk_calls": 1,
+      "part_questions": 0
+    },
+    "28": {
+      "road": 0.21,
+      "detect": 4.11,
+      "rescore": 0.0,
+      "identify": 127.48,
+      "context": 0.01,
+      "risk": 7.62,
+      "boxes": 30,
+      "risk_calls": 1,
+      "part_questions": 0
+    },
+    "29": {
+      "road": 0.21,
+      "detect": 4.14,
+      "rescore": 0.0,
+      "identify": 89.83,
+      "context": 0.0,
+      "risk": 8.27,
+      "boxes": 20,
+      "risk_calls": 1,
+      "part_questions": 0
+    }
+  }
+}

@@ -1,0 +1,212 @@
+{
+  "image_id": 22,
+  "file": "00022.jpg",
+  "location": "pexels/8742752",
+  "px_per_metre": 76.78,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        913,
+        0,
+        245,
+        88
+      ],
+      "detection_score": 0.996,
+      "size_m": [
+        3.19,
+        1.15
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored vehicle with a yellow license plate is visible on the road.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 2,
+      "box": [
+        2122,
+        2,
+        234,
+        106
+      ],
+      "detection_score": 0.949,
+      "size_m": [
+        3.05,
+        1.38
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A blue car is seen on the road, with a white trailer carrying a large white object positioned below it.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 3,
+      "box": [
+        3525,
+        21,
+        280,
+        168
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        3.65,
+        2.19
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A red car is seen on the motorway, with its shape and color clearly visible.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 4,
+      "box": [
+        1180,
+        198,
+        635,
+        414
+      ],
+      "detection_score": 0.692,
+      "size_m": [
+        8.27,
+        5.39
+      ],
+      "vlm_name": "truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white utility truck carrying a large, white, boxy structure with visible metal framework and equipment, positioned on a multi-lane road.\", \"name\": \"truck\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "unclear",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": null,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 5,
+      "box": [
+        188,
+        220,
+        211,
+        170
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        2.75,
+        2.21
+      ],
+      "vlm_name": "tire",
+      "vlm_category": "tire",
+      "vlm_raw": "{\"description\": \"A grey cylindrical object with two black circular openings, resting on a road surface.\", \"name\": \"barrel or drum\", \"category\": \"barrel or drum\"} | re-asked: {\"name\": \"tire\", \"category\": \"tire\"}",
+      "physics": "corrected: barrel or drum is implausible at 2.7 m",
+      "truth": "unclear",
+      "risk": "high",
+      "reasoning": "The red rectangle highlights a tire on the motorway surface, which is a rigid, heavy object located in a traffic lane. The presence of moving vehicles nearby (a blue car and a truck) indicates active traffic flow, meaning a collision or swerve could occur if the tire is not cleared.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 5.3,
+      "correct": null,
+      "truth_any": "tire"
+    },
+    {
+      "id": 6,
+      "box": [
+        559,
+        270,
+        273,
+        155
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        3.56,
+        2.02
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A light blue car with a visible red taillight, positioned on a paved road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 7,
+      "box": [
+        1681,
+        343,
+        905,
+        506
+      ],
+      "detection_score": 0.998,
+      "size_m": [
+        11.79,
+        6.59
+      ],
+      "vlm_name": "trailer",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A long, white, multi-wheeled trailer carrying a large, light-colored, boxy structure with vertical supports.\", \"name\": \"trailer\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    },
+    {
+      "id": 8,
+      "box": [
+        3736,
+        835,
+        100,
+        148
+      ],
+      "detection_score": 0.998,
+      "size_m": [
+        1.3,
+        1.93
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored vehicle is visible on the right side of the road, partially obscured by foliage.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true,
+      "truth_any": "vehicle"
+    }
+  ],
+  "debris_missed_by_detection": [
+    "tire"
+  ],
+  "width": 3840,
+  "height": 2160,
+  "timing_s": {
+    "n_identify": 8,
+    "n_physics_reask": 1,
+    "n_risk": 1
+  }
+}

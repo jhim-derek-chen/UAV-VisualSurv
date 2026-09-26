@@ -1,0 +1,474 @@
+{
+  "image_id": 28,
+  "file": "00028.jpg",
+  "location": "pexels/8742752",
+  "width": 3840,
+  "height": 2160,
+  "px_per_metre": 76.78,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        183,
+        673,
+        185,
+        227
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        2.41,
+        2.96
+      ],
+      "vlm_name": "box",
+      "vlm_category": "other debris",
+      "vlm_raw": "{\"description\": \"A dark, rectangular object with a metallic sheen and a distinct shadow cast on the road surface.\", \"name\": \"box\", \"category\": \"other debris\"}",
+      "physics": "passed",
+      "truth": "refrigerator or appliance",
+      "truth_any": "refrigerator or appliance",
+      "risk": "high",
+      "reasoning": "A large, rigid, rectangular box (3.0m x 2.4m) is located in the middle lane of the motorway, approximately 4 meters from the nearest vehicle. This size and rigidity, combined with its position in a traffic lane, indicate a significant potential for collision if a vehicle swerves or loses control.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 4.2,
+      "correct": false,
+      "detector_p": {
+        "background": 0.0,
+        "vehicle": 0.01,
+        "debris": 0.99
+      }
+    },
+    {
+      "id": 2,
+      "box": [
+        674,
+        678,
+        227,
+        105
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        2.96,
+        1.37
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A blue SUV is captured in motion on a multi-lane motorway, with its side profile visible against a backdrop of green foliage.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 3,
+      "box": [
+        1709,
+        747,
+        227,
+        106
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        2.96,
+        1.38
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A red car is captured in motion on a multi-lane road, viewed from an elevated perspective.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 4,
+      "box": [
+        198,
+        811,
+        171,
+        89
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        2.23,
+        1.16
+      ],
+      "vlm_name": "other debris",
+      "vlm_category": "other debris",
+      "vlm_raw": "{\"description\": \"A dark, rectangular object with a visible shadow cast on the road surface, positioned on the asphalt.\", \"name\": \"cardboard box\", \"category\": \"cardboard box\"} | re-asked: {\"name\": \"other debris\", \"category\": \"other debris\"}",
+      "physics": "corrected: cardboard box is implausible at 2.2 m",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "high",
+      "reasoning": "The red rectangle highlights a large, rigid, rectangular object (likely a pallet or appliance) located in the middle lane of the motorway. This object is approximately 2.2m by 1.2m, which is substantial enough to potentially cause a loss of control for a vehicle traveling at speed, especially if it is not securely secured or is obstructing the lane.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 3.6,
+      "correct": false,
+      "detector_p": {
+        "background": 0.003,
+        "vehicle": 0.002,
+        "debris": 0.996
+      }
+    },
+    {
+      "id": 5,
+      "box": [
+        1199,
+        917,
+        108,
+        162
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        1.41,
+        2.11
+      ],
+      "vlm_name": "ladder",
+      "vlm_category": "ladder",
+      "vlm_raw": "{\"description\": \"A brown wooden ladder with rungs and side rails is positioned diagonally on the road surface.\", \"name\": \"ladder\", \"category\": \"ladder\"}",
+      "physics": "passed",
+      "truth": "ladder",
+      "truth_any": "ladder",
+      "risk": "high",
+      "reasoning": "A ladder, a rigid and heavy object, is located in the middle lane of the motorway, approximately 4 meters from the nearest vehicle. This placement directly obstructs the lane, creating a significant risk of collision for any vehicle traveling in that lane.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 4.5,
+      "correct": true,
+      "detector_p": {
+        "background": 0.0,
+        "vehicle": 0.0,
+        "debris": 1.0
+      },
+      "part_answer": "{\"part_of_vehicle\": 0, \"why\": \"it is a loose ladder on the road\"}"
+    },
+    {
+      "id": 6,
+      "box": [
+        2295,
+        927,
+        295,
+        130
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        3.84,
+        1.69
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A red sedan is captured in motion on a multi-lane motorway, viewed from an elevated angle.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 7,
+      "box": [
+        1950,
+        968,
+        285,
+        112
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        3.71,
+        1.46
+      ],
+      "vlm_name": "SUV",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored SUV is captured in motion on a multi-lane motorway, with its side profile visible against the road surface.\", \"name\": \"SUV\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 8,
+      "box": [
+        3706,
+        968,
+        130,
+        101
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        1.69,
+        1.32
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored car with red taillights visible, positioned on a paved road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 9,
+      "box": [
+        0,
+        1005,
+        214,
+        118
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        2.79,
+        1.54
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored car is visible on the motorway, with its rear end facing the camera.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 10,
+      "box": [
+        754,
+        1036,
+        1116,
+        601
+      ],
+      "detection_score": 0.997,
+      "size_m": [
+        14.54,
+        7.83
+      ],
+      "vlm_name": "truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A large red delivery truck with white text on its side, positioned on a multi-lane road.\", \"name\": \"truck\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "ladder",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false
+    },
+    {
+      "id": 11,
+      "box": [
+        1942,
+        1080,
+        291,
+        39
+      ],
+      "detection_score": 0.981,
+      "size_m": [
+        3.79,
+        0.51
+      ],
+      "vlm_name": "SUV",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored SUV is captured in motion on a multi-lane motorway, with its side profile visible.\", \"name\": \"SUV\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "unclear",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": null
+    },
+    {
+      "id": 12,
+      "box": [
+        2142,
+        1224,
+        363,
+        147
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        4.73,
+        1.91
+      ],
+      "vlm_name": "SUV",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark-colored SUV is captured in motion on a multi-lane motorway, with a red rectangular outline highlighting its side profile.\", \"name\": \"SUV\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "unclear",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": null
+    },
+    {
+      "id": 13,
+      "box": [
+        3088,
+        1372,
+        405,
+        116
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        5.28,
+        1.51
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white car is visible on the road, partially obscured by green foliage in the foreground.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 14,
+      "box": [
+        1959,
+        1412,
+        47,
+        42
+      ],
+      "detection_score": 0.995,
+      "size_m": [
+        0.61,
+        0.55
+      ],
+      "vlm_name": "tire",
+      "vlm_category": "tire",
+      "vlm_raw": "{\"description\": \"A dark, circular object with visible treads and a central hub, resembling a wheel, located on the ground near a vehicle.\", \"name\": \"tire\", \"category\": \"tire\"}",
+      "physics": "passed",
+      "truth": "unclear",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "reasoning": "Context gate: the detector's features say a vehicle, not debris (P(debris) 0.03, P(vehicle) 0.89, P(background) 0.08). Not assessed as a hazard.",
+      "risk_source": "context rule",
+      "nearest_vehicle_m": 4.6,
+      "correct": null,
+      "detector_p": {
+        "background": 0.077,
+        "vehicle": 0.889,
+        "debris": 0.034
+      },
+      "context": "the detector's features say a vehicle, not debris (P(debris) 0.03, P(vehicle) 0.89, P(background) 0.08)",
+      "risk_without_context": "high"
+    },
+    {
+      "id": 15,
+      "box": [
+        2366,
+        1742,
+        99,
+        80
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        1.29,
+        1.04
+      ],
+      "vlm_name": "wooden pallet",
+      "vlm_category": "wooden pallet",
+      "vlm_raw": "{\"description\": \"A light brown rectangular object with a grid-like pattern on one side and a solid surface on the other, resting on a gray paved surface.\", \"name\": \"wooden pallet\", \"category\": \"wooden pallet\"}",
+      "physics": "passed",
+      "truth": "wooden pallet",
+      "truth_any": "wooden pallet",
+      "risk": "high",
+      "reasoning": "A wooden pallet, a rigid and heavy object, is located in the middle of the motorway carriageway, posing a significant collision risk to vehicles traveling at speed.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 6.4,
+      "correct": true,
+      "detector_p": {
+        "background": 0.0,
+        "vehicle": 0.0,
+        "debris": 1.0
+      }
+    },
+    {
+      "id": 16,
+      "box": [
+        2368,
+        1746,
+        51,
+        51
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        0.66,
+        0.66
+      ],
+      "vlm_name": "wooden pallet",
+      "vlm_category": "wooden pallet",
+      "vlm_raw": "{\"description\": \"A small, light-brown rectangular object with a grid-like pattern of slits or holes on its surface, resting on a smooth, light-colored surface.\", \"name\": \"wooden pallet\", \"category\": \"wooden pallet\"}",
+      "physics": "passed",
+      "truth": "wooden pallet",
+      "truth_any": "wooden pallet",
+      "risk": "high",
+      "reasoning": "A rigid wooden pallet is located in the middle of the motorway carriageway, which is a high-risk hazard for vehicles due to its potential to cause loss of control or collision if a driver swerves or loses control.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 6.2,
+      "correct": true,
+      "detector_p": {
+        "background": 0.0,
+        "vehicle": 0.0,
+        "debris": 1.0
+      }
+    },
+    {
+      "id": 17,
+      "box": [
+        2414,
+        1771,
+        53,
+        54
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        0.69,
+        0.7
+      ],
+      "vlm_name": "cardboard box",
+      "vlm_category": "cardboard box",
+      "vlm_raw": "{\"description\": \"A light brown square object with a visible edge and a small dark section on the side, positioned next to a slatted wooden object.\", \"name\": \"cardboard box\", \"category\": \"cardboard box\"}",
+      "physics": "passed",
+      "truth": "wooden pallet",
+      "truth_any": "wooden pallet",
+      "risk": "medium",
+      "reasoning": "A cardboard box, classified as a soft object, is located in the middle of the motorway carriageway. Given the presence of 10 vehicles and the object's proximity to the road, it poses a potential risk of being struck or causing a disruption.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 6.7,
+      "correct": false,
+      "detector_p": {
+        "background": 0.0,
+        "vehicle": 0.0,
+        "debris": 1.0
+      }
+    }
+  ],
+  "debris_missed_by_detection": [],
+  "timing_s": {
+    "identify": 49.85,
+    "risk": 29.17,
+    "n_identify": 17,
+    "n_physics_reask": 1,
+    "n_risk": 6,
+    "context": 1.375,
+    "n_part_questions": 1
+  }
+}

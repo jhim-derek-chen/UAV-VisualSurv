@@ -1,0 +1,191 @@
+{
+  "image_id": 19,
+  "file": "00019.jpg",
+  "location": "pexels/19851623",
+  "width": 3840,
+  "height": 2160,
+  "px_per_metre": 18.59,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        2774,
+        1004,
+        70,
+        24
+      ],
+      "detection_score": 0.992,
+      "size_m": [
+        3.77,
+        1.29
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white car with a dark window, captured in motion blur on a multi-lane road.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false
+    },
+    {
+      "id": 2,
+      "box": [
+        798,
+        1028,
+        50,
+        20
+      ],
+      "detection_score": 0.965,
+      "size_m": [
+        2.69,
+        1.08
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark, elongated rectangular shape with a lighter top surface, appearing as a vehicle on a road.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false
+    },
+    {
+      "id": 3,
+      "box": [
+        1688,
+        1140,
+        61,
+        22
+      ],
+      "detection_score": 0.806,
+      "size_m": [
+        3.28,
+        1.18
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A light-colored, elongated rectangular object with a smooth, reflective surface, positioned on a dark paved surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false
+    },
+    {
+      "id": 4,
+      "box": [
+        1463,
+        1159,
+        44,
+        42
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        2.37,
+        2.26
+      ],
+      "vlm_name": "wooden pallet",
+      "vlm_category": "wooden plank or lumber",
+      "vlm_raw": "{\"description\": \"A dark, rectangular object with horizontal slats, resembling a wooden pallet or crate, positioned on a paved road surface.\", \"name\": \"wooden pallet\", \"category\": \"wooden pallet\"} | re-asked: {\"name\": \"wooden pallet\", \"category\": \"wooden plank or lumber\"}",
+      "physics": "corrected: wooden pallet is implausible at 2.4 m",
+      "truth": "wooden plank or lumber",
+      "truth_any": "wooden plank or lumber",
+      "risk": "high",
+      "reasoning": "A large, rigid wooden pallet is located in the center of the motorway lane, directly in the path of traffic. The presence of a large, heavy, rigid object in a traffic lane constitutes a significant hazard.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 12.7,
+      "correct": true
+    },
+    {
+      "id": 5,
+      "box": [
+        2225,
+        1204,
+        66,
+        87
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        3.55,
+        4.68
+      ],
+      "vlm_name": "vehicle",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark, rectangular object with a visible white logo or symbol on its side, casting a shadow on the road surface.\", \"name\": \"box\", \"category\": \"cardboard box\"} | re-asked: {\"name\": \"vehicle\", \"category\": \"vehicle\"}",
+      "physics": "corrected: cardboard box is implausible at 4.7 m",
+      "truth": "unclear",
+      "truth_any": "refrigerator or appliance",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": null
+    },
+    {
+      "id": 6,
+      "box": [
+        1430,
+        1232,
+        46,
+        42
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        2.47,
+        2.26
+      ],
+      "vlm_name": "wooden plank",
+      "vlm_category": "wooden plank or lumber",
+      "vlm_raw": "{\"description\": \"A cluster of four parallel wooden planks with a weathered, brownish-grey finish resting on a grey asphalt surface.\", \"name\": \"wooden plank\", \"category\": \"wooden plank or lumber\"}",
+      "physics": "passed",
+      "truth": "wooden plank or lumber",
+      "truth_any": "wooden plank or lumber",
+      "risk": "high",
+      "reasoning": "The red rectangle highlights a wooden plank, a rigid and heavy object, located in the middle lane of the motorway. Given the object's dimensions (2.5m x 2.3m) and its proximity to the road (15m), it poses a significant risk of collision if a vehicle swerves or loses control.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 15.3,
+      "correct": true
+    },
+    {
+      "id": 7,
+      "box": [
+        1850,
+        1232,
+        131,
+        37
+      ],
+      "detection_score": 0.518,
+      "size_m": [
+        7.05,
+        1.99
+      ],
+      "vlm_name": "truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A light-colored, rectangular object with a visible wheel and side panel, appearing to be a truck or trailer.\", \"name\": \"truck\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    }
+  ],
+  "debris_missed_by_detection": [
+    "refrigerator or appliance"
+  ],
+  "timing_s": {
+    "identify": 22.52,
+    "risk": 8.29,
+    "n_identify": 7,
+    "n_physics_reask": 2,
+    "n_risk": 2
+  }
+}
