@@ -6,7 +6,7 @@ Last updated: 2026-09-26. Three architectures, frame to risk level:
 |---|---|---|---|
 | A | road mask + OWLv2 + re-scorer | local Qwen3.5-2B (4-bit) | done |
 | B | same | OpenAI gpt-5.4, same prompts, checks and gate as A | done |
-| C | same | B + one scene-level analysis per frame | being built; tested first on the scene-relation set |
+| C | same | B + one scene-level analysis per frame | tested on the scene-relation set (section 5) |
 
 - **The context gate is part of every architecture.** It checks each
   candidate's position against the rest of the frame before the risk step.
@@ -27,7 +27,9 @@ Last updated: 2026-09-26. Three architectures, frame to risk level:
 - **Development set ("dev"):** `datasets/synthetic-highway-debris-train`, 30 other
   frames from the same four clips, 90 debris, vehicle labels not hand-checked.
   Every model choice, prompt, rule and threshold of Objective 2 is chosen here.
-- **Scene-relation set:** being built for architecture C (section 5).
+- **Scene-relation set:** `datasets/scene-relations`, 23 frames where the right
+  risk depends on relations between objects; built for architecture C
+  (section 5).
 - **Learned parts** (re-scorer, detector opinion) are scored leave-one-location-out.
   A test frame is always scored by a model that never saw its shoot location.
 - **Caveat:** dev and test use the same 22 debris 3D models, and debris is
@@ -215,23 +217,125 @@ check.
 ## 5. Architecture C: scene-level analysis
 
 **Why.** A and B judge each box on its own. Many highway hazards are about
-relations between objects: the same tyre is urgent in a lane with traffic
-coming and minor on the hard shoulder; several items strewn behind a lorry
-are one spilled load, not unrelated debris.
+relations between objects: the same pallet is urgent in a lane with traffic
+and minor on the hard shoulder; several items strewn behind a lorry are one
+spilled load, not unrelated debris.
 
-**Design.** C keeps everything in B, including the context gate: removing
-false alarms stays the gate's job, since the VLM on its own let 23 through.
-C adds one VLM call per frame after the per-box steps. It gets the whole
-frame with every remaining candidate numbered, a close view of each
-candidate, and a table of measured facts. It returns an overall risk level,
-a risk for each candidate, which candidates belong together, and the lanes
-affected.
+**Design** (`scripts/scene_assess.py`).
+- **C keeps everything in B, including the context gate.** Removing false
+  alarms stays the gate's job, since the VLM on its own let 23 through on the
+  test set.
+- **One more gpt-5.4 call per frame**, after the per-box steps. It gets:
+  - the frame cropped to the road, with every candidate boxed in red and
+    numbered, and every vehicle boxed in blue;
+  - a 20 m close view of each candidate;
+  - a table of measured facts, including each candidate's first-pass risk.
+- **It returns**, for each candidate, where it lies (running lane, hard
+  shoulder, off the road) and a revised risk. It also returns which
+  candidates belong to one event and which vehicle it came from, the number
+  of running lanes blocked, a scene risk and one instruction for the control
+  room.
+- **It uses the same risk rubric as the per-box step.** That rubric already
+  says a large object on the hard shoulder is medium, so B and C are held to
+  the same standard.
+- **A frame with no candidate left is "none" by rule**, without a call.
 
-**Test.** The 30-image test set cannot show whether C is better: its debris
-is placed at random, with no designed relation to the traffic, and nothing
-says what the right risk is. C is therefore tested first on a new
-scene-relation set with the expected answers written down before any run.
-A and B are re-run on it later if C proves worthwhile.
+**The scene-relation set** (`scripts/build_scene_relations.py`).
+- **Frames:** 23 test frames on 5 real backgrounds, and 8 dev frames on 2
+  others.
+- **Five variants of each background:**
+
+| variant | what is placed | expected answer |
+|---|---|---|
+| clear | nothing | scene none |
+| lane | one large rigid object in a running lane, near traffic | high; 1 lane blocked |
+| shoulder | the same object, same pose, moved sideways onto the hard shoulder | medium; 0 lanes blocked |
+| spill | 3-4 objects of one kind strewn behind a lorry, in its lane | all high, one group, that lorry; high |
+| blockage | two large objects side by side in adjacent lanes | both high; 2 lanes blocked |
+
+- **The answers were fixed in the build script before any model run.** They
+  follow the per-box rubric, and only large rigid objects are used (tyres,
+  fridges, pallets, planks, ladders), so each placement has one right answer.
+- **Lane geometry is measured from each frame.** The solid lines are fitted
+  per frame, and every placement was checked by eye and against the fitted
+  lines. A shoulder object fills at most 70% of the shoulder, clear of the
+  edge line.
+- **Backgrounds.** Four of the five test backgrounds are one near-static
+  camera (Pexels 19851623): a straight six-lane motorway with a hard
+  shoulder each side. The fifth is 12306893. It gets no shoulder variant,
+  because its outer strip carries traffic in other frames (a dynamic hard
+  shoulder).
+
+**Results on the 23 test frames.** B's answers are the per-box risks in the
+same run. B's scene risk is its highest per-box risk.
+
+| | B (per box) | C (scene) |
+|---|---|---|
+| scene risk right | 16 / 23 | 17 / 23 |
+| clear frames with no alarm | 5 / 5 | 5 / 5 |
+| lane frames | 3 / 5 | 3 / 5 |
+| shoulder frames | 0 / 4 | 1 / 4 |
+| spill frames | 3 / 4 | 3 / 4 |
+| blockage frames | 5 / 5 | 5 / 5 |
+| false alarms rated high | 1 | 1 |
+
+These are answers only C gives:
+
+| | C |
+|---|---|
+| where each object lies (lane or shoulder), for objects that reached it | 24 / 25 |
+| running lanes blocked, exact | 16 / 23 |
+| spill items grouped as one event | 4 / 4 |
+| spill traced to the right lorry | 2 / 4 |
+
+- **C's risk levels are only slightly better than B's here.** C changed four
+  first-pass levels:
+  - **One fix.** A ladder on the shoulder went from high to medium, with the
+    reason "it lies on the paved strip outside the solid edge line, on the
+    hard shoulder rather than in a live running lane".
+  - **Three items C lowered from medium to low.** The VLM had named them
+    cardboard boxes, and the rubric makes a cardboard box low. They were
+    pallets, so the answer key counts them wrong.
+- **Most failures happen before the scene step.**
+  - **Detection** missed 5 of the 33 placed objects. Four were pallets (about
+    22 px at this camera's scale) and one was a fridge.
+  - **Identification** stopped 3 more. It named a pallet a roadside
+    structure, and two tyres vegetation or a roadside structure.
+  - **Misnamed objects that passed** set the level for B and C alike: pallets
+    named cardboard boxes (low), and fridges named mattresses or bins
+    (medium).
+  - **Shoulder frames were hit hardest.** Only 2 of the 4 shoulder objects
+    reached the scene step. C got one right (the ladder) and put the other (a
+    pallet) in a lane.
+- **C over-counts lanes for spills.** In 3 of the 4 spill frames it said 2
+  lanes where the items lay in 1.
+- **The one false alarm rated high survived both B and C.** It was part of a
+  vehicle, named "barrel or drum". It passed the gate, and C did not
+  overrule it.
+- **The strength of C is structure.** It can say "four planks, one spilled
+  load, most likely from the open-load lorry V9, two lanes, close them", and
+  a control room can act on that. B's separate boxes cannot say it.
+
+**Cost and time.** One scene call per frame that has a candidate (15 of the
+23 frames). Each call is about 3,200 input and 160 output tokens: about
+US$0.011 and 2.8 s. The whole C run on the 23 frames made 154 new calls and
+cost US$0.48. Identification answers repeat across the variants of a
+background and were reused from the cache.
+
+**Caveats.**
+- **Small and narrow.** 23 frames, 4 of the 5 backgrounds from one camera,
+  and 4 shoulder frames. The numbers show direction, not precision.
+- **The rendered objects and their shadows are not always convincing**, the
+  fridge especially, which hurts identification more than it would on real
+  debris.
+- **This camera's calibration looks too high.** Its lanes measure 2.4 m at
+  the calibrated 18.6 px/m, where real lanes are about 3.5 m. The sizes
+  given to the VLM are therefore about 30% small at this location, for
+  every architecture.
+
+**Open.** Whether to run A and B in full on the scene
+set. B's per-box answers are already in C's records at no extra cost. A
+would run locally, free, in about 20 minutes.
 
 ## 6. Change log
 
@@ -242,3 +346,7 @@ A and B are re-run on it later if C proves worthwhile.
 - 2026-09-26: the gate made standard. Report restructured as architectures
   A, B, C; gate-free runs archived (tag `four-paths`). B's records reproduced
   exactly by the new single-pass code, from cached answers.
+- 2026-09-26: scene-relation set built (23 test, 8 dev frames). Architecture
+  C run on it: scene risk right 17 / 23 against B's 16 / 23; spills grouped
+  4 / 4; lane or shoulder right 24 / 25. Most errors come from detection and
+  identification before the scene step.

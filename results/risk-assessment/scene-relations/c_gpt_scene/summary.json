@@ -1,0 +1,980 @@
+{
+  "arch": "c_gpt_scene",
+  "split": "scene",
+  "variant": {
+    "bits": 4,
+    "model": "qwen3.5-2b",
+    "physics": true,
+    "prompt": "describe",
+    "size": true,
+    "tight": true
+  },
+  "api_model": "openai/gpt-5.4",
+  "api_calls_made": 154,
+  "api_calls_from_cache": 206,
+  "api_tokens": {
+    "prompt": 131326,
+    "output": 10048,
+    "reasoning": 0
+  },
+  "identification": {
+    "debris_type": 0.433,
+    "hazard_recall": 0.933,
+    "vehicle": 0.988,
+    "false_hazard": 0.0,
+    "n_debris": 30,
+    "n_vehicle": 248,
+    "n_other": 3,
+    "score": 0.839
+  },
+  "identification_accuracy": {
+    "vehicle": {
+      "correct": 245,
+      "n": 248,
+      "accuracy": 0.988
+    },
+    "debris": {
+      "correct": 13,
+      "n": 30,
+      "accuracy": 0.433
+    },
+    "non-target": {
+      "correct": 3,
+      "n": 3,
+      "accuracy": 1.0
+    }
+  },
+  "debris_confusion": {
+    "tire": {
+      "mattress": 1,
+      "roadside structure (sign, lamp post, barrier, gantry, road marking)": 1,
+      "tire": 5,
+      "vegetation or shadow": 1
+    },
+    "refrigerator or appliance": {
+      "other debris": 2,
+      "mattress": 2,
+      "refrigerator or appliance": 1
+    },
+    "wooden plank or lumber": {
+      "wooden pallet": 2,
+      "wooden plank or lumber": 4
+    },
+    "wooden pallet": {
+      "cardboard box": 8,
+      "wooden pallet": 1
+    },
+    "ladder": {
+      "ladder": 2
+    }
+  },
+  "physics_corrections": 9,
+  "risk": {
+    "false_high_risk": 1,
+    "false_any_risk": 1,
+    "debris_boxes": 32,
+    "debris_rated_high": 17,
+    "debris_rated_any": 29,
+    "counts": {
+      "none": 272,
+      "medium": 7,
+      "high": 18,
+      "low": 5
+    }
+  },
+  "context_suppressed": 5,
+  "timing_s": {
+    "identify": 157.6,
+    "context": 0.3,
+    "risk": 48.9,
+    "scene": 42.3
+  },
+  "calls": {
+    "n_identify": 302,
+    "n_physics_reask": 9,
+    "n_part_questions": 4,
+    "n_risk": 30
+  },
+  "scene": {
+    "frames": 23,
+    "scene_risk": {
+      "B": {
+        "correct": 16,
+        "n": 23
+      },
+      "C": {
+        "correct": 17,
+        "n": 23
+      }
+    },
+    "by_scenario": {
+      "clear": {
+        "frames": 5,
+        "B_scene_correct": 5,
+        "C_scene_correct": 5
+      },
+      "lane": {
+        "frames": 5,
+        "B_scene_correct": 3,
+        "C_scene_correct": 3
+      },
+      "shoulder": {
+        "frames": 4,
+        "B_scene_correct": 0,
+        "C_scene_correct": 1
+      },
+      "spill": {
+        "frames": 4,
+        "B_scene_correct": 3,
+        "C_scene_correct": 3
+      },
+      "blockage": {
+        "frames": 5,
+        "B_scene_correct": 5,
+        "C_scene_correct": 5
+      }
+    },
+    "placed_objects": 33,
+    "detected": 28,
+    "reached_risk_step": 25,
+    "object_risk": {
+      "B": {
+        "correct": 15,
+        "n": 28
+      },
+      "C": {
+        "correct": 16,
+        "n": 28
+      }
+    },
+    "object_risk_reached": {
+      "lane": {
+        "n": 23,
+        "B": {
+          "high": 15,
+          "medium": 7,
+          "low": 1
+        },
+        "C": {
+          "high": 15,
+          "medium": 4,
+          "low": 4
+        }
+      },
+      "shoulder": {
+        "n": 2,
+        "B": {
+          "high": 2,
+          "medium": 0,
+          "low": 0
+        },
+        "C": {
+          "high": 1,
+          "medium": 1,
+          "low": 0
+        }
+      }
+    },
+    "zone_C": {
+      "correct": 24,
+      "n": 25
+    },
+    "lanes_blocked_C": {
+      "correct": 16,
+      "n": 23
+    },
+    "spill_grouped_C": {
+      "correct": 4,
+      "n": 4
+    },
+    "spill_source_C": {
+      "correct": 2,
+      "n": 4
+    },
+    "false_high": {
+      "B": 1,
+      "C": 1
+    },
+    "rows": [
+      {
+        "image_id": 0,
+        "scenario": "clear",
+        "expected_scene": "none",
+        "B_scene": "none",
+        "C_scene": "none",
+        "expected_lanes": 0,
+        "C_lanes": 0,
+        "objects": [],
+        "false_high": {
+          "B": 0,
+          "C": 0
+        }
+      },
+      {
+        "image_id": 1,
+        "scenario": "lane",
+        "expected_scene": "high",
+        "B_scene": "none",
+        "C_scene": "none",
+        "expected_lanes": 1,
+        "C_lanes": 0,
+        "objects": [
+          {
+            "ann_id": 9,
+            "category": "wooden-pallet",
+            "zone": "lane",
+            "expected": "high",
+            "detected": true,
+            "id": 1,
+            "vlm_category": "roadside structure (sign, lamp post, barrier, gantry, road marking)",
+            "reached_risk_step": false,
+            "gated": false,
+            "B": "none",
+            "C": "none",
+            "C_where": null
+          }
+        ],
+        "false_high": {
+          "B": 0,
+          "C": 0
+        }
+      },
+      {
+        "image_id": 2,
+        "scenario": "shoulder",
+        "expected_scene": "medium",
+        "B_scene": "none",
+        "C_scene": "none",
+        "expected_lanes": 0,
+        "C_lanes": 0,
+        "objects": [
+          {
+            "ann_id": 18,
+            "category": "wooden-pallet",
+            "zone": "shoulder",
+            "expected": "medium",
+            "detected": false
+          }
+        ],
+        "false_high": {
+          "B": 0,
+          "C": 0
+        }
+      },
+      {
+        "image_id": 3,
+        "scenario": "spill",
+        "expected_scene": "high",
+        "B_scene": "high",
+        "C_scene": "high",
+        "expected_lanes": 1,
+        "C_lanes": 2,
+        "objects": [
+          {
+            "ann_id": 27,
+            "category": "tire",
+            "zone": "lane",
+            "expected": "high",
+            "detected": true,
+            "id": 4,
+            "vlm_category": "mattress",
+            "reached_risk_step": true,
+            "gated": false,
+            "B": "medium",
+            "C": "medium",
+            "C_where": "lane"
+          },
+          {
+            "ann_id": 28,
+            "category": "tire",
+            "zone": "lane",
+            "expected": "high",
+            "detected": true,
+            "id": 9,
+            "vlm_category": "tire",
+            "reached_risk_step": true,
+            "gated": false,
+            "B": "high",
+            "C": "high",
+            "C_where": "lane"
+          },
+          {
+            "ann_id": 29,
+            "category": "tire",
+            "zone": "lane",
+            "expected": "high",
+            "detected": true,
+            "id": 8,
+            "vlm_category": "roadside structure (sign, lamp post, barrier, gantry, road marking)",
+            "reached_risk_step": false,
+            "gated": false,
+            "B": "none",
+            "C": "none",
+            "C_where": null
+          }
+        ],
+        "false_high": {
+          "B": 0,
+          "C": 0
+        },
+        "spill_items_reaching_scene": 2,
+        "spill_grouped": true,
+        "spill_source_correct": false
+      },
+      {
+        "image_id": 4,
+        "scenario": "blockage",
+        "expected_scene": "high",
+        "B_scene": "high",
+        "C_scene": "high",
+        "expected_lanes": 2,
+        "C_lanes": 1,
+        "objects": [
+          {
+            "ann_id": 38,
+            "category": "refrigerator",
+            "zone": "lane",
+            "expected": "high",
+            "detected": true,
+            "id": 1,
+            "vlm_category": "other debris",
+            "reached_risk_step": true,
+            "gated": false,
+            "B": "high",
+            "C": "high",
+            "C_where": "lane"
+          },
+          {
+            "ann_id": 39,
+            "category": "wooden-pallet",
+            "zone": "lane",
+            "expected": "high",
+            "detected": false
+          }
+        ],
+        "false_high": {
+          "B": 0,
+          "C": 0
+        }
+      },
+      {
+        "image_id": 5,
+        "scenario": "clear",
+        "expected_scene": "none",
+        "B_scene": "none",
+        "C_scene": "none",
+        "expected_lanes": 0,
+        "C_lanes": 0,
+        "objects": [],
+        "false_high": {
+          "B": 0,
+          "C": 0
+        }
+      },
+      {
+        "image_id": 6,
+        "scenario": "lane",
+        "expected_scene": "high",
+        "B_scene": "high",
+        "C_scene": "high",
+        "expected_lanes": 1,
+        "C_lanes": 1,
+        "objects": [
+          {
+            "ann_id": 58,
+            "category": "wooden-plank",
+            "zone": "lane",
+            "expected": "high",
+            "detected": true,
+            "id": 2,
+            "vlm_category": "wooden pallet",
+            "reached_risk_step": true,
+            "gated": false,
+            "B": "high",
+            "C": "high",
+            "C_where": "lane"
+          }
+        ],
+        "false_high": {
+          "B": 0,
+          "C": 0
+        }
+      },
+      {
+        "image_id": 7,
+        "scenario": "shoulder",
+        "expected_scene": "medium",
+        "B_scene": "high",
+        "C_scene": "high",
+        "expected_lanes": 0,
+        "C_lanes": 1,
+        "objects": [
+          {
+            "ann_id": 69,
+            "category": "wooden-plank",
+            "zone": "shoulder",
+            "expected": "medium",
+            "detected": true,
+            "id": 1,
+            "vlm_category": "wooden pallet",
+            "reached_risk_step": true,
+            "gated": false,
+            "B": "high",
+            "C": "high",
+            "C_where": "lane"
+          }
+        ],
+        "false_high": {
+          "B": 0,
+          "C": 0
+        }
+      },
+      {
+        "image_id": 8,
+        "scenario": "spill",
+        "expected_scene": "high",
+        "B_scene": "medium",
+        "C_scene": "medium",
+        "expected_lanes": 1,
+        "C_lanes": 2,
+        "objects": [
+          {
+            "ann_id": 80,
+            "category": "wooden-pallet",
+            "zone": "lane",
+            "expected": "high",
+            "detected": false
+          },
+          {
+            "ann_id": 81,
+            "category": "wooden-pallet",
+            "zone": "lane",
+            "expected": "high",
+            "detected": true,
+            "id": 14,
+            "vlm_category": "cardboard box",
+            "reached_risk_step": true,
+            "gated": false,
+            "B": "low",
+            "C": "low",
+            "C_where": "lane"
+          },
+          {
+            "ann_id": 82,
+            "category": "wooden-pallet",
+            "zone": "lane",
+            "expected": "high",
+            "detected": true,
+            "id": 10,
+            "vlm_category": "cardboard box",
+            "reached_risk_step": true,
+            "gated": false,
+            "B": "medium",
+            "C": "low",
+            "C_where": "lane"
+          },
+          {
+            "ann_id": 83,
+            "category": "wooden-pallet",
+            "zone": "lane",
+            "expected": "high",
+            "detected": true,
+            "id": 17,
+            "vlm_category": "cardboard box",
+            "reached_risk_step": true,
+            "gated": false,
+            "B": "medium",
+            "C": "low",
+            "C_where": "lane"
+          }
+        ],
+        "false_high": {
+          "B": 0,
+          "C": 0
+        },
+        "spill_items_reaching_scene": 3,
+        "spill_grouped": true,
+        "spill_source_correct": true
+      },
+      {
+        "image_id": 9,
+        "scenario": "blockage",
+        "expected_scene": "high",
+        "B_scene": "high",
+        "C_scene": "high",
+        "expected_lanes": 2,
+        "C_lanes": 2,
+        "objects": [
+          {
+            "ann_id": 94,
+            "category": "refrigerator",
+            "zone": "lane",
+            "expected": "high",
+            "detected": true,
+            "id": 3,
+            "vlm_category": "mattress",
+            "reached_risk_step": true,
+            "gated": false,
+            "B": "medium",
+            "C": "medium",
+            "C_where": "lane"
+          },
+          {
+            "ann_id": 95,
+            "category": "wooden-pallet",
+            "zone": "lane",
+            "expected": "high",
+            "detected": true,
+            "id": 7,
+            "vlm_category": "wooden pallet",
+            "reached_risk_step": true,
+            "gated": false,
+            "B": "high",
+            "C": "high",
+            "C_where": "lane"
+          }
+        ],
+        "false_high": {
+          "B": 0,
+          "C": 0
+        }
+      },
+      {
+        "image_id": 10,
+        "scenario": "clear",
+        "expected_scene": "none",
+        "B_scene": "none",
+        "C_scene": "none",
+        "expected_lanes": 0,
+        "C_lanes": 0,
+        "objects": [],
+        "false_high": {
+          "B": 0,
+          "C": 0
+        }
+      },
+      {
+        "image_id": 11,
+        "scenario": "lane",
+        "expected_scene": "high",
+        "B_scene": "high",
+        "C_scene": "high",
+        "expected_lanes": 1,
+        "C_lanes": 1,
+        "objects": [
+          {
+            "ann_id": 115,
+            "category": "ladder",
+            "zone": "lane",
+            "expected": "high",
+            "detected": true,
+            "id": 1,
+            "vlm_category": "ladder",
+            "reached_risk_step": true,
+            "gated": false,
+            "B": "high",
+            "C": "high",
+            "C_where": "lane"
+          }
+        ],
+        "false_high": {
+          "B": 0,
+          "C": 0
+        }
+      },
+      {
+        "image_id": 12,
+        "scenario": "shoulder",
+        "expected_scene": "medium",
+        "B_scene": "high",
+        "C_scene": "medium",
+        "expected_lanes": 0,
+        "C_lanes": 0,
+        "objects": [
+          {
+            "ann_id": 125,
+            "category": "ladder",
+            "zone": "shoulder",
+            "expected": "medium",
+            "detected": true,
+            "id": 1,
+            "vlm_category": "ladder",
+            "reached_risk_step": true,
+            "gated": false,
+            "B": "high",
+            "C": "medium",
+            "C_where": "shoulder"
+          }
+        ],
+        "false_high": {
+          "B": 0,
+          "C": 0
+        }
+      },
+      {
+        "image_id": 13,
+        "scenario": "spill",
+        "expected_scene": "high",
+        "B_scene": "high",
+        "C_scene": "high",
+        "expected_lanes": 2,
+        "C_lanes": 2,
+        "objects": [
+          {
+            "ann_id": 135,
+            "category": "wooden-plank",
+            "zone": "lane",
+            "expected": "high",
+            "detected": true,
+            "id": 8,
+            "vlm_category": "wooden plank or lumber",
+            "reached_risk_step": true,
+            "gated": false,
+            "B": "high",
+            "C": "high",
+            "C_where": "lane"
+          },
+          {
+            "ann_id": 136,
+            "category": "wooden-plank",
+            "zone": "lane",
+            "expected": "high",
+            "detected": true,
+            "id": 10,
+            "vlm_category": "wooden plank or lumber",
+            "reached_risk_step": true,
+            "gated": false,
+            "B": "high",
+            "C": "high",
+            "C_where": "lane"
+          },
+          {
+            "ann_id": 137,
+            "category": "wooden-plank",
+            "zone": "lane",
+            "expected": "high",
+            "detected": true,
+            "id": 7,
+            "vlm_category": "wooden plank or lumber",
+            "reached_risk_step": true,
+            "gated": false,
+            "B": "high",
+            "C": "high",
+            "C_where": "lane"
+          },
+          {
+            "ann_id": 138,
+            "category": "wooden-plank",
+            "zone": "lane",
+            "expected": "high",
+            "detected": true,
+            "id": 6,
+            "vlm_category": "wooden plank or lumber",
+            "reached_risk_step": true,
+            "gated": false,
+            "B": "high",
+            "C": "high",
+            "C_where": "lane"
+          }
+        ],
+        "false_high": {
+          "B": 0,
+          "C": 0
+        },
+        "spill_items_reaching_scene": 4,
+        "spill_grouped": true,
+        "spill_source_correct": true
+      },
+      {
+        "image_id": 14,
+        "scenario": "blockage",
+        "expected_scene": "high",
+        "B_scene": "high",
+        "C_scene": "high",
+        "expected_lanes": 2,
+        "C_lanes": 1,
+        "objects": [
+          {
+            "ann_id": 148,
+            "category": "refrigerator",
+            "zone": "lane",
+            "expected": "high",
+            "detected": true,
+            "id": 1,
+            "vlm_category": "other debris",
+            "reached_risk_step": true,
+            "gated": false,
+            "B": "high",
+            "C": "high",
+            "C_where": "lane"
+          },
+          {
+            "ann_id": 149,
+            "category": "wooden-pallet",
+            "zone": "lane",
+            "expected": "high",
+            "detected": false
+          }
+        ],
+        "false_high": {
+          "B": 0,
+          "C": 0
+        }
+      },
+      {
+        "image_id": 15,
+        "scenario": "clear",
+        "expected_scene": "none",
+        "B_scene": "none",
+        "C_scene": "none",
+        "expected_lanes": 0,
+        "C_lanes": 0,
+        "objects": [],
+        "false_high": {
+          "B": 0,
+          "C": 0
+        }
+      },
+      {
+        "image_id": 16,
+        "scenario": "lane",
+        "expected_scene": "high",
+        "B_scene": "medium",
+        "C_scene": "medium",
+        "expected_lanes": 1,
+        "C_lanes": 1,
+        "objects": [
+          {
+            "ann_id": 167,
+            "category": "refrigerator",
+            "zone": "lane",
+            "expected": "high",
+            "detected": true,
+            "id": 1,
+            "vlm_category": "other debris",
+            "reached_risk_step": true,
+            "gated": false,
+            "B": "medium",
+            "C": "medium",
+            "C_where": "lane"
+          }
+        ],
+        "false_high": {
+          "B": 0,
+          "C": 0
+        }
+      },
+      {
+        "image_id": 17,
+        "scenario": "shoulder",
+        "expected_scene": "medium",
+        "B_scene": "none",
+        "C_scene": "none",
+        "expected_lanes": 0,
+        "C_lanes": 0,
+        "objects": [
+          {
+            "ann_id": 176,
+            "category": "refrigerator",
+            "zone": "shoulder",
+            "expected": "medium",
+            "detected": false
+          }
+        ],
+        "false_high": {
+          "B": 0,
+          "C": 0
+        }
+      },
+      {
+        "image_id": 18,
+        "scenario": "spill",
+        "expected_scene": "high",
+        "B_scene": "high",
+        "C_scene": "high",
+        "expected_lanes": 1,
+        "C_lanes": 2,
+        "objects": [
+          {
+            "ann_id": 185,
+            "category": "tire",
+            "zone": "lane",
+            "expected": "high",
+            "detected": true,
+            "id": 11,
+            "vlm_category": "vegetation or shadow",
+            "reached_risk_step": false,
+            "gated": false,
+            "B": "none",
+            "C": "none",
+            "C_where": null
+          },
+          {
+            "ann_id": 186,
+            "category": "tire",
+            "zone": "lane",
+            "expected": "high",
+            "detected": true,
+            "id": 12,
+            "vlm_category": "tire",
+            "reached_risk_step": true,
+            "gated": false,
+            "B": "high",
+            "C": "high",
+            "C_where": "lane"
+          },
+          {
+            "ann_id": 187,
+            "category": "tire",
+            "zone": "lane",
+            "expected": "high",
+            "detected": true,
+            "id": 13,
+            "vlm_category": "tire",
+            "reached_risk_step": true,
+            "gated": false,
+            "B": "high",
+            "C": "high",
+            "C_where": "lane"
+          }
+        ],
+        "false_high": {
+          "B": 0,
+          "C": 0
+        },
+        "spill_items_reaching_scene": 2,
+        "spill_grouped": true,
+        "spill_source_correct": false
+      },
+      {
+        "image_id": 19,
+        "scenario": "blockage",
+        "expected_scene": "high",
+        "B_scene": "high",
+        "C_scene": "high",
+        "expected_lanes": 2,
+        "C_lanes": 2,
+        "objects": [
+          {
+            "ann_id": 196,
+            "category": "wooden-pallet",
+            "zone": "lane",
+            "expected": "high",
+            "detected": true,
+            "id": 1,
+            "vlm_category": "cardboard box",
+            "reached_risk_step": true,
+            "gated": false,
+            "B": "medium",
+            "C": "low",
+            "C_where": "lane"
+          },
+          {
+            "ann_id": 197,
+            "category": "refrigerator",
+            "zone": "lane",
+            "expected": "high",
+            "detected": true,
+            "id": 2,
+            "vlm_category": "refrigerator or appliance",
+            "reached_risk_step": true,
+            "gated": false,
+            "B": "high",
+            "C": "high",
+            "C_where": "lane"
+          }
+        ],
+        "false_high": {
+          "B": 1,
+          "C": 1
+        }
+      },
+      {
+        "image_id": 20,
+        "scenario": "clear",
+        "expected_scene": "none",
+        "B_scene": "none",
+        "C_scene": "none",
+        "expected_lanes": 0,
+        "C_lanes": 0,
+        "objects": [],
+        "false_high": {
+          "B": 0,
+          "C": 0
+        }
+      },
+      {
+        "image_id": 21,
+        "scenario": "lane",
+        "expected_scene": "high",
+        "B_scene": "high",
+        "C_scene": "high",
+        "expected_lanes": 1,
+        "C_lanes": 1,
+        "objects": [
+          {
+            "ann_id": 233,
+            "category": "truck-tire",
+            "zone": "lane",
+            "expected": "high",
+            "detected": true,
+            "id": 19,
+            "vlm_category": "tire",
+            "reached_risk_step": true,
+            "gated": false,
+            "B": "high",
+            "C": "high",
+            "C_where": "lane"
+          }
+        ],
+        "false_high": {
+          "B": 0,
+          "C": 0
+        }
+      },
+      {
+        "image_id": 22,
+        "scenario": "blockage",
+        "expected_scene": "high",
+        "B_scene": "high",
+        "C_scene": "high",
+        "expected_lanes": 2,
+        "C_lanes": 2,
+        "objects": [
+          {
+            "ann_id": 261,
+            "category": "truck-tire",
+            "zone": "lane",
+            "expected": "high",
+            "detected": true,
+            "id": 17,
+            "vlm_category": "tire",
+            "reached_risk_step": true,
+            "gated": false,
+            "B": "high",
+            "C": "high",
+            "C_where": "lane"
+          },
+          {
+            "ann_id": 262,
+            "category": "refrigerator",
+            "zone": "lane",
+            "expected": "high",
+            "detected": true,
+            "id": 18,
+            "vlm_category": "mattress",
+            "reached_risk_step": true,
+            "gated": false,
+            "B": "medium",
+            "C": "medium",
+            "C_where": "lane"
+          }
+        ],
+        "false_high": {
+          "B": 0,
+          "C": 0
+        }
+      }
+    ]
+  }
+}

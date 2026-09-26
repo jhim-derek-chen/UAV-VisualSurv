@@ -1,0 +1,165 @@
+{
+  "image_id": 3,
+  "file": "00003.jpg",
+  "location": "pexels/19851623",
+  "width": 3840,
+  "height": 2160,
+  "px_per_metre": 18.59,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        1913,
+        961,
+        50,
+        29
+      ],
+      "detection_score": 0.982,
+      "size_m": [
+        2.69,
+        1.56
+      ],
+      "vlm_name": "box-like road debris",
+      "vlm_category": "other debris",
+      "vlm_raw": "{\"description\":\"A dark rectangular box-like object with slanted sides and a lighter edge along one side, appearing smooth and solid on the roadway.\",\"name\":\"box-like road debris\",\"category\":\"other debris\"}",
+      "physics": "passed",
+      "truth": "refrigerator or appliance",
+      "truth_any": "refrigerator or appliance",
+      "detector_p": {
+        "background": 0.006,
+        "vehicle": 0.001,
+        "debris": 0.993
+      },
+      "risk": "high",
+      "reasoning": "The marked object is box-like debris lying within an active motorway lane, and at about 2.7 m by 1.6 m it is large enough that a driver could strike it directly or make a sudden avoidance manoeuvre. The nearest vehicle is only about 14 m away, so there is little time to react at motorway speed and the collision risk is immediate.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 14.4,
+      "correct": false
+    },
+    {
+      "id": 2,
+      "box": [
+        1902,
+        1006,
+        62,
+        28
+      ],
+      "detection_score": 0.967,
+      "size_m": [
+        3.34,
+        1.51
+      ],
+      "vlm_name": "bush-like vegetation clump",
+      "vlm_category": "vegetation or shadow",
+      "vlm_raw": "{\"description\":\"A low, irregular oval-shaped object with a dark black, shaggy or leafy texture and some lighter gray areas, casting a shadow beside it.\",\"name\":\"bush-like vegetation clump\",\"category\":\"vegetation or shadow\"}",
+      "physics": "passed",
+      "truth": "tire",
+      "truth_any": "tire",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as roadside structure, vegetation or shadow: not an object on the carriageway.",
+      "correct": false
+    },
+    {
+      "id": 3,
+      "box": [
+        1674,
+        1172,
+        311,
+        97
+      ],
+      "detection_score": 0.897,
+      "size_m": [
+        16.73,
+        5.22
+      ],
+      "vlm_name": "truck carrying logs or scrap",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long rectangular brown object with a rough, irregular texture and several circular forms on top is moving in a lane, appearing like an open load on a truck.\",\"name\":\"truck carrying logs or scrap\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false
+    },
+    {
+      "id": 4,
+      "box": [
+        366,
+        1217,
+        236,
+        47
+      ],
+      "detection_score": 0.591,
+      "size_m": [
+        12.7,
+        2.53
+      ],
+      "vlm_name": "semi-truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long rectangular white object with a smooth surface and a darker cab-like section at one end, spanning much of a traffic lane.\",\"name\":\"semi-truck\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 5,
+      "box": [
+        849,
+        1241,
+        146,
+        38
+      ],
+      "detection_score": 0.961,
+      "size_m": [
+        7.86,
+        2.04
+      ],
+      "vlm_name": "box truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long rectangular light gray object with smooth blurred edges and a white cab-like front is on the roadway, matching the top view of a box truck.\",\"name\":\"box truck\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    }
+  ],
+  "scene": {
+    "called": true,
+    "scene_risk": "high",
+    "objects": [
+      {
+        "id": 1,
+        "where": "lane",
+        "risk": "high"
+      }
+    ],
+    "groups": [],
+    "lanes_blocked": 1,
+    "reasoning": "The red-boxed object is a substantial box-like piece of debris lying within a live running lane of the upper carriageway, roughly centered in one lane rather than on the shoulder. It appears isolated, with no second debris item nearby and no clear link to any visible vehicle in the frame; traffic is light, but a vehicle at speed could strike it or make a sudden avoidance maneuver. Only one running lane is directly obstructed by the debris.",
+    "action": "Close or protect the affected lane and dispatch debris removal immediately.",
+    "raw": "{\"reasoning\":\"The red-boxed object is a substantial box-like piece of debris lying within a live running lane of the upper carriageway, roughly centered in one lane rather than on the shoulder. It appears isolated, with no second debris item nearby and no clear link to any visible vehicle in the frame; traffic is light, but a vehicle at speed could strike it or make a sudden avoidance maneuver. Only one running lane is directly obstructed by the debris.\",\"objects\":[{\"id\":1,\"where\":\"lane\",\"risk\":\"high\"}],\"groups\":[],\"lanes_blocked\":1,\"scene_risk\":\"high\",\"action\":\"Close or protect the affected lane and dispatch debris removal immediately.\"}",
+    "n_close_views": 1
+  },
+  "debris_missed_by_detection": [],
+  "timing_s": {
+    "identify": 0.07,
+    "context": 0.005,
+    "risk": 0.0,
+    "n_identify": 5,
+    "n_physics_reask": 0,
+    "n_part_questions": 0,
+    "n_risk": 1,
+    "scene": 2.45
+  }
+}

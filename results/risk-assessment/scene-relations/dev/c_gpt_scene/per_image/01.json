@@ -1,0 +1,143 @@
+{
+  "image_id": 1,
+  "file": "00001.jpg",
+  "location": "pexels/19851623",
+  "width": 3840,
+  "height": 2160,
+  "px_per_metre": 18.59,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        1760,
+        904,
+        48,
+        75
+      ],
+      "detection_score": 0.996,
+      "size_m": [
+        2.58,
+        4.04
+      ],
+      "vlm_name": "metal barrier or rack frame",
+      "vlm_category": "other debris",
+      "vlm_raw": "{\"description\":\"A large open rectangular metal frame with several vertical bars, mostly black with some orange rails, lying diagonally across the lane and casting a shadow.\",\"name\":\"metal barrier or rack frame\",\"category\":\"other debris\"}",
+      "physics": "passed",
+      "truth": "unclear",
+      "truth_any": "ladder",
+      "detector_p": {
+        "background": 0.001,
+        "vehicle": 0.0,
+        "debris": 0.999
+      },
+      "risk": "high",
+      "reasoning": "The marked object is a large metal barrier or rack frame, about 4.0 m by 2.6 m, lying within an active motorway lane. It is rigid and heavy debris, and with a vehicle only about 15 m away at motorway speeds it presents an immediate collision or evasive-swerve danger.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 15.2,
+      "correct": null
+    },
+    {
+      "id": 2,
+      "box": [
+        1674,
+        1172,
+        311,
+        97
+      ],
+      "detection_score": 0.897,
+      "size_m": [
+        16.73,
+        5.22
+      ],
+      "vlm_name": "truck or large vehicle",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long blurred brown object with an elongated rectangular shape and uneven textured surface is on the roadway, resembling a load or machinery seen from above.\",\"name\":\"truck or large vehicle\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false
+    },
+    {
+      "id": 3,
+      "box": [
+        366,
+        1217,
+        236,
+        47
+      ],
+      "detection_score": 0.591,
+      "size_m": [
+        12.7,
+        2.53
+      ],
+      "vlm_name": "semi-truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long rectangular white object with a smooth surface and a darker cab-like section at one end, spanning much of a traffic lane.\",\"name\":\"semi-truck\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 4,
+      "box": [
+        849,
+        1241,
+        146,
+        38
+      ],
+      "detection_score": 0.958,
+      "size_m": [
+        7.86,
+        2.04
+      ],
+      "vlm_name": "box truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long rectangular light gray object with smooth blurred edges and a white cab-like front is on the roadway, matching the top view of a box truck.\",\"name\":\"box truck\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    }
+  ],
+  "scene": {
+    "called": true,
+    "scene_risk": "high",
+    "objects": [
+      {
+        "id": 1,
+        "where": "lane",
+        "risk": "high"
+      }
+    ],
+    "groups": [],
+    "lanes_blocked": 1,
+    "reasoning": "The scene shows a divided multi-lane motorway with one confirmed debris item, candidate #1, lying fully within a running lane of the upper carriageway rather than on the shoulder. It is a large rigid metal frame spanning much of a lane's width, creating a serious strike-or-swerve hazard at speed. No other red-boxed candidates are present, and no clear source vehicle is identifiable from the traffic positions.",
+    "action": "Close the affected lane immediately and dispatch debris removal.",
+    "raw": "{\"reasoning\":\"The scene shows a divided multi-lane motorway with one confirmed debris item, candidate #1, lying fully within a running lane of the upper carriageway rather than on the shoulder. It is a large rigid metal frame spanning much of a lane's width, creating a serious strike-or-swerve hazard at speed. No other red-boxed candidates are present, and no clear source vehicle is identifiable from the traffic positions.\",\"objects\":[{\"id\":1,\"where\":\"lane\",\"risk\":\"high\"}],\"groups\":[],\"lanes_blocked\":1,\"scene_risk\":\"high\",\"action\":\"Close the affected lane immediately and dispatch debris removal.\"}",
+    "n_close_views": 1
+  },
+  "debris_missed_by_detection": [
+    "ladder"
+  ],
+  "timing_s": {
+    "identify": 0.06,
+    "context": 0.082,
+    "risk": 0.01,
+    "n_identify": 4,
+    "n_physics_reask": 0,
+    "n_part_questions": 0,
+    "n_risk": 1,
+    "scene": 15.45
+  }
+}

@@ -1083,6 +1083,8 @@ def figures(arch: str, split: str = "test") -> int:
     images, gt, loc = load(root)
     masks = E.stage1_masks(sorted(images), images, dataset=root)
     d = out_dir(arch, split)
+    man = json.loads((root / "manifest.json").read_text(encoding="utf-8"))
+    samples = {x["image_id"]: x for x in man["samples"] if "expected" in x}
     for f in (d / "per_image").glob("*.json"):
         rec = json.loads(f.read_text(encoding="utf-8"))
         i = rec["image_id"]
@@ -1090,7 +1092,7 @@ def figures(arch: str, split: str = "test") -> int:
         fig = chain_figure(img, rec, masks[i])
         if "scene" in rec:
             import scene_assess
-            fig = scene_assess.add_scene_panel(fig, img, rec)
+            fig = scene_assess.add_scene_panel(fig, img, rec, samples.get(i))
         fig.save(d / f"{i:02d}_chain.jpg", quality=88)
     print(f"saved: {d.relative_to(REPO_ROOT)}/")
     return 0

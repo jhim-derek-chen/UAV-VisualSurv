@@ -1,0 +1,280 @@
+{
+  "image_id": 17,
+  "file": "00017.jpg",
+  "location": "pexels/19851623",
+  "width": 3840,
+  "height": 2160,
+  "px_per_metre": 18.59,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        811,
+        947,
+        48,
+        26
+      ],
+      "detection_score": 0.942,
+      "size_m": [
+        2.58,
+        1.4
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A blurred light-colored elongated rectangular object with rounded ends and a smooth glossy texture, resembling the top view of a small car moving along the lane.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 2,
+      "box": [
+        2366,
+        955,
+        72,
+        26
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        3.87,
+        1.4
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A white elongated rounded object with a dark window-like center and smooth blurred texture, shaped like a car seen from above.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 3,
+      "box": [
+        480,
+        989,
+        65,
+        25
+      ],
+      "detection_score": 0.948,
+      "size_m": [
+        3.5,
+        1.35
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A smooth light grey to white elongated rounded rectangle with blurred edges and a reflective roof-like surface, consistent with a top-down view of a car.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 4,
+      "box": [
+        1042,
+        1027,
+        69,
+        24
+      ],
+      "detection_score": 0.989,
+      "size_m": [
+        3.71,
+        1.29
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A light blue-gray elongated oval object with smooth blurred edges and a glossy, uniform surface, resembling the top view of a car in motion.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 5,
+      "box": [
+        3718,
+        1148,
+        117,
+        39
+      ],
+      "detection_score": 0.884,
+      "size_m": [
+        6.29,
+        2.1
+      ],
+      "vlm_name": "box truck or lorry",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long rectangular white object with a darker red front section and smooth vehicle-like outline is traveling within a lane on the motorway.\",\"name\":\"box truck or lorry\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 6,
+      "box": [
+        3720,
+        1151,
+        27,
+        32
+      ],
+      "detection_score": 0.968,
+      "size_m": [
+        1.45,
+        1.72
+      ],
+      "vlm_name": "barrel or drum",
+      "vlm_category": "barrel or drum",
+      "vlm_raw": "{\"description\":\"A small blurry cylindrical-looking object with a light gray center and red bands or caps at the top and bottom, beside the edge of a larger pale rectangular object.\",\"name\":\"barrel or drum\",\"category\":\"barrel or drum\"}",
+      "physics": "passed",
+      "truth": "unclear",
+      "truth_any": "vehicle",
+      "detector_p": {
+        "background": 0.083,
+        "vehicle": 0.046,
+        "debris": 0.871
+      },
+      "part_answer": "{\"part_of_vehicle\": true, \"why\": \"matches truck cab/front section\"}",
+      "context": "part of vehicle #5 (VLM, asked directly)",
+      "risk": "none",
+      "risk_source": "context rule",
+      "reasoning": "Context gate: part of vehicle #5 (VLM, asked directly). Not assessed as a hazard.",
+      "correct": null
+    },
+    {
+      "id": 7,
+      "box": [
+        1078,
+        1198,
+        61,
+        23
+      ],
+      "detection_score": 0.966,
+      "size_m": [
+        3.28,
+        1.24
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A dark gray-blue elongated rectangular object with a smooth blurry body and two protrusions on one end, consistent with a top-down view of a car in motion.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 8,
+      "box": [
+        3476,
+        1212,
+        135,
+        37
+      ],
+      "detection_score": 0.73,
+      "size_m": [
+        7.26,
+        1.99
+      ],
+      "vlm_name": "truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long rectangular light gray object with smooth blurred edges and a small white cab-like section on one end, consistent with a top-down view of a truck trailer.\",\"name\":\"truck\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 9,
+      "box": [
+        810,
+        1242,
+        143,
+        41
+      ],
+      "detection_score": 0.686,
+      "size_m": [
+        7.69,
+        2.21
+      ],
+      "vlm_name": "white box truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long white rectangular object with a distinct cab-like front and smooth vehicle-like shape is traveling along the lane.\",\"name\":\"white box truck\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 10,
+      "box": [
+        901,
+        1242,
+        54,
+        36
+      ],
+      "detection_score": 0.899,
+      "size_m": [
+        2.91,
+        1.94
+      ],
+      "vlm_name": "truck or van",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A large white rectangular object with smooth surfaces and a slightly rounded cab-like front, aligned with the lane and appearing motion-blurred like the top of a truck or van.\",\"name\":\"truck or van\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "unclear",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": null
+    }
+  ],
+  "scene": {
+    "called": false,
+    "scene_risk": "none",
+    "objects": [],
+    "groups": [],
+    "lanes_blocked": 0,
+    "reasoning": "No candidate hazard passed the per-box steps.",
+    "action": "none"
+  },
+  "debris_missed_by_detection": [
+    "refrigerator or appliance"
+  ],
+  "timing_s": {
+    "identify": 1.62,
+    "context": 0.01,
+    "risk": 0.0,
+    "n_identify": 10,
+    "n_physics_reask": 0,
+    "n_part_questions": 1,
+    "n_risk": 0,
+    "scene": 0.0
+  }
+}

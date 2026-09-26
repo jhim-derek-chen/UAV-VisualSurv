@@ -1,0 +1,103 @@
+{
+  "image_id": 0,
+  "file": "00000.jpg",
+  "location": "pexels/19851623",
+  "width": 3840,
+  "height": 2160,
+  "px_per_metre": 18.59,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        1674,
+        1172,
+        311,
+        97
+      ],
+      "detection_score": 0.897,
+      "size_m": [
+        16.73,
+        5.22
+      ],
+      "vlm_name": "flatbed truck carrying logs",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long, elongated brown object with a rough, irregular texture and clustered cylindrical forms, sitting across the lane beside a white and pink truck-like vehicle.\",\"name\":\"flatbed truck carrying logs\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false
+    },
+    {
+      "id": 2,
+      "box": [
+        366,
+        1217,
+        236,
+        47
+      ],
+      "detection_score": 0.591,
+      "size_m": [
+        12.7,
+        2.53
+      ],
+      "vlm_name": "semi-truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long rectangular white object with a smooth surface and a darker cab-like section at one end, spanning much of a traffic lane.\",\"name\":\"semi-truck\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 3,
+      "box": [
+        849,
+        1241,
+        146,
+        38
+      ],
+      "detection_score": 0.96,
+      "size_m": [
+        7.86,
+        2.04
+      ],
+      "vlm_name": "box truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long rectangular light gray object with smooth blurred edges and a white cab-like front is on the roadway, matching the top view of a box truck.\",\"name\":\"box truck\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    }
+  ],
+  "scene": {
+    "called": false,
+    "scene_risk": "none",
+    "objects": [],
+    "groups": [],
+    "lanes_blocked": 0,
+    "reasoning": "No candidate hazard passed the per-box steps.",
+    "action": "none"
+  },
+  "debris_missed_by_detection": [],
+  "timing_s": {
+    "identify": 0.06,
+    "context": 0.007,
+    "risk": 0.0,
+    "n_identify": 3,
+    "n_physics_reask": 0,
+    "n_part_questions": 0,
+    "n_risk": 0,
+    "scene": 0.0
+  }
+}

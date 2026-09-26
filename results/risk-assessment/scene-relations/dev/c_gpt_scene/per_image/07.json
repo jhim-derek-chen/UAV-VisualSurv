@@ -1,0 +1,317 @@
+{
+  "image_id": 7,
+  "file": "00007.jpg",
+  "location": "pexels/19851623",
+  "width": 3840,
+  "height": 2160,
+  "px_per_metre": 18.59,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        2377,
+        941,
+        73,
+        25
+      ],
+      "detection_score": 0.986,
+      "size_m": [
+        3.93,
+        1.35
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A light blue-white elongated oval object with smooth blurry edges and a glossy uniform texture, consistent with a car seen from above in motion.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false
+    },
+    {
+      "id": 2,
+      "box": [
+        3382,
+        945,
+        73,
+        27
+      ],
+      "detection_score": 0.99,
+      "size_m": [
+        3.93,
+        1.45
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A smooth elongated white and dark gray object with a rounded rectangular shape and glossy appearance, consistent with the roof and windows of a car seen from above.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false
+    },
+    {
+      "id": 3,
+      "box": [
+        1631,
+        966,
+        64,
+        25
+      ],
+      "detection_score": 0.961,
+      "size_m": [
+        3.44,
+        1.35
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A light white-blue elongated rounded rectangle with smooth blurry texture, centered in the lane between dashed road markings.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false
+    },
+    {
+      "id": 4,
+      "box": [
+        2471,
+        1002,
+        73,
+        24
+      ],
+      "detection_score": 0.989,
+      "size_m": [
+        3.93,
+        1.29
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A blurry elongated light-blue object with rounded ends and a darker central roof-like patch, smooth in texture and aligned with the lane.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false
+    },
+    {
+      "id": 5,
+      "box": [
+        396,
+        1037,
+        71,
+        25
+      ],
+      "detection_score": 0.984,
+      "size_m": [
+        3.82,
+        1.35
+      ],
+      "vlm_name": "white car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A blurred elongated white object with rounded ends and a darker rectangular center, smooth and car-shaped, is visible within the red rectangle.\",\"name\":\"white car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false
+    },
+    {
+      "id": 6,
+      "box": [
+        3623,
+        1118,
+        63,
+        22
+      ],
+      "detection_score": 0.728,
+      "size_m": [
+        3.39,
+        1.18
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A light grey-white elongated rounded rectangle with smooth blurry texture, resembling the roof of a car seen from above.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false
+    },
+    {
+      "id": 7,
+      "box": [
+        2215,
+        1129,
+        40,
+        46
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        2.15,
+        2.47
+      ],
+      "vlm_name": "refrigerator or large appliance",
+      "vlm_category": "refrigerator or appliance",
+      "vlm_raw": "{\"description\":\"A large dark rectangular object with a boxy shape, smooth surfaces, and a lighter horizontal band across its upper middle, casting a strong shadow on the road.\",\"name\":\"refrigerator or large appliance\",\"category\":\"refrigerator or appliance\"}",
+      "physics": "passed",
+      "truth": "refrigerator or appliance",
+      "truth_any": "refrigerator or appliance",
+      "detector_p": {
+        "background": 0.001,
+        "vehicle": 0.001,
+        "debris": 0.998
+      },
+      "risk": "high",
+      "reasoning": "The marked object is identified as a refrigerator or large appliance, about 2.5 m by 2.2 m, and it is in a live motorway lane. A heavy rigid object of that size could be struck at speed or cause evasive swerving, and the nearest vehicle is only about 14 m away with multiple vehicles present.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 14.4,
+      "correct": true
+    },
+    {
+      "id": 8,
+      "box": [
+        2897,
+        1162,
+        16,
+        32
+      ],
+      "detection_score": 0.539,
+      "size_m": [
+        0.86,
+        1.72
+      ],
+      "vlm_name": "road marking / lane line segment",
+      "vlm_category": "roadside structure (sign, lamp post, barrier, gantry, road marking)",
+      "vlm_raw": "{\"description\":\"A narrow rectangular object with soft edges, light grey to pinkish colouring, and a faint banded texture lies lengthwise beside a white vehicle.\",\"name\":\"person\",\"category\":\"person\"} | re-asked: {\"name\":\"road marking / lane line segment\",\"category\":\"roadside structure (sign, lamp post, barrier, gantry, road marking)\"}",
+      "physics": "corrected: person is implausible at 1.7 m",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as roadside structure, vegetation or shadow: not an object on the carriageway.",
+      "correct": true
+    },
+    {
+      "id": 9,
+      "box": [
+        2232,
+        1178,
+        15,
+        15
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        0.81,
+        0.81
+      ],
+      "vlm_name": "cardboard box",
+      "vlm_category": "cardboard box",
+      "vlm_raw": "{\"description\":\"A small rectangular tan object with a pale border and several dark brown circular/striped marks on its top, looking flat and debris-like on the road.\",\"name\":\"cardboard box\",\"category\":\"cardboard box\"}",
+      "physics": "passed",
+      "truth": "wooden pallet",
+      "truth_any": "wooden pallet",
+      "detector_p": {
+        "background": 0.001,
+        "vehicle": 0.001,
+        "debris": 0.997
+      },
+      "risk": "low",
+      "reasoning": "The object is identified as a cardboard box about 0.8 m by 0.8 m and it is lying in an active traffic lane. Although a vehicle is only about 16 m away and there are 6 vehicles in view, a cardboard box is a light, soft item that is less likely to cause loss of control than a rigid obstacle.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 15.6,
+      "correct": false
+    },
+    {
+      "id": 10,
+      "box": [
+        2218,
+        1181,
+        15,
+        16
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        0.81,
+        0.86
+      ],
+      "vlm_name": "cardboard box",
+      "vlm_category": "cardboard box",
+      "vlm_raw": "{\"description\":\"A small rectangular object with light tan edges and darker brown interior patches, appearing box-like and rigid rather than soft.\",\"name\":\"cardboard box\",\"category\":\"cardboard box\"}",
+      "physics": "passed",
+      "truth": "wooden pallet",
+      "truth_any": "wooden pallet",
+      "detector_p": {
+        "background": 0.001,
+        "vehicle": 0.002,
+        "debris": 0.997
+      },
+      "risk": "low",
+      "reasoning": "The object is a cardboard box about 0.9 m by 0.8 m lying in a live motorway lane, which is typically light and deformable rather than rigid. Traffic is present with the nearest vehicle about 16 m away, so drivers may need to react, but this still fits a smaller, softer roadway object rather than a heavy impact hazard.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 16.2,
+      "correct": false
+    }
+  ],
+  "scene": {
+    "called": true,
+    "scene_risk": "high",
+    "objects": [
+      {
+        "id": 7,
+        "where": "lane",
+        "risk": "high"
+      },
+      {
+        "id": 9,
+        "where": "lane",
+        "risk": "low"
+      },
+      {
+        "id": 10,
+        "where": "lane",
+        "risk": "low"
+      }
+    ],
+    "groups": [
+      {
+        "ids": [
+          7,
+          9,
+          10
+        ],
+        "what": "spilled appliance and boxes",
+        "source_vehicle": null
+      }
+    ],
+    "lanes_blocked": 2,
+    "reasoning": "All three red-marked objects are on the lower carriageway in the same area and align as one debris event: a large appliance with two smaller boxes immediately beside it. The appliance sits across the boundary of two running lanes, while the two small boxes are in the adjacent lane area next to it; there is no nearby vehicle clearly shedding the load in this frame, and the nearest traffic is close enough that evasive action would be likely.",
+    "action": "Close the affected lanes and dispatch immediate debris removal.",
+    "raw": "{\"reasoning\":\"All three red-marked objects are on the lower carriageway in the same area and align as one debris event: a large appliance with two smaller boxes immediately beside it. The appliance sits across the boundary of two running lanes, while the two small boxes are in the adjacent lane area next to it; there is no nearby vehicle clearly shedding the load in this frame, and the nearest traffic is close enough that evasive action would be likely.\",\"objects\":[{\"id\":7,\"where\":\"lane\",\"risk\":\"high\"},{\"id\":9,\"where\":\"lane\",\"risk\":\"low\"},{\"id\":10,\"where\":\"lane\",\"risk\":\"low\"}],\"groups\":[{\"ids\":[7,9,10],\"what\":\"spilled appliance and boxes\",\"source_vehicle\":\"none\"}],\"lanes_blocked\":2,\"scene_risk\":\"high\",\"action\":\"Close the affected lanes and dispatch immediate debris removal.\"}",
+    "n_close_views": 3
+  },
+  "debris_missed_by_detection": [],
+  "timing_s": {
+    "identify": 0.06,
+    "context": 0.006,
+    "risk": 0.01,
+    "n_identify": 10,
+    "n_physics_reask": 1,
+    "n_part_questions": 0,
+    "n_risk": 3,
+    "scene": 2.74
+  }
+}

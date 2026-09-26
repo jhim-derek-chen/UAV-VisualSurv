@@ -1,0 +1,559 @@
+{
+  "image_id": 8,
+  "file": "00008.jpg",
+  "location": "pexels/19851623",
+  "width": 3840,
+  "height": 2160,
+  "px_per_metre": 18.59,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        496,
+        926,
+        139,
+        42
+      ],
+      "detection_score": 0.987,
+      "size_m": [
+        7.48,
+        2.26
+      ],
+      "vlm_name": "truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A large elongated white object with smooth blurred contours and a cab-like front is traveling in a lane on the motorway.\",\"name\":\"truck\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 2,
+      "box": [
+        3778,
+        945,
+        61,
+        25
+      ],
+      "detection_score": 0.953,
+      "size_m": [
+        3.28,
+        1.35
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A blurred elongated white object with rounded ends and a darker rectangular area on top, smooth and car-like in shape.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 3,
+      "box": [
+        1292,
+        971,
+        70,
+        25
+      ],
+      "detection_score": 0.985,
+      "size_m": [
+        3.77,
+        1.35
+      ],
+      "vlm_name": "blue car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A blurred elongated blue object with rounded ends and dark shadowing, matching the top view of a moving car.\",\"name\":\"blue car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 4,
+      "box": [
+        3557,
+        1000,
+        72,
+        25
+      ],
+      "detection_score": 0.991,
+      "size_m": [
+        3.87,
+        1.35
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A blurred elongated white shape with a dark central roof-like area and smooth contours, consistent with the top view of a car moving on the road.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 5,
+      "box": [
+        1394,
+        1017,
+        51,
+        21
+      ],
+      "detection_score": 0.993,
+      "size_m": [
+        2.74,
+        1.13
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A blurred elongated dark gray object with a smooth metallic-looking surface and bright highlights, roughly rectangular with rounded ends, aligned with the lane.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 6,
+      "box": [
+        1030,
+        1151,
+        66,
+        23
+      ],
+      "detection_score": 0.971,
+      "size_m": [
+        3.55,
+        1.24
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A smooth light bluish-white elongated rounded rectangle with blurred edges and a glossy uniform texture, resembling the roof of a car seen from directly above.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 7,
+      "box": [
+        2506,
+        1164,
+        211,
+        38
+      ],
+      "detection_score": 0.991,
+      "size_m": [
+        11.35,
+        2.04
+      ],
+      "vlm_name": "loaded truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long rectangular object with a white cab at one end and a brown, mottled elongated body occupying a full lane, consistent with the top view of a truck carrying a load.\",\"name\":\"loaded truck\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 8,
+      "box": [
+        2507,
+        1164,
+        234,
+        99
+      ],
+      "detection_score": 0.977,
+      "size_m": [
+        12.59,
+        5.33
+      ],
+      "vlm_name": "two trucks on the motorway",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A large elongated rectangular object spans two lanes, showing two blurred trucks with white and pink cabs and long trailers, one carrying brown material, on dark asphalt.\",\"name\":\"two trucks on the motorway\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 9,
+      "box": [
+        1216,
+        1193,
+        220,
+        48
+      ],
+      "detection_score": 0.789,
+      "size_m": [
+        11.84,
+        2.58
+      ],
+      "vlm_name": "semi-trailer truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long rectangular white object with smooth sides and a slightly darker cab-like front, blurred as it moves along the lane.\",\"name\":\"semi-trailer truck\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 10,
+      "box": [
+        2241,
+        1213,
+        26,
+        18
+      ],
+      "detection_score": 0.998,
+      "size_m": [
+        1.4,
+        0.97
+      ],
+      "vlm_name": "pair of cardboard boxes",
+      "vlm_category": "cardboard box",
+      "vlm_raw": "{\"description\":\"Two small tan-brown rectangular hollow-looking objects with dark interiors and sharp edges lie side by side on the grey road surface.\",\"name\":\"pair of cardboard boxes\",\"category\":\"cardboard box\"}",
+      "physics": "passed",
+      "truth": "wooden pallet",
+      "truth_any": "wooden pallet",
+      "detector_p": {
+        "background": 0.002,
+        "vehicle": 0.0,
+        "debris": 0.997
+      },
+      "risk": "medium",
+      "reasoning": "The object is identified as a pair of cardboard boxes about 1.4 m by 1.0 m, located in a live traffic lane. Although cardboard is light and relatively soft, its size means approaching drivers\u2014 with the nearest vehicle only about 19 m away among 11 vehicles in view\u2014 may need to react to avoid it, making it more than a trivial hazard.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 19.3,
+      "correct": false
+    },
+    {
+      "id": 11,
+      "box": [
+        2255,
+        1214,
+        12,
+        14
+      ],
+      "detection_score": 0.998,
+      "size_m": [
+        0.65,
+        0.75
+      ],
+      "vlm_name": "cardboard box",
+      "vlm_category": "cardboard box",
+      "vlm_raw": "{\"description\":\"A small rectangular tan object with a hollow dark interior, rigid edges, and a box-like appearance lying on the road surface.\",\"name\":\"cardboard box\",\"category\":\"cardboard box\"}",
+      "physics": "passed",
+      "truth": "wooden pallet",
+      "truth_any": "wooden pallet",
+      "detector_p": {
+        "background": 0.002,
+        "vehicle": 0.0,
+        "debris": 0.998
+      },
+      "risk": "low",
+      "reasoning": "The object is identified as a cardboard box about 0.8 m by 0.6 m, lying in a live traffic lane. Although it is relatively light and soft, it is only about 19 m from the nearest vehicle with 11 vehicles in view, so drivers may need to avoid it, but it is still less dangerous than a rigid heavy object.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 19.0,
+      "correct": false
+    },
+    {
+      "id": 12,
+      "box": [
+        2241,
+        1217,
+        11,
+        15
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        0.59,
+        0.81
+      ],
+      "vlm_name": "cardboard box",
+      "vlm_category": "cardboard box",
+      "vlm_raw": "{\"description\":\"A small upright rectangular object with tan/brown sides, a darker hollow-looking center, and boxy rigid edges, resembling an open carton or crate.\",\"name\":\"cardboard box\",\"category\":\"cardboard box\"}",
+      "physics": "passed",
+      "truth": "wooden pallet",
+      "truth_any": "wooden pallet",
+      "detector_p": {
+        "background": 0.003,
+        "vehicle": 0.001,
+        "debris": 0.997
+      },
+      "risk": "low",
+      "reasoning": "The marked object is a cardboard box about 0.8 m by 0.6 m lying in a live traffic lane. A cardboard box is typically light and soft, so although vehicles are present and the nearest is about 20 m away, it is unlikely by itself to cause loss of control if struck.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 19.8,
+      "correct": false
+    },
+    {
+      "id": 13,
+      "box": [
+        2532,
+        1227,
+        204,
+        36
+      ],
+      "detection_score": 0.92,
+      "size_m": [
+        10.98,
+        1.94
+      ],
+      "vlm_name": "truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long rectangular object with a bright white elongated body and a red front section, smooth and vehicle-like in texture, aligned with the lane.\",\"name\":\"truck\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 14,
+      "box": [
+        2408,
+        1232,
+        12,
+        12
+      ],
+      "detection_score": 0.998,
+      "size_m": [
+        0.65,
+        0.65
+      ],
+      "vlm_name": "cardboard box",
+      "vlm_category": "cardboard box",
+      "vlm_raw": "{\"description\":\"A small square object with a tan-brown center and a pale border, appearing flat and boxy with a slightly mottled texture.\",\"name\":\"cardboard box\",\"category\":\"cardboard box\"}",
+      "physics": "passed",
+      "truth": "wooden pallet",
+      "truth_any": "wooden pallet",
+      "detector_p": {
+        "background": 0.002,
+        "vehicle": 0.0,
+        "debris": 0.998
+      },
+      "risk": "low",
+      "reasoning": "The marked object is identified as a cardboard box about 0.6 m by 0.6 m, which is light and soft compared with rigid debris. It is sitting in a live traffic lane with a vehicle about 11 m away and multiple vehicles nearby, so drivers may need to react, but the object itself is unlikely to cause loss of control if struck.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 11.0,
+      "correct": false
+    },
+    {
+      "id": 15,
+      "box": [
+        2395,
+        1235,
+        13,
+        13
+      ],
+      "detection_score": 0.998,
+      "size_m": [
+        0.7,
+        0.7
+      ],
+      "vlm_name": "cardboard box",
+      "vlm_category": "cardboard box",
+      "vlm_raw": "{\"description\":\"A small roughly square object with a tan-brown center, pale edges, and a flat slightly textured appearance lies on the roadway.\",\"name\":\"cardboard box\",\"category\":\"cardboard box\"}",
+      "physics": "passed",
+      "truth": "wooden pallet",
+      "truth_any": "wooden pallet",
+      "detector_p": {
+        "background": 0.003,
+        "vehicle": 0.0,
+        "debris": 0.997
+      },
+      "risk": "low",
+      "reasoning": "The marked object is identified as a cardboard box about 0.7 m by 0.7 m lying in a live traffic lane. Although a vehicle is only about 12 m away and there are 11 vehicles in view, a cardboard box is a light, soft object that is less likely to cause loss of control than a rigid obstacle.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 11.7,
+      "correct": false
+    },
+    {
+      "id": 16,
+      "box": [
+        1514,
+        1236,
+        134,
+        38
+      ],
+      "detection_score": 0.887,
+      "size_m": [
+        7.21,
+        2.04
+      ],
+      "vlm_name": "box truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long rectangular light gray object with a smooth top and a white cab-like front, consistent with a large truck seen from above.\",\"name\":\"box truck\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 17,
+      "box": [
+        2083,
+        1240,
+        23,
+        15
+      ],
+      "detection_score": 0.995,
+      "size_m": [
+        1.24,
+        0.81
+      ],
+      "vlm_name": "cardboard boxes",
+      "vlm_category": "cardboard box",
+      "vlm_raw": "{\"description\":\"Two small rectangular tan-brown objects side by side with darker tops, box-like in shape and smooth surfaces, lying on the roadway.\",\"name\":\"cardboard boxes\",\"category\":\"cardboard box\"}",
+      "physics": "passed",
+      "truth": "wooden pallet",
+      "truth_any": "wooden pallet",
+      "detector_p": {
+        "background": 0.006,
+        "vehicle": 0.0,
+        "debris": 0.994
+      },
+      "risk": "medium",
+      "reasoning": "The object is identified as cardboard boxes about 1.2 m by 0.8 m lying in a live traffic lane, and the nearest vehicle is only about 28 m away among 11 vehicles in view. Cardboard is relatively light and soft, but this is still lane debris that drivers may need to avoid at speed, making it more than a minimal hazard.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 27.6,
+      "correct": false
+    },
+    {
+      "id": 18,
+      "box": [
+        2083,
+        1243,
+        11,
+        13
+      ],
+      "detection_score": 0.994,
+      "size_m": [
+        0.59,
+        0.7
+      ],
+      "vlm_name": "cardboard box",
+      "vlm_category": "cardboard box",
+      "vlm_raw": "{\"description\":\"A small upright rectangular object with a yellow-brown face, dark top edge, and box-like appearance, with smooth flat surfaces and no visible wheels or limbs.\",\"name\":\"cardboard box\",\"category\":\"cardboard box\"}",
+      "physics": "passed",
+      "truth": "wooden pallet",
+      "truth_any": "wooden pallet",
+      "detector_p": {
+        "background": 0.004,
+        "vehicle": 0.0,
+        "debris": 0.995
+      },
+      "risk": "low",
+      "reasoning": "The object is a cardboard box about 0.7 m by 0.6 m lying in a live motorway lane, which is light and soft compared with rigid debris. Traffic is present with the nearest vehicle about 27 m away, so drivers may need to react, but an empty box is unlikely to cause loss of control.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 27.3,
+      "correct": false
+    }
+  ],
+  "scene": {
+    "called": true,
+    "scene_risk": "medium",
+    "objects": [
+      {
+        "id": 10,
+        "where": "lane",
+        "risk": "low"
+      },
+      {
+        "id": 11,
+        "where": "lane",
+        "risk": "low"
+      },
+      {
+        "id": 12,
+        "where": "lane",
+        "risk": "low"
+      },
+      {
+        "id": 14,
+        "where": "lane",
+        "risk": "low"
+      },
+      {
+        "id": 15,
+        "where": "lane",
+        "risk": "low"
+      },
+      {
+        "id": 17,
+        "where": "lane",
+        "risk": "low"
+      },
+      {
+        "id": 18,
+        "where": "lane",
+        "risk": "low"
+      }
+    ],
+    "groups": [
+      {
+        "ids": [
+          10,
+          11,
+          12,
+          14,
+          15,
+          17,
+          18
+        ],
+        "what": "scattered cardboard box spill",
+        "source_vehicle": 8
+      }
+    ],
+    "lanes_blocked": 2,
+    "reasoning": "The red-marked objects are all small cardboard boxes scattered across the lower carriageway, mostly around the boundary between the middle and rightmost running lanes; none are on the shoulder or off the road. Their spacing and alignment indicate one spill event, most likely from the open-load lorry V8 traveling nearby, with boxes distributed over the path behind and beside it. Because the debris is light cardboard, the main effect is nuisance/avoidance in two adjacent running lanes rather than severe impact danger.",
+    "action": "Warn traffic and dispatch cleanup for debris across two lanes behind V8.",
+    "raw": "{\"reasoning\":\"The red-marked objects are all small cardboard boxes scattered across the lower carriageway, mostly around the boundary between the middle and rightmost running lanes; none are on the shoulder or off the road. Their spacing and alignment indicate one spill event, most likely from the open-load lorry V8 traveling nearby, with boxes distributed over the path behind and beside it. Because the debris is light cardboard, the main effect is nuisance/avoidance in two adjacent running lanes rather than severe impact danger.\",\"objects\":[{\"id\":10,\"where\":\"lane\",\"risk\":\"low\"},{\"id\":11,\"where\":\"lane\",\"risk\":\"low\"},{\"id\":12,\"where\":\"lane\",\"risk\":\"low\"},{\"id\":14,\"where\":\"lane\",\"risk\":\"low\"},{\"id\":15,\"where\":\"lane\",\"risk\":\"low\"},{\"id\":17,\"where\":\"lane\",\"risk\":\"low\"},{\"id\":18,\"where\":\"lane\",\"risk\":\"low\"}],\"groups\":[{\"ids\":[10,11,12,14,15,17,18],\"what\":\"scattered cardboard box spill\",\"source_vehicle\":\"V8\"}],\"lanes_blocked\":2,\"scene_risk\":\"medium\",\"action\":\"Warn traffic and dispatch cleanup for debris across two lanes behind V8.\"}",
+    "n_close_views": 6
+  },
+  "debris_missed_by_detection": [
+    "wooden pallet"
+  ],
+  "timing_s": {
+    "identify": 14.88,
+    "context": 0.007,
+    "risk": 11.46,
+    "n_identify": 18,
+    "n_physics_reask": 0,
+    "n_part_questions": 0,
+    "n_risk": 7,
+    "scene": 3.87
+  }
+}

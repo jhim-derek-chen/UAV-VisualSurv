@@ -24,6 +24,8 @@ UAV frame
   -> 4  context gate     frame edge, distance from traffic, detector opinion,
                          vehicle parts: false alarms never reach step 5
   -> 5  how risky        the VLM rates each hazard high / medium / low, with reasoning
+  -> 6  the whole scene  (architecture C) one more call judges the frame as a whole:
+                         lane or shoulder, spilled loads, lanes blocked, what to do
 ```
 
 ## Results
@@ -547,6 +549,7 @@ and `summary.json`:
 |---|---|
 | `a_qwen_local/` | A: local Qwen3.5-2B + context gate |
 | `b_gpt/` | B: OpenAI gpt-5.4 instead of Qwen, same prompts, checks and gate |
+| `scene-relations/c_gpt_scene/` | C: B plus a scene-level analysis, on the scene-relation set |
 | `dev/` | runs on the training renders, where rules were chosen |
 
 Earlier runs without the context gate are kept under the git tag
@@ -573,6 +576,29 @@ one card per non-vehicle box, hazards first. Each card shows a zoom, the
 VLM's name and category, a label check (CORRECT or WRONG against the
 dataset label), the measured size and the distance to the nearest vehicle,
 any physics correction, the risk level and the VLM's reasoning.
+
+### Architecture C: the scene as a whole
+
+![Scene analysis of a spilled load: four planks grouped as one event from the lorry V9](results/risk-assessment/scene-relations/c_gpt_scene/13_chain.jpg)
+
+*A and B rate every box on its own. C adds one call per frame that sees the
+whole road with every candidate numbered (panel 4). Here it groups four
+planks as one spilled load, "most likely from the nearby open-load lorry
+V9", counts two blocked lanes and asks for them to be closed.*
+
+C is tested on a scene-relation set (`scripts/build_scene_relations.py`):
+23 real frames where the right answer depends on relations. The same object
+is placed in a lane or on the hard shoulder, a load is strewn behind a lorry,
+or two objects block adjacent lanes. The expected answers were written
+before any run.
+- **Scene risk:** C was right in 17 of 23 frames, against 16 for B's per-box
+  risks.
+- **Answers only C gives:** lane or shoulder right for 24 of 25 objects,
+  spills grouped as one event 4 of 4, blocked lanes exact in 16 of 23.
+- **Most errors come earlier.** Pallets missed by the detector and objects
+  misnamed in step 3 decide what C gets to see.
+
+Details are in the report.
 
 ### Results on the 30 test images (architecture A)
 
@@ -655,6 +681,8 @@ python scripts\assess_risk.py --arch a --split dev    # A on the training render
 python scripts\assess_risk.py --arch a                # A on the test set (+ figures)
 python scripts\assess_risk.py --arch b                # B: OpenAI (key in .secrets\openai_api_key.txt)
 python scripts\assess_risk.py --arch a --figures-only # redraw figures from saved records
+python scripts\build_scene_relations.py               # render the scene-relation set
+python scripts\assess_risk.py --arch c --split scene  # C on it (+ figures with panel 4)
 python scripts\time_pipeline.py                       # end-to-end timing of A
 ```
 
