@@ -1,0 +1,171 @@
+{
+  "image_id": 14,
+  "file": "00014.jpg",
+  "location": "pexels/12571926",
+  "width": 1080,
+  "height": 1920,
+  "px_per_metre": 28.47,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        601,
+        1085,
+        86,
+        47
+      ],
+      "detection_score": 0.979,
+      "size_m": [
+        3.02,
+        1.65
+      ],
+      "vlm_name": "white car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A white elongated rounded rectangular object with smooth surface and darker window-like areas, matching the top view of a car in a lane.\",\"name\":\"white car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 2,
+      "box": [
+        344,
+        1148,
+        31,
+        131
+      ],
+      "detection_score": 0.71,
+      "size_m": [
+        1.09,
+        4.6
+      ],
+      "vlm_name": "lamp post or light pole",
+      "vlm_category": "roadside structure (sign, lamp post, barrier, gantry, road marking)",
+      "vlm_raw": "{\"description\":\"A long, narrow light-grey/white object with a thin central pole-like section and bulkier ends, smooth and rigid, aligned across the carriageway and median.\",\"name\":\"lamp post or light pole\",\"category\":\"roadside structure (sign, lamp post, barrier, gantry, road marking)\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as roadside structure, vegetation or shadow: not an object on the carriageway.",
+      "correct": true
+    },
+    {
+      "id": 3,
+      "box": [
+        633,
+        1164,
+        79,
+        42
+      ],
+      "detection_score": 0.994,
+      "size_m": [
+        2.78,
+        1.48
+      ],
+      "vlm_name": "dark car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A dark grey elongated rectangular object with smooth glossy surfaces, clear roof and window outlines, and bright highlights at the front corners, aligned like a car in the lane.\",\"name\":\"dark car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 4,
+      "box": [
+        530,
+        1353,
+        84,
+        43
+      ],
+      "detection_score": 0.929,
+      "size_m": [
+        2.95,
+        1.51
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A dark grey elongated rectangular object with smooth reflective surfaces and the proportions of a car roof and body, slightly blurred by motion, is within the red rectangle.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 5,
+      "box": [
+        836,
+        1385,
+        18,
+        21
+      ],
+      "detection_score": 0.997,
+      "size_m": [
+        0.63,
+        0.74
+      ],
+      "vlm_name": "cardboard box",
+      "vlm_category": "cardboard box",
+      "vlm_raw": "{\"description\":\"A small upright rectangular object, light brown/tan in colour with a flat top and faint vertical panel-like texture, casting a dark shadow to one side.\",\"name\":\"cardboard box\",\"category\":\"cardboard box\"}",
+      "physics": "passed",
+      "truth": "cardboard box",
+      "truth_any": "cardboard box",
+      "risk": "low",
+      "reasoning": "The object is identified as a cardboard box about 0.7 m by 0.6 m, sitting in a live motorway lane. It is a light, soft item, but with a vehicle only about 10 m away and 4 vehicles in view, drivers may need to react; this still fits a low hazard rather than a rigid high-risk obstruction.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 9.6,
+      "correct": true,
+      "detector_p": {
+        "background": 0.002,
+        "vehicle": 0.0,
+        "debris": 0.998
+      }
+    },
+    {
+      "id": 6,
+      "box": [
+        274,
+        1390,
+        76,
+        38
+      ],
+      "detection_score": 0.873,
+      "size_m": [
+        2.67,
+        1.33
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A light blue-gray elongated rectangular object with dark edges and a smooth roof-like surface, resembling the top view of a car.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    }
+  ],
+  "debris_missed_by_detection": [],
+  "timing_s": {
+    "identify": 9.44,
+    "risk": 1.82,
+    "n_identify": 6,
+    "n_physics_reask": 0,
+    "n_risk": 1,
+    "context": 0.001,
+    "n_part_questions": 0
+  }
+}

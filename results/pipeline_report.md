@@ -6,7 +6,7 @@ Last updated: 2026-09-26. Three ways to run the full chain, frame to risk level:
 |---|---|---|---|
 | 1 | road mask + OWLv2 + re-scorer | local Qwen3.5-2B (4-bit), answers taken as they are | done |
 | 2 | same | local Qwen3.5-2B + context gate before the risk step | done |
-| 3 | same | commercial VLM: OpenAI gpt-5.4, same prompts and checks as path 1 | code ready, waiting for an API key |
+| 3 | same | commercial VLM: OpenAI gpt-5.4, same prompts and checks as path 1; also run through path 2's context gate | done |
 
 Objective 1 is identical in all three paths and is not re-tuned per path.
 
@@ -36,33 +36,52 @@ precision 84.1%. At IoU > 0.5: 92.8% / 80.0% / 81.3%. See the README.
 
 Scored on the boxes Objective 1 keeps on the 30 test frames (414 boxes).
 
-| | Path 1 | Path 2 | Path 3 |
-|---|---|---|---|
-| debris named with the right category | 56% (14 / 25) | 56% | – |
-| tyres named "tire" | 7 / 9 | 7 / 9 | – |
-| debris sent to risk assessment at all | 84% | 84% | – |
-| vehicles named "vehicle" | 96.0% (316 / 329) | 96.0% | – |
+| | Path 1 / 2 (Qwen3.5-2B, local) | Path 3 (gpt-5.4) |
+|---|---|---|
+| debris named with the right category | 56% (14 / 25) | 64% (16 / 25) |
+| tyres named "tire" | 7 / 9 | 6 / 9 |
+| debris sent to risk assessment at all | 84% | 80% |
+| vehicles named "vehicle" | 96.0% (316 / 329) | 96.4% (317 / 329) |
+| false-alarm boxes correctly rejected | 24% (9 / 38) | 37% (14 / 38) |
+| answers overruled by the physics check | 48 | 10 |
+
+**Path 3 is better, but far from the near-100% target.** Looking at the crops
+it got wrong splits them in two:
+- **Clear model errors.** A tyre with visible tread was called a shadow, and a
+  mattress was called a roadside structure.
+- **Crops that carry too little information.** A 22 x 15 px bin is a
+  green-black blob. A fridge, a suitcase and a cardboard box seen straight
+  from above are all dark boxes.
+
+On this test set, a better model can fix only the first kind. The second kind
+needs more pixels on the object: a lower flight or a longer lens. The
+rendered objects' odd shadows do not help either. The prompt was chosen for
+Qwen on the dev set and reused unchanged for gpt-5.4; it was not re-tuned.
 
 ### Objective 2: false alarms in the risk step (goal 2)
 
 "False" means the box is not a debris object: a vehicle, a part of one, or
 background. A box on a debris object's shadow counts as that debris.
 
-| | Path 1 | Path 2, round 1 | Path 2, round 2 | Path 3 |
-|---|---|---|---|---|
-| false boxes sent to risk assessment | 34 | 3 | 1 | – |
-| of which rated high risk | 31 | 3 | 1 | – |
-| debris boxes assessed (of 27) | 22 | 22 | 22 | – |
-| dev: false boxes assessed / debris assessed (of 87) | 33 / 70 | 2 / 68 | 2 / 68 | – |
+| | Path 1 | Path 2, round 1 | Path 2, round 2 | Path 3 | Path 3 + gate |
+|---|---|---|---|---|---|
+| false boxes sent to risk assessment | 34 | 3 | 1 | 23 | **0** |
+| of which rated high risk | 31 | 3 | 1 | 12 | **0** |
+| debris boxes assessed (of 27) | 22 | 22 | 22 | 21 | 21 |
+| dev: false boxes assessed / debris assessed (of 87) | 33 / 70 | 2 / 68 | 2 / 68 | – | – |
+
+- **Path 3 + gate meets goal 2 on the test set.** No false alarm reached
+  the risk step, and the gate removed no debris. The gate is path 2's round-2
+  gate applied unchanged: nothing about it was tuned on path 3.
 
 - **Round 1** froze every threshold on dev before the test run, so it is the
   clean held-out result.
 - **Round 2** added two rules after inspecting the three round-1 test failures.
   Both were checked on dev and remove no dev debris, but the test set is no
   longer a clean hold-out for them.
-- **Goal 2 (no false alarm rated high) is not fully met.** One false alarm
-  remains on the test set: the red cab of an articulated lorry, taken for a
-  barrel.
+- **Goal 2 (no false alarm rated high) is not fully met with Qwen.** One
+  false alarm remains on the test set: the red cab of an articulated lorry,
+  taken for a barrel. With gpt-5.4 (path 3 + gate) it is met.
 
 ### The path-2 context gate
 
@@ -97,18 +116,18 @@ four locations, so box counts differ slightly from the accuracy runs.
 **Staged mode** runs Objective 1 on every frame, unloads its models, then runs
 the VLM stages. It suits processing a flight's frames after landing.
 
-| seconds per frame (mean over 30) | Path 1 | Path 2 | Path 3 |
+| seconds per frame (mean over 30) | Path 1 | Path 2 | Path 3 (+ gate) |
 |---|---|---|---|
-| road mask | 0.38 | 0.32 | – |
-| detection (OWLv2 + features) | 4.62 | 4.33 | – |
-| re-scorer + filter | < 0.01 | < 0.01 | – |
-| VLM identification | 40.81 | 49.19 | – |
-| context gate | – | 0.09 | – |
-| VLM risk step | 7.75 | 4.45 | – |
-| **total** | **53.55** | **58.38** | – |
-| slowest frame | 148.18 | 139.44 | – |
-| all 30 frames | 1607 s (26.8 min) | 1751 s (29.2 min) | – |
-| boxes per frame / risk calls per frame | 13.3 / 1.57 | 13.3 / 0.80 | – |
+| road mask | 0.38 | 0.32 | 0.38 (local, as path 1) |
+| detection (OWLv2 + features) | 4.62 | 4.33 | 4.62 (local, as path 1) |
+| re-scorer + filter | < 0.01 | < 0.01 | < 0.01 |
+| VLM identification | 40.81 | 49.19 | 22.0 (API) |
+| context gate | – | 0.09 | 0.13 |
+| VLM risk step | 7.75 | 4.45 | 2.7 without gate; about 1.3 with it |
+| **total** | **53.55** | **58.38** | **about 28** |
+| slowest frame | 148.18 | 139.44 | not measured |
+| all 30 frames | 1607 s (26.8 min) | 1751 s (29.2 min) | about 14 min |
+| boxes per frame / risk calls per frame | 13.3 / 1.57 | 13.3 / 0.80 | 13.8 / 1.5 (0.7 with gate) |
 
 | GPU memory (peak allocated) | Path 1 | Path 2 | Path 3 |
 |---|---|---|---|
@@ -127,6 +146,10 @@ Model load time: road segmenter 3.8 s, OWLv2 1.2 s, Qwen3.5-2B 10.2 s.
   the risk step: 0.8 instead of 1.6 VLM risk calls per frame, 4.5 s instead
   of 7.8 s. The context gate itself costs 0.09 s per frame, including the
   rare part-of-vehicle question.
+- **Path 3's time is network time.** Its identification is one API call per
+  box at about 1.6 s, made one after another. It does not use the GPU, and
+  calls could run in parallel to cut it further. Its Objective 1 times are
+  path 1's measurements, since that part is identical.
 - **Co-resident is not an option on this card.** With every model loaded at once the peak is 4.05 GB, above the card. Windows spills into shared memory instead of failing, and the 6-frame sample ran at 72.5 s per frame against 53.6 s staged. A live system on this card would need a smaller detector or VLM, or a bigger GPU.
 
 ## 4. Deployment considerations
@@ -136,19 +159,21 @@ Model load time: road segmenter 3.8 s, OWLv2 1.2 s, Qwen3.5-2B 10.2 s.
 | hardware | one 4 GB laptop GPU is enough, staged | same GPU for Objective 1 |
 | runs offline | yes | no, needs a network link |
 | images leave the device | no | crops of each detection are sent to the provider |
-| cost per frame | electricity only | about US$0.13 per frame on gpt-5.4, estimated (below) |
-| latency | about 54 s per frame, far from real time | set by the network and the provider; calls can run in parallel |
-| identification quality | 56% of debris named right | to be measured |
+| cost per frame | electricity only | US$0.038 per frame on gpt-5.4, measured (below) |
+| latency | about 54 s per frame, far from real time | about 28 s per frame, sequential calls; parallel calls would cut it |
+| identification quality | 56% of debris named right | 64% of debris named right |
 
-**Estimated API cost for path 3.** Confirm with the logged token usage after
-the first run.
-- **Per call.** One identification call sends two 448 x 448 crops. OpenAI's
-  newer models bill 32 px patches times about 1.2, so about 240 tokens each.
-  With about 350 tokens of text, that is about 830 input tokens. Output,
-  including reasoning, is about 350 tokens.
-- **Per run.** The 30 test frames need about 520 calls: 414 identifications,
-  48 physics re-asks and about 60 risk calls. That is about 0.43 M input
-  tokens and 0.18 M output tokens.
+**Measured API cost for path 3.**
+- **Tokens.** The 30-frame test run made 469 gpt-5.4 calls: 309,030 input
+  tokens and 23,963 output tokens. gpt-5.4 used no reasoning tokens at its
+  default setting.
+- **Cost.** At $2.5 / $15 per M tokens, that is about US$1.13 per 30 frames,
+  or US$0.038 per frame.
+- **Setup.** A 2-image check on the dev set cost another US$0.13. The context
+  gate's few part-of-vehicle questions cost cents.
+
+The estimate before the run assumed 350 output tokens per call including
+reasoning; the real figure was 51. For reference, before the run:
 
 | model | input / output per M tokens | one run of 30 frames |
 |---|---|---|
@@ -182,4 +207,7 @@ check.
 ## 5. Change log
 
 - 2026-09-26: report created. Path 1 and path 2 (two rounds) measured.
-- 2026-09-26: path 3 provider chosen, OpenAI gpt-5.4 (`scripts/api_vlm.py`); waiting for a key.
+- 2026-09-26: path 3 provider chosen, OpenAI gpt-5.4 (`scripts/api_vlm.py`).
+- 2026-09-26: path 3 measured on the test set, with and without the context
+  gate. Goal 2 met with gpt-5.4 + gate. Goal 1 not met: 64% of debris named
+  right; part of the gap is crops too small to name.

@@ -1,0 +1,80 @@
+{
+  "path": "path3_commercial_vlm",
+  "split": "dev",
+  "variant": {
+    "bits": 4,
+    "model": "qwen3.5-2b",
+    "physics": true,
+    "prompt": "describe",
+    "size": true,
+    "tight": true
+  },
+  "api_model": "openai/gpt-5.4",
+  "api_calls_made": 55,
+  "api_calls_from_cache": 0,
+  "api_tokens": {
+    "prompt": 36452,
+    "output": 2741,
+    "reasoning": 0
+  },
+  "identification": {
+    "debris_type": 0.75,
+    "hazard_recall": 1.0,
+    "vehicle": 0.976,
+    "false_hazard": 0.0,
+    "n_debris": 4,
+    "n_vehicle": 42,
+    "n_other": 2,
+    "score": 0.932
+  },
+  "identification_accuracy": {
+    "vehicle": {
+      "correct": 41,
+      "n": 42,
+      "accuracy": 0.976
+    },
+    "non-target": {
+      "correct": 1,
+      "n": 2,
+      "accuracy": 0.5
+    },
+    "debris": {
+      "correct": 3,
+      "n": 4,
+      "accuracy": 0.75
+    }
+  },
+  "debris_confusion": {
+    "ladder": {
+      "ladder": 1
+    },
+    "tire": {
+      "mattress": 1,
+      "tire": 2
+    }
+  },
+  "physics_corrections": 2,
+  "risk": {
+    "false_high_risk": 0,
+    "false_any_risk": 0,
+    "debris_boxes": 4,
+    "debris_rated_high": 3,
+    "debris_rated_any": 4,
+    "counts": {
+      "none": 45,
+      "high": 3,
+      "medium": 1
+    }
+  },
+  "context_suppressed": 0,
+  "timing_s": {
+    "identify": 91.5,
+    "risk": 7.1,
+    "context": 0
+  },
+  "calls": {
+    "n_identify": 49,
+    "n_physics_reask": 2,
+    "n_risk": 4
+  }
+}

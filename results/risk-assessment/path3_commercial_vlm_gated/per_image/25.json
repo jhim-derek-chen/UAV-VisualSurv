@@ -1,0 +1,263 @@
+{
+  "image_id": 25,
+  "file": "00025.jpg",
+  "location": "pexels/19851623",
+  "width": 3840,
+  "height": 2160,
+  "px_per_metre": 18.59,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        867,
+        918,
+        139,
+        42
+      ],
+      "detection_score": 0.767,
+      "size_m": [
+        7.48,
+        2.26
+      ],
+      "vlm_name": "truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A large elongated white object with a boxy cab-like front and a broader cylindrical tank-like rear, smooth and slightly motion-blurred, is traveling along the lane.\",\"name\":\"truck\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 2,
+      "box": [
+        1825,
+        964,
+        70,
+        24
+      ],
+      "detection_score": 0.947,
+      "size_m": [
+        3.77,
+        1.29
+      ],
+      "vlm_name": "blue car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A blurred elongated blue object with rounded ends and dark shadowing, consistent with the top view of a moving car.\",\"name\":\"blue car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 3,
+      "box": [
+        1961,
+        1012,
+        57,
+        21
+      ],
+      "detection_score": 0.974,
+      "size_m": [
+        3.07,
+        1.13
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A dark gray elongated rectangular object with blurred edges and a lighter reflective patch on top, consistent with a car seen in motion from above.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 4,
+      "box": [
+        385,
+        1162,
+        71,
+        23
+      ],
+      "detection_score": 0.979,
+      "size_m": [
+        3.82,
+        1.24
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A smooth light grey to white elongated rounded rectangle with blurred edges and a faint darker patch near the center, consistent with a top-down view of a moving object on the roadway.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 5,
+      "box": [
+        2096,
+        1168,
+        206,
+        39
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        11.08,
+        2.1
+      ],
+      "vlm_name": "flatbed truck carrying logs or timber",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long rectangular object with a white cab at one end and a brown, uneven textured load on top, consistent with a truck seen from above and blurred by motion.\",\"name\":\"flatbed truck carrying logs or timber\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 6,
+      "box": [
+        2098,
+        1168,
+        272,
+        98
+      ],
+      "detection_score": 0.953,
+      "size_m": [
+        14.63,
+        5.27
+      ],
+      "vlm_name": "two trucks",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long white rectangular vehicle with a pink/red cab is alongside a smaller brown open-bed truck carrying logs, both seen from above on the roadway.\",\"name\":\"two trucks\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 7,
+      "box": [
+        796,
+        1207,
+        230,
+        45
+      ],
+      "detection_score": 0.918,
+      "size_m": [
+        12.37,
+        2.42
+      ],
+      "vlm_name": "semi-truck or lorry",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long rectangular white object with a smooth blurred surface and a slightly darker cab-like section at one end, aligned with the lane on the motorway.\",\"name\":\"semi-truck or lorry\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 8,
+      "box": [
+        2160,
+        1230,
+        202,
+        38
+      ],
+      "detection_score": 0.948,
+      "size_m": [
+        10.87,
+        2.04
+      ],
+      "vlm_name": "truck or lorry",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long rectangular object with a bright white elongated body and a red cab-like front, with smooth blurred texture consistent with motion on the roadway.\",\"name\":\"truck or lorry\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 9,
+      "box": [
+        2334,
+        1231,
+        34,
+        34
+      ],
+      "detection_score": 0.905,
+      "size_m": [
+        1.83,
+        1.83
+      ],
+      "vlm_name": "pink vehicle",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A roughly square bright pink/magenta object with blurred edges and a lighter pink square patch in the center, appearing soft-sided rather than rigid.\",\"name\":\"pink suitcase or bag\",\"category\":\"suitcase or bag\"} | re-asked: {\"name\":\"pink vehicle\",\"category\":\"vehicle\"}",
+      "physics": "corrected: suitcase or bag is implausible at 1.8 m",
+      "truth": "unclear",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": null
+    },
+    {
+      "id": 10,
+      "box": [
+        1187,
+        1239,
+        140,
+        38
+      ],
+      "detection_score": 0.896,
+      "size_m": [
+        7.53,
+        2.04
+      ],
+      "vlm_name": "box truck or lorry",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long light-grey rectangular object with rounded corners and a small white cab-like front, smooth and slightly motion-blurred, aligned with the lane.\",\"name\":\"box truck or lorry\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    }
+  ],
+  "debris_missed_by_detection": [
+    "suitcase or bag"
+  ],
+  "timing_s": {
+    "identify": 16.93,
+    "risk": 0.0,
+    "n_identify": 10,
+    "n_physics_reask": 1,
+    "n_risk": 0,
+    "context": 0.004,
+    "n_part_questions": 0
+  }
+}

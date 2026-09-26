@@ -1,0 +1,719 @@
+{
+  "image_id": 7,
+  "file": "00007.jpg",
+  "location": "pexels/12306893",
+  "width": 1080,
+  "height": 1920,
+  "px_per_metre": 16.02,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        677,
+        48,
+        20,
+        35
+      ],
+      "detection_score": 0.992,
+      "size_m": [
+        1.25,
+        2.18
+      ],
+      "vlm_name": "white car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A small white rectangular object with a smooth glossy surface and dark window-like bands, shaped like the roof and rear of a compact car, is centered in the lane.\",\"name\":\"white car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 2,
+      "box": [
+        501,
+        73,
+        22,
+        32
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        1.37,
+        2.0
+      ],
+      "vlm_name": "van",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A light grey to white rectangular object with smooth solid surfaces and darker areas suggesting windows and shadow, shaped like a small van seen from above.\",\"name\":\"van\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 3,
+      "box": [
+        524,
+        166,
+        20,
+        28
+      ],
+      "detection_score": 0.998,
+      "size_m": [
+        1.25,
+        1.75
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A dark blue, boxy rectangular object with a bright windshield-like top area and rounded front edges, consistent with a small car seen from above.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 4,
+      "box": [
+        544,
+        241,
+        22,
+        36
+      ],
+      "detection_score": 0.997,
+      "size_m": [
+        1.37,
+        2.25
+      ],
+      "vlm_name": "car or van",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A small rectangular object with a bright white top bordered by a darker frame and a darker rounded section at one end, with smooth solid surfaces rather than loose debris.\",\"name\":\"car or van\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 5,
+      "box": [
+        368,
+        384,
+        12,
+        15
+      ],
+      "detection_score": 0.787,
+      "size_m": [
+        0.75,
+        0.94
+      ],
+      "vlm_name": "small suitcase or bag",
+      "vlm_category": "suitcase or bag",
+      "vlm_raw": "{\"description\":\"A small upright rectangular object with a pale gray or bluish border and a darker blue center, smooth-looking and box-like, is sitting on the shoulder beside the road.\",\"name\":\"small suitcase or bag\",\"category\":\"suitcase or bag\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "medium",
+      "reasoning": "The marked object appears to be a small suitcase or bag about 0.9 m by 0.7 m, positioned on the motorway carriageway near the edge of a live lane. With a vehicle only about 10 m away and heavy traffic visible, drivers may need to strike it or make a sudden avoidance manoeuvre at speed, but as a suitcase/bag it fits a smaller, softer in-lane object rather than a rigid heavy obstacle.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 10.2,
+      "correct": false
+    },
+    {
+      "id": 6,
+      "box": [
+        520,
+        412,
+        26,
+        41
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        1.62,
+        2.56
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A rectangular light grey object with rounded corners and a darker border, smooth bright top surface, and darker irregular details at one end, aligned like a car in the lane.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 7,
+      "box": [
+        685,
+        464,
+        32,
+        75
+      ],
+      "detection_score": 0.995,
+      "size_m": [
+        2.0,
+        4.68
+      ],
+      "vlm_name": "box truck or van",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long rectangular white object with a smooth roof-like top and a darker cab section at one end, aligned with the lane like a truck seen from above.\",\"name\":\"box truck or van\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 8,
+      "box": [
+        471,
+        507,
+        27,
+        33
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        1.69,
+        2.06
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A dark gray, rectangular object with rounded ends and smooth reflective surfaces, showing the roof and windows of a car-like shape within the lane.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 9,
+      "box": [
+        419,
+        553,
+        31,
+        49
+      ],
+      "detection_score": 0.997,
+      "size_m": [
+        1.93,
+        3.06
+      ],
+      "vlm_name": "white car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A white elongated rounded object with dark windows and smooth vehicle-like contours is visible on the roadway.\",\"name\":\"white car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 10,
+      "box": [
+        730,
+        574,
+        23,
+        46
+      ],
+      "detection_score": 0.996,
+      "size_m": [
+        1.44,
+        2.87
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A dark blue elongated object with a smooth glossy appearance and rounded front and rear, matching the top-down outline of a small car in the lane.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 11,
+      "box": [
+        49,
+        626,
+        9,
+        20
+      ],
+      "detection_score": 0.529,
+      "size_m": [
+        0.56,
+        1.25
+      ],
+      "vlm_name": "dark shadow/vegetation patch",
+      "vlm_category": "vegetation or shadow",
+      "vlm_raw": "{\"description\":\"A small dark upright-looking shape with a pointed top and a lighter band or highlight across the middle, blurry and irregular against the grey road surface.\",\"name\":\"traffic cone\",\"category\":\"traffic cone\"} | re-asked: {\"name\":\"dark shadow/vegetation patch\",\"category\":\"vegetation or shadow\"}",
+      "physics": "corrected: traffic cone is implausible at 1.2 m",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as roadside structure, vegetation or shadow: not an object on the carriageway.",
+      "correct": true
+    },
+    {
+      "id": 12,
+      "box": [
+        355,
+        786,
+        55,
+        102
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        3.43,
+        6.37
+      ],
+      "vlm_name": "truck or lorry",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long white truck-like shape with a pinkish/red open framework or cargo bed on top, showing a rigid metallic texture and aligned with the traffic lane.\",\"name\":\"truck or lorry\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 13,
+      "box": [
+        346,
+        794,
+        61,
+        202
+      ],
+      "detection_score": 0.992,
+      "size_m": [
+        3.81,
+        12.61
+      ],
+      "vlm_name": "truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long rectangular white and red object with the clear outline and roof details of a lorry occupies a motorway lane beneath the sign gantry.\",\"name\":\"truck\", \"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 14,
+      "box": [
+        326,
+        810,
+        35,
+        47
+      ],
+      "detection_score": 0.998,
+      "size_m": [
+        2.18,
+        2.93
+      ],
+      "vlm_name": "white car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A white rectangular object with rounded corners and a dark tinted central panel, smooth like a roof, aligned in the lane beside another vehicle.\",\"name\":\"white car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 15,
+      "box": [
+        620,
+        837,
+        28,
+        60
+      ],
+      "detection_score": 0.997,
+      "size_m": [
+        1.75,
+        3.75
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A silver-grey elongated object with a smooth, car-like outline, darker window area in the middle, and glossy texture is visible between the lane markings.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 16,
+      "box": [
+        671,
+        873,
+        26,
+        55
+      ],
+      "detection_score": 0.996,
+      "size_m": [
+        1.62,
+        3.43
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A white, rectangular object with smooth contours and dark window-like areas is seen from above in the traffic lane, consistent with the roof and windshield of a car.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 17,
+      "box": [
+        560,
+        927,
+        29,
+        10
+      ],
+      "detection_score": 0.671,
+      "size_m": [
+        1.81,
+        0.62
+      ],
+      "vlm_name": "small road debris",
+      "vlm_category": "other debris",
+      "vlm_raw": "{\"description\":\"A small elongated object with a bright white central section and dark black areas at both ends, appearing as a low flat rectangular shape on the roadway.\",\"name\":\"small road debris\",\"category\":\"other debris\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "medium",
+      "reasoning": "The marked object is small road debris about 1.8 m by 0.6 m and it appears to be in a live traffic lane rather than on the shoulder. With the nearest vehicle only about 6 m away and many vehicles present, drivers have little time to react and may brake or swerve around it.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 5.5,
+      "correct": false
+    },
+    {
+      "id": 18,
+      "box": [
+        612,
+        928,
+        30,
+        10
+      ],
+      "detection_score": 0.605,
+      "size_m": [
+        1.87,
+        0.62
+      ],
+      "vlm_name": "roadside sign or gantry-mounted fixture",
+      "vlm_category": "roadside structure (sign, lamp post, barrier, gantry, road marking)",
+      "vlm_raw": "{\"description\":\"A long, narrow rectangular object with dark black sections and a bright white section across the middle, appearing rigid and flat rather than textured or rounded.\",\"name\":\"roadside sign or gantry-mounted fixture\",\"category\":\"roadside structure (sign, lamp post, barrier, gantry, road marking)\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as roadside structure, vegetation or shadow: not an object on the carriageway.",
+      "correct": true
+    },
+    {
+      "id": 19,
+      "box": [
+        395,
+        990,
+        35,
+        53
+      ],
+      "detection_score": 0.996,
+      "size_m": [
+        2.18,
+        3.31
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A dark gray elongated rectangular object with rounded ends and reflective windows, consistent with the roof and body of a car seen from above.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 20,
+      "box": [
+        286,
+        1017,
+        37,
+        58
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        2.31,
+        3.62
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A rectangular light silver/white object with dark windows and smooth metallic surfaces, clearly shaped like a car seen from above in the lane.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 21,
+      "box": [
+        437,
+        1092,
+        33,
+        58
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        2.06,
+        3.62
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A dark grey elongated rectangular object with a smooth glossy surface, visible roof and window-like sections, and the proportions of a car seen from above.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 22,
+      "box": [
+        546,
+        1215,
+        33,
+        69
+      ],
+      "detection_score": 0.994,
+      "size_m": [
+        2.06,
+        4.31
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A dark grey, elongated rectangular object with a smooth roof-like surface and lighter reflective areas, clearly shaped like a car seen from above.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 23,
+      "box": [
+        367,
+        1231,
+        34,
+        55
+      ],
+      "detection_score": 0.998,
+      "size_m": [
+        2.12,
+        3.43
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A bright white elongated rectangular object with rounded ends and dark window-like areas, smooth and reflective like the roof of a car, centered within a lane.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 24,
+      "box": [
+        230,
+        1303,
+        23,
+        38
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        1.44,
+        2.37
+      ],
+      "vlm_name": "two tires",
+      "vlm_category": "tire",
+      "vlm_raw": "{\"description\":\"A dark, compact object beside the lane line with two round hollow circular shapes and a larger elongated dark shadow, appearing like stacked rubber rings with a matte texture.\",\"name\":\"two tires\",\"category\":\"tire\"}",
+      "physics": "passed",
+      "truth": "tire",
+      "truth_any": "tire",
+      "risk": "medium",
+      "reasoning": "The marked object is identified as two tires, which are substantial roadway debris, and they appear to be on the hard shoulder/edge immediately beside the live lane. With the nearest vehicle only about 9 m away and many vehicles present, drivers could still strike it or swerve if it encroaches, but because it is not clearly in a traffic lane the risk is lower than a lane obstruction.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 8.7,
+      "correct": true
+    },
+    {
+      "id": 25,
+      "box": [
+        215,
+        1425,
+        41,
+        74
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        2.56,
+        4.62
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A dark blue-gray elongated rectangular object with smooth glossy surfaces and visible roof/window-like sections, matching the top-down shape of a car.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 26,
+      "box": [
+        345,
+        1425,
+        37,
+        70
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        2.31,
+        4.37
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A dark gray elongated rectangular object with smooth metallic-looking surfaces, bright highlights, and the clear roof-and-window outline of a car is centered in the lane.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 27,
+      "box": [
+        252,
+        1584,
+        40,
+        80
+      ],
+      "detection_score": 0.998,
+      "size_m": [
+        2.5,
+        4.99
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long rectangular object with rounded ends, dark gray to black in color with a smooth reflective surface and visible roof/windshield contours, consistent with the top view of a car.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 28,
+      "box": [
+        147,
+        1794,
+        46,
+        93
+      ],
+      "detection_score": 0.996,
+      "size_m": [
+        2.87,
+        5.8
+      ],
+      "vlm_name": "white car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A white elongated object with smooth curved edges, dark window-like areas on top, and the clear shape and texture of a car seen from above.\",\"name\":\"white car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 29,
+      "box": [
+        352,
+        1880,
+        40,
+        40
+      ],
+      "detection_score": 0.951,
+      "size_m": [
+        2.5,
+        2.5
+      ],
+      "vlm_name": "mattress",
+      "vlm_category": "mattress",
+      "vlm_raw": "{\"description\":\"A large gray rectangular object with soft edges and a slightly raised, folded-looking top sits in the lane, with a smooth, fabric-like appearance rather than rigid structure.\",\"name\":\"mattress\",\"category\":\"mattress\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "medium",
+      "reasoning": "The marked object is a mattress about 2.5 m by 2.5 m lying in a live motorway lane, so it is a sizeable but relatively soft obstruction. With the nearest vehicle only about 13 m away and many vehicles in view, drivers may need to brake or change lane suddenly, but this matches a softer in-lane object rather than a rigid heavy one.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 13.1,
+      "correct": false
+    }
+  ],
+  "debris_missed_by_detection": [],
+  "timing_s": {
+    "identify": 44.98,
+    "risk": 7.9,
+    "n_identify": 29,
+    "n_physics_reask": 1,
+    "n_risk": 4
+  }
+}

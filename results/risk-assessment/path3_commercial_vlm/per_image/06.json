@@ -1,0 +1,212 @@
+{
+  "image_id": 6,
+  "file": "00006.jpg",
+  "location": "pexels/8742752",
+  "width": 3840,
+  "height": 2160,
+  "px_per_metre": 76.78,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        706,
+        0,
+        1436,
+        996
+      ],
+      "detection_score": 0.611,
+      "size_m": [
+        18.7,
+        12.97
+      ],
+      "vlm_name": "car on the motorway",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"Inside the red rectangle are grey asphalt motorway lanes with white dashed lane markings, a dark blue car-shaped object, and a strip of green dense bushes/grass along the roadside with a metal barrier.\",\"name\":\"car on the motorway\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false
+    },
+    {
+      "id": 2,
+      "box": [
+        2431,
+        0,
+        217,
+        141
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        2.83,
+        1.84
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A dark grey, smooth-surfaced elongated object with the clear shape of a car seen from above, including a windshield and roof contours, occupies the rectangle.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 3,
+      "box": [
+        2707,
+        0,
+        219,
+        61
+      ],
+      "detection_score": 0.997,
+      "size_m": [
+        2.85,
+        0.79
+      ],
+      "vlm_name": "white van",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long white object with a smooth metallic body, dark windows, and visible wheels, shaped like a van seen from above.\",\"name\":\"white van\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 4,
+      "box": [
+        3726,
+        115,
+        112,
+        148
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        1.46,
+        1.93
+      ],
+      "vlm_name": "red car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A dark red elongated object with smooth glossy surfaces and visible car-like contours, partly in shadow near the lane edge.\",\"name\":\"red car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 5,
+      "box": [
+        1733,
+        370,
+        269,
+        171
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        3.5,
+        2.23
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A dark blue-black elongated glossy object with the clear shape of a car, including windows and bright reflections, occupying part of a motorway lane.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 6,
+      "box": [
+        3633,
+        464,
+        204,
+        186
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        2.66,
+        2.42
+      ],
+      "vlm_name": "white van",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A white boxy rectangular vehicle with dark windows and black shadowing is parked or moving along the lane beside the median.\",\"name\":\"white van\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 7,
+      "box": [
+        2363,
+        640,
+        71,
+        123
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        0.92,
+        1.6
+      ],
+      "vlm_name": "metal ladder",
+      "vlm_category": "ladder",
+      "vlm_raw": "{\"description\":\"A long narrow brown metal frame with evenly spaced crossbars and small hook-like protrusions along one side, resembling a ladder lying diagonally on the road.\",\"name\":\"metal ladder\",\"category\":\"ladder\"}",
+      "physics": "passed",
+      "truth": "ladder",
+      "truth_any": "ladder",
+      "risk": "high",
+      "reasoning": "The object is identified as a metal ladder about 1.6 m by 0.9 m lying within a live motorway lane, making it a rigid obstacle that could be struck at speed or cause drivers to swerve. The nearest vehicle is only about 8 m away and there are 6 vehicles in view, so traffic is exposed immediately.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 7.6,
+      "correct": true
+    },
+    {
+      "id": 8,
+      "box": [
+        3717,
+        997,
+        118,
+        225
+      ],
+      "detection_score": 0.998,
+      "size_m": [
+        1.54,
+        2.93
+      ],
+      "vlm_name": "shadow",
+      "vlm_category": "vegetation or shadow",
+      "vlm_raw": "{\"description\":\"A large dark bluish-gray irregular rounded patch with smooth edges and no visible surface detail, appearing flat on the road.\",\"name\":\"shadow\",\"category\":\"vegetation or shadow\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as roadside structure, vegetation or shadow: not an object on the carriageway.",
+      "correct": false
+    }
+  ],
+  "debris_missed_by_detection": [],
+  "timing_s": {
+    "identify": 11.96,
+    "risk": 1.69,
+    "n_identify": 8,
+    "n_physics_reask": 0,
+    "n_risk": 1
+  }
+}

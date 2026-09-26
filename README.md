@@ -37,8 +37,8 @@ a separate set of 30 frames.
 | vehicles found (step 2) | 95.2% |
 | debris found (step 2) | 90.0% |
 | detection precision | 84.1% |
-| debris named correctly by the local 2B VLM (step 3) | 56% (tyres 7 of 9) |
-| false alarms sent to risk assessment (step 4) | 34 -> 1 |
+| debris named correctly (step 3): local Qwen3.5-2B / GPT-5.4 | 56% / 64% |
+| false alarms sent to risk assessment, without -> with the gate (step 4): local / GPT-5.4 | 34 -> 1 / 23 -> 0 |
 | end-to-end time | about 55 s per 4K frame on an RTX 3050 Ti (4 GB) |
 
 ![Detection example: a truck tyre on the carriageway](results/road-object-eval/examples/13_truck-tire.jpg)
@@ -91,7 +91,7 @@ Results deck: `results/uav_selection_report.html`.
 | Sample overlays + slide report | done |
 | Synthetic highway set | done, 30 images, 342 vehicles + 30 debris, labels reviewed by hand |
 | Vehicles + debris on the road | done, v2 (road mask + OWLv2 + re-scorer): vehicles 95.2%, debris 90.0%, precision 84.1% |
-| Objective 2: identify + assess risk | paths 1-2 done (results/pipeline_report.md); local 2B VLM names 56% of debris right, 96% of vehicles; path 2 cuts false risk alarms 34 -> 1; path 3 (commercial VLM) pending |
+| Objective 2: identify + assess risk | three paths done (results/pipeline_report.md): debris named right 56% local / 64% GPT-5.4; with the context gate, false risk alarms 1 local / 0 GPT-5.4 |
 
 ## The six test beds
 
@@ -546,6 +546,8 @@ cost), which is updated as each path lands. Each path has its own folder in
 | `path1_qwen_local/` | local Qwen, answers taken as they are |
 | `path2_qwen_relations/` | local Qwen + context gate before the risk step (final, round 2) |
 | `path2_qwen_relations_round1/` | the same, round 1: the clean held-out run |
+| `path3_commercial_vlm/` | OpenAI gpt-5.4 instead of Qwen, same prompts and checks |
+| `path3_commercial_vlm_gated/` | path 3 through the same context gate |
 | `dev/` | the same runs on the training renders, where rules were chosen |
 
 **Path 2's context gate** removes a candidate from risk assessment, and never
@@ -651,6 +653,8 @@ python scripts\assess_risk.py --split dev                       # path 1 on the 
 python scripts\assess_risk.py                                   # path 1 on the test set
 python scripts\assess_risk.py --path qwen-relations --split dev # path 2 gate, developed here
 python scripts\assess_risk.py --path qwen-relations             # path 2 on the test set (+ figures)
+python scripts\assess_risk.py --path api                        # path 3: OpenAI (key in .secrets\openai_api_key.txt)
+python scripts\assess_risk.py --path api-relations              # path 3 through the context gate
 python scripts\time_pipeline.py --path qwen                     # timing; also --path qwen-relations
 ```
 

@@ -1,0 +1,116 @@
+{
+  "image_id": 15,
+  "file": "00015.jpg",
+  "location": "pexels/8742752",
+  "width": 3840,
+  "height": 2160,
+  "px_per_metre": 76.78,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        2115,
+        553,
+        258,
+        117
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        3.36,
+        1.52
+      ],
+      "vlm_name": "black SUV car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A dark-colored elongated object with the clear shape of a car/SUV, smooth reflective surfaces, visible windows and wheels, and a roof rack is inside the red rectangle.\",\"name\":\"black SUV car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 2,
+      "box": [
+        1681,
+        608,
+        78,
+        178
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        1.02,
+        2.32
+      ],
+      "vlm_name": "traffic cone shadow / roadside marker artifact",
+      "vlm_category": "vegetation or shadow",
+      "vlm_raw": "{\"description\":\"An orange-and-white striped conical object is seen side-on over the road, with a long dark triangular shadow or support shape extending from it.\",\"name\":\"traffic cone\",\"category\":\"traffic cone\"} | re-asked: {\"name\":\"traffic cone shadow / roadside marker artifact\",\"category\":\"vegetation or shadow\"}",
+      "physics": "corrected: traffic cone is implausible at 2.3 m",
+      "truth": "unclear",
+      "truth_any": "traffic cone",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as roadside structure, vegetation or shadow: not an object on the carriageway.",
+      "correct": null
+    },
+    {
+      "id": 3,
+      "box": [
+        1693,
+        644,
+        60,
+        33
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        0.78,
+        0.43
+      ],
+      "vlm_name": "traffic cone",
+      "vlm_category": "traffic cone",
+      "vlm_raw": "{\"description\":\"A small tapered conical object with alternating orange and white bands and a smooth plastic-looking surface is visible inside the red rectangle.\",\"name\":\"traffic cone\",\"category\":\"traffic cone\"}",
+      "physics": "passed",
+      "truth": "traffic cone",
+      "truth_any": "traffic cone",
+      "risk": "medium",
+      "reasoning": "The object is identified as a traffic cone, about 0.8 m by 0.4 m, and it is lying in a live traffic lane. A cone is a smaller, softer obstruction, but with vehicles present and the nearest about 7 m away, it could still be struck or prompt avoidance.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 6.8,
+      "correct": true
+    },
+    {
+      "id": 4,
+      "box": [
+        0,
+        681,
+        146,
+        124
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        1.9,
+        1.62
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A blurry dark blue-gray object with a rounded, elongated shape, bright reflective patches, and a visible wheel-like circular feature is partly obscured by roadside vegetation.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    }
+  ],
+  "debris_missed_by_detection": [],
+  "timing_s": {
+    "identify": 7.01,
+    "risk": 1.66,
+    "n_identify": 4,
+    "n_physics_reask": 1,
+    "n_risk": 1
+  }
+}
