@@ -1,0 +1,267 @@
+{
+  "image_id": 12,
+  "file": "00012.jpg",
+  "location": "pexels/19851623",
+  "width": 3840,
+  "height": 2160,
+  "px_per_metre": 18.59,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        2981,
+        857,
+        40,
+        33
+      ],
+      "detection_score": 0.997,
+      "size_m": [
+        2.15,
+        1.78
+      ],
+      "vlm_name": "two ladders",
+      "vlm_category": "ladder",
+      "vlm_raw": "{\"description\":\"Two long narrow slatted frames, one black and one orange, lie diagonally on the shoulder with a ladder-like appearance and rigid metallic texture.\",\"name\":\"two ladders\",\"category\":\"ladder\"}",
+      "physics": "passed",
+      "truth": "ladder",
+      "truth_any": "ladder",
+      "detector_p": {
+        "background": 0.0,
+        "vehicle": 0.0,
+        "debris": 1.0
+      },
+      "risk": "high",
+      "reasoning": "The marked object is identified as two ladders, a rigid object about 2.2 m by 1.8 m, lying in a live motorway lane. With 9 vehicles in view and the nearest only about 13 m away, a driver could strike it at speed or swerve abruptly to avoid it.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 13.4,
+      "correct": true
+    },
+    {
+      "id": 2,
+      "box": [
+        2735,
+        950,
+        65,
+        25
+      ],
+      "detection_score": 0.989,
+      "size_m": [
+        3.5,
+        1.35
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A white elongated rounded rectangular object with a smooth blurred surface and darker window-like patches, consistent with a top-down view of a car.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 3,
+      "box": [
+        197,
+        994,
+        70,
+        68
+      ],
+      "detection_score": 0.934,
+      "size_m": [
+        3.77,
+        3.66
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A blurred elongated blue-and-dark gray rectangular object with smooth vehicle-like contours occupies most of the box, with a smaller dark blurred shape just below it on the road.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 4,
+      "box": [
+        196,
+        995,
+        62,
+        23
+      ],
+      "detection_score": 0.653,
+      "size_m": [
+        3.34,
+        1.24
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A blurred elongated blue-and-dark object with smooth contours and reflective texture, roughly car-shaped and aligned with the lane.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 5,
+      "box": [
+        2006,
+        1012,
+        69,
+        24
+      ],
+      "detection_score": 0.992,
+      "size_m": [
+        3.71,
+        1.29
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A blurred elongated white object with rounded ends and a darker rectangular area in the middle, consistent with the roof and windows of a car seen from above.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 6,
+      "box": [
+        2324,
+        1130,
+        61,
+        22
+      ],
+      "detection_score": 0.931,
+      "size_m": [
+        3.28,
+        1.18
+      ],
+      "vlm_name": "car or van-like vehicle",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A light grey to pale blue elongated rounded rectangle with smooth blurry texture and soft edges, lying across the lane.\",\"name\":\"car or van-like vehicle\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 7,
+      "box": [
+        3331,
+        1157,
+        220,
+        38
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        11.84,
+        2.04
+      ],
+      "vlm_name": "truck carrying a load",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long rectangular object occupying a full lane, with a white cab at one end and a brown textured open load or cargo area behind it.\",\"name\":\"truck carrying a load\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 8,
+      "box": [
+        2060,
+        1172,
+        207,
+        44
+      ],
+      "detection_score": 0.717,
+      "size_m": [
+        11.14,
+        2.37
+      ],
+      "vlm_name": "box truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long rectangular light grey object with smooth blurred edges and a slightly darker cab-like section at one end is visible in the lane.\",\"name\":\"box truck\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 9,
+      "box": [
+        3279,
+        1220,
+        204,
+        36
+      ],
+      "detection_score": 0.899,
+      "size_m": [
+        10.98,
+        1.94
+      ],
+      "vlm_name": "semi-truck with trailer",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long rectangular white vehicle with a smooth roof and a bright red cab is visible in the lane, showing motion blur consistent with a large truck or bus seen from above.\",\"name\":\"semi-truck with trailer\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 10,
+      "box": [
+        2171,
+        1226,
+        129,
+        37
+      ],
+      "detection_score": 0.835,
+      "size_m": [
+        6.94,
+        1.99
+      ],
+      "vlm_name": "box truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A large elongated rectangular object with a light gray/tan cargo body and a white cab, smooth and slightly motion-blurred, aligned with the lane.\",\"name\":\"box truck\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    }
+  ],
+  "debris_missed_by_detection": [],
+  "timing_s": {
+    "identify": 0.09,
+    "context": 0.005,
+    "risk": 0.0,
+    "n_identify": 10,
+    "n_physics_reask": 0,
+    "n_part_questions": 0,
+    "n_risk": 1
+  }
+}

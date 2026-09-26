@@ -1,0 +1,261 @@
+{
+  "image_id": 12,
+  "file": "00012.jpg",
+  "location": "pexels/19851623",
+  "width": 3840,
+  "height": 2160,
+  "px_per_metre": 18.59,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        2981,
+        857,
+        40,
+        33
+      ],
+      "detection_score": 0.997,
+      "size_m": [
+        2.15,
+        1.78
+      ],
+      "vlm_name": "barrier",
+      "vlm_category": "roadside structure (sign, lamp post, barrier, gantry, road marking)",
+      "vlm_raw": "{\"description\": \"A red rectangular outline highlights a long, orange and black striped object lying on the road surface, which appears to be a piece of construction equipment or a barrier.\", \"name\": \"barrier\", \"category\": \"roadside structure\"}",
+      "physics": "passed",
+      "truth": "ladder",
+      "truth_any": "ladder",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as roadside structure, vegetation or shadow: not an object on the carriageway.",
+      "correct": false
+    },
+    {
+      "id": 2,
+      "box": [
+        2735,
+        950,
+        65,
+        25
+      ],
+      "detection_score": 0.989,
+      "size_m": [
+        3.5,
+        1.35
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white, elongated object with rounded edges and a visible seam, positioned on a dark gray surface with faint white lines.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 3,
+      "box": [
+        197,
+        994,
+        70,
+        68
+      ],
+      "detection_score": 0.934,
+      "size_m": [
+        3.77,
+        3.66
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A blurry blue and grey object with a dark shadow underneath, positioned on a road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 4,
+      "box": [
+        196,
+        995,
+        62,
+        23
+      ],
+      "detection_score": 0.653,
+      "size_m": [
+        3.34,
+        1.24
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A blue, elongated object with a smooth, slightly reflective surface, positioned on a dark road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 5,
+      "box": [
+        2006,
+        1012,
+        69,
+        24
+      ],
+      "detection_score": 0.992,
+      "size_m": [
+        3.71,
+        1.29
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white car with a dark window, captured in motion blur on a motorway.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 6,
+      "box": [
+        2324,
+        1130,
+        61,
+        22
+      ],
+      "detection_score": 0.931,
+      "size_m": [
+        3.28,
+        1.18
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A light-colored, elongated rectangular object with a smooth, reflective surface, positioned on a dark road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 7,
+      "box": [
+        3331,
+        1157,
+        220,
+        38
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        11.84,
+        2.04
+      ],
+      "vlm_name": "truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A long, rectangular wooden pallet with brown, weathered wood planks and a white cab attached to the front.\", \"name\": \"wooden pallet\", \"category\": \"wooden pallet\"} | re-asked: {\"name\": \"truck\", \"category\": \"vehicle\"}",
+      "physics": "corrected: wooden pallet is implausible at 11.8 m",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 8,
+      "box": [
+        2060,
+        1172,
+        207,
+        44
+      ],
+      "detection_score": 0.717,
+      "size_m": [
+        11.14,
+        2.37
+      ],
+      "vlm_name": "trailer",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white rectangular object with a light grey side panel, appearing to be a trailer or container.\", \"name\": \"trailer\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 9,
+      "box": [
+        3279,
+        1220,
+        204,
+        36
+      ],
+      "detection_score": 0.899,
+      "size_m": [
+        10.98,
+        1.94
+      ],
+      "vlm_name": "truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white truck with a red cab is moving on a multi-lane road, carrying a long, brown, rectangular load.\", \"name\": \"truck\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 10,
+      "box": [
+        2171,
+        1226,
+        129,
+        37
+      ],
+      "detection_score": 0.835,
+      "size_m": [
+        6.94,
+        1.99
+      ],
+      "vlm_name": "truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white boxy shape with a red outline, positioned on a road surface.\", \"name\": \"truck\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    }
+  ],
+  "debris_missed_by_detection": [],
+  "timing_s": {
+    "identify": 28.13,
+    "context": 0.006,
+    "risk": 0.0,
+    "n_identify": 10,
+    "n_physics_reask": 1,
+    "n_part_questions": 0,
+    "n_risk": 0
+  }
+}

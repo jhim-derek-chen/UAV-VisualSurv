@@ -1,0 +1,285 @@
+{
+  "image_id": 5,
+  "file": "00005.jpg",
+  "location": "pexels/19851623",
+  "width": 3840,
+  "height": 2160,
+  "px_per_metre": 18.59,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        496,
+        926,
+        139,
+        42
+      ],
+      "detection_score": 0.987,
+      "size_m": [
+        7.48,
+        2.26
+      ],
+      "vlm_name": "truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white, elongated object with a rounded, bulbous rear end and a flat, boxy front, positioned on a paved surface.\", \"name\": \"truck\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 2,
+      "box": [
+        3778,
+        945,
+        61,
+        25
+      ],
+      "detection_score": 0.953,
+      "size_m": [
+        3.28,
+        1.35
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white car with motion blur, positioned on a road surface with lane markings.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 3,
+      "box": [
+        1292,
+        971,
+        70,
+        25
+      ],
+      "detection_score": 0.985,
+      "size_m": [
+        3.77,
+        1.35
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A blue and dark grey vehicle with motion blur, positioned on a road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 4,
+      "box": [
+        3557,
+        1000,
+        72,
+        25
+      ],
+      "detection_score": 0.991,
+      "size_m": [
+        3.87,
+        1.35
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white car with a dark window, captured in motion blur on a highway.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 5,
+      "box": [
+        1394,
+        1017,
+        51,
+        21
+      ],
+      "detection_score": 0.993,
+      "size_m": [
+        2.74,
+        1.13
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark, elongated rectangular shape with a lighter top edge, appearing as a vehicle on a road.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 6,
+      "box": [
+        1030,
+        1151,
+        66,
+        23
+      ],
+      "detection_score": 0.971,
+      "size_m": [
+        3.55,
+        1.24
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white, elongated, rectangular object with a smooth, light-colored surface, positioned on a dark asphalt road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 7,
+      "box": [
+        2507,
+        1164,
+        210,
+        38
+      ],
+      "detection_score": 0.993,
+      "size_m": [
+        11.3,
+        2.04
+      ],
+      "vlm_name": "truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A long, rectangular object with a brown, textured surface resembling stacked wood or pallets, positioned on a road surface.\", \"name\": \"wooden pallet\", \"category\": \"wooden pallet\"} | re-asked: {\"name\": \"truck\", \"category\": \"vehicle\"}",
+      "physics": "corrected: wooden pallet is implausible at 11.3 m",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 8,
+      "box": [
+        2512,
+        1164,
+        229,
+        99
+      ],
+      "detection_score": 0.975,
+      "size_m": [
+        12.32,
+        5.33
+      ],
+      "vlm_name": "truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A long, white trailer with a red cab and a brown cargo container on top, captured with motion blur.\", \"name\": \"truck\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 9,
+      "box": [
+        1216,
+        1193,
+        220,
+        48
+      ],
+      "detection_score": 0.789,
+      "size_m": [
+        11.84,
+        2.58
+      ],
+      "vlm_name": "trailer",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A long, white, rectangular object with a slight sheen, appearing to be a trailer or container.\", \"name\": \"trailer\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 10,
+      "box": [
+        2534,
+        1228,
+        207,
+        36
+      ],
+      "detection_score": 0.962,
+      "size_m": [
+        11.14,
+        1.94
+      ],
+      "vlm_name": "truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A long, white cylindrical object with a red cap, resembling a trailer or drum, positioned on a road surface.\", \"name\": \"barrel or drum\", \"category\": \"barrel or drum\"} | re-asked: {\"name\": \"truck\", \"category\": \"vehicle\"}",
+      "physics": "corrected: barrel or drum is implausible at 11.1 m",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 11,
+      "box": [
+        1514,
+        1236,
+        134,
+        38
+      ],
+      "detection_score": 0.887,
+      "size_m": [
+        7.21,
+        2.04
+      ],
+      "vlm_name": "truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white rectangular object with a visible wheel and side panel, positioned on a road surface.\", \"name\": \"truck\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    }
+  ],
+  "debris_missed_by_detection": [],
+  "timing_s": {
+    "identify": 32.54,
+    "context": 0.006,
+    "risk": 0.0,
+    "n_identify": 11,
+    "n_physics_reask": 2,
+    "n_part_questions": 0,
+    "n_risk": 0
+  }
+}

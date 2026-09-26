@@ -46,8 +46,10 @@ a separate set of 30 frames.
 ![Detection example: a truck tyre on the carriageway](results/road-object-eval/examples/13_truck-tire.jpg)
 
 Steps 3 to 5 run on a local model (architecture A) or on GPT-5.4 (B); a third
-architecture (C) adds a scene-level analysis of each frame. They are compared
-in [results/pipeline_report.md](results/pipeline_report.md).
+architecture (C) adds a scene-level analysis of each frame.
+- **Stage report (8 pages, PDF):** [report/stage_report.pdf](report/stage_report.pdf).
+- **Raw running log of every measurement:**
+  [results/pipeline_report.md](results/pipeline_report.md).
 
 ## Repository
 
@@ -55,6 +57,7 @@ in [results/pipeline_report.md](results/pipeline_report.md).
 |---|---|
 | `scripts/` | every step, from dataset synthesis to evaluation and figures |
 | `results/` | metrics (JSON), figures, the pipeline report |
+| `report/` | the stage report: markdown source, figures, PDF (`scripts/build_report.py`) |
 | `docs/` | model and dataset sources, licences |
 
 Datasets and model weights are not in the repository. The download and build
@@ -549,7 +552,8 @@ and `summary.json`:
 |---|---|
 | `a_qwen_local/` | A: local Qwen3.5-2B + context gate |
 | `b_gpt/` | B: OpenAI gpt-5.4 instead of Qwen, same prompts, checks and gate |
-| `scene-relations/c_gpt_scene/` | C: B plus a scene-level analysis, on the scene-relation set |
+| `c_gpt_scene/` | C: B plus a scene-level analysis |
+| `scene-relations/` | A, B and C on the scene-relation set |
 | `dev/` | runs on the training renders, where rules were chosen |
 
 Earlier runs without the context gate are kept under the git tag

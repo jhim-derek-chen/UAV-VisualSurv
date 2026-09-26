@@ -1,0 +1,195 @@
+{
+  "image_id": 4,
+  "file": "00004.jpg",
+  "location": "pexels/19851623",
+  "width": 3840,
+  "height": 2160,
+  "px_per_metre": 18.59,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        3543,
+        889,
+        189,
+        40
+      ],
+      "detection_score": 0.976,
+      "size_m": [
+        10.17,
+        2.15
+      ],
+      "vlm_name": "truck or lorry",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long rectangular object with a white cab at one end and a dark grey elongated body, smooth and vehicle-like, occupying a motorway lane.\",\"name\":\"truck or lorry\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 2,
+      "box": [
+        3380,
+        899,
+        35,
+        38
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        1.88,
+        2.04
+      ],
+      "vlm_name": "mattress",
+      "vlm_category": "mattress",
+      "vlm_raw": "{\"description\":\"A rectangular object lying diagonally on the road, brown-grey in colour with a mottled, rough surface and dark edges.\",\"name\":\"mattress\",\"category\":\"mattress\"}",
+      "physics": "passed",
+      "truth": "mattress",
+      "truth_any": "mattress",
+      "detector_p": {
+        "background": 0.0,
+        "vehicle": 0.0,
+        "debris": 1.0
+      },
+      "risk": "medium",
+      "reasoning": "The object is identified as a mattress about 2.0 m by 1.9 m lying in a live motorway lane, so although it is relatively soft it is large enough to obstruct the carriageway and force avoidance. The nearest vehicle is only about 13 m away and there are 4 vehicles in view, increasing the chance of an immediate encounter or sudden manoeuvre.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 12.9,
+      "correct": true
+    },
+    {
+      "id": 3,
+      "box": [
+        1339,
+        969,
+        70,
+        28
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        3.77,
+        1.51
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A white elongated rounded rectangular object with a dark tinted central area and smooth glossy texture, seen from above in the lane.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 4,
+      "box": [
+        2103,
+        1178,
+        59,
+        24
+      ],
+      "detection_score": 0.969,
+      "size_m": [
+        3.17,
+        1.29
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A dark gray-blue elongated rectangular object with a smooth, blurry roof-like texture and symmetrical car-shaped outline sits within the lane markings.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 5,
+      "box": [
+        1639,
+        1225,
+        43,
+        36
+      ],
+      "detection_score": 0.659,
+      "size_m": [
+        2.31,
+        1.94
+      ],
+      "vlm_name": "refrigerator or large appliance",
+      "vlm_category": "refrigerator or appliance",
+      "vlm_raw": "{\"description\":\"A bright white rectangular object with soft blurry edges and a faint gray square-like patch in the center, smooth in texture and roughly box-shaped from above.\",\"name\":\"refrigerator or large appliance\",\"category\":\"refrigerator or appliance\"}",
+      "physics": "passed",
+      "truth": "unclear",
+      "truth_any": "vehicle",
+      "detector_p": {
+        "background": 0.871,
+        "vehicle": 0.112,
+        "debris": 0.017
+      },
+      "context": "the detector's features say background, not debris (P(debris) 0.02, P(vehicle) 0.11, P(background) 0.87)",
+      "risk": "none",
+      "risk_source": "context rule",
+      "reasoning": "Context gate: the detector's features say background, not debris (P(debris) 0.02, P(vehicle) 0.11, P(background) 0.87). Not assessed as a hazard.",
+      "correct": null
+    },
+    {
+      "id": 6,
+      "box": [
+        407,
+        1249,
+        231,
+        42
+      ],
+      "detection_score": 0.545,
+      "size_m": [
+        12.43,
+        2.26
+      ],
+      "vlm_name": "semi-truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long rectangular object with a large white elongated body and a red cab-like front, smooth and blurry from motion, traveling along the lane.\",\"name\":\"semi-truck\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    }
+  ],
+  "scene": {
+    "called": true,
+    "scene_risk": "medium",
+    "objects": [
+      {
+        "id": 2,
+        "where": "lane",
+        "risk": "medium"
+      }
+    ],
+    "groups": [],
+    "lanes_blocked": 1,
+    "reasoning": "The single candidate lies clearly within the rightmost running lane of the upper carriageway, not on the shoulder or verge. It appears to be an isolated mattress with no other debris nearby, and no vehicle is close enough or positioned in a way that clearly links it to an active spill event. Only one running lane is obstructed, but the object is large enough that approaching traffic may need to brake or change lane.",
+    "action": "Warn approaching traffic and dispatch removal to the upper carriageway right lane.",
+    "raw": "{\"reasoning\":\"The single candidate lies clearly within the rightmost running lane of the upper carriageway, not on the shoulder or verge. It appears to be an isolated mattress with no other debris nearby, and no vehicle is close enough or positioned in a way that clearly links it to an active spill event. Only one running lane is obstructed, but the object is large enough that approaching traffic may need to brake or change lane.\",\"objects\":[{\"id\":2,\"where\":\"lane\",\"risk\":\"medium\"}],\"groups\":[],\"lanes_blocked\":1,\"scene_risk\":\"medium\",\"action\":\"Warn approaching traffic and dispatch removal to the upper carriageway right lane.\"}",
+    "n_close_views": 1
+  },
+  "debris_missed_by_detection": [],
+  "timing_s": {
+    "identify": 0.05,
+    "context": 0.006,
+    "risk": 0.0,
+    "n_identify": 6,
+    "n_physics_reask": 0,
+    "n_part_questions": 0,
+    "n_risk": 1,
+    "scene": 3.0
+  }
+}

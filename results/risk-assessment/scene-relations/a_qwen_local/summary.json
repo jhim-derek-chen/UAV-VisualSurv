@@ -1,0 +1,92 @@
+{
+  "arch": "a_qwen_local",
+  "split": "scene",
+  "variant": {
+    "bits": 4,
+    "model": "qwen3.5-2b",
+    "physics": true,
+    "prompt": "describe",
+    "size": true,
+    "tight": true
+  },
+  "vlm_load_s": 9.2,
+  "peak_vram_gb": 1.97,
+  "identification": {
+    "debris_type": 0.367,
+    "hazard_recall": 0.733,
+    "vehicle": 0.968,
+    "false_hazard": 0.02,
+    "n_debris": 30,
+    "n_vehicle": 248,
+    "n_other": 3,
+    "score": 0.762
+  },
+  "identification_accuracy": {
+    "vehicle": {
+      "correct": 240,
+      "n": 248,
+      "accuracy": 0.968
+    },
+    "debris": {
+      "correct": 11,
+      "n": 30,
+      "accuracy": 0.367
+    },
+    "non-target": {
+      "correct": 3,
+      "n": 3,
+      "accuracy": 1.0
+    }
+  },
+  "debris_confusion": {
+    "tire": {
+      "tire": 7,
+      "other debris": 1
+    },
+    "refrigerator or appliance": {
+      "other debris": 3,
+      "roadside structure (sign, lamp post, barrier, gantry, road marking)": 2
+    },
+    "wooden plank or lumber": {
+      "roadside structure (sign, lamp post, barrier, gantry, road marking)": 3,
+      "wooden pallet": 1,
+      "wooden plank or lumber": 2
+    },
+    "wooden pallet": {
+      "other debris": 2,
+      "cardboard box": 4,
+      "wooden pallet": 1,
+      "roadside structure (sign, lamp post, barrier, gantry, road marking)": 2
+    },
+    "ladder": {
+      "ladder": 1,
+      "roadside structure (sign, lamp post, barrier, gantry, road marking)": 1
+    }
+  },
+  "physics_corrections": 42,
+  "risk": {
+    "false_high_risk": 2,
+    "false_any_risk": 2,
+    "debris_boxes": 32,
+    "debris_rated_high": 21,
+    "debris_rated_any": 24,
+    "counts": {
+      "none": 276,
+      "high": 23,
+      "medium": 3
+    }
+  },
+  "context_suppressed": 8,
+  "timing_s": {
+    "identify": 849.9,
+    "context": 9.7,
+    "risk": 118.8,
+    "scene": 0
+  },
+  "calls": {
+    "n_identify": 302,
+    "n_physics_reask": 42,
+    "n_part_questions": 4,
+    "n_risk": 26
+  }
+}

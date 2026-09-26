@@ -1,0 +1,239 @@
+{
+  "image_id": 22,
+  "file": "00022.jpg",
+  "location": "pexels/8742752",
+  "width": 3840,
+  "height": 2160,
+  "px_per_metre": 76.78,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        913,
+        0,
+        245,
+        88
+      ],
+      "detection_score": 0.996,
+      "size_m": [
+        3.19,
+        1.15
+      ],
+      "vlm_name": "black car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A dark black compact car-like shape with smooth glossy surfaces, visible wheels, and a small yellow rear plate is seen within the red rectangle.\",\"name\":\"black car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 2,
+      "box": [
+        2122,
+        2,
+        234,
+        106
+      ],
+      "detection_score": 0.949,
+      "size_m": [
+        3.05,
+        1.38
+      ],
+      "vlm_name": "blue car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A dark blue compact car with a smooth shiny body, visible wheels and windows, seen from above on the roadway.\",\"name\":\"blue car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 3,
+      "box": [
+        3525,
+        21,
+        280,
+        168
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        3.65,
+        2.19
+      ],
+      "vlm_name": "red car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A bright red compact car with a smooth glossy body, dark windows, and visible wheels is inside the red rectangle.\",\"name\":\"red car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 4,
+      "box": [
+        1180,
+        198,
+        635,
+        414
+      ],
+      "detection_score": 0.692,
+      "size_m": [
+        8.27,
+        5.39
+      ],
+      "vlm_name": "road maintenance vehicle or machinery",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A large white and gray industrial-looking wheeled machine with angular panels, metal framework, and a bulky textured body is being towed along the motorway.\",\"name\":\"road maintenance vehicle or machinery\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "unclear",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": null
+    },
+    {
+      "id": 5,
+      "box": [
+        188,
+        220,
+        211,
+        170
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        2.75,
+        2.21
+      ],
+      "vlm_name": "two tires",
+      "vlm_category": "tire",
+      "vlm_raw": "{\"description\":\"Two dark black circular ring-shaped objects with textured edges lie side by side on the roadway, casting a long shadow.\",\"name\":\"two tires\",\"category\":\"tire\"}",
+      "physics": "passed",
+      "truth": "unclear",
+      "truth_any": "tire",
+      "detector_p": {
+        "background": 0.001,
+        "vehicle": 0.005,
+        "debris": 0.994
+      },
+      "risk": "high",
+      "reasoning": "The marked object is identified as two tires lying in an active motorway lane, and tires are rigid objects that can cause a high-speed impact or make drivers swerve. Traffic is present with 7 vehicles visible and the nearest vehicle only about 5 m away, so there is little time to avoid it safely.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 5.3,
+      "correct": null
+    },
+    {
+      "id": 6,
+      "box": [
+        559,
+        270,
+        273,
+        155
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        3.56,
+        2.02
+      ],
+      "vlm_name": "blue car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A compact light-blue glossy object with a rounded car-shaped body, dark window area, and smooth reflective surface is visible within the red rectangle.\",\"name\":\"blue car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 7,
+      "box": [
+        1681,
+        343,
+        905,
+        506
+      ],
+      "detection_score": 0.998,
+      "size_m": [
+        11.79,
+        6.59
+      ],
+      "vlm_name": "heavy transport trailer or truck body",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A large white elongated metal object with multiple axles, ramps, and upright posts, showing a rigid industrial vehicle-like structure on the motorway.\",\"name\":\"heavy transport trailer or truck body\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 8,
+      "box": [
+        3736,
+        835,
+        100,
+        148
+      ],
+      "detection_score": 0.998,
+      "size_m": [
+        1.3,
+        1.93
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A dark gray-blue, smooth-surfaced object with curved edges and reflections, appearing as the front-right portion of a larger automobile in the lane.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    }
+  ],
+  "scene": {
+    "called": true,
+    "scene_risk": "high",
+    "objects": [
+      {
+        "id": 5,
+        "where": "lane",
+        "risk": "high"
+      }
+    ],
+    "groups": [],
+    "lanes_blocked": 1,
+    "reasoning": "The close-up and overhead view show candidate #5 as two tyres lying within the leftmost running lane of the near carriageway, not on the hard shoulder or beyond the barrier. It is about 5 m ahead/aside of car V6, so approaching traffic has little room to react at motorway speed, while the long vehicles V4 and V7 are farther away and do not appear to be the source. Only this single lane is directly obstructed, but it creates a serious avoidance hazard for adjacent lanes as well.",
+    "action": "Close the affected left lane immediately and dispatch debris removal.",
+    "raw": "{\"reasoning\":\"The close-up and overhead view show candidate #5 as two tyres lying within the leftmost running lane of the near carriageway, not on the hard shoulder or beyond the barrier. It is about 5 m ahead/aside of car V6, so approaching traffic has little room to react at motorway speed, while the long vehicles V4 and V7 are farther away and do not appear to be the source. Only this single lane is directly obstructed, but it creates a serious avoidance hazard for adjacent lanes as well.\",\"objects\":[{\"id\":5,\"where\":\"lane\",\"risk\":\"high\"}],\"groups\":[],\"lanes_blocked\":1,\"scene_risk\":\"high\",\"action\":\"Close the affected left lane immediately and dispatch debris removal.\"}",
+    "n_close_views": 1
+  },
+  "debris_missed_by_detection": [
+    "tire"
+  ],
+  "timing_s": {
+    "identify": 0.21,
+    "context": 0.005,
+    "risk": 0.04,
+    "n_identify": 8,
+    "n_physics_reask": 0,
+    "n_part_questions": 0,
+    "n_risk": 1,
+    "scene": 3.15
+  }
+}

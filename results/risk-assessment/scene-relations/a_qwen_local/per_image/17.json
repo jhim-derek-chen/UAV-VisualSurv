@@ -1,0 +1,270 @@
+{
+  "image_id": 17,
+  "file": "00017.jpg",
+  "location": "pexels/19851623",
+  "width": 3840,
+  "height": 2160,
+  "px_per_metre": 18.59,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        811,
+        947,
+        48,
+        26
+      ],
+      "detection_score": 0.942,
+      "size_m": [
+        2.58,
+        1.4
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white, elongated object with a smooth, slightly reflective surface, positioned on a dark gray road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 2,
+      "box": [
+        2366,
+        955,
+        72,
+        26
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        3.87,
+        1.4
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white car with a dark roof, captured from an aerial perspective.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 3,
+      "box": [
+        480,
+        989,
+        65,
+        25
+      ],
+      "detection_score": 0.948,
+      "size_m": [
+        3.5,
+        1.35
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white, elongated, rounded object with a smooth surface and a dark horizontal line near its center.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 4,
+      "box": [
+        1042,
+        1027,
+        69,
+        24
+      ],
+      "detection_score": 0.989,
+      "size_m": [
+        3.71,
+        1.29
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A light blue, elongated, and blurry object with a smooth surface, positioned on a paved surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 5,
+      "box": [
+        3718,
+        1148,
+        117,
+        39
+      ],
+      "detection_score": 0.884,
+      "size_m": [
+        6.29,
+        2.1
+      ],
+      "vlm_name": "truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A red rectangular outline highlighting the rear section of a white box truck on a highway.\", \"name\": \"truck\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 6,
+      "box": [
+        3720,
+        1151,
+        27,
+        32
+      ],
+      "detection_score": 0.968,
+      "size_m": [
+        1.45,
+        1.72
+      ],
+      "vlm_name": "unknown object",
+      "vlm_category": "other debris",
+      "vlm_raw": "{\"description\": \"A blurry, dark, and indistinct object with some reddish-brown highlights, situated on a gray paved surface.\", \"name\": \"unknown object\", \"category\": \"other debris\"}",
+      "physics": "passed",
+      "truth": "unclear",
+      "truth_any": "vehicle",
+      "detector_p": {
+        "background": 0.083,
+        "vehicle": 0.046,
+        "debris": 0.871
+      },
+      "part_answer": "{\"part_of_vehicle\": 1, \"why\": \"The item is located directly on the vehicle's body surface, consistent with a part like a light or number plate.\"}",
+      "context": "part of vehicle #5 (VLM, asked directly)",
+      "risk": "none",
+      "risk_source": "context rule",
+      "reasoning": "Context gate: part of vehicle #5 (VLM, asked directly). Not assessed as a hazard.",
+      "correct": null
+    },
+    {
+      "id": 7,
+      "box": [
+        1078,
+        1198,
+        61,
+        23
+      ],
+      "detection_score": 0.966,
+      "size_m": [
+        3.28,
+        1.24
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark, elongated rectangular shape with a smooth, uniform surface, positioned on a paved road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 8,
+      "box": [
+        3476,
+        1212,
+        135,
+        37
+      ],
+      "detection_score": 0.73,
+      "size_m": [
+        7.26,
+        1.99
+      ],
+      "vlm_name": "truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A long, light-colored rectangular object with a smooth, uniform surface, positioned on a paved road surface.\", \"name\": \"truck\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 9,
+      "box": [
+        810,
+        1242,
+        143,
+        41
+      ],
+      "detection_score": 0.686,
+      "size_m": [
+        7.69,
+        2.21
+      ],
+      "vlm_name": "truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white boxy shape with a visible cab section, appearing as a solid block of color with some texture details.\", \"name\": \"truck\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 10,
+      "box": [
+        901,
+        1242,
+        54,
+        36
+      ],
+      "detection_score": 0.899,
+      "size_m": [
+        2.91,
+        1.94
+      ],
+      "vlm_name": "vehicle",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white, rectangular object with a visible square indentation on its side, situated on a road surface.\", \"name\": \"cardboard box\", \"category\": \"cardboard box\"} | re-asked: {\"name\": \"vehicle\", \"category\": \"vehicle\"}",
+      "physics": "corrected: cardboard box is implausible at 2.9 m",
+      "truth": "unclear",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": null
+    }
+  ],
+  "debris_missed_by_detection": [
+    "refrigerator or appliance"
+  ],
+  "timing_s": {
+    "identify": 27.28,
+    "context": 2.298,
+    "risk": 0.0,
+    "n_identify": 10,
+    "n_physics_reask": 1,
+    "n_part_questions": 1,
+    "n_risk": 0
+  }
+}

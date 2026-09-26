@@ -1,0 +1,181 @@
+{
+  "image_id": 24,
+  "file": "00024.jpg",
+  "location": "pexels/12571926",
+  "width": 1080,
+  "height": 1920,
+  "px_per_metre": 28.47,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        0,
+        899,
+        58,
+        60
+      ],
+      "detection_score": 0.997,
+      "size_m": [
+        2.04,
+        2.11
+      ],
+      "vlm_name": "refrigerator or large appliance",
+      "vlm_category": "refrigerator or appliance",
+      "vlm_raw": "{\"description\":\"A large white rectangular object with rounded corners and a dark central panel/opening is lying flat on the roadway, with smooth solid surfaces and a bulky appliance-like appearance.\",\"name\":\"refrigerator or large appliance\",\"category\":\"refrigerator or appliance\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "detector_p": {
+        "background": 0.049,
+        "vehicle": 0.816,
+        "debris": 0.135
+      },
+      "context": "cut by the frame edge: incomplete view, assess in the next frame",
+      "risk": "none",
+      "risk_source": "context rule",
+      "reasoning": "Context gate: cut by the frame edge: incomplete view, assess in the next frame. Not assessed as a hazard.",
+      "correct": false
+    },
+    {
+      "id": 2,
+      "box": [
+        518,
+        1202,
+        22,
+        15
+      ],
+      "detection_score": 0.996,
+      "size_m": [
+        0.77,
+        0.53
+      ],
+      "vlm_name": "vegetation clump or shadow",
+      "vlm_category": "vegetation or shadow",
+      "vlm_raw": "{\"description\":\"A small irregular dark object with a couple of black blocky parts and a mottled greenish area, appearing soft-edged and shadowy rather than structured.\",\"name\":\"vegetation clump or shadow\",\"category\":\"vegetation or shadow\"}",
+      "physics": "passed",
+      "truth": "trash can",
+      "truth_any": "trash can",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as roadside structure, vegetation or shadow: not an object on the carriageway.",
+      "correct": false
+    },
+    {
+      "id": 3,
+      "box": [
+        684,
+        1209,
+        116,
+        50
+      ],
+      "detection_score": 0.988,
+      "size_m": [
+        4.07,
+        1.76
+      ],
+      "vlm_name": "white van",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long rectangular white object with smooth solid surfaces and dark window-like areas at one end, consistent with the roof of a van seen from above.\",\"name\":\"white van\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 4,
+      "box": [
+        607,
+        1263,
+        80,
+        39
+      ],
+      "detection_score": 0.976,
+      "size_m": [
+        2.81,
+        1.37
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A dark gray to black rectangular object with smooth solid surfaces and the proportions of a car, seen from above in the lane.\", \"name\":\"car\", \"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 5,
+      "box": [
+        477,
+        1329,
+        403,
+        77
+      ],
+      "detection_score": 0.963,
+      "size_m": [
+        14.16,
+        2.7
+      ],
+      "vlm_name": "line of cars",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long row of light and dark grey rectangular vehicle roofs with smooth reflective surfaces, aligned bumper-to-bumper within one lane.\",\"name\":\"line of cars\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "unclear",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": null
+    },
+    {
+      "id": 6,
+      "box": [
+        481,
+        1337,
+        100,
+        13
+      ],
+      "detection_score": 0.516,
+      "size_m": [
+        3.51,
+        0.46
+      ],
+      "vlm_name": "lane marking",
+      "vlm_category": "roadside structure (sign, lamp post, barrier, gantry, road marking)",
+      "vlm_raw": "{\"description\":\"A long, narrow light grey-white rectangular strip with smooth edges and a uniform painted appearance lies across the lane, matching the texture of lane markings.\",\"name\":\"lane marking\",\"category\":\"roadside structure (sign, lamp post, barrier, gantry, road marking)\"}",
+      "physics": "passed",
+      "truth": "unclear",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as roadside structure, vegetation or shadow: not an object on the carriageway.",
+      "correct": null
+    }
+  ],
+  "scene": {
+    "called": false,
+    "scene_risk": "none",
+    "objects": [],
+    "groups": [],
+    "lanes_blocked": 0,
+    "reasoning": "No candidate hazard passed the per-box steps.",
+    "action": "none"
+  },
+  "debris_missed_by_detection": [],
+  "timing_s": {
+    "identify": 0.05,
+    "context": 0.002,
+    "risk": 0.0,
+    "n_identify": 6,
+    "n_physics_reask": 0,
+    "n_part_questions": 0,
+    "n_risk": 0,
+    "scene": 0.0
+  }
+}

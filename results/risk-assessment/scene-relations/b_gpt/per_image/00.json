@@ -1,0 +1,189 @@
+{
+  "image_id": 0,
+  "file": "00000.jpg",
+  "location": "pexels/19851623",
+  "width": 3840,
+  "height": 2160,
+  "px_per_metre": 18.59,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        2910,
+        955,
+        72,
+        26
+      ],
+      "detection_score": 0.987,
+      "size_m": [
+        3.87,
+        1.4
+      ],
+      "vlm_name": "blue car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A blurred elongated blue object with a darker outline and smooth solid appearance, shaped like a car seen from above in a traffic lane.\",\"name\":\"blue car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 2,
+      "box": [
+        336,
+        972,
+        69,
+        24
+      ],
+      "detection_score": 0.967,
+      "size_m": [
+        3.71,
+        1.29
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A white to light gray elongated oval object with smooth blurred edges and a glossy texture, consistent with the top view of a moving car.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 3,
+      "box": [
+        3117,
+        1001,
+        69,
+        24
+      ],
+      "detection_score": 0.98,
+      "size_m": [
+        3.71,
+        1.29
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A dark gray elongated object with a smooth blurry body and lighter rectangular roof/window area, shaped like a car seen from above in a traffic lane.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 4,
+      "box": [
+        1243,
+        1176,
+        204,
+        39
+      ],
+      "detection_score": 0.981,
+      "size_m": [
+        10.98,
+        2.1
+      ],
+      "vlm_name": "flatbed truck carrying brown material",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long rectangular load with a white cab at one end, brown uneven textured cargo on top, and the overall appearance of a truck seen from above.\",\"name\":\"flatbed truck carrying brown material\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 5,
+      "box": [
+        1241,
+        1177,
+        365,
+        94
+      ],
+      "detection_score": 0.817,
+      "size_m": [
+        19.64,
+        5.06
+      ],
+      "vlm_name": "truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long white truck with a red cab is visible on the motorway, elongated and rectangular with smooth surfaces and slight motion blur.\",\"name\":\"truck\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "unclear",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": null
+    },
+    {
+      "id": 6,
+      "box": [
+        1396,
+        1237,
+        203,
+        36
+      ],
+      "detection_score": 0.665,
+      "size_m": [
+        10.92,
+        1.94
+      ],
+      "vlm_name": "semi-truck or lorry",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long, rectangular object with a white body and a bright red cab/front, smooth and vehicle-like in appearance, aligned with the lane.\",\"name\":\"semi-truck or lorry\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 7,
+      "box": [
+        508,
+        1243,
+        154,
+        38
+      ],
+      "detection_score": 0.943,
+      "size_m": [
+        8.29,
+        2.04
+      ],
+      "vlm_name": "box truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long light-gray rectangular object with rounded front and a smaller cab-like section, smooth and slightly blurred, occupying a traffic lane.\",\"name\":\"box truck\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    }
+  ],
+  "debris_missed_by_detection": [],
+  "timing_s": {
+    "identify": 0.11,
+    "context": 0.005,
+    "risk": 0.0,
+    "n_identify": 7,
+    "n_physics_reask": 0,
+    "n_part_questions": 0,
+    "n_risk": 0
+  }
+}

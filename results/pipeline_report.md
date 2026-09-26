@@ -266,18 +266,19 @@ spilled load, not unrelated debris.
   because its outer strip carries traffic in other frames (a dynamic hard
   shoulder).
 
-**Results on the 23 test frames.** B's answers are the per-box risks in the
-same run. B's scene risk is its highest per-box risk.
+**Results on the 23 test frames.** A and B's scene risk is their highest
+per-box risk. B's records (`scene-relations/b_gpt/`) were written from the
+cached answers of C's run, since C runs every B step first.
 
-| | B (per box) | C (scene) |
-|---|---|---|
-| scene risk right | 16 / 23 | 17 / 23 |
-| clear frames with no alarm | 5 / 5 | 5 / 5 |
-| lane frames | 3 / 5 | 3 / 5 |
-| shoulder frames | 0 / 4 | 1 / 4 |
-| spill frames | 3 / 4 | 3 / 4 |
-| blockage frames | 5 / 5 | 5 / 5 |
-| false alarms rated high | 1 | 1 |
+| | A (per box) | B (per box) | C (scene) |
+|---|---|---|---|
+| scene risk right | 16 / 23 | 16 / 23 | 17 / 23 |
+| clear frames with no alarm | 5 / 5 | 5 / 5 | 5 / 5 |
+| lane frames | 3 / 5 | 3 / 5 | 3 / 5 |
+| shoulder frames | 0 / 4 | 0 / 4 | 1 / 4 |
+| spill frames | 4 / 4 | 3 / 4 | 3 / 4 |
+| blockage frames | 4 / 5 | 5 / 5 | 5 / 5 |
+| false alarms rated high | 2 | 1 | 1 |
 
 These are answers only C gives:
 
@@ -333,9 +334,21 @@ background and were reused from the cache.
   given to the VLM are therefore about 30% small at this location, for
   every architecture.
 
-**Open.** Whether to run A and B in full on the scene
-set. B's per-box answers are already in C's records at no extra cost. A
-would run locally, free, in about 20 minutes.
+**A on the scene set.** A matches B on scene risk (16 / 23) but misses
+more: it named the shoulder ladder and two spilled planks roadside
+structures. It also rated two false alarms high: the vehicle part the others
+also missed, and a whole lorry named a wooden pallet. Its VLM steps took 16
+minutes for the 23 frames, locally and at no cost.
+
+**C on the fixed 30-image test set.** Identification answers came from B's
+cache, so only the scene calls were new: 21 calls (the 21 frames with a
+candidate), US$0.21 in total and about 3.5 s each; 2.4 s per frame on average.
+- **False alarms rated high: 0**, as for B.
+- **C changed one level.** A fridge lying across the edge line onto the hard
+  shoulder went from high to medium. Checked in the frame: it does lie beyond
+  the edge line, pushed there by the placement's sideways jitter.
+- **Timing and cost for C:** B's plus 2.4 s and US$0.007 per frame. That is
+  about 30.5 s and US$0.043 per frame.
 
 ## 6. Change log
 
@@ -350,3 +363,7 @@ would run locally, free, in about 20 minutes.
   C run on it: scene risk right 17 / 23 against B's 16 / 23; spills grouped
   4 / 4; lane or shoulder right 24 / 25. Most errors come from detection and
   identification before the scene step.
+- 2026-09-26: A run on the scene set (16 / 23), B's scene records written
+  from cache, C run on the 30-image test set (0 false alarms rated high, one
+  level changed). Stage report written to the SKILL.md guideline:
+  `report/stage_report.md`, compiled with `python scripts/build_report.py`.

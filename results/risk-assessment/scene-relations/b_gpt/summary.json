@@ -1,0 +1,98 @@
+{
+  "arch": "b_gpt",
+  "split": "scene",
+  "variant": {
+    "bits": 4,
+    "model": "qwen3.5-2b",
+    "physics": true,
+    "prompt": "describe",
+    "size": true,
+    "tight": true
+  },
+  "api_model": "openai/gpt-5.4",
+  "api_calls_made": 0,
+  "api_calls_from_cache": 345,
+  "api_tokens": {
+    "prompt": 0,
+    "output": 0,
+    "reasoning": 0
+  },
+  "identification": {
+    "debris_type": 0.433,
+    "hazard_recall": 0.933,
+    "vehicle": 0.988,
+    "false_hazard": 0.0,
+    "n_debris": 30,
+    "n_vehicle": 248,
+    "n_other": 3,
+    "score": 0.839
+  },
+  "identification_accuracy": {
+    "vehicle": {
+      "correct": 245,
+      "n": 248,
+      "accuracy": 0.988
+    },
+    "debris": {
+      "correct": 13,
+      "n": 30,
+      "accuracy": 0.433
+    },
+    "non-target": {
+      "correct": 3,
+      "n": 3,
+      "accuracy": 1.0
+    }
+  },
+  "debris_confusion": {
+    "tire": {
+      "mattress": 1,
+      "roadside structure (sign, lamp post, barrier, gantry, road marking)": 1,
+      "tire": 5,
+      "vegetation or shadow": 1
+    },
+    "refrigerator or appliance": {
+      "other debris": 2,
+      "mattress": 2,
+      "refrigerator or appliance": 1
+    },
+    "wooden plank or lumber": {
+      "wooden pallet": 2,
+      "wooden plank or lumber": 4
+    },
+    "wooden pallet": {
+      "cardboard box": 8,
+      "wooden pallet": 1
+    },
+    "ladder": {
+      "ladder": 2
+    }
+  },
+  "physics_corrections": 9,
+  "risk": {
+    "false_high_risk": 1,
+    "false_any_risk": 1,
+    "debris_boxes": 32,
+    "debris_rated_high": 17,
+    "debris_rated_any": 29,
+    "counts": {
+      "none": 272,
+      "medium": 7,
+      "high": 18,
+      "low": 5
+    }
+  },
+  "context_suppressed": 5,
+  "timing_s": {
+    "identify": 2.6,
+    "context": 0.4,
+    "risk": 0.1,
+    "scene": 0
+  },
+  "calls": {
+    "n_identify": 302,
+    "n_physics_reask": 9,
+    "n_part_questions": 4,
+    "n_risk": 30
+  }
+}

@@ -1,0 +1,221 @@
+{
+  "image_id": 1,
+  "file": "00001.jpg",
+  "location": "pexels/19851623",
+  "width": 3840,
+  "height": 2160,
+  "px_per_metre": 18.59,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        1563,
+        924,
+        14,
+        33
+      ],
+      "detection_score": 0.957,
+      "size_m": [
+        0.75,
+        1.78
+      ],
+      "vlm_name": "ladder",
+      "vlm_category": "ladder",
+      "vlm_raw": "{\"description\": \"Two dark rectangular objects with golden tops, positioned side-by-side on a road surface.\", \"name\": \"traffic cone\", \"category\": \"traffic cone\"} | re-asked: {\"name\": \"ladder\", \"category\": \"ladder\"}",
+      "physics": "corrected: traffic cone is implausible at 1.8 m",
+      "truth": "unclear",
+      "truth_any": "wooden pallet",
+      "detector_p": {
+        "background": 0.006,
+        "vehicle": 0.0,
+        "debris": 0.994
+      },
+      "risk": "high",
+      "reasoning": "A ladder, a rigid and heavy object, is located in the middle lane of the motorway, directly in the path of a moving vehicle. This placement creates a significant collision risk if the vehicle swerves or loses control.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 17.1,
+      "correct": null
+    },
+    {
+      "id": 2,
+      "box": [
+        2910,
+        955,
+        72,
+        26
+      ],
+      "detection_score": 0.987,
+      "size_m": [
+        3.87,
+        1.4
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A blue rectangular object with a dark top surface, positioned on a grey road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 3,
+      "box": [
+        336,
+        972,
+        69,
+        24
+      ],
+      "detection_score": 0.967,
+      "size_m": [
+        3.71,
+        1.29
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white, elongated, rounded object with a smooth, reflective surface, positioned on a dark asphalt surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 4,
+      "box": [
+        3117,
+        1001,
+        69,
+        24
+      ],
+      "detection_score": 0.98,
+      "size_m": [
+        3.71,
+        1.29
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A dark, elongated vehicle with a visible roofline and side profile, positioned on a paved surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 5,
+      "box": [
+        1241,
+        1176,
+        366,
+        95
+      ],
+      "detection_score": 0.797,
+      "size_m": [
+        19.69,
+        5.11
+      ],
+      "vlm_name": "truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A red truck cab and a white trailer with brown cargo are visible on the road surface.\", \"name\": \"truck\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "unclear",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": null
+    },
+    {
+      "id": 6,
+      "box": [
+        1243,
+        1176,
+        204,
+        39
+      ],
+      "detection_score": 0.981,
+      "size_m": [
+        10.98,
+        2.1
+      ],
+      "vlm_name": "truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A long, rectangular wooden pallet with a brown, weathered surface and visible grain, containing stacked brown cargo.\", \"name\": \"wooden pallet\", \"category\": \"wooden pallet\"} | re-asked: {\"name\": \"truck\", \"category\": \"vehicle\"}",
+      "physics": "corrected: wooden pallet is implausible at 11.0 m",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 7,
+      "box": [
+        1396,
+        1237,
+        203,
+        36
+      ],
+      "detection_score": 0.665,
+      "size_m": [
+        10.92,
+        1.94
+      ],
+      "vlm_name": "trailer",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A long, white trailer with a red end cap, showing significant motion blur due to speed.\", \"name\": \"trailer\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 8,
+      "box": [
+        508,
+        1243,
+        154,
+        38
+      ],
+      "detection_score": 0.943,
+      "size_m": [
+        8.29,
+        2.04
+      ],
+      "vlm_name": "truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A light-colored, rectangular object with a visible white front section, positioned on a paved road surface.\", \"name\": \"truck\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    }
+  ],
+  "debris_missed_by_detection": [
+    "wooden pallet"
+  ],
+  "timing_s": {
+    "identify": 19.83,
+    "context": 0.255,
+    "risk": 3.09,
+    "n_identify": 8,
+    "n_physics_reask": 2,
+    "n_part_questions": 0,
+    "n_risk": 1
+  }
+}

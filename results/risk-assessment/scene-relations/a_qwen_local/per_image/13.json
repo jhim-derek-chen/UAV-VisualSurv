@@ -1,0 +1,351 @@
+{
+  "image_id": 13,
+  "file": "00013.jpg",
+  "location": "pexels/19851623",
+  "width": 3840,
+  "height": 2160,
+  "px_per_metre": 18.59,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        2735,
+        950,
+        65,
+        25
+      ],
+      "detection_score": 0.99,
+      "size_m": [
+        3.5,
+        1.35
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white, elongated object with rounded edges and a visible seam, positioned on a gray road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 2,
+      "box": [
+        197,
+        994,
+        70,
+        68
+      ],
+      "detection_score": 0.934,
+      "size_m": [
+        3.77,
+        3.66
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A blurry blue and grey object with a dark shadow underneath, positioned on a road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 3,
+      "box": [
+        196,
+        995,
+        62,
+        23
+      ],
+      "detection_score": 0.653,
+      "size_m": [
+        3.34,
+        1.24
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A blue, elongated object with a smooth, slightly reflective surface, positioned on a dark road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 4,
+      "box": [
+        2006,
+        1012,
+        69,
+        24
+      ],
+      "detection_score": 0.992,
+      "size_m": [
+        3.71,
+        1.29
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white car with a dark window, captured in motion blur on a motorway.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 5,
+      "box": [
+        2324,
+        1130,
+        61,
+        22
+      ],
+      "detection_score": 0.931,
+      "size_m": [
+        3.28,
+        1.18
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A light-colored, elongated rectangular object with a smooth, reflective surface, positioned on a dark road surface.\", \"name\": \"car\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 6,
+      "box": [
+        2842,
+        1134,
+        36,
+        18
+      ],
+      "detection_score": 0.995,
+      "size_m": [
+        1.94,
+        0.97
+      ],
+      "vlm_name": "wooden plank",
+      "vlm_category": "wooden plank or lumber",
+      "vlm_raw": "{\"description\": \"A long, thin, golden-brown wooden plank lying on the road surface, with a black rectangular object above it.\", \"name\": \"wooden plank\", \"category\": \"wooden plank or lumber\"}",
+      "physics": "passed",
+      "truth": "wooden plank or lumber",
+      "truth_any": "wooden plank or lumber",
+      "detector_p": {
+        "background": 0.002,
+        "vehicle": 0.0,
+        "debris": 0.998
+      },
+      "risk": "high",
+      "reasoning": "The red rectangle highlights a wooden plank, a rigid and heavy object, located in the middle of the motorway carriageway. This object is approximately 11 meters from the nearest vehicle, which is a significant distance for a motorway where vehicles are traveling at high speeds. Given the object's nature and its position in the traffic lane, it poses a high risk of collision if a driver swerves to avoid it.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 10.9,
+      "correct": true
+    },
+    {
+      "id": 7,
+      "box": [
+        2970,
+        1146,
+        41,
+        45
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        2.21,
+        2.42
+      ],
+      "vlm_name": "wooden plank or lumber",
+      "vlm_category": "wooden plank or lumber",
+      "vlm_raw": "{\"description\": \"A dark, rectangular object with vertical slats or planks, appearing to be made of wood or a similar material, situated on a paved road surface.\", \"name\": \"wooden pallet\", \"category\": \"wooden pallet\"} | re-asked: {\"name\": \"wooden plank or lumber\", \"category\": \"wooden plank or lumber\"}",
+      "physics": "corrected: wooden pallet is implausible at 2.4 m",
+      "truth": "wooden plank or lumber",
+      "truth_any": "wooden plank or lumber",
+      "detector_p": {
+        "background": 0.001,
+        "vehicle": 0.0,
+        "debris": 0.999
+      },
+      "risk": "high",
+      "reasoning": "The red box highlights a large, rigid wooden plank (2.4m x 2.2m) positioned in the center of the motorway lane, directly in the path of traffic. This object is large enough to potentially cause a loss of control for a vehicle if it were to fall or be struck, and its location in the travel lane makes it a significant hazard.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 16.3,
+      "correct": true
+    },
+    {
+      "id": 8,
+      "box": [
+        3224,
+        1153,
+        46,
+        46
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        2.47,
+        2.47
+      ],
+      "vlm_name": "wooden plank or lumber",
+      "vlm_category": "roadside structure (sign, lamp post, barrier, gantry, road marking)",
+      "vlm_raw": "{\"description\": \"A dark, rectangular object with visible parallel slats or planks, positioned on a road surface.\", \"name\": \"wooden pallet\", \"category\": \"wooden pallet\"} | re-asked: {\"name\": \"wooden plank or lumber\", \"category\": \"roadside structure (sign, lamp post, barrier, gantry, road marking)\"}",
+      "physics": "corrected: wooden pallet is implausible at 2.5 m",
+      "truth": "wooden plank or lumber",
+      "truth_any": "wooden plank or lumber",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as roadside structure, vegetation or shadow: not an object on the carriageway.",
+      "correct": false
+    },
+    {
+      "id": 9,
+      "box": [
+        3331,
+        1157,
+        221,
+        38
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        11.89,
+        2.04
+      ],
+      "vlm_name": "truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A long, brown, rectangular object with visible wooden slats and a white cab, appearing to be a large piece of lumber or a pallet.\", \"name\": \"wooden pallet\", \"category\": \"wooden pallet\"} | re-asked: {\"name\": \"truck\", \"category\": \"vehicle\"}",
+      "physics": "corrected: wooden pallet is implausible at 11.9 m",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 10,
+      "box": [
+        3061,
+        1159,
+        49,
+        39
+      ],
+      "detection_score": 0.994,
+      "size_m": [
+        2.64,
+        2.1
+      ],
+      "vlm_name": "wooden plank or lumber",
+      "vlm_category": "roadside structure (sign, lamp post, barrier, gantry, road marking)",
+      "vlm_raw": "{\"description\": \"A small, rectangular object with a dark, striped pattern and a lighter, textured section, situated on a paved surface.\", \"name\": \"barrel or drum\", \"category\": \"barrel or drum\"} | re-asked: {\"name\": \"wooden plank or lumber\", \"category\": \"roadside structure (sign, lamp post, barrier, gantry, road marking)\"}",
+      "physics": "corrected: barrel or drum is implausible at 2.6 m",
+      "truth": "wooden plank or lumber",
+      "truth_any": "wooden plank or lumber",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as roadside structure, vegetation or shadow: not an object on the carriageway.",
+      "correct": false
+    },
+    {
+      "id": 11,
+      "box": [
+        2060,
+        1172,
+        207,
+        44
+      ],
+      "detection_score": 0.717,
+      "size_m": [
+        11.14,
+        2.37
+      ],
+      "vlm_name": "trailer",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white rectangular object with a light grey side panel, appearing to be a trailer or container.\", \"name\": \"trailer\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 12,
+      "box": [
+        3279,
+        1219,
+        205,
+        38
+      ],
+      "detection_score": 0.875,
+      "size_m": [
+        11.03,
+        2.04
+      ],
+      "vlm_name": "vehicle",
+      "vlm_category": "other debris",
+      "vlm_raw": "{\"description\": \"A white rectangular object with a red stripe and some dark markings on its surface, positioned on a paved road surface.\", \"name\": \"vehicle\", \"category\": \"other debris\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "detector_p": {
+        "background": 0.107,
+        "vehicle": 0.891,
+        "debris": 0.002
+      },
+      "context": "the detector's features say a vehicle, not debris (P(debris) 0.00, P(vehicle) 0.89, P(background) 0.11)",
+      "risk": "none",
+      "risk_source": "context rule",
+      "reasoning": "Context gate: the detector's features say a vehicle, not debris (P(debris) 0.00, P(vehicle) 0.89, P(background) 0.11). Not assessed as a hazard.",
+      "correct": false
+    },
+    {
+      "id": 13,
+      "box": [
+        2171,
+        1226,
+        129,
+        37
+      ],
+      "detection_score": 0.835,
+      "size_m": [
+        6.94,
+        1.99
+      ],
+      "vlm_name": "truck",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\": \"A white boxy shape with a red outline, positioned on a road surface.\", \"name\": \"truck\", \"category\": \"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    }
+  ],
+  "debris_missed_by_detection": [],
+  "timing_s": {
+    "identify": 44.98,
+    "context": 0.009,
+    "risk": 10.94,
+    "n_identify": 13,
+    "n_physics_reask": 4,
+    "n_part_questions": 0,
+    "n_risk": 2
+  }
+}

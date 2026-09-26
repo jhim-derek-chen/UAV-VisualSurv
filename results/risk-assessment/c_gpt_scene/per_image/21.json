@@ -1,0 +1,249 @@
+{
+  "image_id": 21,
+  "file": "00021.jpg",
+  "location": "pexels/12571926",
+  "width": 1080,
+  "height": 1920,
+  "px_per_metre": 28.47,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        886,
+        782,
+        94,
+        42
+      ],
+      "detection_score": 0.989,
+      "size_m": [
+        3.3,
+        1.48
+      ],
+      "vlm_name": "white van",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A white elongated rectangular object with rounded front and rear ends, dark window-like areas, and smooth glossy texture, resembling a van seen from above.\",\"name\":\"white van\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 2,
+      "box": [
+        713,
+        884,
+        79,
+        35
+      ],
+      "detection_score": 0.974,
+      "size_m": [
+        2.78,
+        1.23
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A dark blue elongated rectangular object with smooth glossy surfaces and visible roof/windscreen contours, consistent with the top view of a car.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 3,
+      "box": [
+        248,
+        1161,
+        231,
+        65
+      ],
+      "detection_score": 0.931,
+      "size_m": [
+        8.11,
+        2.28
+      ],
+      "vlm_name": "box truck or lorry",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long rectangular white object with a smooth roof-like surface and a darker cab section at one end, aligned within a traffic lane.\",\"name\":\"box truck or lorry\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 4,
+      "box": [
+        249,
+        1165,
+        43,
+        53
+      ],
+      "detection_score": 0.911,
+      "size_m": [
+        1.51,
+        1.86
+      ],
+      "vlm_name": "car",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A dark blue-gray rectangular object with rounded corners and a smooth, uniform surface is aligned lengthwise in the lane next to a larger light-colored vehicle or trailer.\",\"name\":\"car\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "unclear",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": null
+    },
+    {
+      "id": 5,
+      "box": [
+        0,
+        1716,
+        53,
+        125
+      ],
+      "detection_score": 0.992,
+      "size_m": [
+        1.86,
+        4.39
+      ],
+      "vlm_name": "white van",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A long rectangular white object with smooth bright surfaces and the proportions of a van or boxy vehicle roof is visible, parked closely beside other white vehicles.\",\"name\":\"white van\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false
+    },
+    {
+      "id": 6,
+      "box": [
+        0,
+        1717,
+        299,
+        170
+      ],
+      "detection_score": 0.979,
+      "size_m": [
+        10.5,
+        5.97
+      ],
+      "vlm_name": "parked vans",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"Several long white rectangular-roofed objects with dark window areas are parked side by side beside green trees, with a small white pickup nearby.\",\"name\":\"parked vans\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false
+    },
+    {
+      "id": 7,
+      "box": [
+        38,
+        1730,
+        61,
+        88
+      ],
+      "detection_score": 0.995,
+      "size_m": [
+        2.14,
+        3.09
+      ],
+      "vlm_name": "shadow from vegetation",
+      "vlm_category": "vegetation or shadow",
+      "vlm_raw": "{\"description\":\"A long, narrow dark object with a curved lower section and soft edges lies partly in shadow beside a white vehicle, appearing like the shadow of a tree branch or trunk rather than a solid item.\",\"name\":\"shadow from vegetation\",\"category\":\"vegetation or shadow\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as roadside structure, vegetation or shadow: not an object on the carriageway.",
+      "correct": true
+    },
+    {
+      "id": 8,
+      "box": [
+        81,
+        1744,
+        83,
+        90
+      ],
+      "detection_score": 0.996,
+      "size_m": [
+        2.92,
+        3.16
+      ],
+      "vlm_name": "white van",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A large bright white rectangular object with rounded corners and a dark curved area at one end, smooth and glossy like a roof and windshield seen from above.\",\"name\":\"white van\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false
+    },
+    {
+      "id": 9,
+      "box": [
+        142,
+        1750,
+        91,
+        107
+      ],
+      "detection_score": 0.994,
+      "size_m": [
+        3.2,
+        3.76
+      ],
+      "vlm_name": "white van",
+      "vlm_category": "vehicle",
+      "vlm_raw": "{\"description\":\"A large bright white rectangular object with smooth edges and the visible outline of a windshield/roof, consistent with a van seen from above.\",\"name\":\"white van\",\"category\":\"vehicle\"}",
+      "physics": "passed",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": false
+    }
+  ],
+  "scene": {
+    "called": false,
+    "scene_risk": "none",
+    "objects": [],
+    "groups": [],
+    "lanes_blocked": 0,
+    "reasoning": "No candidate hazard passed the per-box steps.",
+    "action": "none"
+  },
+  "debris_missed_by_detection": [
+    "suitcase or bag"
+  ],
+  "timing_s": {
+    "identify": 0.08,
+    "context": 0.001,
+    "risk": 0.0,
+    "n_identify": 9,
+    "n_physics_reask": 0,
+    "n_part_questions": 0,
+    "n_risk": 0,
+    "scene": 0.0
+  }
+}
