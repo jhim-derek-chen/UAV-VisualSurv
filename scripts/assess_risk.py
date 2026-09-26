@@ -37,6 +37,7 @@ The test run happens once with the chosen settings.
 from __future__ import annotations
 
 import argparse
+import os
 import json
 import random
 import re
@@ -578,12 +579,15 @@ GATED = {"qwen-relations": "qwen", "api-relations": "api"}  # gated path -> its 
 
 def make_vlm(path: str, variant: dict):
     if path.startswith("api"):
-        from gemini_vlm import GeminiVLM
-        return GeminiVLM(variant.get("api_model") or GEMINI_MODEL)
+        from api_vlm import ApiVLM
+        return ApiVLM(API_PROVIDER, API_MODEL)
     return VLM(variant["model"], variant["bits"], variant.get("quant_vision", False))
 
 
-GEMINI_MODEL = "gemini-3.8-flash"
+# Path 3 model. OpenAI by the user's choice (2026-09-26); gpt-5.4 fits one
+# run in a $5 prepay (estimate in results/pipeline_report.md).
+API_PROVIDER = os.environ.get("UAV_API_PROVIDER", "openai")
+API_MODEL = os.environ.get("UAV_API_MODEL", "gpt-5.4")
 
 
 def out_dir(path: str, split: str) -> Path:
@@ -743,7 +747,7 @@ def chain(split: str, path: str = "qwen", limit: int = 0) -> int:
     extra = {"vlm_load_s": round(t_load, 1),
              "peak_vram_gb": round(torch.cuda.max_memory_allocated() / 1024 ** 3, 2)}
     if path.startswith("api"):
-        extra = {"api_model": vlm.model, "api_calls_made": vlm.calls,
+        extra = {"api_model": vlm.name, "api_calls_made": vlm.calls,
                  "api_calls_from_cache": vlm.cached_hits, "api_tokens": vlm.usage}
     summarise(path, split, variant, extra)
     return figures(path) if split == "test" and not limit else 0

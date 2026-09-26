@@ -6,7 +6,7 @@ Last updated: 2026-09-26. Three ways to run the full chain, frame to risk level:
 |---|---|---|---|
 | 1 | road mask + OWLv2 + re-scorer | local Qwen3.5-2B (4-bit), answers taken as they are | done |
 | 2 | same | local Qwen3.5-2B + context gate before the risk step | done |
-| 3 | same | commercial VLM (Claude API) | not started: needs an API key |
+| 3 | same | commercial VLM: OpenAI gpt-5.4, same prompts and checks as path 1 | code ready, waiting for an API key |
 
 Objective 1 is identical in all three paths and is not re-tuned per path.
 
@@ -131,23 +131,39 @@ Model load time: road segmenter 3.8 s, OWLv2 1.2 s, Qwen3.5-2B 10.2 s.
 
 ## 4. Deployment considerations
 
-| | Path 1 / 2 (local) | Path 3 (commercial API) |
+| | Path 1 / 2 (local) | Path 3 (OpenAI API) |
 |---|---|---|
 | hardware | one 4 GB laptop GPU is enough, staged | same GPU for Objective 1 |
 | runs offline | yes | no, needs a network link |
 | images leave the device | no | crops of each detection are sent to the provider |
-| cost per frame | electricity only | about US$0.2 per frame on Claude Opus 5, estimated (below) |
+| cost per frame | electricity only | about US$0.13 per frame on gpt-5.4, estimated (below) |
 | latency | about 54 s per frame, far from real time | set by the network and the provider; calls can run in parallel |
 | identification quality | 56% of debris named right | to be measured |
 
-**Estimated API cost for path 3.** This must be confirmed with token counting
-before a real run. One identification call sends two 448 x 448 crops at 256
-visual tokens each (`ceil(448/28)^2`), plus about 350 tokens of text, so about
-860 input tokens. Output is about 300 tokens, allowing for thinking. At Claude
-Opus 5's $5 / $25 per million input / output tokens, that is about $0.012 per
-call. The 30 test frames need about 414 identification calls and about 60
-risk calls, so about US$6, or about $0.20 per frame. Claude Sonnet 5 at $2 /
-$10 per million would cost about 40% of that. Model choice is the user's call.
+**Estimated API cost for path 3.** Confirm with the logged token usage after
+the first run.
+- **Per call.** One identification call sends two 448 x 448 crops. OpenAI's
+  newer models bill 32 px patches times about 1.2, so about 240 tokens each.
+  With about 350 tokens of text, that is about 830 input tokens. Output,
+  including reasoning, is about 350 tokens.
+- **Per run.** The 30 test frames need about 520 calls: 414 identifications,
+  48 physics re-asks and about 60 risk calls. That is about 0.43 M input
+  tokens and 0.18 M output tokens.
+
+| model | input / output per M tokens | one run of 30 frames |
+|---|---|---|
+| gpt-4.1 | $2 / $8 | about $1.2 |
+| gpt-5.4 (chosen) | $2.5 / $15 | about $3.8 |
+| gpt-5.5 | $5 / $30 | about $7.6 |
+| gpt-6-astra | $10 / $50 | about $13 |
+
+**Free options were tried first and do not cover a run.**
+- **GitHub Models** was retired on 2026-07-30.
+- **Gemini free tier** measured 20 requests per model per day, and a run
+  needs about 520.
+- **Gemini with billing enabled** would cost about $1.7 per run on
+  gemini-3.8-flash ($0.75 / $3.75 per M tokens until 2026-12-31). The code
+  supports it: `UAV_API_PROVIDER=gemini`.
 
 **Licences block commercial use as things stand.** They are no obstacle for
 research use.
@@ -165,5 +181,5 @@ check.
 
 ## 5. Change log
 
-- 2026-09-26: report created. Path 1 and path 2 (two rounds) measured; path 3
-  pending an API key.
+- 2026-09-26: report created. Path 1 and path 2 (two rounds) measured.
+- 2026-09-26: path 3 provider chosen, OpenAI gpt-5.4 (`scripts/api_vlm.py`); waiting for a key.
