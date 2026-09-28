@@ -47,7 +47,8 @@ a separate set of 30 frames.
 
 Steps 3 to 5 run on a local model (architecture A) or on GPT-5.4 (B); a third
 architecture (C) adds a scene-level analysis of each frame.
-- **Stage report (8 pages, PDF):** [report/stage_report.pdf](report/stage_report.pdf).
+- **Stage report (9 slides, PDF):** [report/stage_report.pdf](report/stage_report.pdf), with
+  [speaker notes](report/speaker_notes.md).
 - **Raw running log of every measurement:**
   [results/pipeline_report.md](results/pipeline_report.md).
 
@@ -57,7 +58,7 @@ architecture (C) adds a scene-level analysis of each frame.
 |---|---|
 | `scripts/` | every step, from dataset synthesis to evaluation and figures |
 | `results/` | metrics (JSON), figures, the pipeline report |
-| `report/` | the stage report: markdown source, figures, PDF (`scripts/build_report.py`) |
+| `report/` | the stage report as slides: markdown source, figures, PDF, speaker notes (`scripts/build_report.py`) |
 | `docs/` | model and dataset sources, licences |
 
 Datasets and model weights are not in the repository. The download and build

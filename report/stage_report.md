@@ -1,282 +1,222 @@
-# UAV-VisualSurv: Stage Report
+<!-- class: title -->
+<div class="kicker">Stage report · 27 September 2026</div>
 
-<p class="sub">Highway hazard perception from UAV imagery: detection, identification and risk assessment.
-Stage report, 26 September 2026.</p>
+# UAV-VisualSurv
 
-## Overview
+<div class="sub">Highway hazard perception from a drone:<br>connecting the chain from seeing to risk, and comparing three architectures</div>
 
-**Problem.** A safety-patrol drone over a motorway should find every vehicle and
-every piece of fallen debris, say what each object is, and judge how dangerous
-the scene is. No public dataset combines UAV imagery, open motorways and labelled
-debris.
+???
+This stage had two aims: first, connect the whole chain from a drone frame to a risk judgement; second, compare three ways of running it. The deck follows that order: what we built, what it looks like on real frames, and how the three compare in time, accuracy and hardware.
 
-**Method.** We built a synthetic benchmark by rendering 3D debris into real UAV
-motorway footage. Perception (Objective 1) is a class-agnostic two-stage detector:
-road segmentation, then OWLv2 objectness with a learned re-scorer. Assessment
-(Objective 2) passes each detection to a vision-language model (VLM) for
-identification and a per-object risk level with a written reason. A rule-based
-context gate sits between the two and removes false alarms using each candidate's
-surroundings. We compare three architectures:
+---
 
-- **A** runs every step locally on a 4 GB laptop GPU, with Qwen3.5-2B as the VLM.
-- **B** replaces the local VLM with GPT-5.4.
-- **C** adds one scene-level analysis per frame to B.
+<div class="kicker">Overview</div>
 
-**Findings.**
+# This stage: connect the chain, compare the architectures
 
-1. **Detection meets its targets.** On held-out frames it finds 95.2% of
-   vehicles and 90.0% of debris, at 84.1% precision.
-2. **The context gate enforces "no false alarm rated high risk".** False
-   alarms reaching the risk step fall from 34 to 1 with A and from 23 to 0
-   with B, and no real debris is removed.
-3. **Identification is the bottleneck for accuracy and for time.** The VLMs
-   name 56% (A) and 64% (B) of debris correctly, and identification takes 84%
-   of A's 58 s per frame.
-4. **Scene-level analysis (C) adds relational judgements.** It tells a lane
-   from the hard shoulder (24 / 25) and groups a spilled load as one event
-   (4 / 4). Its overall risk level improves only slightly on A and B
-   (17 vs 16 of 23 scenes), because detection and identification errors
-   upstream limit what it sees.
-
-## 1 Setup
-
-### 1.1 Datasets
-
-![Figure 1](figures/fig1_dataset_example.png)
-<p class="cap">Figure 1. How a benchmark frame is made: a real UAV frame, a rendered 3D object
-placed at calibrated real-world scale, and labels that need no manual drawing for debris.</p>
-
-- **Test set.** 30 frames from 4 open-motorway locations, each with one
-  rendered debris object and 342 hand-checked vehicle labels. It stays fixed
-  and is never used to choose settings.
-- **Development set.** 30 other frames from the same locations with 90
-  rendered objects. Every threshold, prompt and rule is chosen here.
-- **Held-out scoring.** Learned components are scored leave-one-location-out.
-- **Placement.** Debris is placed on the road mask, near real traffic, at the
-  location's calibrated scale.
-- **Scene-relation set.** 23 test and 8 development frames in which the correct
-  risk depends on relations between objects (Figure 2). The expected answer of
-  every frame was fixed in the build script before any model was run. It
-  follows the same risk rubric the models are given: a rigid object in a
-  running lane is *high*; a large object on the hard shoulder is *medium*.
-
-![Figure 2](figures/fig2_scene_variants.png)
-<p class="cap">Figure 2. The five variants of one scene-relation background (placed objects boxed
-in red). Lane lines are fitted per frame; the shoulder object is the lane object moved sideways.</p>
-
-<div class="page"></div>
-
-### 1.2 Model architectures
-
-![Figure 3](figures/fig3_architectures.png)
-<p class="cap">Figure 3. The three architectures side by side. Objective 1 is identical in all
-three; A and B differ only in the VLM, and C adds a scene-level analysis to B.</p>
-
-- **Road region.** SegFormer-B2 fine-tuned on AeroScapes (drone view). Its mask
-  is closed and dilated at quarter resolution.
-- **Object detection.** OWLv2 (base, patch 16) objectness score on tiles at two
-  scales, without class prompts, so unseen object types can still be found.
-- **Re-scoring.** A logistic-regression probe on the objectness logit and the
-  512-d box embedding separates real objects from road texture. Boxes need at
-  least 50% road around them.
-- **Identification.** The VLM sees a context crop and an enlarged crop plus the
-  box size in metres. It describes the object, then picks one of 16
-  categories. A *physics check* rejects any category that cannot have the
-  measured size and asks again.
-- **Context gate.** A candidate is removed if any of four rules holds:
-  1. it is cut by the frame edge;
-  2. it lies more than 12.5 m sideways from every lane with traffic;
-  3. a background / vehicle / debris probe on its OWLv2 feature rules out
-     debris;
-  4. it is part of a vehicle (by geometry, or confirmed by asking the VLM).
-- **Per-object risk.** The VLM gets a wide view and measured facts (size,
-  distance to the nearest vehicle) and writes a reason before the level
-  (high / medium / low).
-- **Scene analysis (C).** One call per frame with a numbered overview of all
-  candidates and vehicles, a 20 m close view of each candidate and a fact
-  table. It returns lane or shoulder per object, event groups with their
-  source vehicle, lanes blocked, a scene risk and an action for the control
-  room.
-
-<div class="page"></div>
-
-## 2 Demos
-
-<p class="sub">The same four frames for each architecture: (1) a lorry cab next to its trailer,
-(2) a fridge lying across the edge line, (3) an object on the hard shoulder, (4) a spilled load.
-Panels: input, road region and detections, identification and risk, and scene analysis (C only).
-Boxes: blue vehicle; red, orange, yellow high, medium, low risk; green removed by the context gate.</p>
-
-<div class="demo">
-
-### Architecture A: local Qwen3.5-2B
-
-![A1](../results/risk-assessment/a_qwen_local/18_chain.jpg)
-<p class="cap">A1. <b>False alarm rated high.</b> The red cab of an articulated lorry is named a
-barrel. The gate asks the VLM whether it is part of the lorry; Qwen answers "a loose object on the
-road surface", so it reaches the risk step. The real debris, a mattress, is named a roadside structure.</p>
-
-![A2](../results/risk-assessment/a_qwen_local/02_chain.jpg)
-<p class="cap">A2. <b>Missed hazard.</b> The fridge is named a roadside structure and never
-reaches the risk step. A 2-billion-parameter model often misreads boxy debris seen from above.</p>
-
-![A3](../results/risk-assessment/scene-relations/a_qwen_local/12_chain.jpg)
-<p class="cap">A3. <b>Shoulder object never seen as debris.</b> The ladder is named a roadside structure, so the scene is rated "none" where the answer is medium.</p>
-
-![A4](../results/risk-assessment/scene-relations/a_qwen_local/13_chain.jpg)
-<p class="cap">A4. <b>Half of the spill is missed.</b> Two of the four planks are named roadside structures; the other two are rated high as separate objects, with no link between them.</p>
-
-</div>
-<div class="page demo">
-
-### Architecture B: GPT-5.4
-
-![B1](../results/risk-assessment/b_gpt/18_chain.jpg)
-<p class="cap">B1. <b>Same frame, no false alarm.</b> GPT-5.4 also names the cab a barrel, but
-when the gate asks, it answers that the box "matches the vehicle cab", so the cab is removed. The
-mattress is still missed.</p>
-
-![B2](../results/risk-assessment/b_gpt/02_chain.jpg)
-<p class="cap">B2. <b>Correct name, context ignored.</b> The fridge is identified and rated high
-on its own, although it lies across the edge line onto the hard shoulder.</p>
-
-![B3](../results/risk-assessment/scene-relations/b_gpt/12_chain.jpg)
-<p class="cap">B3. <b>Shoulder object rated as if in a lane.</b> The ladder is on the hard
-shoulder; judged from its own crop it is rated high, where the rubric says medium.</p>
-
-![B4](../results/risk-assessment/scene-relations/b_gpt/13_chain.jpg)
-<p class="cap">B4. <b>Four independent alarms.</b> Every plank is identified and rated high, but
-nothing links them to each other or to the open-load lorry ahead of them.</p>
-
-</div>
-<div class="page demo">
-
-### Architecture C: GPT-5.4 + scene analysis
-
-![C1](../results/risk-assessment/c_gpt_scene/18_chain.jpg)
-<p class="cap">C1. <b>Clean frame stays clean.</b> With no candidate left after the gate, the scene
-is "none" by rule and no scene call is made (no cost, no latency).</p>
-
-![C2](../results/risk-assessment/c_gpt_scene/02_chain.jpg)
-<p class="cap">C2. <b>Position changes the risk.</b> "Beyond the solid edge line, on the hard
-shoulder next to the barrier": high becomes medium. The only level C changed on the test set.</p>
-
-![C3](../results/risk-assessment/scene-relations/c_gpt_scene/12_chain.jpg)
-<p class="cap">C3. <b>Shoulder recognised.</b> The ladder is placed "outside the solid edge line";
-the scene risk is medium and the action is a shoulder clearance, not a lane closure.</p>
-
-![C4](../results/risk-assessment/scene-relations/c_gpt_scene/13_chain.jpg)
-<p class="cap">C4. <b>One event, one source.</b> The four planks are grouped as a spilled load,
-"most likely from the nearby open-load lorry V9"; two lanes blocked; action: close them.</p>
-
-</div>
-<div class="page"></div>
-
-## 3 Evaluation
-
-### 3.1 Inference time
-
-Mean seconds per frame over the 30 test frames, RTX 3050 Ti Laptop (4 GB), staged
-mode: Objective 1 on all frames first, then the VLM stages.
-
-| step | A (local) | B (API) | C (API) |
-|---|---|---|---|
-| road segmentation | 0.32 | 0.32 | 0.32 |
-| object detection (OWLv2) | 4.33 | 4.33 | 4.33 |
-| re-scoring | < 0.01 | < 0.01 | < 0.01 |
-| **identification (VLM, per box)** | **49.19** | **22.0** | **22.0** |
-| context gate | 0.09 | 0.13 | 0.13 |
-| per-object risk (VLM) | 4.45 | ≈ 1.3 | ≈ 1.3 |
-| scene analysis (VLM, per frame) | – | – | 2.4 |
-| **total** | **58.4** | **≈ 28** | **≈ 30.5** |
-| API cost per frame | none | US$0.036 | US$0.043 |
-
-- **Identification is the bottleneck.** It takes 84% of A's time and 78% of
-  B's. It is one VLM call per box, about 13 boxes per frame, and most boxes
-  are ordinary vehicles.
-- **Detection plus the gate costs about 4.7 s per frame.** The gate itself
-  costs 0.1 s: its rules are geometry, and its probe reuses detector features.
-- **C adds 2.4 s and US$0.007 per frame.** The scene call is made only when a
-  candidate remains (21 of 30 frames), at about 3.5 s each.
-- **B and C time is network time.** The calls are made in sequence and could
-  run in parallel.
-
-### 3.2 Accuracy
-
-**Fixed test set (30 frames).** Objective 1 is shared by all three
-architectures. On held-out halves at IoU > 0.1 it finds 95.2% of vehicles and
-90.0% of debris at 84.1% precision; at IoU > 0.5 the figures are 92.8%, 80.0%
-and 81.3%. The table below covers Objective 2 on the 414 boxes Objective 1
-keeps.
-
-| | A | B | C |
-|---|---|---|---|
-| debris named with the right category (of 25) | 56% | 64% | 64% |
-| vehicles named "vehicle" (of 329) | 96.0% | 96.4% | 96.4% |
-| false alarms removed by the context gate | 33 | 24 | 24 |
-| real debris removed by the context gate | 0 | 0 | 0 |
-| false alarms reaching the risk step | 1 | 0 | 0 |
-| false alarms rated high risk | 1 | 0 | 0 |
-| debris boxes assessed for risk (of 27) | 22 | 21 | 21 |
-
-<div class="keep">
-
-**Scene-relation set (23 frames).** A and B's scene risk is their highest
-per-object risk.
-
-| | A | B | C |
-|---|---|---|---|
-| scene risk correct | 16 / 23 | 16 / 23 | 17 / 23 |
-| clear / lane / shoulder / spill / blockage | 5/5, 3/5, 0/4, 4/4, 4/5 | 5/5, 3/5, 0/4, 3/4, 5/5 | 5/5, 3/5, 1/4, 3/4, 5/5 |
-| false alarms rated high | 2 | 1 | 1 |
-| lane or shoulder correct, per object | – | – | 24 / 25 |
-| spilled items grouped as one event | – | – | 4 / 4 |
-| lanes blocked exactly right | – | – | 16 / 23 |
-
+<h2>① Chain connected end to end · all 30 test frames</h2>
+<div class="flow">
+<div class="io">UAV frame</div>
+<div class="arrow">→</div>
+<div class="blk gpu"><div class="bt">See</div><div class="fn">road + every object</div><div class="kpi">vehicles <b>95%</b><br>debris <b>90%</b></div></div>
+<div class="arrow">→</div>
+<div class="blk vlm"><div class="bt">Identify</div><div class="fn">what is it</div><div class="kpi">debris named<br>A <b>56%</b><br>B <b>64%</b></div></div>
+<div class="arrow">→</div>
+<div class="blk cpu"><div class="bt">Context gate</div><div class="fn">drop false alarms</div><div class="kpi">false alarms to risk<br>A 34 → <b>1</b><br>B 23 → <b>0</b></div></div>
+<div class="arrow">→</div>
+<div class="blk vlm"><div class="bt">Assess risk</div><div class="fn">level + reason</div><div class="kpi">false alarms rated high<br>A <b>1</b><br>B <b>0</b></div></div>
+<div class="arrow">→</div>
+<div class="blk api addon"><div class="bt">Scene analysis</div><div class="fn">add-on (C)</div><div class="kpi">lane vs shoulder <b>24/25</b><br>spills grouped <b>4/4</b></div></div>
+<div class="arrow">→</div>
+<div class="io next">Decide · Act<br><span class="tiny">next stage</span></div>
 </div>
 
-- **B names objects best, and B and C meet "no false alarm rated high" on
-  the test set.** A misses it once and misnames most boxy debris. On the
-  scene set all three rate one vehicle part high (named a barrel), and A also
-  rates a whole lorry named a pallet high.
-- **C's added value is structure, not the headline level.** It judges
-  position and grouping correctly, and it corrected one of the two shoulder
-  objects that reached it. But 5 of 33 placed objects were missed by detection (mainly
-  pallets of about 22 px) and 3 more were misnamed before the scene step.
-  Those errors limit C as much as B.
+<h2>② Three architectures compared</h2>
+<div class="row">
+<div class="blk gpu"><div class="bt">A · local Qwen3.5-2B</div><div class="kpi">offline · free · <b>58 s</b> / frame</div></div>
+<div class="blk api"><div class="bt">B · GPT-5.4 (API)</div><div class="kpi">best accuracy · <b>28 s</b> / frame · $0.036</div></div>
+<div class="blk api addon"><div class="bt">C · B + scene analysis</div><div class="kpi">relational judgement · +2.4 s · +$0.007</div></div>
+</div>
 
-### 3.3 GPU memory (peak allocated)
+<div class="stats">
+<div class="stat"><div class="v">30 / 30</div><div class="l">test frames run end to end:<br>frame → risk level + reason</div></div>
+<div class="stat"><div class="v">0</div><div class="l">false alarms rated high risk<br>with the gate (B, C)</div></div>
+<div class="stat"><div class="v">84%</div><div class="l">of A's time spent identifying boxes:<br>the bottleneck</div></div>
+</div>
 
-| | A | B | C |
-|---|---|---|---|
-| Objective 1 pass | 2.19 GB | 2.19 GB | 2.19 GB |
-| VLM pass | 1.97 GB | none (cloud) | none (cloud) |
-| all models loaded at once | 4.05 GB, above the 4 GB card | 2.19 GB | 2.19 GB |
+???
+The first goal is met: every stage runs on all 30 test frames, from the raw frame to a risk level with a written reason. The numbers under each block are the headline result of that stage. Detection finds 95% of vehicles and 90% of debris. The VLM names 56% of debris correctly locally and 64% with GPT-5.4. The context gate is what makes the output trustworthy: false alarms reaching the risk step drop from 34 to 1 locally and from 23 to 0 with GPT-5.4. For the second goal, A runs fully offline but takes about a minute per frame; B is twice as fast and more accurate but needs the API; C adds a scene-level judgement for a small extra cost. The next stage, decision and execution, is greyed out on the right.
 
-A fits the card only in staged mode. A live, frame-by-frame system with A needs
-a smaller detector or VLM, or a larger GPU. B and C need only Objective 1 on
-the device.
+---
 
-## 4 Limitations and next steps
+<div class="kicker">Setup · dataset</div>
 
-- **Upstream errors decide what reasoning can see.** The next gains are in
-  small-object detection and identification, not in more reasoning.
-- **Synthetic debris.** Dev and test share 22 debris models, and some renders
-  (fridges especially) look artificial. The scene-relation set is small (23
-  frames, mostly one camera).
-- **Calibration.** Ground resolution comes from a per-location, car-based
-  calibration. One location's calibration appears 30% too high (its lanes
-  measure 2.4 m). A deployed drone would use altitude and focal length
-  instead.
-- **Deployment trade-off.**
-  - **A** is offline, private and free, but slow (58 s per frame).
-  - **B and C** are faster and more accurate, but need a network link, send
-    crops to a provider and cost about US$0.04 per frame.
-  - **Licences.** The road model's weights and data are licensed for research
-    only.
+# Real UAV motorway frames + rendered 3D debris
 
-<p class="sub">References: SegFormer (Xie et al., NeurIPS 2021); AeroScapes (Nigam et al., WACV 2018);
-OWLv2 (Minderer et al., NeurIPS 2023); Grounding DINO (Liu et al., ECCV 2024); Qwen3.5 (Alibaba
-Qwen team, 2026); GPT-5.4 (OpenAI); Blender 5.2; Pexels videos 8742752, 12306893, 12571926,
-19851623; 3D debris models from Sketchfab under CC BY (credits in the dataset manifest).
-Code and results: github.com/jhim-derek-chen/UAV-VisualSurv.</p>
+<img src="figures/fig_dataset.png" style="width:100%; max-height:122mm; object-fit:contain">
+
+<div class="chips" style="margin-top:3mm">
+<span>4 open-motorway locations</span><span>30 test frames · fixed</span><span>30 dev frames · all tuning</span><span>342 vehicles · hand-checked</span><span>1 debris object per test frame</span><span>leave-one-location-out scoring</span>
+</div>
+
+???
+No public dataset has UAV imagery of open motorways with labelled debris, so we built one. The background is a real drone video frame. The debris is a 3D model from Sketchfab, rendered in Blender and placed at its real-world size using a per-location ground resolution calibrated on real cars. Debris labels come from the render itself, so they are pixel-exact; the 342 vehicle labels were proposed by Grounding DINO and every one was checked by hand. All settings are chosen on a separate development set, and learned parts are always tested on a location they never saw.
+
+---
+<!-- class: arch -->
+<div class="kicker">Setup · architectures</div>
+
+# One chain, three architectures
+
+<div class="flow">
+<div class="io">UAV frame<br><span class="tiny">RGB · up to 4K</span></div>
+<div class="arrow">→</div>
+<div class="blk" style="flex:1.2"><div class="bt">① See</div><div class="fn">Objective 1 · class-agnostic</div>
+<div class="sub"><div class="sb gpu">Road segmentation<br><i>SegFormer-B2 · AeroScapes</i></div><div class="dn">↓</div><div class="sb gpu">Object detection<br><i>OWLv2 objectness · tiled</i></div><div class="dn">↓</div><div class="sb cpu">Re-scoring + road filter<br><i>logistic probe</i></div></div>
+<div class="out">out: boxes + features</div></div>
+<div class="arrow">→</div>
+<div class="blk"><div class="bt">② Identify</div><div class="fn">what each box is</div>
+<div class="sub"><div class="sb vlm">VLM: describe → 1 of 16 categories<br><i>two crops + size in metres</i></div><div class="dn">↓</div><div class="sb cpu">Physics check<br><i>category must fit the size</i></div></div>
+<div class="out">out: name + category</div></div>
+<div class="arrow">→</div>
+<div class="blk"><div class="bt">③ Context gate</div><div class="fn">remove false alarms</div>
+<div class="sub"><div class="sb cpu">cut by frame edge</div><div class="sb cpu">&gt; 12.5 m from traffic</div><div class="sb cpu">detector: not debris<br><i>3-class probe</i></div><div class="sb cpu">part of a vehicle<br><i>geometry · VLM check</i></div></div>
+<div class="out">out: hazard candidates</div></div>
+<div class="arrow">→</div>
+<div class="blk"><div class="bt">④ Assess risk</div><div class="fn">per object</div>
+<div class="sub"><div class="sb vlm">VLM: wide view + facts<br><i>size · distance to traffic</i></div><div class="dn">↓</div><div class="sb vlm">reason → level<br><i>high · medium · low</i></div></div>
+<div class="out">out: risk + reason</div></div>
+<div class="arrow">→</div>
+<div class="blk addon"><div class="bt">⑤ Scene analysis</div><div class="fn">add-on · C only</div>
+<div class="sub"><div class="sb api">whole frame, numbered<br><i>overview + close views + facts</i></div><div class="dn">↓</div><div class="sb api">lane / shoulder · events<br><i>lanes blocked · action</i></div></div>
+<div class="out">out: scene risk + action</div></div>
+</div>
+
+<table class="mx">
+<tr><th style="width:15%"></th><th>① See</th><th>② Identify</th><th>③ Context gate</th><th>④ Assess risk</th><th>⑤ Scene analysis</th></tr>
+<tr><td><b>A</b> · local</td><td class="gpu">local GPU</td><td class="gpu">Qwen3.5-2B 4-bit · local</td><td class="cpu">CPU (+ Qwen check)</td><td class="gpu">Qwen3.5-2B · local</td><td style="text-align:center">–</td></tr>
+<tr><td><b>B</b> · API</td><td class="gpu">local GPU</td><td class="api">GPT-5.4 · API</td><td class="cpu">CPU (+ GPT check)</td><td class="api">GPT-5.4 · API</td><td style="text-align:center">–</td></tr>
+<tr><td><b>C</b> · B + add-on</td><td class="gpu">local GPU</td><td class="api">GPT-5.4 · API</td><td class="cpu">CPU (+ GPT check)</td><td class="api">GPT-5.4 · API</td><td class="api">GPT-5.4 · API</td></tr>
+</table>
+<div class="legend" style="margin-top:2mm"><span class="gpu" style="border:1px solid #999"></span>local GPU <span class="cpu" style="border:1px solid #999"></span>CPU <span class="api" style="border:1px solid #999"></span>cloud API <span class="vlm" style="border:1px solid #999"></span>VLM, per architecture (table)</div>
+
+???
+The main flow runs left to right; inside each block is the sub-flow and the model it uses. Objective 1 is shared by all three architectures: a drone-view road segmenter, then OWLv2's objectness score, which finds objects without being told their class, then a small learned re-scorer. Identification asks a vision-language model to describe each box and choose a category, and a physics check rejects answers that cannot match the measured size. The context gate applies four checks that only ever remove candidates. The risk step writes its reason before the level. The table underneath shows the only differences: A runs the language model locally, B and C call GPT-5.4, and only C adds the scene-analysis block, which is an add-on.
+
+---
+
+<div class="kicker">Demo · architecture A</div>
+
+# A · local Qwen3.5-2B
+
+<div class="legend"><span style="background:#e33c3c"></span>high <span style="background:#f08c14"></span>medium <span style="background:#1ea06e"></span>removed by gate <span style="background:#d73ca0"></span>missed <span style="background:#3c8ce6"></span>vehicle</div>
+<div class="grid2">
+<div class="tile"><img src="figures/demo_a_23.jpg"><div class="cue">✓ tyre found · HIGH <span class="m">· truck cut by frame edge removed</span></div></div>
+<div class="tile"><img src="figures/demo_a_26.jpg"><div class="cue">✓ small tyre found · HIGH</div></div>
+<div class="tile"><img src="figures/demo_a_18.jpg"><div class="cue">✗ lorry cab → 'barrel' · HIGH <span class="m">· false alarm reaches the alert</span></div></div>
+<div class="tile"><img src="figures/demo_a_02.jpg"><div class="cue">✗ fridge → 'roadside structure' <span class="m">· hazard missed</span></div></div>
+</div>
+
+???
+Four test frames, the same four for B on the next slide. Top row: what works. The tyre is found and rated high, and a truck cut by the frame edge is removed by the gate instead of raising an alarm. Even a small tyre in a busy lane is found. Bottom row: the weaknesses of a 2-billion-parameter model. It calls the red cab of an articulated lorry a barrel, and when the gate asks whether it is part of the lorry, it says no, so a false alarm is rated high. It also misreads a fridge seen from above as a roadside structure, so a real hazard is missed.
+
+---
+
+<div class="kicker">Demo · architecture B</div>
+
+# B · GPT-5.4
+
+<div class="legend"><span style="background:#e33c3c"></span>high <span style="background:#f08c14"></span>medium <span style="background:#1ea06e"></span>removed by gate <span style="background:#d73ca0"></span>missed <span style="background:#3c8ce6"></span>vehicle</div>
+<div class="grid2">
+<div class="tile"><img src="figures/demo_b_23.jpg"><div class="cue">✓ tyre found · HIGH</div></div>
+<div class="tile"><img src="figures/demo_b_26.jpg"><div class="cue">✗ small tyre → 'roadside structure' <span class="m">· missed</span></div></div>
+<div class="tile"><img src="figures/demo_b_18.jpg"><div class="cue">✓ lorry cab removed <span class="m">· GPT: "part of the vehicle"</span></div></div>
+<div class="tile"><img src="figures/demo_b_02.jpg"><div class="cue">✓ fridge found · HIGH <span class="m">· but it lies on the shoulder</span></div></div>
+</div>
+
+???
+Same frames with GPT-5.4. It fixes both of A's failures: asked by the gate, it confirms the red box matches the lorry's cab, so no false alarm; and it names the fridge correctly. But it is not uniformly better: it misses the small tyre that A found, calling it a roadside post. And it judges each object on its own crop, so the fridge is rated high although it actually lies across the edge line on the hard shoulder. That last point is what the scene-analysis add-on addresses.
+
+---
+
+<div class="kicker">Demo · add-on</div>
+
+# C · scene analysis: the frame judged as a whole
+
+<p class="small muted" style="margin:-3mm 0 2mm 0">23 scene-relation frames · lane / shoulder / spill / blockage / clear · answers fixed before running</p>
+<div class="grid2">
+<div class="tile"><img src="figures/demo_c_12.jpg"><div class="cue">✓ shoulder object: HIGH alone → MEDIUM <span class="m">· "shoulder clearance"</span></div></div>
+<div class="tile"><img src="figures/demo_c_13.jpg"><div class="cue">✓ 4 planks → one spill from lorry V9 <span class="m">· 2 lanes · "close lanes"</span></div></div>
+<div class="tile"><img src="figures/demo_c_22.jpg"><div class="cue">✓ tyre + fridge side by side → 2 lanes blocked</div></div>
+<div class="tile"><img src="figures/demo_c_07.jpg"><div class="cue">✗ planks on the shoulder judged "in lane" <span class="m">· HIGH, expected MEDIUM</span></div></div>
+</div>
+
+???
+This is the add-on. To test it we built a small scene-relation set where the right answer depends on relations: the same object in a lane or on the hard shoulder, a load strewn behind a lorry, or two objects blocking adjacent lanes; the expected answers were written down before any model ran. C sees the whole frame with every candidate numbered. It moves a ladder on the shoulder from high to medium and asks for a shoulder clearance instead of a lane closure. It groups four planks into one spilled load, names the open-load lorry as the likely source and counts two blocked lanes. It is not always right: here it puts planks on the shoulder into the lane.
+
+---
+
+<div class="kicker">Evaluation</div>
+
+# Time, accuracy and GPU in one table
+
+<table class="ev">
+<tr><th style="width:44%"></th><th>A · local Qwen</th><th>B · GPT-5.4</th><th>C · B + scene add-on</th></tr>
+<tr class="g"><td colspan="4">Inference time · s per frame · 30 test frames · RTX 3050 Ti (4 GB)</td></tr>
+<tr><td>road segmentation</td><td class="n">0.32</td><td class="n">0.32</td><td class="n">0.32</td></tr>
+<tr><td>object detection (OWLv2)</td><td class="n">4.33</td><td class="n">4.33</td><td class="n">4.33</td></tr>
+<tr><td>re-scoring</td><td class="n">&lt; 0.01</td><td class="n">&lt; 0.01</td><td class="n">&lt; 0.01</td></tr>
+<tr><td><b>identification (VLM, per box) · bottleneck</b></td><td class="n bn">49.2</td><td class="n bn">22.0</td><td class="n bn">22.0</td></tr>
+<tr><td>context gate</td><td class="n">0.09</td><td class="n">0.13</td><td class="n">0.13</td></tr>
+<tr><td>risk assessment (VLM)</td><td class="n">4.45</td><td class="n">≈ 1.3</td><td class="n">≈ 1.3</td></tr>
+<tr><td>scene analysis (add-on)</td><td class="n">–</td><td class="n">–</td><td class="n">2.4</td></tr>
+<tr><td><b>total</b></td><td class="n"><b>58.4</b></td><td class="n best">≈ 28</td><td class="n"><b>≈ 30.5</b></td></tr>
+<tr class="g"><td colspan="4">Accuracy · 30 test frames</td></tr>
+<tr><td>detection: vehicles · debris · precision</td><td class="span" colspan="3">95.2% · 90.0% · 84.1% (shared)</td></tr>
+<tr><td>debris named correctly</td><td class="n">56%</td><td class="n best">64%</td><td class="n best">64%</td></tr>
+<tr><td>vehicles named correctly</td><td class="n">96.0%</td><td class="n">96.4%</td><td class="n">96.4%</td></tr>
+<tr><td>false alarms removed by the gate · real debris lost</td><td class="n">33 · 0</td><td class="n">24 · 0</td><td class="n">24 · 0</td></tr>
+<tr><td>false alarms rated high</td><td class="n">1</td><td class="n best">0</td><td class="n best">0</td></tr>
+<tr class="g"><td colspan="4">Accuracy · 23 scene-relation frames (add-on test)</td></tr>
+<tr><td>scene risk correct</td><td class="n">16 / 23</td><td class="n">16 / 23</td><td class="n best">17 / 23</td></tr>
+<tr><td>lane vs shoulder · spill grouped · lanes blocked</td><td class="n">–</td><td class="n">–</td><td class="n">24/25 · 4/4 · 16/23</td></tr>
+<tr class="g"><td colspan="4">GPU memory · peak</td></tr>
+<tr><td>Objective 1 pass · VLM pass</td><td class="n">2.19 GB · 1.97 GB</td><td class="n">2.19 GB · cloud</td><td class="n">2.19 GB · cloud</td></tr>
+<tr><td>all models loaded at once</td><td class="n bn">4.05 GB &gt; 4 GB card</td><td class="n">2.19 GB</td><td class="n">2.19 GB</td></tr>
+<tr class="g"><td colspan="4">Deployment</td></tr>
+<tr><td>API cost per frame · runs offline</td><td class="n best">$0 · yes</td><td class="n">$0.036 · no</td><td class="n">$0.043 · no</td></tr>
+</table>
+
+???
+Everything in one table. Time: the bottleneck is identification, one VLM call per box and about thirteen boxes per frame, mostly ordinary vehicles; it is 84% of A's time and 78% of B's. Detection plus the gate costs under five seconds. Accuracy: detection is shared; B names debris best and, with C, is the only one with no false alarm rated high on the test set. On the scene-relation set C is only one frame better than A and B on the overall level, but it is the only one that can say lane or shoulder, group a spill and count blocked lanes. GPU: A only fits the 4 GB card if models are loaded one stage at a time; B and C need only the detector on the device. The price is an API bill of about four cents per frame and no offline operation.
+
+---
+<!-- class: big -->
+<div class="kicker">Takeaways</div>
+
+# Where we stand, what comes next
+
+<div class="row" style="margin-top:4mm">
+<div class="col">
+<h2>This stage</h2>
+<ul>
+<li>✓ chain connected: frame → objects → identity → gate → risk + reason</li>
+<li>✓ "no false alarm rated high": met by B and C on the test set</li>
+<li>B: best accuracy and speed today</li>
+<li>A: offline and free, but slow</li>
+<li>C: add-on for relational decisions</li>
+</ul>
+</div>
+<div class="col">
+<h2>Next stage</h2>
+<ul>
+<li>decide + act: lane signals, message signs</li>
+<li>bottleneck: identify only unclear boxes, in parallel</li>
+<li>small-object detection (pallets ≈ 22 px)</li>
+<li>object size from altitude + focal length</li>
+</ul>
+</div>
+</div>
+
+???
+To close: the chain now runs end to end, and the gate makes its alerts trustworthy with GPT-5.4. For a demonstration, B is the best choice today; A matters for an offline, private product; C is a useful add-on when the control room needs to know which lanes to close and whether several objects are one incident. The next stage is the decision and execution step. On the perception side, the clear target is identification time, for example by skipping boxes the detector is already sure are vehicles and by running calls in parallel, and better detection of small objects.

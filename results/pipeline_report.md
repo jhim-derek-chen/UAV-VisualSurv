@@ -367,3 +367,7 @@ candidate), US$0.21 in total and about 3.5 s each; 2.4 s per frame on average.
   from cache, C run on the 30-image test set (0 false alarms rated high, one
   level changed). Stage report written to the SKILL.md guideline:
   `report/stage_report.md`, compiled with `python scripts/build_report.py`.
+- 2026-09-27: stage report rebuilt as a 9-slide deck (presentation mode):
+  overview on the stage's two aims (chain connected, architectures compared),
+  one evaluation table, and scene analysis kept to a single add-on slide at
+  the end.
