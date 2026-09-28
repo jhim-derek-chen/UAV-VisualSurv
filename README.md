@@ -50,8 +50,8 @@ Steps 3 to 5 run on a local model (architecture A) or on GPT-5.4 (B). D lets
 the detector screen first and asks GPT-5.4 only about boxes that may be debris:
 B's accuracy at 6.3 s per frame and US$0.006. C adds a scene-level analysis of
 each frame (not in the current slides).
-- **Stage report (9 slides, PDF):** [report/stage_report.pdf](report/stage_report.pdf), with
-  [speaker notes](report/speaker_notes.md).
+- **Milestone 1 deck (8 slides, PDF):** [report/milestone1.pdf](report/milestone1.pdf), with
+  [speaker notes](report/milestone1_notes.md).
 - **Raw running log of every measurement:**
   [results/pipeline_report.md](results/pipeline_report.md).
 
@@ -311,7 +311,7 @@ scripts/
     scene_assess.py             architecture C's scene analysis and its scoring
   report/   time it and present it
     time_pipeline.py            end-to-end timing and GPU memory (A staged; D live, two tiers)
-    build_report.py             stage deck: figures + report/stage_report.md -> PDF + notes
+    build_report.py             milestone deck: figures + report/milestone1.md -> PDF + notes
 datasets/   raw and built data, never committed      models/   weights + manifest.json
 results/    every measurement (JSON) and figure       report/   the stage deck
 docs/       model and dataset sources, licences
@@ -326,7 +326,7 @@ setup ──> data ──> datasets/ (frames, labels, manifests)
                       │
        assess ──> results/risk-assessment/<architecture>/ (per-frame JSON, figures, summary)
                       │
-       report ──> timing.json, report/stage_report.pdf
+       report ──> timing.json, report/milestone1.pdf
 ```
 
 **How the scripts are written.**

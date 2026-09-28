@@ -1,8 +1,6 @@
 <!-- class: title -->
 <div class="kicker">Stage report · 28 September 2026</div>
 
-# UAV-VisualSurv
-
 <div class="sub">Highway hazard perception from a drone:<br>connecting the chain from seeing to risk, and comparing three architectures</div>
 
 ???
@@ -12,7 +10,7 @@ This stage had two aims: first, connect the whole chain from a drone frame to a 
 
 <div class="kicker">Overview</div>
 
-# This stage: connect the chain, compare the architectures
+# Process visualization and architectures
 
 <h2>① Chain connected end to end · all 30 test frames</h2>
 <div class="flow">
@@ -64,7 +62,7 @@ No public dataset has UAV imagery of open motorways with labelled debris, so we 
 <!-- class: arch -->
 <div class="kicker">Setup · architectures</div>
 
-# One chain, three architectures
+# Architectures
 
 <div class="flow tierrow">
 <div class="io" style="visibility:hidden">UAV frame<br><span class="tiny">RGB · up to 4K</span></div>
@@ -177,7 +175,7 @@ D on the same nine frames. Every answer is B's: the boxes sent to GPT-5.4 are ex
 
 <div class="kicker">Evaluation</div>
 
-# Time, accuracy and GPU in one table
+# Time, accuracy and GPU
 
 <table class="ev">
 <tr><th style="width:40%"></th><th>A · local Qwen</th><th>B · GPT-5.4</th><th>D · screen + GPT-5.4</th></tr>
@@ -207,33 +205,3 @@ D on the same nine frames. Every answer is B's: the boxes sent to GPT-5.4 are ex
 
 ???
 Everything in one table, split into the two tiers. Tier 1 is what the drone must do for every frame: 2.4 seconds, the same for all three, since Objective 1 is shared; we sped its code up from 4.7 seconds with bit-identical output, by vectorising a duplicate filter and overlapping CPU and GPU work. Tier 2 is the language model. In A and B it runs on every frame and asks about every box, which makes identification the bottleneck: 49 and 22 seconds. D asks about 2 boxes per frame instead of 15 and runs tier 2 only when tier 1 flags something: 4 seconds, 6.3 end to end. On this test set every frame holds debris, so tier 2 ran on 27 of 30 frames; on a patrol it would run far less often. Accuracy: D matches B on every test-set measure and recognises vehicles slightly better. GPU: A only fits the 4 GB card if its models are loaded one stage at a time; B and D need only the detector on the device. D also cuts the API bill to about half a cent per frame.
-
----
-<!-- class: big -->
-<div class="kicker">Takeaways</div>
-
-# Where we stand, what comes next
-
-<div class="row" style="margin-top:4mm">
-<div class="col">
-<h2>This stage</h2>
-<ul>
-<li>✓ chain connected: frame → objects → identity → gate → risk + reason</li>
-<li>✓ "no false alarm rated high": B and D on the test set</li>
-<li>✓ D: B's accuracy at 6.3 s per frame · tier 1 2.4 s</li>
-<li>A: offline and free, but ≈ 56 s per frame</li>
-</ul>
-</div>
-<div class="col">
-<h2>Next stage</h2>
-<ul>
-<li>decide + act: lane signals, message signs</li>
-<li>tier 1 below 1 s, without losing detections</li>
-<li>small-object detection (pallets ≈ 22 px)</li>
-<li>object size from altitude + focal length</li>
-</ul>
-</div>
-</div>
-
-???
-To close: the chain now runs end to end, the gate makes its alerts trustworthy, and D brings it to 6.3 seconds per frame with B's accuracy: 2.4 seconds of looking on the drone for every frame, and a few seconds of language model only when something is flagged. A remains the option for an offline, private product. The next stage is the decision and execution step. On the perception side, the target is tier 1 below one second without losing detections; LeVJEPA, a new video encoder we tried for this, was fast but missed too much, so that work continues.

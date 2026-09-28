@@ -462,7 +462,8 @@ laptop has an RTX 3050 Ti (4 GB).
 - 2026-09-26: A run on the scene set (16 / 23), B's scene records written
   from cache, C run on the 30-image test set (0 false alarms rated high, one
   level changed). Stage report written to the SKILL.md guideline:
-  `report/stage_report.md`, compiled with `python scripts/report/build_report.py`.
+  `report/stage_report.md` (now `report/milestone1.md`), compiled with
+  `python scripts/report/build_report.py`.
 - 2026-09-27: stage report rebuilt as a 9-slide deck (presentation mode):
   overview on the stage's two aims (chain connected, architectures compared),
   one evaluation table, and scene analysis kept to a single add-on slide at
@@ -471,3 +472,6 @@ laptop has an RTX 3050 Ti (4 GB).
   same accuracy as B, 6.33 s per frame end to end, tier 1 2.36 s, US$0.0056
   per frame. Objective 1 code sped up for all architectures with
   bit-identical output. LeVJEPA tried as a one-pass detector and not adopted.
+- 2026-09-28: deck renamed milestone1 (`report/milestone1.pdf`, 8 slides): D in place
+  of the scene-analysis add-on, nine demo frames per architecture, takeaways
+  slide dropped.

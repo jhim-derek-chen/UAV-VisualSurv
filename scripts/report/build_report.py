@@ -1,5 +1,5 @@
-"""Build the stage report as a slide deck: figures, then report/stage_report.md
--> 16:9 slides (HTML) -> PDF, plus report/speaker_notes.md.
+"""Build the milestone deck: figures, then report/milestone1.md -> 16:9 slides
+(HTML) -> report/milestone1.pdf, plus report/milestone1_notes.md.
 
     python scripts/report/build_report.py            # figures + PDF + speaker notes
     python scripts/report/build_report.py --no-figs  # PDF + notes only, after editing the markdown
@@ -7,7 +7,7 @@
 Markdown format: slides are separated by a line `---`. A first line
 `<!-- class: name -->` gives the slide a CSS class. Text after a line `???`
 is the presenter's note: it is left off the slide and collected into
-report/speaker_notes.md. Diagrams and tables are HTML inside the markdown, so
+report/milestone1_notes.md. Diagrams and tables are HTML inside the markdown, so
 they stay editable as text.
 
 Figures drawn here go to report/figures/: the annotated dataset example and
@@ -31,6 +31,7 @@ from PIL import Image, ImageDraw, ImageFont
 REPO_ROOT = Path(__file__).resolve().parents[2]
 REPORT = REPO_ROOT / "report"
 FIGS = REPORT / "figures"
+DECK = "milestone1"  # report/<DECK>.md -> report/<DECK>.pdf + report/<DECK>_notes.md
 RES = REPO_ROOT / "results" / "risk-assessment"
 TEST = REPO_ROOT / "datasets" / "synthetic-highway-debris"
 BROWSERS = [Path(r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"),
@@ -370,7 +371,7 @@ def parse_slides(src: str):
 def build_pdf() -> Path:
     from markdown_it import MarkdownIt
     md = MarkdownIt("commonmark", {"html": True}).enable("table")
-    slides = parse_slides((REPORT / "stage_report.md").read_text(encoding="utf-8"))
+    slides = parse_slides((REPORT / f"{DECK}.md").read_text(encoding="utf-8"))
     parts, notes = [], ["# Speaker notes\n"]
     for k, (cls, body, note) in enumerate(slides, 1):
         foot = ("" if "title" in cls else
@@ -378,15 +379,15 @@ def build_pdf() -> Path:
         parts.append(f"<section class='slide {cls}'>{md.render(body)}{foot}</section>")
         title = re.search(r"^#\s+(.+)$", body, flags=re.M)
         notes.append(f"## {k}. {title.group(1) if title else ''}\n\n{note or '(no note)'}\n")
-    (REPORT / "speaker_notes.md").write_text("\n".join(notes), encoding="utf-8")
-    html = ("<!doctype html><html><head><meta charset='utf-8'><title>Stage report</title>"
+    (REPORT / f"{DECK}_notes.md").write_text("\n".join(notes), encoding="utf-8")
+    html = ("<!doctype html><html><head><meta charset='utf-8'><title>Milestone 1</title>"
             f"<style>{CSS}</style></head><body>{''.join(parts)}</body></html>")
-    page = REPORT / "stage_report.html"
+    page = REPORT / f"{DECK}.html"
     page.write_text(html, encoding="utf-8")
-    pdf = REPORT / "stage_report.pdf"
+    pdf = REPORT / f"{DECK}.pdf"
     browser = next((b for b in BROWSERS if b.is_file()), None)
     if browser is None:
-        raise SystemExit("no Edge or Chrome found; open report/stage_report.html and print it")
+        raise SystemExit(f"no Edge or Chrome found; open report/{DECK}.html and print it")
     tmp = REPO_ROOT / ".cache" / "tmp" / "edge_profile"
     pdf.unlink(missing_ok=True)
     subprocess.run([str(browser), "--headless=new", "--disable-gpu", "--no-pdf-header-footer",
@@ -423,7 +424,7 @@ def main() -> int:
         for f in made:
             print("figure:", f.relative_to(REPO_ROOT))
     print("pdf:", build_pdf().relative_to(REPO_ROOT))
-    print("notes:", (REPORT / "speaker_notes.md").relative_to(REPO_ROOT))
+    print("notes:", (REPORT / f"{DECK}_notes.md").relative_to(REPO_ROOT))
     return 0
 
 
