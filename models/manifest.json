@@ -117,6 +117,18 @@
       "licence": "Apache-2.0",
       "size_bytes": 9342911408,
       "downloaded_utc": "2026-09-25T14:21:43+00:00"
+    },
+    "levjepa-videomix-large": {
+      "repo_id": "galilai-group/LeVJEPA-VideoMix-Large",
+      "revision": "e831a0347737fcaa660b39c57d41c109de399845",
+      "group": "detection-backbone",
+      "task": "video/image encoder (frozen features)",
+      "licence": "CC BY-NC 4.0 (weights); code MIT",
+      "paper": "https://arxiv.org/abs/2608.27395",
+      "local_dir": "models/levjepa-videomix-large",
+      "size_bytes": 1212429888,
+      "downloaded_utc": "2026-09-28T01:14:00+00:00",
+      "note": "tried as a one-pass tier-1 detector; not adopted (see results/pipeline_report.md, section 6)"
     }
   }
 }

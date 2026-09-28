@@ -1,0 +1,177 @@
+{
+  "image_id": 4,
+  "file": "00004.jpg",
+  "location": "pexels/19851623",
+  "width": 3840,
+  "height": 2160,
+  "px_per_metre": 18.59,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        3543,
+        889,
+        189,
+        40
+      ],
+      "detection_score": 0.976,
+      "size_m": [
+        10.17,
+        2.15
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 2,
+      "box": [
+        3380,
+        899,
+        35,
+        38
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        1.88,
+        2.04
+      ],
+      "vlm_name": "mattress",
+      "vlm_category": "mattress",
+      "vlm_raw": "{\"description\":\"A rectangular object lying diagonally on the road, brown-grey in colour with a mottled, rough surface and dark edges.\",\"name\":\"mattress\",\"category\":\"mattress\"}",
+      "physics": "passed",
+      "identified_by": "vlm",
+      "truth": "mattress",
+      "truth_any": "mattress",
+      "detector_p": {
+        "background": 0.0,
+        "vehicle": 0.0,
+        "debris": 1.0
+      },
+      "risk": "medium",
+      "reasoning": "The object is identified as a mattress about 2.0 m by 1.9 m lying in a live traffic lane, so although it is relatively soft, it is a substantial obstruction that drivers may need to brake or swerve to avoid. The nearest vehicle is only about 13 m away and there are 3 vehicles in view, which increases the immediate chance of an evasive manoeuvre or collision.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 12.9,
+      "correct": true
+    },
+    {
+      "id": 3,
+      "box": [
+        1339,
+        969,
+        70,
+        28
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        3.77,
+        1.51
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 4,
+      "box": [
+        2103,
+        1178,
+        59,
+        24
+      ],
+      "detection_score": 0.969,
+      "size_m": [
+        3.17,
+        1.29
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 5,
+      "box": [
+        1639,
+        1225,
+        43,
+        36
+      ],
+      "detection_score": 0.659,
+      "size_m": [
+        2.31,
+        1.94
+      ],
+      "vlm_name": "background (detector)",
+      "vlm_category": "background",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "unclear",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as roadside structure, vegetation or shadow: not an object on the carriageway.",
+      "correct": null
+    },
+    {
+      "id": 6,
+      "box": [
+        407,
+        1249,
+        231,
+        42
+      ],
+      "detection_score": 0.545,
+      "size_m": [
+        12.43,
+        2.26
+      ],
+      "vlm_name": "background (detector)",
+      "vlm_category": "background",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as roadside structure, vegetation or shadow: not an object on the carriageway.",
+      "correct": false
+    }
+  ],
+  "debris_missed_by_detection": [],
+  "timing_s": {
+    "identify": 0.02,
+    "context": 0.01,
+    "risk": 17.39,
+    "n_identify": 1,
+    "n_physics_reask": 0,
+    "n_part_questions": 0,
+    "n_risk": 1
+  }
+}

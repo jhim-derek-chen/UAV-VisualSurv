@@ -1,12 +1,13 @@
 # Pipeline report (raw, living document)
 
-Last updated: 2026-09-26. Three architectures, frame to risk level:
+Last updated: 2026-09-28. Four architectures, frame to risk level:
 
 | | Objective 1 (see) | Objective 2 (identify, context gate, assess risk) | Status |
 |---|---|---|---|
 | A | road mask + OWLv2 + re-scorer | local Qwen3.5-2B (4-bit) | done |
 | B | same | OpenAI gpt-5.4, same prompts, checks and gate as A | done |
 | C | same | B + one scene-level analysis per frame | tested on the scene-relation set (section 5) |
+| D | same, code sped up (identical output) | B, but the detector screens first: only boxes it rates debris go to gpt-5.4 | done (section 6): 6.3 s per frame, same accuracy as B |
 
 - **The context gate is part of every architecture.** It checks each
   candidate's position against the rest of the frame before the risk step.
@@ -16,8 +17,9 @@ Last updated: 2026-09-26. Three architectures, frame to risk level:
 - **The gate-free runs are archived, not deleted.** On GitHub they are under
   the tag [`four-paths`](https://github.com/jhim-derek-chen/UAV-VisualSurv/tree/four-paths/results),
   with the report as it stood then. Locally they are in `archive/`.
-- **Objective 1 is identical in all three** and is not re-tuned per
-  architecture.
+- **Objective 1 is identical in all four** and is not re-tuned per
+  architecture. Its code was sped up on 2026-09-28 (section 6) with
+  bit-identical output, which benefits all four.
 
 ## 1. Test sets and protocol
 
@@ -350,7 +352,101 @@ candidate), US$0.21 in total and about 3.5 s each; 2.4 s per frame on average.
 - **Timing and cost for C:** B's plus 2.4 s and US$0.007 per frame. That is
   about 30.5 s and US$0.043 per frame.
 
-## 6. Change log
+## 6. Architecture D: fast, two tiers
+
+**Goal (2026-09-28).** Total time per frame under 8 s with no loss of
+performance, and the first, every-frame tier as short as possible: the drone
+must be able to keep up.
+
+**Two tiers.**
+- **Tier 1, look, every frame, on the device:** road segmentation, detection,
+  re-scoring, and the detector's background / vehicle / debris probe (the
+  context gate's detector-opinion rule), run as a screen.
+- **Tier 2, assess, only when tier 1 flags a candidate:** gpt-5.4
+  identification of the flagged boxes, the context gate, the risk step.
+- **A to C have no trigger.** They send every box, mostly ordinary cars, to
+  the VLM, so tier 2 runs on every frame.
+
+**Why the screen loses nothing.** In B, a box can reach the risk step only if
+the gate's detector-opinion rule lets it through: debris must be the probe's
+most likely class and P(debris) >= 0.3. D applies that same test before the
+VLM instead of after it.
+- **Coverage.** All 21 boxes that reached B's risk step pass the screen, and
+  all 27 debris boxes are among the 43 flagged (1.43 per frame).
+- **Calls.** Identification calls on the 30 test frames: 414 in B, 43 in D.
+- **Other boxes** take the probe's class, vehicle or background. The gate's
+  geometry rules use the probe's vehicles.
+
+**Accuracy on the 30 test frames (`results/risk-assessment/d_fast/`).**
+
+| | B | D |
+|---|---|---|
+| debris named with the right category | 64% | 64% |
+| vehicles recognised | 96.4% (VLM) | 98.5% (detector probe) |
+| false alarms rated high | 0 | 0 |
+| debris assessed / rated high (of 27) | 21 / 15 | 21 / 15 |
+| risk levels given (high / medium / low) | 15 / 5 / 1 | 15 / 5 / 1 |
+
+**Time, measured live with `python scripts/time_pipeline.py --arch d`.** The
+API cache is off, calls for a frame's candidates run in parallel, and the
+laptop has an RTX 3050 Ti (4 GB).
+
+| seconds per frame (30 test frames) | D |
+|---|---|
+| road segmentation ∥ detection (run side by side) | 2.36 |
+| re-scoring + screen | < 0.01 |
+| **tier 1 total** | **2.36** (max 2.56) |
+| identification (gpt-5.4, flagged boxes) | 2.07 |
+| context gate | 0.05 |
+| risk step | 1.85 |
+| **tier 2 total, per frame** | **3.97** (4.41 on the 27 frames that trigger it) |
+| **end to end** | **6.33** (median 6.52, 90th percentile 7.88, max 9.24) |
+| API cost | US$0.0056 per frame (69 calls, 42k input and 4k output tokens per 30 frames) |
+
+- **Every test frame contains debris**, so tier 2 runs on 27 of 30. On a
+  patrol most frames hold none, and the average falls towards tier 1's 2.4 s.
+- **Start-up** costs 2.5 s to load the models and 12.6 s to connect to the
+  API, once.
+
+**Engineering behind the times.**
+- **Detection, 4.33 → 1.96 s, bit-identical output.** Checked on 30 / 30
+  frames, boxes and embeddings.
+  - The duplicate-box filter was a Python double loop over about 1,500 boxes
+    (2 to 3 s) and is now vectorised.
+  - Tiles are resized on CPU threads while the GPU runs the previous tile.
+  - Road segmentation runs alongside detection, since the mask is only needed
+    after it.
+- **API latency.**
+  - **Cause.** A few calls took 12 to 15 s. This laptop's DNS resolver takes
+    about 11 s on a cache miss (curl: 11.3 s, then 0.2 s), and the HTTP
+    client closed idle connections after 5 s.
+  - **Fix.** Connections are now kept open for 10 minutes and opened once at
+    start-up. The slowest call dropped from 14.5 s to 4.3 s, with a median of
+    2.1 s.
+  - **Hedging.** A request not answered in 4 s is sent a second time; it
+    fired once in 69 calls.
+
+**LeVJEPA, tried and not adopted.**
+- **What it is.** LeVJEPA (Kuhn, ..., LeCun, Balestriero, Buettner, 2026,
+  arXiv:2608.27395) is a video JEPA encoder. Its gain is 5.6 to 20.8 times
+  less *pretraining* compute. At inference it is an ordinary ViT; the only
+  released checkpoint is ViT-L/16, with weights under CC BY-NC 4.0.
+- **Test.** The whole frame, resized to a long side of 1344 px, was encoded
+  in one pass (0.54 s per frame). A linear background / vehicle / debris
+  probe was fitted on each 16 px patch (`scripts/levjepa_detector.py`).
+- **Result.** Detection fell far short of OWLv2.
+  - **Setting.** Chosen on dev: no neighbourhood context, C = 0.01. Objects
+    are split by watershed from local maxima.
+  - **Test set, held-out halves:** vehicles 40%, debris 67%, precision 47%.
+  - **At the lowest threshold:** vehicles 87%, debris 87%.
+  - **OWLv2 for comparison:** 95.2%, 90.0% and 84.1%.
+  - **Results file:** `results/road-object-eval/levjepa-patch.json`.
+- **Why.** At this scale a patch is 46 px of the 4K frame, larger than most
+  debris and than a lane, so neighbouring cars merge.
+- **Decision.** Replacing OWLv2 with it would break the rule that
+  performance must not drop, so D keeps OWLv2.
+
+## 7. Change log
 
 - 2026-09-26: report created. Local Qwen measured with and without the
   context gate (two gate rounds).
@@ -371,3 +467,7 @@ candidate), US$0.21 in total and about 3.5 s each; 2.4 s per frame on average.
   overview on the stage's two aims (chain connected, architectures compared),
   one evaluation table, and scene analysis kept to a single add-on slide at
   the end.
+- 2026-09-28: architecture D (tier 1 screen + gpt-5.4 on flagged boxes only):
+  same accuracy as B, 6.33 s per frame end to end, tier 1 2.36 s, US$0.0056
+  per frame. Objective 1 code sped up for all architectures with
+  bit-identical output. LeVJEPA tried as a one-pass detector and not adopted.

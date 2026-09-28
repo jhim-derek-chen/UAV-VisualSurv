@@ -1,0 +1,229 @@
+{
+  "image_id": 22,
+  "file": "00022.jpg",
+  "location": "pexels/8742752",
+  "width": 3840,
+  "height": 2160,
+  "px_per_metre": 76.78,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        913,
+        0,
+        245,
+        88
+      ],
+      "detection_score": 0.996,
+      "size_m": [
+        3.19,
+        1.15
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 2,
+      "box": [
+        2122,
+        2,
+        234,
+        106
+      ],
+      "detection_score": 0.949,
+      "size_m": [
+        3.05,
+        1.38
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 3,
+      "box": [
+        3525,
+        21,
+        280,
+        168
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        3.65,
+        2.19
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 4,
+      "box": [
+        1180,
+        198,
+        635,
+        414
+      ],
+      "detection_score": 0.692,
+      "size_m": [
+        8.27,
+        5.39
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "unclear",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": null
+    },
+    {
+      "id": 5,
+      "box": [
+        188,
+        220,
+        211,
+        170
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        2.75,
+        2.21
+      ],
+      "vlm_name": "two tires",
+      "vlm_category": "tire",
+      "vlm_raw": "{\"description\":\"Two dark black circular ring-shaped objects with textured edges lie side by side on the roadway, casting a long shadow.\",\"name\":\"two tires\",\"category\":\"tire\"}",
+      "physics": "passed",
+      "identified_by": "vlm",
+      "truth": "unclear",
+      "truth_any": "tire",
+      "detector_p": {
+        "background": 0.001,
+        "vehicle": 0.005,
+        "debris": 0.994
+      },
+      "risk": "high",
+      "reasoning": "The marked object is identified as two tires lying in an active motorway lane, and tires are rigid objects that can cause a high-speed impact or make drivers swerve. Traffic is present with 7 vehicles visible and the nearest vehicle only about 5 m away, so there is little time to avoid it safely.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 5.3,
+      "correct": null
+    },
+    {
+      "id": 6,
+      "box": [
+        559,
+        270,
+        273,
+        155
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        3.56,
+        2.02
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 7,
+      "box": [
+        1681,
+        343,
+        905,
+        506
+      ],
+      "detection_score": 0.998,
+      "size_m": [
+        11.79,
+        6.59
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 8,
+      "box": [
+        3736,
+        835,
+        100,
+        148
+      ],
+      "detection_score": 0.998,
+      "size_m": [
+        1.3,
+        1.93
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    }
+  ],
+  "debris_missed_by_detection": [
+    "tire"
+  ],
+  "timing_s": {
+    "identify": 0.07,
+    "context": 0.009,
+    "risk": 0.1,
+    "n_identify": 1,
+    "n_physics_reask": 0,
+    "n_part_questions": 0,
+    "n_risk": 1
+  }
+}

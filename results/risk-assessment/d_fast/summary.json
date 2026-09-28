@@ -1,0 +1,115 @@
+{
+  "arch": "d_fast",
+  "split": "test",
+  "variant": {
+    "bits": 4,
+    "model": "qwen3.5-2b",
+    "physics": true,
+    "prompt": "describe",
+    "size": true,
+    "tight": true
+  },
+  "api_model": "openai/gpt-5.4",
+  "api_calls_made": 11,
+  "api_calls_from_cache": 61,
+  "api_tokens": {
+    "prompt": 5411,
+    "output": 909,
+    "reasoning": 0
+  },
+  "identification": {
+    "debris_type": 0.64,
+    "hazard_recall": 0.8,
+    "vehicle": 0.985,
+    "false_hazard": 0.005,
+    "n_debris": 25,
+    "n_vehicle": 329,
+    "n_other": 38,
+    "score": 0.855
+  },
+  "identification_accuracy": {
+    "vehicle": {
+      "correct": 324,
+      "n": 329,
+      "accuracy": 0.985
+    },
+    "debris": {
+      "correct": 16,
+      "n": 25,
+      "accuracy": 0.64
+    },
+    "non-target": {
+      "correct": 13,
+      "n": 38,
+      "accuracy": 0.342
+    }
+  },
+  "debris_confusion": {
+    "refrigerator or appliance": {
+      "vegetation or shadow": 1,
+      "refrigerator or appliance": 2,
+      "mattress": 1
+    },
+    "tire": {
+      "tire": 6,
+      "vegetation or shadow": 1,
+      "ladder": 1,
+      "roadside structure (sign, lamp post, barrier, gantry, road marking)": 1
+    },
+    "mattress": {
+      "mattress": 1,
+      "roadside structure (sign, lamp post, barrier, gantry, road marking)": 1
+    },
+    "ladder": {
+      "ladder": 2
+    },
+    "suitcase or bag": {
+      "refrigerator or appliance": 1
+    },
+    "cardboard box": {
+      "cardboard box": 1
+    },
+    "traffic cone": {
+      "traffic cone": 1
+    },
+    "wooden plank or lumber": {
+      "wooden plank or lumber": 2
+    },
+    "wooden pallet": {
+      "wooden pallet": 1
+    },
+    "trash can": {
+      "vegetation or shadow": 1
+    },
+    "barrel or drum": {
+      "suitcase or bag": 1
+    }
+  },
+  "physics_corrections": 6,
+  "risk": {
+    "false_high_risk": 0,
+    "false_any_risk": 0,
+    "debris_boxes": 27,
+    "debris_rated_high": 15,
+    "debris_rated_any": 21,
+    "counts": {
+      "none": 393,
+      "high": 15,
+      "medium": 5,
+      "low": 1
+    }
+  },
+  "context_suppressed": 3,
+  "timing_s": {
+    "identify": 2.1,
+    "context": 0.3,
+    "risk": 40.7,
+    "scene": 0
+  },
+  "calls": {
+    "n_identify": 43,
+    "n_physics_reask": 6,
+    "n_part_questions": 2,
+    "n_risk": 21
+  }
+}

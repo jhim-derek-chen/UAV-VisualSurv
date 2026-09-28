@@ -1,0 +1,273 @@
+{
+  "image_id": 25,
+  "file": "00025.jpg",
+  "location": "pexels/19851623",
+  "width": 3840,
+  "height": 2160,
+  "px_per_metre": 18.59,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        867,
+        918,
+        139,
+        42
+      ],
+      "detection_score": 0.767,
+      "size_m": [
+        7.48,
+        2.26
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 2,
+      "box": [
+        1825,
+        964,
+        70,
+        24
+      ],
+      "detection_score": 0.947,
+      "size_m": [
+        3.77,
+        1.29
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 3,
+      "box": [
+        1961,
+        1012,
+        57,
+        21
+      ],
+      "detection_score": 0.974,
+      "size_m": [
+        3.07,
+        1.13
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 4,
+      "box": [
+        385,
+        1162,
+        71,
+        23
+      ],
+      "detection_score": 0.979,
+      "size_m": [
+        3.82,
+        1.24
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 5,
+      "box": [
+        2096,
+        1168,
+        206,
+        39
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        11.08,
+        2.1
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 6,
+      "box": [
+        2098,
+        1168,
+        272,
+        98
+      ],
+      "detection_score": 0.953,
+      "size_m": [
+        14.63,
+        5.27
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 7,
+      "box": [
+        796,
+        1207,
+        230,
+        45
+      ],
+      "detection_score": 0.918,
+      "size_m": [
+        12.37,
+        2.42
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 8,
+      "box": [
+        2160,
+        1230,
+        202,
+        38
+      ],
+      "detection_score": 0.948,
+      "size_m": [
+        10.87,
+        2.04
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 9,
+      "box": [
+        2334,
+        1231,
+        34,
+        34
+      ],
+      "detection_score": 0.905,
+      "size_m": [
+        1.83,
+        1.83
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "unclear",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": null
+    },
+    {
+      "id": 10,
+      "box": [
+        1187,
+        1239,
+        140,
+        38
+      ],
+      "detection_score": 0.896,
+      "size_m": [
+        7.53,
+        2.04
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    }
+  ],
+  "debris_missed_by_detection": [
+    "suitcase or bag"
+  ],
+  "timing_s": {
+    "identify": 0.01,
+    "context": 0.008,
+    "risk": 0.0,
+    "n_identify": 0,
+    "n_physics_reask": 0,
+    "n_part_questions": 0,
+    "n_risk": 0
+  }
+}

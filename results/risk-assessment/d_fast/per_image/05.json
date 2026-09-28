@@ -1,0 +1,303 @@
+{
+  "image_id": 5,
+  "file": "00005.jpg",
+  "location": "pexels/19851623",
+  "width": 3840,
+  "height": 2160,
+  "px_per_metre": 18.59,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        811,
+        947,
+        48,
+        26
+      ],
+      "detection_score": 0.942,
+      "size_m": [
+        2.58,
+        1.4
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 2,
+      "box": [
+        2366,
+        955,
+        72,
+        27
+      ],
+      "detection_score": 0.998,
+      "size_m": [
+        3.87,
+        1.45
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 3,
+      "box": [
+        2315,
+        966,
+        53,
+        58
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        2.85,
+        3.12
+      ],
+      "vlm_name": "dark shadow/vegetation-like object",
+      "vlm_category": "vegetation or shadow",
+      "vlm_raw": "{\"description\":\"A large dark oval object with a mostly black surface, a lighter gray band or edge across the upper middle, and a smooth bulky appearance with a strong shadow on the road.\",\"name\":\"large bag or suitcase\",\"category\":\"suitcase or bag\"} | re-asked: {\"name\":\"dark shadow/vegetation-like object\",\"category\":\"vegetation or shadow\"}",
+      "physics": "corrected: suitcase or bag is implausible at 3.1 m",
+      "identified_by": "vlm",
+      "truth": "tire",
+      "truth_any": "tire",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as roadside structure, vegetation or shadow: not an object on the carriageway.",
+      "correct": false
+    },
+    {
+      "id": 4,
+      "box": [
+        480,
+        989,
+        65,
+        25
+      ],
+      "detection_score": 0.955,
+      "size_m": [
+        3.5,
+        1.35
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 5,
+      "box": [
+        1042,
+        1027,
+        69,
+        24
+      ],
+      "detection_score": 0.989,
+      "size_m": [
+        3.71,
+        1.29
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 6,
+      "box": [
+        3718,
+        1148,
+        117,
+        39
+      ],
+      "detection_score": 0.884,
+      "size_m": [
+        6.29,
+        2.1
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 7,
+      "box": [
+        3720,
+        1151,
+        27,
+        32
+      ],
+      "detection_score": 0.968,
+      "size_m": [
+        1.45,
+        1.72
+      ],
+      "vlm_name": "barrel or drum",
+      "vlm_category": "barrel or drum",
+      "vlm_raw": "{\"description\":\"A small blurry cylindrical-looking object with a light gray center and red bands or caps at the top and bottom, beside the edge of a larger pale rectangular object.\",\"name\":\"barrel or drum\",\"category\":\"barrel or drum\"}",
+      "physics": "passed",
+      "identified_by": "vlm",
+      "truth": "unclear",
+      "truth_any": "vehicle",
+      "detector_p": {
+        "background": 0.083,
+        "vehicle": 0.046,
+        "debris": 0.871
+      },
+      "part_answer": "{\"part_of_vehicle\": true, \"why\": \"matches truck cab/front section\"}",
+      "context": "part of vehicle #6 (VLM, asked directly)",
+      "risk": "none",
+      "risk_source": "context rule",
+      "reasoning": "Context gate: part of vehicle #6 (VLM, asked directly). Not assessed as a hazard.",
+      "correct": null
+    },
+    {
+      "id": 8,
+      "box": [
+        1078,
+        1198,
+        61,
+        23
+      ],
+      "detection_score": 0.966,
+      "size_m": [
+        3.28,
+        1.24
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 9,
+      "box": [
+        3476,
+        1212,
+        135,
+        37
+      ],
+      "detection_score": 0.73,
+      "size_m": [
+        7.26,
+        1.99
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 10,
+      "box": [
+        810,
+        1242,
+        143,
+        41
+      ],
+      "detection_score": 0.686,
+      "size_m": [
+        7.69,
+        2.21
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 11,
+      "box": [
+        901,
+        1242,
+        54,
+        36
+      ],
+      "detection_score": 0.899,
+      "size_m": [
+        2.91,
+        1.94
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "unclear",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": null
+    }
+  ],
+  "debris_missed_by_detection": [],
+  "timing_s": {
+    "identify": 0.04,
+    "context": 0.019,
+    "risk": 0.0,
+    "n_identify": 2,
+    "n_physics_reask": 1,
+    "n_part_questions": 1,
+    "n_risk": 0
+  }
+}

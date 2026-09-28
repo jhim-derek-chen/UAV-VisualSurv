@@ -33,15 +33,14 @@ REPORT = REPO_ROOT / "report"
 FIGS = REPORT / "figures"
 RES = REPO_ROOT / "results" / "risk-assessment"
 TEST = REPO_ROOT / "datasets" / "synthetic-highway-debris"
-SCENE = REPO_ROOT / "datasets" / "scene-relations"
 BROWSERS = [Path(r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"),
             Path(r"C:\Program Files\Google\Chrome\Application\chrome.exe")]
 FONT_DIR = Path(r"C:\Windows\Fonts")
 
-# Demo frames: the same four test frames for A and B, and four scene-relation
-# frames for the scene-analysis add-on (C). Focus = object ids the crop keeps.
-DEMO_AB = [(23, [4, 3]), (26, [23]), (18, [6, 5]), (2, [3])]
-DEMO_C = [12, 13, 22, 7]
+# Demo frames: the same four test frames for A, B and D. Focus = object ids
+# the crop keeps.
+DEMO = [(23, [4, 3]), (26, [23]), (18, [6, 5]), (2, [3])]
+DEMO_ARCHS = ("a_qwen_local", "b_gpt", "d_fast")
 
 RISK_COL = {"high": (227, 60, 60), "medium": (240, 140, 20), "low": (225, 190, 0)}
 GATED, MISSED, VEH = (30, 160, 110), (215, 60, 160), (60, 140, 230)
@@ -169,7 +168,7 @@ def _dashed_rect(d, box, colour, width, dash=16, gap=12):
             k += dash + gap
 
 
-def _draw_tile(img, crop, rec, labels, out, banner=None, groups=(), source=None):
+def _draw_tile(img, crop, rec, labels, out, banner=None):
     x0, y0, x1, y1 = crop
     scale = 1600 / (x1 - x0)
     tile = img.crop(crop).resize((1600, round((y1 - y0) * scale)), Image.LANCZOS)
@@ -185,19 +184,6 @@ def _draw_tile(img, crop, rec, labels, out, banner=None, groups=(), source=None)
         if o["id"] not in labels and o["vlm_category"] == "vehicle":
             r = tb(o["box"])
             d.rectangle([r[0] - 3, r[1] - 3, r[2] + 3, r[3] + 3], outline=VEH, width=3)
-    for ids, text in groups:
-        rs = [tb(o["box"]) for o in inside if o["id"] in ids]
-        if rs:
-            g = [min(r[0] for r in rs) - 26, min(r[1] for r in rs) - 26,
-                 max(r[2] for r in rs) + 26, max(r[3] for r in rs) + 26]
-            _dashed_rect(d, g, (245, 170, 30), 5)
-            _tag(d, g[0], g[3], text, (245, 170, 30), above=False)
-    if source is not None:
-        v = next((o for o in inside if o["id"] == source), None)
-        if v:
-            r = tb(v["box"])
-            d.rectangle([r[0] - 4, r[1] - 4, r[2] + 4, r[3] + 4], outline=VEH, width=6)
-            _tag(d, r[0], r[1], f"V{source}: named source", VEH)
     for o in inside:
         if o["id"] not in labels:
             continue
@@ -238,40 +224,18 @@ def tile_ab(arch: str, image_id: int, focus: list) -> Path:
             else:
                 real = "" if short(truth) == name else f" (really {short(truth)})"
                 labels[o["id"]] = (f"{name}{real} · {o['risk'].upper()}", RISK_COL[o["risk"]], "✓")
+        elif debris and o.get("identified_by") == "detector":
+            labels[o["id"]] = (f"{short(truth)} screened out as {cat}: missed", MISSED, "✗")
         elif debris and cat != "vehicle":
             labels[o["id"]] = (f"{short(truth)} named '{short(cat)}': missed", MISSED, "✗")
+    banner = None
+    if arch == "d_fast":
+        t = json.loads((RES / arch / "timing.json").read_text(encoding="utf-8"))["per_frame"][str(image_id)]
+        n_vlm = sum(o.get("identified_by") == "vlm" for o in rec["objects"])
+        banner = (f"tier 1 {t['tier1']:.1f} s · tier 2 {t['tier2']:.1f} s · "
+                  f"VLM asked about {n_vlm} of {len(rec['objects'])} boxes", None)
     out = FIGS / f"demo_{arch.split('_')[0]}_{image_id:02d}.jpg"
-    return _draw_tile(img, crop, rec, labels, out)
-
-
-def tile_c(image_id: int) -> Path:
-    rec = json.loads((RES / "scene-relations" / "c_gpt_scene" / "per_image" /
-                      f"{image_id:02d}.json").read_text(encoding="utf-8"))
-    man = json.loads((SCENE / "manifest.json").read_text(encoding="utf-8"))
-    exp = next(s for s in man["samples"] if s["image_id"] == image_id)["expected"]
-    img = Image.open(SCENE / "images" / rec["file"]).convert("RGB")
-    sc = rec["scene"]
-    by = {o["id"]: o for o in rec["objects"]}
-    src = next((g["source_vehicle"] for g in sc.get("groups", []) if g.get("source_vehicle")), None)
-    focus = [o["id"] for o in sc.get("objects", [])] + ([src] if src in by else [])
-    crop = _crop_box([by[i]["box"] for i in focus], img.width, img.height, min_frac=0.3)
-    labels, grouped = {}, {i for g in sc.get("groups", []) for i in g["ids"]}
-    for s in sc.get("objects", []):
-        first = by[s["id"]]["risk"]
-        alone = "" if first == s["risk"] else f" (alone: {first.upper()})"
-        text = None if s["id"] in grouped else f"{s['where']} · {s['risk'].upper()}{alone}"
-        labels[s["id"]] = (text, RISK_COL.get(s["risk"], (150, 150, 150)), None)
-    scene_obj = {s["id"]: s for s in sc.get("objects", [])}
-    groups = []
-    for g in sc.get("groups", []):
-        parts = sorted({f"{scene_obj[i]['where']} {scene_obj[i]['risk'].upper()}"
-                        for i in g["ids"] if i in scene_obj})
-        groups.append((g["ids"], f"one event · {len(g['ids'])} items: " + ", ".join(parts)))
-    ok = sc["scene_risk"] == exp["scene_risk"] and sc["lanes_blocked"] == exp["lanes_blocked"]
-    banner = (f"scene {sc['scene_risk'].upper()} · {sc['lanes_blocked']} lane(s) blocked   "
-              f"expected {exp['scene_risk'].upper()} · {exp['lanes_blocked']}", "✓" if ok else "✗")
-    out = FIGS / f"demo_c_{image_id:02d}.jpg"
-    return _draw_tile(img, crop, rec, labels, out, banner=banner, groups=groups, source=src)
+    return _draw_tile(img, crop, rec, labels, out, banner=banner)
 
 
 # ------------------------------------------------------------------ slides -> PDF
@@ -333,11 +297,13 @@ th { background: #f2f2f2; font-weight: 600; }
 section.arch .blk .bt { font-size: 13.5pt; }
 section.arch .blk .fn { font-size: 10.5pt; margin-bottom: 1.5mm; }
 section.arch .blk .out { font-size: 10pt; }
-section.arch .sb { font-size: 10pt; padding: 1mm 1.8mm; }
+section.arch .sb { font-size: 10pt; padding: .7mm 1.8mm; margin-bottom: .6mm; }
+section.arch .dn { margin: -1mm 0 -.4mm 0; font-size: 9pt; }
+section.arch h1 { margin-bottom: 3mm; }
 section.arch .sb i { font-size: 9pt; }
 section.arch .io { font-size: 11pt; width: 24mm; }
-section.arch table.mx { font-size: 12pt; margin-top: 6mm; }
-section.arch table.mx td, section.arch table.mx th { padding: 2.2mm 2.5mm; }
+section.arch table.mx { font-size: 11pt; margin-top: 3mm; }
+section.arch table.mx td, section.arch table.mx th { padding: 1.1mm 2.2mm; }
 table.mx { font-size: 11.5pt; margin-top: 6mm; }
 table.mx td, table.mx th { padding: 1.8mm 2.5mm; }
 table.mx td.gpu, table.mx td.cpu, table.mx td.api { text-align: center; }
@@ -351,6 +317,12 @@ table.ev tr.g td { background: #f2f2f2; font-weight: 700; font-size: 9.5pt; }
 table.ev td.bn { background: #fbd9d6; font-weight: 700; }
 table.ev td.best { font-weight: 700; }
 table.ev td.span { text-align: center; color: #333; }
+table.ev tr.t1tot td { background: #d9ebfb; font-weight: 700; font-size: 11pt; color: #0d3c66; }
+table.ev tr.tot td { font-weight: 700; background: #fafafa; }
+.tierrow { margin-bottom: 1.5mm; align-items: center; }
+.tier { font-size: 10.5pt; font-weight: 700; text-align: center; padding: 1.2mm; border-radius: 2mm; }
+.tier.t1 { background: #d9ebfb; color: #0d3c66; }
+.tier.t2 { background: #efefef; color: #444; }
 /* demo grid */
 .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5mm 6mm; }
 .tile img { width: 100%; height: 63mm; object-fit: contain; background: #f3f3f3; border-radius: 1.5mm; }
@@ -424,9 +396,8 @@ def main() -> int:
         for old in FIGS.glob("*"):
             old.unlink()
         made = [fig_dataset()]
-        for arch in ("a_qwen_local", "b_gpt"):
-            made += [tile_ab(arch, i, focus) for i, focus in DEMO_AB]
-        made += [tile_c(i) for i in DEMO_C]
+        for arch in DEMO_ARCHS:
+            made += [tile_ab(arch, i, focus) for i, focus in DEMO]
         for f in made:
             print("figure:", f.relative_to(REPO_ROOT))
     print("pdf:", build_pdf().relative_to(REPO_ROOT))

@@ -1,0 +1,99 @@
+{
+  "method": "levjepa-patch",
+  "long_side": 1344,
+  "C": 0.01,
+  "context": false,
+  "head_s_per_image": 0.024,
+  "unrestricted": {
+    "held_out": [
+      {
+        "threshold": 0.9993,
+        "recall_all": 0.3221476510067114,
+        "recall_vehicle": 0.291044776119403,
+        "recall_debris": 0.6,
+        "n_all": 149,
+        "n_vehicle": 134,
+        "n_debris": 15,
+        "precision": 0.5714285714285714,
+        "predictions_per_image": 5.6
+      },
+      {
+        "threshold": 0.9935,
+        "recall_all": 0.3542600896860987,
+        "recall_vehicle": 0.33653846153846156,
+        "recall_debris": 0.6,
+        "n_all": 223,
+        "n_vehicle": 208,
+        "n_debris": 15,
+        "precision": 0.3761904761904762,
+        "predictions_per_image": 14.0
+      }
+    ],
+    "held_out_pooled": {
+      "recall_vehicle": 0.319,
+      "recall_debris": 0.6,
+      "precision": 0.432
+    },
+    "best_f1": {
+      "threshold": 0.9987,
+      "recall_all": 0.2903225806451613,
+      "recall_vehicle": 0.260233918128655,
+      "recall_debris": 0.6333333333333333,
+      "n_all": 372,
+      "n_vehicle": 342,
+      "n_debris": 30,
+      "precision": 0.484304932735426,
+      "predictions_per_image": 7.433333333333334
+    },
+    "max_recall": {
+      "vehicle": 0.877,
+      "debris": 0.867
+    }
+  },
+  "two_stage": {
+    "held_out": [
+      {
+        "threshold": 0.9939,
+        "recall_all": 0.5033557046979866,
+        "recall_vehicle": 0.47761194029850745,
+        "recall_debris": 0.7333333333333333,
+        "n_all": 149,
+        "n_vehicle": 134,
+        "n_debris": 15,
+        "precision": 0.5244755244755245,
+        "predictions_per_image": 9.533333333333333
+      },
+      {
+        "threshold": 0.9923,
+        "recall_all": 0.35874439461883406,
+        "recall_vehicle": 0.34134615384615385,
+        "recall_debris": 0.6,
+        "n_all": 223,
+        "n_vehicle": 208,
+        "n_debris": 15,
+        "precision": 0.43478260869565216,
+        "predictions_per_image": 12.266666666666667
+      }
+    ],
+    "held_out_pooled": {
+      "recall_vehicle": 0.395,
+      "recall_debris": 0.667,
+      "precision": 0.474
+    },
+    "best_f1": {
+      "threshold": 0.9939,
+      "recall_all": 0.4112903225806452,
+      "recall_vehicle": 0.3888888888888889,
+      "recall_debris": 0.6666666666666666,
+      "n_all": 372,
+      "n_vehicle": 342,
+      "n_debris": 30,
+      "precision": 0.4857142857142857,
+      "predictions_per_image": 10.5
+    },
+    "max_recall": {
+      "vehicle": 0.865,
+      "debris": 0.867
+    }
+  }
+}

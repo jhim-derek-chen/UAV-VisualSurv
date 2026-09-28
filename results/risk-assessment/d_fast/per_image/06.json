@@ -1,0 +1,227 @@
+{
+  "image_id": 6,
+  "file": "00006.jpg",
+  "location": "pexels/8742752",
+  "width": 3840,
+  "height": 2160,
+  "px_per_metre": 76.78,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        706,
+        0,
+        1436,
+        996
+      ],
+      "detection_score": 0.611,
+      "size_m": [
+        18.7,
+        12.97
+      ],
+      "vlm_name": "background (detector)",
+      "vlm_category": "background",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "non-target",
+      "truth_any": "none",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as roadside structure, vegetation or shadow: not an object on the carriageway.",
+      "correct": true
+    },
+    {
+      "id": 2,
+      "box": [
+        2431,
+        0,
+        217,
+        141
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        2.83,
+        1.84
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 3,
+      "box": [
+        2707,
+        0,
+        219,
+        61
+      ],
+      "detection_score": 0.997,
+      "size_m": [
+        2.85,
+        0.79
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 4,
+      "box": [
+        3726,
+        115,
+        112,
+        148
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        1.46,
+        1.93
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 5,
+      "box": [
+        1733,
+        370,
+        269,
+        171
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        3.5,
+        2.23
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 6,
+      "box": [
+        3633,
+        464,
+        204,
+        186
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        2.66,
+        2.42
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 7,
+      "box": [
+        2363,
+        640,
+        71,
+        123
+      ],
+      "detection_score": 0.999,
+      "size_m": [
+        0.92,
+        1.6
+      ],
+      "vlm_name": "metal ladder",
+      "vlm_category": "ladder",
+      "vlm_raw": "{\"description\":\"A long narrow brown metal frame with evenly spaced crossbars and small hook-like protrusions along one side, resembling a ladder lying diagonally on the road.\",\"name\":\"metal ladder\",\"category\":\"ladder\"}",
+      "physics": "passed",
+      "identified_by": "vlm",
+      "truth": "ladder",
+      "truth_any": "ladder",
+      "detector_p": {
+        "background": 0.001,
+        "vehicle": 0.0,
+        "debris": 0.999
+      },
+      "risk": "high",
+      "reasoning": "The object is identified as a metal ladder about 1.6 m by 0.9 m lying in an active motorway lane, making it a rigid obstacle that could be struck at speed or cause drivers to swerve. Traffic is present with 5 vehicles in view and the nearest vehicle only about 8 m away, so the likelihood of an imminent dangerous encounter is high.",
+      "risk_source": "vlm",
+      "nearest_vehicle_m": 7.6,
+      "correct": true
+    },
+    {
+      "id": 8,
+      "box": [
+        3717,
+        997,
+        118,
+        225
+      ],
+      "detection_score": 0.998,
+      "size_m": [
+        1.54,
+        2.93
+      ],
+      "vlm_name": "shadow",
+      "vlm_category": "vegetation or shadow",
+      "vlm_raw": "{\"description\":\"A large dark bluish-gray irregular rounded patch with smooth edges and no visible surface detail, appearing flat on the road.\",\"name\":\"shadow\",\"category\":\"vegetation or shadow\"}",
+      "physics": "passed",
+      "identified_by": "vlm",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as roadside structure, vegetation or shadow: not an object on the carriageway.",
+      "correct": false
+    }
+  ],
+  "debris_missed_by_detection": [],
+  "timing_s": {
+    "identify": 0.07,
+    "context": 0.01,
+    "risk": 3.16,
+    "n_identify": 2,
+    "n_physics_reask": 0,
+    "n_part_questions": 0,
+    "n_risk": 1
+  }
+}

@@ -41,12 +41,15 @@ a separate set of 30 frames.
 | detection precision | 84.1% |
 | debris named correctly (step 3): local Qwen3.5-2B / GPT-5.4 | 56% / 64% |
 | false alarms reaching risk assessment (after step 4): local / GPT-5.4 | 1 / 0 |
-| end-to-end time per 4K frame: local on an RTX 3050 Ti (4 GB) / GPT-5.4 | about 58 s / about 28 s |
+| time per 4K frame, RTX 3050 Ti (4 GB): tier 1 (look, every frame) | 2.4 s |
+| end to end: local (A) / GPT-5.4 on every box (B) / detector screen + GPT-5.4 (D) | ≈ 56 s / ≈ 26 s / 6.3 s |
 
 ![Detection example: a truck tyre on the carriageway](results/road-object-eval/examples/13_truck-tire.jpg)
 
-Steps 3 to 5 run on a local model (architecture A) or on GPT-5.4 (B); a third
-architecture (C) adds a scene-level analysis of each frame.
+Steps 3 to 5 run on a local model (architecture A) or on GPT-5.4 (B). D lets
+the detector screen first and asks GPT-5.4 only about boxes that may be debris:
+B's accuracy at 6.3 s per frame and US$0.006. C adds a scene-level analysis of
+each frame (not in the current slides).
 - **Stage report (9 slides, PDF):** [report/stage_report.pdf](report/stage_report.pdf), with
   [speaker notes](report/speaker_notes.md).
 - **Raw running log of every measurement:**
@@ -292,7 +295,8 @@ scripts/
   train_rescorer.py       Stage 2 re-scorer: probe on OWLv2 features, leave-one-location-out
   draw_detection_examples.py  labels vs detections -> results/synthetic-debris-inference/
   assess_risk.py          Objective 2: VLM identification + physics check + context gate + risk -> results/risk-assessment/
-  time_pipeline.py        end-to-end timing and GPU memory per path -> results/risk-assessment/<path>/timing.json
+  time_pipeline.py        end-to-end timing and GPU memory (A staged; D live, two tiers) -> results/risk-assessment/<arch>/timing.json
+  levjepa_detector.py     LeVJEPA one-pass detector, tried for tier 1 and not adopted
 datasets/                 raw data, never modified in place
 models/                   weights + manifest.json (repo, commit SHA, licence)
 results/                  benchmark.json, resolution_sweep.json, figures/,
@@ -554,6 +558,7 @@ and `summary.json`:
 | `a_qwen_local/` | A: local Qwen3.5-2B + context gate |
 | `b_gpt/` | B: OpenAI gpt-5.4 instead of Qwen, same prompts, checks and gate |
 | `c_gpt_scene/` | C: B plus a scene-level analysis |
+| `d_fast/` | D: the detector screens first; gpt-5.4 only on boxes it rates debris |
 | `scene-relations/` | A, B and C on the scene-relation set |
 | `dev/` | runs on the training renders, where rules were chosen |
 
@@ -689,6 +694,8 @@ python scripts\assess_risk.py --arch a --figures-only # redraw figures from save
 python scripts\build_scene_relations.py               # render the scene-relation set
 python scripts\assess_risk.py --arch c --split scene  # C on it (+ figures with panel 4)
 python scripts\time_pipeline.py                       # end-to-end timing of A
+python scripts\assess_risk.py --arch d                # D on the test set
+python scripts\time_pipeline.py --arch d              # D live, tier 1 and tier 2 timed
 ```
 
 **Limits.** 25 matched debris objects are too few for a precise number.

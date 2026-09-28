@@ -1,0 +1,253 @@
+{
+  "image_id": 18,
+  "file": "00018.jpg",
+  "location": "pexels/19851623",
+  "width": 3840,
+  "height": 2160,
+  "px_per_metre": 18.59,
+  "threshold": 0.9934,
+  "objects": [
+    {
+      "id": 1,
+      "box": [
+        1621,
+        947,
+        52,
+        24
+      ],
+      "detection_score": 0.913,
+      "size_m": [
+        2.8,
+        1.29
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 2,
+      "box": [
+        2883,
+        949,
+        73,
+        26
+      ],
+      "detection_score": 0.998,
+      "size_m": [
+        3.93,
+        1.4
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 3,
+      "box": [
+        1070,
+        977,
+        66,
+        25
+      ],
+      "detection_score": 0.991,
+      "size_m": [
+        3.55,
+        1.35
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 4,
+      "box": [
+        1764,
+        1014,
+        70,
+        24
+      ],
+      "detection_score": 0.997,
+      "size_m": [
+        3.77,
+        1.29
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 5,
+      "box": [
+        3311,
+        1154,
+        212,
+        39
+      ],
+      "detection_score": 0.854,
+      "size_m": [
+        11.41,
+        2.1
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 6,
+      "box": [
+        3303,
+        1157,
+        21,
+        32
+      ],
+      "detection_score": 0.931,
+      "size_m": [
+        1.13,
+        1.72
+      ],
+      "vlm_name": "barrel or drum",
+      "vlm_category": "barrel or drum",
+      "vlm_raw": "{\"description\":\"A small upright cylindrical object with a grey body, reddish top and bottom bands, and a smooth, drum-like appearance sits next to a large white vehicle.\",\"name\":\"barrel or drum\",\"category\":\"barrel or drum\"}",
+      "physics": "passed",
+      "identified_by": "vlm",
+      "truth": "non-target",
+      "truth_any": "none",
+      "detector_p": {
+        "background": 0.35,
+        "vehicle": 0.177,
+        "debris": 0.473
+      },
+      "part_answer": "{\"part_of_vehicle\": true, \"why\": \"matches vehicle cab/roof section\"}",
+      "context": "part of vehicle #5 (VLM, asked directly)",
+      "risk": "none",
+      "risk_source": "context rule",
+      "reasoning": "Context gate: part of vehicle #5 (VLM, asked directly). Not assessed as a hazard.",
+      "correct": false
+    },
+    {
+      "id": 7,
+      "box": [
+        553,
+        1210,
+        64,
+        22
+      ],
+      "detection_score": 0.876,
+      "size_m": [
+        3.44,
+        1.18
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 8,
+      "box": [
+        3148,
+        1215,
+        135,
+        37
+      ],
+      "detection_score": 0.943,
+      "size_m": [
+        7.26,
+        1.99
+      ],
+      "vlm_name": "vehicle (detector)",
+      "vlm_category": "vehicle",
+      "vlm_raw": "",
+      "physics": "",
+      "identified_by": "detector",
+      "truth": "vehicle",
+      "truth_any": "vehicle",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as a vehicle: part of the traffic, not a hazard.",
+      "correct": true
+    },
+    {
+      "id": 9,
+      "box": [
+        1341,
+        1269,
+        38,
+        45
+      ],
+      "detection_score": 1.0,
+      "size_m": [
+        2.04,
+        2.42
+      ],
+      "vlm_name": "roadside barrier or sign support",
+      "vlm_category": "roadside structure (sign, lamp post, barrier, gantry, road marking)",
+      "vlm_raw": "{\"description\":\"A large V-shaped grey-brown object with rough, weathered surfaces and a dark curved shadow, attached at the road edge by the barrier.\",\"name\":\"roadside barrier or sign support\",\"category\":\"roadside structure (sign, lamp post, barrier, gantry, road marking)\"}",
+      "physics": "passed",
+      "identified_by": "vlm",
+      "truth": "mattress",
+      "truth_any": "mattress",
+      "risk": "none",
+      "risk_source": "rule",
+      "reasoning": "Identified as roadside structure, vegetation or shadow: not an object on the carriageway.",
+      "correct": false
+    }
+  ],
+  "debris_missed_by_detection": [],
+  "timing_s": {
+    "identify": 0.04,
+    "context": 0.056,
+    "risk": 0.0,
+    "n_identify": 2,
+    "n_physics_reask": 0,
+    "n_part_questions": 1,
+    "n_risk": 0
+  }
+}

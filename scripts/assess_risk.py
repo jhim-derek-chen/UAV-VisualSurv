@@ -458,7 +458,7 @@ def truth_of(box, gts) -> str:
 
 def correct(truth: str, pred: str) -> bool:
     if truth == "non-target":
-        return pred in NON_TARGET or pred == "person"
+        return pred in NON_TARGET or pred in ("person", "background")
     return truth == pred
 
 
@@ -580,7 +580,14 @@ def select(args) -> int:
 #   a  local Qwen3.5-2B for identification and risk
 #   b  OpenAI gpt-5.4 for identification and risk
 #   c  b plus one scene-level analysis per frame (scripts/scene_assess.py)
-ARCH = {"a": "a_qwen_local", "b": "b_gpt", "c": "c_gpt_scene"}
+#   d  b with the detector screening first: only boxes its background /
+#      vehicle / debris probe rates most likely debris (and P(debris) >=
+#      VETO_T) go to the VLM; the rest take the probe's class. In b only
+#      such boxes can pass the gate's detector-opinion rule, so the set that
+#      can reach the risk step is unchanged; the VLM is no longer asked about
+#      every car.
+ARCH = {"a": "a_qwen_local", "b": "b_gpt", "c": "c_gpt_scene", "d": "d_fast"}
+DETECTOR_CLASS = ("background", "vehicle")  # probe classes that skip the VLM in d
 SCENE = REPO_ROOT / "datasets" / "scene-relations"
 SCENE_DEV = REPO_ROOT / "datasets" / "scene-relations-dev"
 SPLITS = {"test": TEST, "dev": TRAIN, "scene": SCENE, "scene-dev": SCENE_DEV}
@@ -588,7 +595,7 @@ FEATURE_TAG = {"test": "test", "dev": "train", "scene": "scene", "scene-dev": "s
 
 
 def make_vlm(arch: str, variant: dict):
-    if arch in ("b", "c"):
+    if arch in ("b", "c", "d"):
         from api_vlm import ApiVLM
         return ApiVLM(API_PROVIDER, API_MODEL)
     return VLM(variant["model"], variant["bits"], variant.get("quant_vision", False))
@@ -727,13 +734,21 @@ def chain(split: str, arch: str = "a", limit: int = 0) -> int:
         t0 = time.time()
         n_reask = 0
         for k, b in enumerate(boxes):
-            ident = identify(vlm, img, b, g, variant)
+            p3 = opinion(split, i, loc[i], b) if arch == "d" else None
+            if p3 is not None and not (p3.argmax() == 2 and p3[2] >= VETO_T):
+                cls = DETECTOR_CLASS[int(p3.argmax())]
+                ident = {"name": f"{cls} (detector)", "category": cls, "raw": "",
+                         "identified_by": "detector"}
+            else:
+                ident = identify(vlm, img, b, g, variant)
+                ident["identified_by"] = "vlm"
             n_reask += ident.get("physics", "").startswith("corrected")
             objs.append({"id": k + 1, "box": [int(v) for v in b[:4]],
                          "detection_score": round(b[4] - 1 if b[4] > 1 else b[4], 3),
                          "size_m": [round(b[2] / g, 2), round(b[3] / g, 2)],
                          "vlm_name": ident["name"], "vlm_category": ident["category"],
                          "vlm_raw": ident["raw"], "physics": ident.get("physics", ""),
+                         "identified_by": ident["identified_by"],
                          "truth": truth_of(b, gt[i]), "truth_any": truth_any(b, gt[i])})
         t_id = time.time() - t0
         rec = {"image_id": i, "file": images[i]["file_name"], "location": loc[i],
@@ -769,7 +784,8 @@ def chain(split: str, arch: str = "a", limit: int = 0) -> int:
             o["correct"] = correct(o["truth"], o["vlm_category"]) if o["truth"] != "unclear" else None
         t_risk = time.time() - t0
         timing = {"identify": round(t_id, 2), "context": round(t_ctx, 3), "risk": round(t_risk, 2),
-                  "n_identify": len(objs), "n_physics_reask": n_reask,
+                  "n_identify": sum(o["identified_by"] == "vlm" for o in objs),
+                  "n_physics_reask": n_reask,
                   "n_part_questions": n_part, "n_risk": n_risk}
         if arch == "c":
             t0 = time.time()
@@ -783,7 +799,7 @@ def chain(split: str, arch: str = "a", limit: int = 0) -> int:
               f"{sum(bool(o.get('context')) for o in objs)} gated, hazards: {hz}", flush=True)
     extra = {"vlm_load_s": round(t_load, 1),
              "peak_vram_gb": round(torch.cuda.max_memory_allocated() / 1024 ** 3, 2)}
-    if arch in ("b", "c"):
+    if arch in ("b", "c", "d"):
         extra = {"api_model": vlm.name, "api_calls_made": vlm.calls,
                  "api_calls_from_cache": vlm.cached_hits, "api_tokens": vlm.usage}
     summarise(arch, split, variant, extra)
@@ -1241,7 +1257,8 @@ def main() -> int:
                     help="test: the 30 fixed images; dev: the training renders, where "
                          "rules are developed; scene / scene-dev: the scene-relation sets")
     ap.add_argument("--arch", default="a", choices=list(ARCH),
-                    help="a: local Qwen; b: gpt-5.4; c: gpt-5.4 + scene analysis")
+                    help="a: local Qwen; b: gpt-5.4; c: gpt-5.4 + scene analysis; "
+                         "d: gpt-5.4 on the boxes the detector rates debris only")
     ap.add_argument("--limit", type=int, default=0, help="first N images only (smoke test)")
     ap.add_argument("--figures-only", action="store_true")
     args = ap.parse_args()

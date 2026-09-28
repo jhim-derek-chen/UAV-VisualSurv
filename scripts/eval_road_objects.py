@@ -371,11 +371,18 @@ class Owlv2Objectness:
             o.append(size - tile)
         return o
 
-    def _tile(self, crop: Image.Image, tile: int):
-        torch = self.torch
+    def _prep(self, crop: Image.Image, tile: int) -> np.ndarray:
+        """CPU half of a tile: pad to a square, resize to the model input."""
         sq = Image.new("RGB", (tile, tile), (128, 128, 128))
         sq.paste(crop, (0, 0))
-        arr = np.asarray(sq.resize((self.side, self.side), Image.BILINEAR), dtype=np.float32) / 255.0
+        return np.asarray(sq.resize((self.side, self.side), Image.BILINEAR), dtype=np.float32) / 255.0
+
+    def _tile(self, crop: Image.Image, tile: int):
+        return self._run(self._prep(crop, tile), tile)
+
+    def _run(self, arr: np.ndarray, tile: int):
+        """GPU half of a tile."""
+        torch = self.torch
         x = torch.from_numpy(arr).permute(2, 0, 1)[None].cuda()
         x = ((x - self.mean) / self.std).half()
         with torch.inference_mode():
@@ -401,6 +408,9 @@ class Owlv2Objectness:
             step = max(1, int(tile * (1 - self.overlap)))
             for y0 in self._origins(H, tile, step):
                 for x0 in self._origins(W, tile, step):
+                    if road is not None and not road[y0 // MASK_DOWNSAMPLE:(y0 + tile) // MASK_DOWNSAMPLE + 1,
+                                                     x0 // MASK_DOWNSAMPLE:(x0 + tile) // MASK_DOWNSAMPLE + 1].any():
+                        continue
                     crop = img.crop((x0, y0, min(W, x0 + tile), min(H, y0 + tile)))
                     xyxy, s = self._tile(crop, tile)
                     cw, ch = crop.size
@@ -504,11 +514,18 @@ class Owlv2Scored:
 
     _origins = staticmethod(Owlv2Objectness._origins)
 
-    def _tile(self, crop: Image.Image, tile: int):
-        torch = self.torch
+    def _prep(self, crop: Image.Image, tile: int) -> np.ndarray:
+        """CPU half of a tile: pad to a square, resize to the model input."""
         sq = Image.new("RGB", (tile, tile), (128, 128, 128))
         sq.paste(crop, (0, 0))
-        arr = np.asarray(sq.resize((self.side, self.side), Image.BILINEAR), dtype=np.float32) / 255.0
+        return np.asarray(sq.resize((self.side, self.side), Image.BILINEAR), dtype=np.float32) / 255.0
+
+    def _tile(self, crop: Image.Image, tile: int):
+        return self._run(self._prep(crop, tile), tile)
+
+    def _run(self, arr: np.ndarray, tile: int):
+        """GPU half of a tile."""
+        torch = self.torch
         x = torch.from_numpy(arr).permute(2, 0, 1)[None].cuda()
         x = ((x - self.mean) / self.std).half()
         with torch.inference_mode():
@@ -527,41 +544,59 @@ class Owlv2Scored:
         return (xyxy.cpu().numpy(), obj[top].cpu().numpy(), bg_max.cpu().numpy(),
                 bg_idx.cpu().numpy(), cls_emb[0].float().cpu().numpy())
 
-    def detect(self, img: Image.Image, with_embeddings: bool = False):
+    def detect(self, img: Image.Image, with_embeddings: bool = False, road=None):
         """Boxes as [x, y, w, h, score, objectness, bg prob, bg query, scale].
         With `with_embeddings`, also returns each box's 512-d OWLv2 class
-        embedding (the input of the re-scorer, train_rescorer.py)."""
+        embedding (the input of the re-scorer, train_rescorer.py).
+        With `road` (a Stage 1 mask at 1/MASK_DOWNSAMPLE resolution), tiles
+        with no road pixel are skipped: every box from them would fail
+        on_road() anyway. Used by the fast architecture (d)."""
         import torchvision
         torch = self.torch
         W, H = img.size
         rows, embs = [], []
+        specs = []
         for si, (frac, lo, hi) in enumerate(self.scales):
             tile = max(64, int(min(W, H) * frac))
             step = max(1, int(tile * (1 - self.overlap)))
             for y0 in self._origins(H, tile, step):
                 for x0 in self._origins(W, tile, step):
-                    crop = img.crop((x0, y0, min(W, x0 + tile), min(H, y0 + tile)))
-                    xyxy, obj, bgm, bgi, emb = self._tile(crop, tile)
-                    cw, ch = crop.size
-                    xyxy[:, [0, 2]] = xyxy[:, [0, 2]].clip(0, cw)
-                    xyxy[:, [1, 3]] = xyxy[:, [1, 3]].clip(0, ch)
-                    bw = xyxy[:, 2] - xyxy[:, 0]
-                    bh = xyxy[:, 3] - xyxy[:, 1]
-                    long_side = np.maximum(bw, bh)
-                    ok = (bw > 2) & (bh > 2) & (long_side >= lo * tile) & (long_side < hi * tile)
-                    xyxy = xyxy[ok] + np.array([x0, y0, x0, y0], dtype=np.float32)
-                    score = obj[ok] * (1 - bgm[ok]) ** self.gamma
-                    for b, s, o, g, gi in zip(xyxy, score, obj[ok], bgm[ok], bgi[ok]):
-                        rows.append([*b.tolist(), float(s), float(o), float(g), int(gi), si])
-                    embs.append(emb[ok].astype(np.float16))
-        if not rows:
+                    if road is not None and not road[y0 // MASK_DOWNSAMPLE:(y0 + tile) // MASK_DOWNSAMPLE + 1,
+                                                     x0 // MASK_DOWNSAMPLE:(x0 + tile) // MASK_DOWNSAMPLE + 1].any():
+                        continue
+                    specs.append((si, lo, hi, tile, x0, y0,
+                                  img.crop((x0, y0, min(W, x0 + tile), min(H, y0 + tile)))))
+        # Tiles are resized on CPU threads while the GPU runs the previous
+        # ones (PIL releases the GIL); the arithmetic is unchanged.
+        if not hasattr(self, "_prep_pool"):
+            from concurrent.futures import ThreadPoolExecutor
+            self._prep_pool = ThreadPoolExecutor(3)
+        prepared = self._prep_pool.map(lambda sp: self._prep(sp[6], sp[3]), specs)
+        for (si, lo, hi, tile, x0, y0, crop), arr in zip(specs, prepared):
+            xyxy, obj, bgm, bgi, emb = self._run(arr, tile)
+            cw, ch = crop.size
+            xyxy[:, [0, 2]] = xyxy[:, [0, 2]].clip(0, cw)
+            xyxy[:, [1, 3]] = xyxy[:, [1, 3]].clip(0, ch)
+            bw = xyxy[:, 2] - xyxy[:, 0]
+            bh = xyxy[:, 3] - xyxy[:, 1]
+            long_side = np.maximum(bw, bh)
+            ok = (bw > 2) & (bh > 2) & (long_side >= lo * tile) & (long_side < hi * tile)
+            xyxy = xyxy[ok] + np.array([x0, y0, x0, y0], dtype=np.float32)
+            score = obj[ok] * (1 - bgm[ok]) ** self.gamma
+            rows.append(np.column_stack([xyxy.astype(np.float64), score, obj[ok], bgm[ok],
+                                         bgi[ok], np.full(int(ok.sum()), si)]))
+            embs.append(emb[ok].astype(np.float16))
+        if not rows or not sum(len(r) for r in rows):
             return ([], np.zeros((0, 512), np.float16)) if with_embeddings else []
-        arr = np.array(rows, dtype=np.float64)
+        arr = np.concatenate(rows).astype(np.float64)
         emb_all = np.concatenate(embs)
         keep = torchvision.ops.nms(torch.from_numpy(arr[:, :4]).float(),
                                    torch.from_numpy(arr[:, 4]).float(), 0.4).numpy()
         arr, emb_all = arr[keep], emb_all[keep]
-        out, kept, out_emb = [], [], []
+        out, out_emb = [], []
+        kept = np.zeros((len(arr), 4))  # kept boxes so far, vectorised (was a Python loop: 2-3 s)
+        k_area = np.zeros(len(arr))
+        nk = 0
         for r, e in zip(arr, emb_all):
             b = r[:4]
             ab = (b[2] - b[0]) * (b[3] - b[1])
@@ -569,11 +604,15 @@ class Owlv2Scored:
             # windscreen): mostly inside a kept box of similar size. Without
             # the size cap a coarse-scale box around a stretch of road
             # swallowed the debris lying in it.
-            if any(max(0.0, min(b[2], k[2]) - max(b[0], k[0])) *
-                   max(0.0, min(b[3], k[3]) - max(b[1], k[1])) > 0.7 * ab and
-                   (k[2] - k[0]) * (k[3] - k[1]) < 6 * ab for k in kept):
-                continue
-            kept.append(b)
+            if nk:
+                kb = kept[:nk]
+                iw = np.maximum(0.0, np.minimum(b[2], kb[:, 2]) - np.maximum(b[0], kb[:, 0]))
+                ih = np.maximum(0.0, np.minimum(b[3], kb[:, 3]) - np.maximum(b[1], kb[:, 1]))
+                if np.any((iw * ih > 0.7 * ab) & (k_area[:nk] < 6 * ab)):
+                    continue
+            kept[nk] = b
+            k_area[nk] = ab
+            nk += 1
             x0, y0, x1, y1 = (int(round(v)) for v in b)
             out.append([x0, y0, x1 - x0, y1 - y0, float(r[4]), float(r[5]), float(r[6]),
                         int(r[7]), int(r[8])])
