@@ -110,16 +110,22 @@ The main flow runs left to right; inside each block is the sub-flow and the mode
 
 # A · local Qwen3.5-2B
 
-<div class="legend"><span style="background:#e33c3c"></span>high <span style="background:#f08c14"></span>medium <span style="background:#1ea06e"></span>removed by gate <span style="background:#d73ca0"></span>missed <span style="background:#3c8ce6"></span>vehicle</div>
-<div class="grid2">
-<div class="tile"><img src="figures/demo_a_23.jpg"><div class="cue">✓ tyre found · HIGH <span class="m">· truck cut by frame edge removed</span></div></div>
-<div class="tile"><img src="figures/demo_a_26.jpg"><div class="cue">✓ small tyre found · HIGH</div></div>
-<div class="tile"><img src="figures/demo_a_18.jpg"><div class="cue">✗ lorry cab → 'barrel' · HIGH <span class="m">· false alarm reaches the alert</span></div></div>
-<div class="tile"><img src="figures/demo_a_02.jpg"><div class="cue">✗ fridge → 'roadside structure' <span class="m">· hazard missed</span></div></div>
+<p class="lead">offline and free · finds some debris GPT misses · but misnames, over-rates and one false alarm · tier 2 12-122 s</p>
+<div class="legend"><span style="background:#e33c3c"></span>high <span style="background:#f08c14"></span>medium <span style="background:#e1be00"></span>low <span style="background:#1ea06e"></span>removed by gate <span style="background:#d73ca0"></span>missed <span style="background:#3c8ce6"></span>vehicle · banner: this frame's tier 1 and tier 2 time, and boxes the VLM saw</div>
+<div class="grid3">
+<div class="tile"><img src="figures/demo_a_23.jpg"><div class="cue">✓ tyre · HIGH <span class='m'>· edge truck removed</span></div></div>
+<div class="tile"><img src="figures/demo_a_10.jpg"><div class="cue">✓ fridge · HIGH <span class='m'>· 6 misnamed boxes, gate cleans up</span></div></div>
+<div class="tile"><img src="figures/demo_a_13.jpg"><div class="cue">✗ tyre named 'vehicle' <span class='m'>· missed</span></div></div>
+<div class="tile"><img src="figures/demo_a_18.jpg"><div class="cue">✗ lorry cab → 'barrel' · HIGH <span class='m'>· false alarm</span></div></div>
+<div class="tile"><img src="figures/demo_a_02.jpg"><div class="cue">✗ fridge → 'roadside structure' <span class='m'>· missed</span></div></div>
+<div class="tile"><img src="figures/demo_a_14.jpg"><div class="cue">✗ empty box rated HIGH <span class='m'>· rubric: low</span></div></div>
+<div class="tile"><img src="figures/demo_a_26.jpg"><div class="cue">✓ small tyre · HIGH <span class='m'>· B, D miss it</span></div></div>
+<div class="tile"><img src="figures/demo_a_05.jpg"><div class="cue">✓ tyre · HIGH <span class='m'>· B, D miss it</span></div></div>
+<div class="tile"><img src="figures/demo_a_00.jpg"><div class="cue">✓ fridge · HIGH <span class='m'>· B, D miss it</span></div></div>
 </div>
 
 ???
-Four test frames, the same four for B on the next slide. Top row: what works. The tyre is found and rated high, and a truck cut by the frame edge is removed by the gate instead of raising an alarm. Even a small tyre in a busy lane is found. Bottom row: the weaknesses of a 2-billion-parameter model. It calls the red cab of an articulated lorry a barrel, and when the gate asks whether it is part of the lorry, it says no, so a false alarm is rated high. It also misreads a fridge seen from above as a roadside structure, so a real hazard is missed.
+Nine test frames, the same nine on the next two slides; the banner on each gives that frame's tier times and how many boxes the language model had to look at. Top row: A gets the tyre and the fridge, but it asks the model about every box, and on the busy middle frame the model misnames six car parts that the gate then has to remove; on the right it calls a tyre a car and misses it. Middle row: its weaknesses. The cab of a lorry becomes a barrel rated high, a false alarm; a fridge becomes a roadside structure and is missed; an empty cardboard box is rated high where the rubric says low. Bottom row: its strength. A finds three objects that GPT-5.4 misses: a small tyre, a tyre in shadow and a fridge. Tier 2 takes between 12 seconds and two minutes per frame, because every box costs a local model call.
 
 ---
 
@@ -127,16 +133,22 @@ Four test frames, the same four for B on the next slide. Top row: what works. Th
 
 # B · GPT-5.4
 
-<div class="legend"><span style="background:#e33c3c"></span>high <span style="background:#f08c14"></span>medium <span style="background:#1ea06e"></span>removed by gate <span style="background:#d73ca0"></span>missed <span style="background:#3c8ce6"></span>vehicle</div>
-<div class="grid2">
-<div class="tile"><img src="figures/demo_b_23.jpg"><div class="cue">✓ tyre found · HIGH</div></div>
-<div class="tile"><img src="figures/demo_b_26.jpg"><div class="cue">✗ small tyre → 'roadside structure' <span class="m">· missed</span></div></div>
-<div class="tile"><img src="figures/demo_b_18.jpg"><div class="cue">✓ lorry cab removed <span class="m">· GPT: "part of the vehicle"</span></div></div>
-<div class="tile"><img src="figures/demo_b_02.jpg"><div class="cue">✓ fridge found · HIGH <span class="m">· but it lies on the shoulder</span></div></div>
+<p class="lead">fewer false alarms · risk levels follow the rubric · misses some small or dark debris · asks about every box: tier 2 6-61 s</p>
+<div class="legend"><span style="background:#e33c3c"></span>high <span style="background:#f08c14"></span>medium <span style="background:#e1be00"></span>low <span style="background:#1ea06e"></span>removed by gate <span style="background:#d73ca0"></span>missed <span style="background:#3c8ce6"></span>vehicle · banner: this frame's tier 1 and tier 2 time, and boxes the VLM saw</div>
+<div class="grid3">
+<div class="tile"><img src="figures/demo_b_23.jpg"><div class="cue">✓ tyre · HIGH</div></div>
+<div class="tile"><img src="figures/demo_b_10.jpg"><div class="cue">✓ fridge · HIGH <span class='m'>· 5 misnamed boxes, gate cleans up</span></div></div>
+<div class="tile"><img src="figures/demo_b_13.jpg"><div class="cue">✓ tyre found <span class='m'>· named 'ladder'</span></div></div>
+<div class="tile"><img src="figures/demo_b_18.jpg"><div class="cue">✓ lorry cab removed <span class='m'>· GPT: part of the vehicle</span></div></div>
+<div class="tile"><img src="figures/demo_b_02.jpg"><div class="cue">✓ fridge · HIGH</div></div>
+<div class="tile"><img src="figures/demo_b_14.jpg"><div class="cue">✓ box · LOW <span class='m'>· as the rubric says</span></div></div>
+<div class="tile"><img src="figures/demo_b_26.jpg"><div class="cue">✗ small tyre → 'roadside structure'</div></div>
+<div class="tile"><img src="figures/demo_b_05.jpg"><div class="cue">✗ tyre → 'shadow' <span class='m'>· missed</span></div></div>
+<div class="tile"><img src="figures/demo_b_00.jpg"><div class="cue">✗ fridge → 'shadow' <span class='m'>· missed</span></div></div>
 </div>
 
 ???
-Same frames with GPT-5.4. It fixes both of A's failures: asked by the gate, it confirms the red box matches the lorry's cab, so no false alarm; and it names the fridge correctly. But it is not uniformly better: it misses the small tyre that A found, calling it a roadside post. And it judges each object on its own crop, so the fridge is rated high although it actually lies across the edge line on the hard shoulder. It also asks GPT-5.4 about every box, most of them ordinary cars, which is where its time goes.
+The same nine frames with GPT-5.4. Top row: it finds all three, including the tyre A called a car, though it names that one a ladder. The busy frame shows its cost: 27 boxes, 27 calls, and still five misnamed car parts that only the gate removes. Middle row: it fixes A's weaknesses. It confirms the red box is part of the lorry, so no false alarm; it names the fridge; and it rates the empty box low, as the rubric says. Bottom row: its weakness. It misses the three objects A found, calling a small tyre a roadside structure and a tyre and a fridge in shadow a shadow. Tier 2 runs on every frame and asks about every box, mostly ordinary cars.
 
 ---
 
@@ -144,16 +156,22 @@ Same frames with GPT-5.4. It fixes both of A's failures: asked by the gate, it c
 
 # D · detector screens first, GPT-5.4 on flagged boxes
 
-<div class="legend"><span style="background:#e33c3c"></span>high <span style="background:#1ea06e"></span>removed by gate <span style="background:#d73ca0"></span>missed <span style="background:#3c8ce6"></span>vehicle (by the detector) · banner: this frame's tier times</div>
-<div class="grid2">
-<div class="tile"><img src="figures/demo_d_23.jpg"><div class="cue">✓ tyre found · HIGH <span class="m">· 1 of 5 boxes sent to the VLM</span></div></div>
-<div class="tile"><img src="figures/demo_d_26.jpg"><div class="cue">✗ small tyre → 'roadside structure' <span class="m">· as B · 1 of 30 boxes sent</span></div></div>
-<div class="tile"><img src="figures/demo_d_18.jpg"><div class="cue">✓ lorry cab removed <span class="m">· as B · 2 of 9 boxes sent</span></div></div>
-<div class="tile"><img src="figures/demo_d_02.jpg"><div class="cue">✓ fridge found · HIGH <span class="m">· 1 of 3 boxes sent</span></div></div>
+<p class="lead">B's answers on every frame · the VLM sees 1-3 boxes instead of all · tier 2 2-7 s · relies on the detector's screen</p>
+<div class="legend"><span style="background:#e33c3c"></span>high <span style="background:#f08c14"></span>medium <span style="background:#e1be00"></span>low <span style="background:#1ea06e"></span>removed by gate <span style="background:#d73ca0"></span>missed <span style="background:#3c8ce6"></span>vehicle · banner: this frame's tier 1 and tier 2 time, and boxes the VLM saw</div>
+<div class="grid3">
+<div class="tile"><img src="figures/demo_d_23.jpg"><div class="cue">✓ as B <span class='m'>· VLM saw 1 of 5 boxes</span></div></div>
+<div class="tile"><img src="figures/demo_d_10.jpg"><div class="cue">✓ as B <span class='m'>· cars screened: nothing misnamed</span></div></div>
+<div class="tile"><img src="figures/demo_d_13.jpg"><div class="cue">✓ as B <span class='m'>· 3 of 7 boxes</span></div></div>
+<div class="tile"><img src="figures/demo_d_18.jpg"><div class="cue">✓ as B <span class='m'>· cab removed · 2 of 9 boxes</span></div></div>
+<div class="tile"><img src="figures/demo_d_02.jpg"><div class="cue">✓ as B <span class='m'>· 1 of 3 boxes</span></div></div>
+<div class="tile"><img src="figures/demo_d_14.jpg"><div class="cue">✓ as B <span class='m'>· 2 of 6 boxes</span></div></div>
+<div class="tile"><img src="figures/demo_d_26.jpg"><div class="cue">✗ as B <span class='m'>· 1 of 30 boxes</span></div></div>
+<div class="tile"><img src="figures/demo_d_05.jpg"><div class="cue">✗ as B <span class='m'>· 2 of 11 boxes</span></div></div>
+<div class="tile"><img src="figures/demo_d_00.jpg"><div class="cue">✗ as B <span class='m'>· 1 of 31 boxes</span></div></div>
 </div>
 
 ???
-The same four frames with D. The answers are B's, by construction: the boxes that go to GPT-5.4 are exactly the ones that could reach B's risk step, so the tyre, the lorry cab and the fridge come out as with B, and the small tyre is missed as with B. What changes is the work: on the busy frame on the right, GPT-5.4 is asked about one box instead of thirty. The banner on each frame shows its two tier times: about 2.4 seconds to look, then 2 to 5 seconds of language model when something was flagged. The risk to keep in mind is that the screen is a probe trained on our renders: a kind of debris it has never seen could be taken for a vehicle and never reach the language model. None of the 27 debris boxes in the test set were lost this way.
+D on the same nine frames. Every answer is B's: the boxes sent to GPT-5.4 are exactly those that could reach B's risk step, so the hits and the misses are the same. What changes is the work. The model sees one to three boxes per frame instead of all of them: 2 of 27 on the busy frame, 1 of 31 on the last. On the busy frame the cars never reach the model, so there is nothing misnamed for the gate to clean up. Tier 2 falls to 2 to 7 seconds, and tier 1 stays at about 2.4 seconds on every frame. The price is reliance on the detector's screen, a probe trained on our renders: a kind of debris it has never seen could be screened out as a car. None of the 27 debris boxes in the test set were.
 
 ---
 

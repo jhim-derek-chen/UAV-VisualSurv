@@ -37,9 +37,17 @@ BROWSERS = [Path(r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
             Path(r"C:\Program Files\Google\Chrome\Application\chrome.exe")]
 FONT_DIR = Path(r"C:\Windows\Fonts")
 
-# Demo frames: the same four test frames for A, B and D. Focus = object ids
-# the crop keeps.
-DEMO = [(23, [4, 3]), (26, [23]), (18, [6, 5]), (2, [3])]
+# Demo frames: the same nine test frames for A, B and D, chosen so that each
+# architecture's strengths and weaknesses show. Focus = object ids the crop
+# keeps. Row 1: all right (time and calls differ); busy frame where the VLM
+# misnames car parts (B's gate cleans up, D screens them); a tyre A calls a
+# car. Row 2: a lorry cab A rates high; a fridge A misses; an empty box A
+# over-rates. Row 3: debris A finds and B / D miss.
+DEMO = [(23, [4, 3]), (10, [10, 6, 9, 11, 27]), (13, [5]),
+        (18, [6, 5]), (2, [3]), (14, [5, 2]),
+        (26, [23]), (5, [3, 7]), (0, [10])]
+TIER1_S = 2.4          # shared Objective 1 code, measured live in D's run
+RISK_CALL_S = 1.85     # gpt-5.4 risk call, mean in D's live run (B's own risk times include ungated calls)
 DEMO_ARCHS = ("a_qwen_local", "b_gpt", "d_fast")
 
 RISK_COL = {"high": (227, 60, 60), "medium": (240, 140, 20), "low": (225, 190, 0)}
@@ -208,14 +216,14 @@ def tile_ab(arch: str, image_id: int, focus: list) -> Path:
     crop = _crop_box([by[i]["box"] for i in focus], img.width, img.height)
     labels = {}
     rules = {"frame edge": "frame edge", "sideways": "far from traffic",
-             "detector": "detector: not debris", "abuts": "cab or trailer",
-             "part of vehicle": "part of a vehicle"}
+             "detector": "detector", "abuts": "cab or trailer",
+             "part of vehicle": "vehicle part"}
     for o in rec["objects"]:
         truth, cat = o["truth_any"], o["vlm_category"]
         debris = truth not in ("vehicle", "none")
         if o.get("context"):
             why = next((v for k, v in rules.items() if k in o["context"]), "context")
-            labels[o["id"]] = (f"removed: {why}", GATED, "✗" if debris else "✓")
+            labels[o["id"]] = (f"removed · {why}", GATED, "✗" if debris else "✓")
         elif o["risk"] != "none":
             name = short(cat)
             if not debris:
@@ -226,14 +234,21 @@ def tile_ab(arch: str, image_id: int, focus: list) -> Path:
                 labels[o["id"]] = (f"{name}{real} · {o['risk'].upper()}", RISK_COL[o["risk"]], "✓")
         elif debris and o.get("identified_by") == "detector":
             labels[o["id"]] = (f"{short(truth)} screened out as {cat}: missed", MISSED, "✗")
-        elif debris and cat != "vehicle":
+        elif debris:
             labels[o["id"]] = (f"{short(truth)} named '{short(cat)}': missed", MISSED, "✗")
-    banner = None
-    if arch == "d_fast":
+    # Banner: this frame's two tier times and how many boxes the VLM saw.
+    n_all = len(rec["objects"])
+    n_vlm = sum(o.get("identified_by", "vlm") == "vlm" for o in rec["objects"])
+    if arch == "d_fast":  # measured live
         t = json.loads((RES / arch / "timing.json").read_text(encoding="utf-8"))["per_frame"][str(image_id)]
-        n_vlm = sum(o.get("identified_by") == "vlm" for o in rec["objects"])
-        banner = (f"tier 1 {t['tier1']:.1f} s · tier 2 {t['tier2']:.1f} s · "
-                  f"VLM asked about {n_vlm} of {len(rec['objects'])} boxes", None)
+        t1, t2, approx = t["tier1"], t["tier2"], ""
+    elif arch == "a_qwen_local":  # measured, staged run
+        t = json.loads((RES / arch / "timing.json").read_text(encoding="utf-8"))["per_frame"][str(image_id)]
+        t1, t2, approx = TIER1_S, t["identify"] + t["context"] + t["risk"], ""
+    else:  # B: measured identification + risk calls at D's measured rate
+        tm = rec["timing_s"]
+        t1, t2, approx = TIER1_S, tm["identify"] + tm.get("context", 0) + tm["n_risk"] * RISK_CALL_S, "≈ "
+    banner = (f"tier 1 {t1:.1f} s · tier 2 {approx}{t2:.1f} s · VLM saw {n_vlm} of {n_all} boxes", None)
     out = FIGS / f"demo_{arch.split('_')[0]}_{image_id:02d}.jpg"
     return _draw_tile(img, crop, rec, labels, out, banner=banner)
 
@@ -326,6 +341,10 @@ table.ev tr.tot td { font-weight: 700; background: #fafafa; }
 /* demo grid */
 .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5mm 6mm; }
 .tile img { width: 100%; height: 63mm; object-fit: contain; background: #f3f3f3; border-radius: 1.5mm; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.2mm 4mm; }
+.grid3 .tile img { height: 41mm; }
+.grid3 .cue { font-size: 9pt; margin-top: .4mm; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lead { font-size: 11pt; color: #444; margin: -3mm 0 2mm 0; }
 .cue { font-size: 11pt; font-weight: 600; margin-top: 1mm; }
 .cue .m { font-weight: 400; color: #555; }
 .legend { font-size: 10pt; color: #555; margin: -3mm 0 2mm 0; }
