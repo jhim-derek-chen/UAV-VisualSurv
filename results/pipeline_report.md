@@ -127,7 +127,7 @@ candidate; it never adds one. In order:
 ## 3. Compute
 
 Measured end-to-end from the raw frame on the RTX 3050 Ti Laptop (4 GB),
-`scripts/time_pipeline.py`. It uses the deployable re-scorer trained on all
+`scripts/report/time_pipeline.py`. It uses the deployable re-scorer trained on all
 four locations, so box counts differ slightly from the accuracy runs.
 
 **Staged mode** runs Objective 1 on every frame, unloads its models, then runs
@@ -223,7 +223,7 @@ relations between objects: the same pallet is urgent in a lane with traffic
 and minor on the hard shoulder; several items strewn behind a lorry are one
 spilled load, not unrelated debris.
 
-**Design** (`scripts/scene_assess.py`).
+**Design** (`scripts/assess/scene_assess.py`).
 - **C keeps everything in B, including the context gate.** Removing false
   alarms stays the gate's job, since the VLM on its own let 23 through on the
   test set.
@@ -242,7 +242,7 @@ spilled load, not unrelated debris.
   the same standard.
 - **A frame with no candidate left is "none" by rule**, without a call.
 
-**The scene-relation set** (`scripts/build_scene_relations.py`).
+**The scene-relation set** (`scripts/data/build_scene_relations.py`).
 - **Frames:** 23 test frames on 5 real backgrounds, and 8 dev frames on 2
   others.
 - **Five variants of each background:**
@@ -387,7 +387,7 @@ VLM instead of after it.
 | debris assessed / rated high (of 27) | 21 / 15 | 21 / 15 |
 | risk levels given (high / medium / low) | 15 / 5 / 1 | 15 / 5 / 1 |
 
-**Time, measured live with `python scripts/time_pipeline.py --arch d`.** The
+**Time, measured live with `python scripts/report/time_pipeline.py --arch d`.** The
 API cache is off, calls for a frame's candidates run in parallel, and the
 laptop has an RTX 3050 Ti (4 GB).
 
@@ -433,7 +433,7 @@ laptop has an RTX 3050 Ti (4 GB).
   released checkpoint is ViT-L/16, with weights under CC BY-NC 4.0.
 - **Test.** The whole frame, resized to a long side of 1344 px, was encoded
   in one pass (0.54 s per frame). A linear background / vehicle / debris
-  probe was fitted on each 16 px patch (`scripts/levjepa_detector.py`).
+  probe was fitted on each 16 px patch (`scripts/see/levjepa_detector.py`).
 - **Result.** Detection fell far short of OWLv2.
   - **Setting.** Chosen on dev: no neighbourhood context, C = 0.01. Objects
     are split by watershed from local maxima.
@@ -462,7 +462,7 @@ laptop has an RTX 3050 Ti (4 GB).
 - 2026-09-26: A run on the scene set (16 / 23), B's scene records written
   from cache, C run on the 30-image test set (0 false alarms rated high, one
   level changed). Stage report written to the SKILL.md guideline:
-  `report/stage_report.md`, compiled with `python scripts/build_report.py`.
+  `report/stage_report.md`, compiled with `python scripts/report/build_report.py`.
 - 2026-09-27: stage report rebuilt as a 9-slide deck (presentation mode):
   overview on the stage's two aims (chain connected, architectures compared),
   one evaluation table, and scene analysis kept to a single add-on slide at

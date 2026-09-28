@@ -59,9 +59,9 @@ each frame (not in the current slides).
 
 | | |
 |---|---|
-| `scripts/` | every step, from dataset synthesis to evaluation and figures |
+| `scripts/` | every step, in six folders: setup, data, survey, see, assess, report (see [Code layout](#code-layout)) |
 | `results/` | metrics (JSON), figures, the pipeline report |
-| `report/` | the stage report as slides: markdown source, figures, PDF, speaker notes (`scripts/build_report.py`) |
+| `report/` | the stage report as slides: markdown source, figures, PDF, speaker notes (`scripts/report/build_report.py`) |
 | `docs/` | model and dataset sources, licences |
 
 Datasets and model weights are not in the repository. The download and build
@@ -202,7 +202,7 @@ are zero-shot.
 ## The binding constraint: 4 GB VRAM
 
 GPU is an RTX 3050 Ti Laptop. Disk is not the bottleneck — VRAM is. Measured,
-not estimated: `python scripts/check_models.py`, results in
+not estimated: `python scripts/setup/check_models.py`, results in
 `results/vram_check.json`.
 
 **The 4 GB limit is soft, and that is a trap.** Windows falls back to shared
@@ -255,12 +255,12 @@ Three silent failures, none of which raised an error:
 ## Quick start
 
 ```powershell
-. d:\UAV_VisualSurv\scripts\env.ps1        # always first
-python scripts\download_models.py
-python scripts\download_datasets.py
-python scripts\benchmark.py                # -> results/benchmark.json
-python scripts\benchmark_figures.py        # -> results/figures/B1..B6.jpg
-python scripts\make_report.py              # -> results/uav_selection_report.html
+. d:\UAV_VisualSurv\scripts\setup\env.ps1        # always first
+python scripts\setup\download_models.py
+python scripts\setup\download_datasets.py
+python scripts\survey\benchmark.py                # -> results/benchmark.json
+python scripts\survey\benchmark_figures.py        # -> results/figures/B1..B6.jpg
+python scripts\survey\make_report.py              # -> results/uav_selection_report.html
 ```
 
 `env.ps1` selects the Python 3.12 venv and redirects all caches to D:. The
@@ -271,43 +271,87 @@ system default `python` is 3.14 and has no PyTorch wheels.
 copy on C:. `env.ps1` sets both. Environment variables apply only to processes
 started afterwards.
 
-## Layout
+## Code layout
+
+The scripts are grouped by the step of the project they serve, in the order
+the project runs:
 
 ```
 scripts/
-  env.ps1                 venv + cache redirection
-  download_models.py      registry + downloader, records commit SHA
-  download_datasets.py    registry + downloader
-  check_models.py         VRAM measurement across resolutions
-  smoke_test.py           "is this obviously broken?" on real imagery
-  benchmark.py            the factorial benchmark      -> results/benchmark.json
-  resolution_sweep.py     input size vs recall on B2   -> results/resolution_sweep.json
-  benchmark_figures.py    sample frames, all methods overlaid -> results/figures/
-  make_report.py          slide report, every number read from the JSON
-  highway_backgrounds.py  open-highway background pool, with exclusion reasons
-  calibrate_vehicle_scale.py  pixels per metre per shoot location
-  render_debris.py        Blender: one debris render, with and without shadow
-  build_synthetic_dataset.py  composite debris into backgrounds
-  add_vehicle_labels.py   vehicle proposals + manual review -> vehicle labels
-  train_road_segmenter.py Stage 1: SegFormer-B2 fine-tuned on AeroScapes
-  eval_road_objects.py    Stage 1 + Stage 2 on the synthetic set -> results/road-object-eval/
-  build_training_renders.py   separate renders for training the re-scorer
-  train_rescorer.py       Stage 2 re-scorer: probe on OWLv2 features, leave-one-location-out
-  draw_detection_examples.py  labels vs detections -> results/synthetic-debris-inference/
-  assess_risk.py          Objective 2: VLM identification + physics check + context gate + risk -> results/risk-assessment/
-  time_pipeline.py        end-to-end timing and GPU memory (A staged; D live, two tiers) -> results/risk-assessment/<arch>/timing.json
-  levjepa_detector.py     LeVJEPA one-pass detector, tried for tier 1 and not adopted
-datasets/                 raw data, never modified in place
-models/                   weights + manifest.json (repo, commit SHA, licence)
-results/                  benchmark.json, resolution_sweep.json, figures/,
-                          uav_selection_report.html, vram_check.json
-docs/                     models.md, datasets.md — sources, licences, decisions
-requirements.txt          Python deps (install torch separately, see below)
-.venv/ .cache/            tooling, ignore
+  setup/    environment and downloads
+    env.ps1                     venv + cache redirection to D:
+    download_models.py          model registry + downloader; commit SHA -> models/manifest.json
+    download_datasets.py        dataset registry + downloader
+    check_models.py             does each checkpoint load, and how much VRAM does it need
+    fetch_debris_models.py      3D debris models from Sketchfab
+    fetch_pexels_highways.py    drone highway clips -> background frames
+  data/     build the datasets
+    highway_backgrounds.py      open-highway background pool, with exclusion reasons
+    calibrate_vehicle_scale.py  pixels per metre per shoot location, from real cars
+    render_debris.py            Blender: render one debris model (called by the builders)
+    build_synthetic_dataset.py  the 30-frame test set: debris composited into real frames
+    add_vehicle_labels.py       vehicle proposals + hand review -> vehicle labels
+    build_training_renders.py   the 30-frame dev set, for tuning and training
+    build_scene_relations.py    the scene-relation set (lane / shoulder / spill / blockage)
+    audit_debris_models.py, fix_water_placements.py   one-off QA and fixes
+  survey/   stage 0: which existing models work from the air (the six test beds)
+    benchmark.py, benchmark_figures.py, resolution_sweep.py, segment_benchmark.py,
+    segment_figures.py, smoke_test.py, make_report.py
+    compare_models.py, eval_transfer.py, draw_detections.py   superseded by benchmark.py
+  see/      Objective 1: find every object on the road
+    train_road_segmenter.py     road region: SegFormer-B2 fine-tuned on AeroScapes
+    eval_road_objects.py        the detector (OWLv2, tiled) and its evaluation harness
+    train_rescorer.py           re-scorer: probe on OWLv2 box features, leave-one-location-out
+    draw_detection_examples.py  labels vs detections, as figures
+    levjepa_detector.py         LeVJEPA one-pass detector, tried and not adopted
+  assess/   Objective 2: identify, gate, assess risk
+    assess_risk.py              the chain for architectures A-D: identification + physics
+                                check + context gate + risk; one JSON and figure per frame
+    api_vlm.py                  GPT-5.4 / Gemini backend with the local model's interface
+    scene_assess.py             architecture C's scene analysis and its scoring
+  report/   time it and present it
+    time_pipeline.py            end-to-end timing and GPU memory (A staged; D live, two tiers)
+    build_report.py             stage deck: figures + report/stage_report.md -> PDF + notes
+datasets/   raw and built data, never committed      models/   weights + manifest.json
+results/    every measurement (JSON) and figure       report/   the stage deck
+docs/       model and dataset sources, licences
 ```
 
-`compare_models.py`, `eval_transfer.py` and `draw_detections.py` are superseded
-by `benchmark.py` and `benchmark_figures.py` and can be deleted.
+**How the pieces fit.** Each folder consumes the one before it:
+
+```
+setup ──> data ──> datasets/ (frames, labels, manifests)
+                      │
+          see ──> results/road-object-eval/ (boxes, features, detection metrics)
+                      │
+       assess ──> results/risk-assessment/<architecture>/ (per-frame JSON, figures, summary)
+                      │
+       report ──> timing.json, report/stage_report.pdf
+```
+
+**How the scripts are written.**
+- **One script, one step, one command.** Each script is a command-line
+  program. Its docstring says what it does, why, and how to run it. It
+  writes its results to `results/` as JSON, plus figures.
+- **Modules are shared by name.** For example, `assess_risk.py` imports
+  `eval_road_objects` for boxes and road masks. Each script puts the six
+  folders on its import path at the top.
+- **Architectures are flags, not copies.** There is one chain in
+  `assess_risk.py`. `--arch a|b|c|d` selects the model (local Qwen or the
+  API), the detector screen (d) and the scene step (c).
+- **Expensive work is cached.** Road masks, detector and LeVJEPA features are
+  keyed by the input file's size and modification time. VLM answers are keyed
+  by a hash of the request. Re-runs are fast, and an interrupted API run
+  resumes without paying twice.
+- **The protocol is in the code.**
+  - Settings are chosen on the dev set, and the test set is scored once.
+  - Learned parts are applied leave-one-location-out.
+  - The scene set's expected answers are fixed in its build script before
+    any model runs.
+- **Reported numbers come from the JSON results.** The deck's figures and
+  tables read measured values. The only hand-written part is the prose.
+- **No secrets in the code.** API keys are read from `.secrets/`, which is
+  never committed.
 
 ## Environments
 
@@ -382,11 +426,11 @@ in `.cache/tmp/synthetic-highway-debris.v1`).
 Rebuild order:
 
 ```powershell
-python scripts\highway_backgrounds.py              # lists the pool
-python scripts\calibrate_vehicle_scale.py
-python scripts\add_vehicle_labels.py --backgrounds # vehicle proposals per background
-python scripts\build_synthetic_dataset.py --n 30
-python scripts\add_vehicle_labels.py               # applies the manual review
+python scripts\data\highway_backgrounds.py              # lists the pool
+python scripts\data\calibrate_vehicle_scale.py
+python scripts\data\add_vehicle_labels.py --backgrounds # vehicle proposals per background
+python scripts\data\build_synthetic_dataset.py --n 30
+python scripts\data\add_vehicle_labels.py               # applies the manual review
 ```
 
 ## Finding vehicles and debris on the road
@@ -443,9 +487,9 @@ Each change came from sorting v1's misses and false alarms by cause:
   0.3. Asking OWLv2's text head to recognise known background ("a street
   lamp", "a road sign") did not help: debris matched those queries as
   strongly as the real lamps did. What works is learning from examples.
-- **The re-scorer** (`scripts/train_rescorer.py`) is a logistic regression
+- **The re-scorer** (`scripts/see/train_rescorer.py`) is a logistic regression
   on each box's OWLv2 feature, trained only on separate renders
-  (`scripts/build_training_renders.py`). These are 30 more frames from the
+  (`scripts/data/build_training_renders.py`). These are 30 more frames from the
   same open-highway pool, never used by the test set, with 3 debris objects
   each. It is trained with motion-blur copies of every vehicle, because the
   static-camera clip's traffic is heavily blurred and nothing else in the
@@ -493,7 +537,7 @@ Stage 1 on its own:
 
 - **Stage 1 is SegFormer-B2 fine-tuned on AeroScapes** (real drone footage),
   with road plus car as the positive class
-  (`scripts/train_road_segmenter.py`, 38 min, 2.18 GB peak, AeroScapes val
+  (`scripts/see/train_road_segmenter.py`, 38 min, 2.18 GB peak, AeroScapes val
   IoU 0.90; the Cityscapes weights scored 0.31 on road alone). Saved in
   `models/segformer-b2-aeroscapes-road/`.
 - **The road mask pays for itself only when it is accurate.** Grounding
@@ -519,11 +563,11 @@ images: 326 of 342 vehicles, 26 of 30 debris, 62 false alarms (v1: 324, 23,
 97).
 
 ```powershell
-python scripts\train_road_segmenter.py                        # once, ~40 min
-python scripts\build_training_renders.py --per-image 3        # once, ~30 min (Blender)
-python scripts\train_rescorer.py                              # features, probe, scores -> results/road-object-eval/
-python scripts\draw_detection_examples.py --method owlv2-fused --which two_stage --all
-python scripts\draw_detection_examples.py --method owlv2-fused --which two_stage
+python scripts\see\train_road_segmenter.py                        # once, ~40 min
+python scripts\data\build_training_renders.py --per-image 3        # once, ~30 min (Blender)
+python scripts\see\train_rescorer.py                              # features, probe, scores -> results/road-object-eval/
+python scripts\see\draw_detection_examples.py --method owlv2-fused --which two_stage --all
+python scripts\see\draw_detection_examples.py --method owlv2-fused --which two_stage
 ```
 
 **Limits.** These are 30 images from 4 locations, and each debris object is
@@ -546,7 +590,7 @@ UAV frame
   -> vehicles and roadside structure: risk "none" by rule
 ```
 
-`scripts/assess_risk.py`. The architectures are compared in
+`scripts/assess/assess_risk.py`. The architectures are compared in
 `results/pipeline_report.md` (accuracy, per-stage time, GPU memory, deployment
 cost), which is updated as each one lands. Each has its own folder in
 `results/risk-assessment/`, holding one `NN_chain.jpg` per test image,
@@ -596,7 +640,7 @@ whole road with every candidate numbered (panel 4). Here it groups four
 planks as one spilled load, "most likely from the nearby open-load lorry
 V9", counts two blocked lanes and asks for them to be closed.*
 
-C is tested on a scene-relation set (`scripts/build_scene_relations.py`):
+C is tested on a scene-relation set (`scripts/data/build_scene_relations.py`):
 23 real frames where the right answer depends on relations. The same object
 is placed in a lane or on the hard shoulder, a load is strewn behind a lorry,
 or two objects block adjacent lanes. The expected answers were written
@@ -686,16 +730,16 @@ reasoning. On the test set, after the gate, A rated 21 of its 22 assessed
 debris high and 1 medium; B rated 15 high, 5 medium and 1 low.
 
 ```powershell
-python scripts\assess_risk.py --select                # compare VLM variants on the training renders
-python scripts\assess_risk.py --arch a --split dev    # A on the training renders, where the gate was developed
-python scripts\assess_risk.py --arch a                # A on the test set (+ figures)
-python scripts\assess_risk.py --arch b                # B: OpenAI (key in .secrets\openai_api_key.txt)
-python scripts\assess_risk.py --arch a --figures-only # redraw figures from saved records
-python scripts\build_scene_relations.py               # render the scene-relation set
-python scripts\assess_risk.py --arch c --split scene  # C on it (+ figures with panel 4)
-python scripts\time_pipeline.py                       # end-to-end timing of A
-python scripts\assess_risk.py --arch d                # D on the test set
-python scripts\time_pipeline.py --arch d              # D live, tier 1 and tier 2 timed
+python scripts\assess\assess_risk.py --select                # compare VLM variants on the training renders
+python scripts\assess\assess_risk.py --arch a --split dev    # A on the training renders, where the gate was developed
+python scripts\assess\assess_risk.py --arch a                # A on the test set (+ figures)
+python scripts\assess\assess_risk.py --arch b                # B: OpenAI (key in .secrets\openai_api_key.txt)
+python scripts\assess\assess_risk.py --arch a --figures-only # redraw figures from saved records
+python scripts\data\build_scene_relations.py               # render the scene-relation set
+python scripts\assess\assess_risk.py --arch c --split scene  # C on it (+ figures with panel 4)
+python scripts\report\time_pipeline.py                       # end-to-end timing of A
+python scripts\assess\assess_risk.py --arch d                # D on the test set
+python scripts\report\time_pipeline.py --arch d              # D live, tier 1 and tier 2 timed
 ```
 
 **Limits.** 25 matched debris objects are too few for a precise number.

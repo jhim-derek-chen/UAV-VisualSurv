@@ -45,7 +45,7 @@ an official source exists.
 
 ## Verified on hardware (2026-09-05)
 
-`scripts/check_models.py`, RTX 3050 Ti Laptop 4 GB, torch 2.6.0+cu124,
+`scripts/setup/check_models.py`, RTX 3050 Ti Laptop 4 GB, torch 2.6.0+cu124,
 transformers 5.16.1. Raw output in `results/vram_check.json`.
 
 All seven checkpoints load and execute. Estimates in the registry were
