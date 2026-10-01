@@ -65,7 +65,10 @@ each frame (not in the current slides).
 | `docs/` | model and dataset sources, licences |
 
 Datasets and model weights are not in the repository. The download and build
-scripts below fetch or regenerate them.
+scripts below fetch or regenerate them. On 2026-10-01 the survey-stage datasets
+(UAVDT, VisDrone, RescueNet, UAV-RSOD, FOD-A, SMIYC, Road Anomaly) and unused
+models (`models/manifest.json`, `removed_locally_utc`) were deleted from the
+working copy to free 28 GB; `scripts/setup/download_*.py` fetches them again.
 
 The rest of this README is the full technical record: benchmark design,
 dataset construction, every experiment and why each decision was made.

@@ -10,7 +10,9 @@
       "paper": "https://arxiv.org/abs/2105.15203",
       "local_dir": "models/segformer-b0-cityscapes",
       "size_bytes": 14965674,
-      "downloaded_utc": "2026-09-05T08:26:03+00:00"
+      "downloaded_utc": "2026-09-05T08:26:03+00:00",
+      "removed_locally_utc": "2026-10-01",
+      "removed_reason": "not used by the current pipeline; re-download with scripts/setup/download_models.py"
     },
     "segformer-b2-cityscapes": {
       "repo_id": "nvidia/segformer-b2-finetuned-cityscapes-1024-1024",
@@ -32,7 +34,9 @@
       "paper": "https://arxiv.org/abs/2112.01527",
       "local_dir": "models/mask2former-swin-tiny-cityscapes",
       "size_bytes": 380074128,
-      "downloaded_utc": "2026-09-05T08:30:09+00:00"
+      "downloaded_utc": "2026-09-05T08:30:09+00:00",
+      "removed_locally_utc": "2026-10-01",
+      "removed_reason": "not used by the current pipeline; re-download with scripts/setup/download_models.py"
     },
     "dinov2-large": {
       "repo_id": "facebook/dinov2-large",
@@ -43,7 +47,9 @@
       "paper": "https://arxiv.org/abs/2304.07193",
       "local_dir": "models/dinov2-large",
       "size_bytes": 2435144949,
-      "downloaded_utc": "2026-09-05T08:41:50+00:00"
+      "downloaded_utc": "2026-09-05T08:41:50+00:00",
+      "removed_locally_utc": "2026-10-01",
+      "removed_reason": "not used by the current pipeline; re-download with scripts/setup/download_models.py"
     },
     "dinov3-vitl16": {
       "repo_id": "facebook/dinov3-vitl16-pretrain-lvd1689m",
@@ -54,7 +60,9 @@
       "paper": "https://arxiv.org/abs/2508.10104",
       "local_dir": "models/dinov3-vitl16",
       "size_bytes": 1212586401,
-      "downloaded_utc": "2026-09-05T08:47:11+00:00"
+      "downloaded_utc": "2026-09-05T08:47:11+00:00",
+      "removed_locally_utc": "2026-10-01",
+      "removed_reason": "not used by the current pipeline; re-download with scripts/setup/download_models.py"
     },
     "grounding-dino-tiny": {
       "repo_id": "IDEA-Research/grounding-dino-tiny",
@@ -76,7 +84,9 @@
       "paper": "https://arxiv.org/abs/2408.00714",
       "local_dir": "models/sam2.1-hiera-base-plus",
       "size_bytes": 647118076,
-      "downloaded_utc": "2026-09-05T08:58:09+00:00"
+      "downloaded_utc": "2026-09-05T08:58:09+00:00",
+      "removed_locally_utc": "2026-10-01",
+      "removed_reason": "not used by the current pipeline; re-download with scripts/setup/download_models.py"
     },
     "owlv2-base-ensemble": {
       "repo_id": "google/owlv2-base-patch16-ensemble",
@@ -116,7 +126,9 @@
       "group": "vlm",
       "licence": "Apache-2.0",
       "size_bytes": 9342911408,
-      "downloaded_utc": "2026-09-25T14:21:43+00:00"
+      "downloaded_utc": "2026-09-25T14:21:43+00:00",
+      "removed_locally_utc": "2026-10-01",
+      "removed_reason": "not used by the current pipeline; re-download with scripts/setup/download_models.py"
     },
     "levjepa-videomix-large": {
       "repo_id": "galilai-group/LeVJEPA-VideoMix-Large",
@@ -128,7 +140,9 @@
       "local_dir": "models/levjepa-videomix-large",
       "size_bytes": 1212429888,
       "downloaded_utc": "2026-09-28T01:14:00+00:00",
-      "note": "tried as a one-pass tier-1 detector; not adopted (see results/pipeline_report.md, section 6)"
+      "note": "tried as a one-pass tier-1 detector; not adopted (see results/pipeline_report.md, section 6)",
+      "removed_locally_utc": "2026-10-01",
+      "removed_reason": "not used by the current pipeline; re-download with scripts/setup/download_models.py"
     }
   }
 }
